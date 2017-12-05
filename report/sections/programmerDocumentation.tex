@@ -2,15 +2,15 @@
 \subsection{Specification}
 The program implements a DHCP relay. Figure~\ref{fig:dhcp} depicts how it works.
 \begin{figure}[h]
-	\centering\includegraphics[scale=0.5]{images/dhcp}
-	\caption{DHCP relay\protect\footnotemark}
+	\centering\includegraphics[scale=0.56]{images/dhcp}
+	\caption{Example of DHCP protocol communication\protect\footnotemark}
 	\label{fig:dhcp}
 \end{figure}
 \footnotetext{\url{https://www.netmanias.com/en/?m=view\&id=techdocs\&no=6000}}
 
 Basically, a DHCP relay is a ``man in the middle'' between the client and the DHCP server. It helps the client to contact the server in order to obtain an IP address. It does so receiving the broadcast packets sent by clients and forwarding them in an unicast connection to one (or more) DHCP servers, and vice versa, forwarding the server responses in broadcast to the clients. 
 
-While modeling its behavior, we refer to the above figure. We suppose to be able to detect when a message comes from a client and when it comes from a server by means of two different interruptions, without looking at the \texttt{OPCode} field (which is 1 for a request and 2 for a response). In other words, two \textit{different events} occur. This is reasonable, since Figure~\ref{fig:dhcp} depicts two different links (\textit{Downlink} and \textit{Uplink}), with two different MAC and IP addresses. 
+While modeling its behavior, we refer to the above figure. We suppose to be able to detect when a message comes from a client and when it comes from a server by means of two different interruptions, without looking at the \texttt{OPCode} field (which is 1 for a request and 2 for a response). In other words, two \textit{different events} occur. This is reasonable, since Figure~\ref{fig:dhcp} depicts two different links (\textit{Downlink} and \textit{Uplink}), with two different MAC and IP addresses.\\
 
 Our ASG diagram is depicted in Figure~\ref{fig:asg}.
 
@@ -20,7 +20,7 @@ Our ASG diagram is depicted in Figure~\ref{fig:asg}.
 	\label{fig:asg}
 \end{figure}
 
-A DHCP relay consists of four parallel components following a producer-consumer pattern. Two components, 1 and 3, wait for a packet, either from a client (broadcast) or a server (unicast). They then modify this packet as follows:
+The DHCP relay consists of four parallel components following a producer-consumer pattern. Two components, 1 and 3, wait for a packet, either from a client (broadcast) or a server (unicast). They then modify this packet as follows:
 \begin{itemize}
 	\item \textbf{Component 1} - \texttt{ModifyServerPacket}:
 	\begin{itemize}
