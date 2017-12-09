@@ -1,0 +1,1285 @@
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00001 ;--------------------------------------------------------
+               00002 ; File Created by SDCC : free open source ANSI-C Compiler
+               00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
+               00004 ; This file was generated Sat Dec  9 15:34:32 2017
+               00005 ;--------------------------------------------------------
+               00006 ; PIC16 port for the Microchip 16-bit core micros
+               00007 ;--------------------------------------------------------
+               00008         list    p=18f97j60
+               00009 
+               00010         radix dec
+               00011 
+               00012 ;--------------------------------------------------------
+               00013 ; public variables in this module
+               00014 ;--------------------------------------------------------
+               00015         global _strlcpy
+               00016 
+               00017 ;--------------------------------------------------------
+               00018 ; extern variables in this module
+               00019 ;--------------------------------------------------------
+               00020         extern __gptrget1
+               00021         extern __gptrput1
+               00022         extern _EBSTCONbits
+               00023         extern _MISTATbits
+               00024         extern _EFLOCONbits
+               00025         extern _MACON1bits
+               00026         extern _MACON2bits
+               00027         extern _MACON3bits
+               00028         extern _MACON4bits
+               00029         extern _MACLCON1bits
+               00030         extern _MACLCON2bits
+               00031         extern _MICONbits
+               00032         extern _MICMDbits
+               00033         extern _EWOLIEbits
+               00034         extern _EWOLIRbits
+               00035         extern _ERXFCONbits
+               00036         extern _EIEbits
+               00037         extern _ESTATbits
+               00038         extern _ECON2bits
+               00039         extern _EIRbits
+               00040         extern _EDATAbits
+               00041         extern _SSP2CON2bits
+               00042         extern _SSP2CON1bits
+               00043         extern _SSP2STATbits
+               00044         extern _ECCP2DELbits
+               00045         extern _ECCP2ASbits
+               00046         extern _ECCP3DELbits
+               00047         extern _ECCP3ASbits
+               00048         extern _RCSTA2bits
+               00049         extern _TXSTA2bits
+               00050         extern _CCP5CONbits
+               00051         extern _CCP4CONbits
+               00052         extern _T4CONbits
+               00053         extern _ECCP1DELbits
+               00054         extern _BAUDCON2bits
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00055         extern _BAUDCTL2bits
+               00056         extern _BAUDCONbits
+               00057         extern _BAUDCON1bits
+               00058         extern _BAUDCTLbits
+               00059         extern _BAUDCTL1bits
+               00060         extern _PORTAbits
+               00061         extern _PORTBbits
+               00062         extern _PORTCbits
+               00063         extern _PORTDbits
+               00064         extern _PORTEbits
+               00065         extern _PORTFbits
+               00066         extern _PORTGbits
+               00067         extern _PORTHbits
+               00068         extern _PORTJbits
+               00069         extern _LATAbits
+               00070         extern _LATBbits
+               00071         extern _LATCbits
+               00072         extern _LATDbits
+               00073         extern _LATEbits
+               00074         extern _LATFbits
+               00075         extern _LATGbits
+               00076         extern _LATHbits
+               00077         extern _LATJbits
+               00078         extern _DDRAbits
+               00079         extern _TRISAbits
+               00080         extern _DDRBbits
+               00081         extern _TRISBbits
+               00082         extern _DDRCbits
+               00083         extern _TRISCbits
+               00084         extern _DDRDbits
+               00085         extern _TRISDbits
+               00086         extern _DDREbits
+               00087         extern _TRISEbits
+               00088         extern _DDRFbits
+               00089         extern _TRISFbits
+               00090         extern _DDRGbits
+               00091         extern _TRISGbits
+               00092         extern _DDRHbits
+               00093         extern _TRISHbits
+               00094         extern _DDRJbits
+               00095         extern _TRISJbits
+               00096         extern _OSCTUNEbits
+               00097         extern _MEMCONbits
+               00098         extern _PIE1bits
+               00099         extern _PIR1bits
+               00100         extern _IPR1bits
+               00101         extern _PIE2bits
+               00102         extern _PIR2bits
+               00103         extern _IPR2bits
+               00104         extern _PIE3bits
+               00105         extern _PIR3bits
+               00106         extern _IPR3bits
+               00107         extern _EECON1bits
+               00108         extern _RCSTAbits
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00109         extern _RCSTA1bits
+               00110         extern _TXSTAbits
+               00111         extern _TXSTA1bits
+               00112         extern _PSPCONbits
+               00113         extern _T3CONbits
+               00114         extern _CMCONbits
+               00115         extern _CVRCONbits
+               00116         extern _ECCP1ASbits
+               00117         extern _CCP3CONbits
+               00118         extern _ECCP3CONbits
+               00119         extern _CCP2CONbits
+               00120         extern _ECCP2CONbits
+               00121         extern _CCP1CONbits
+               00122         extern _ECCP1CONbits
+               00123         extern _ADCON2bits
+               00124         extern _ADCON1bits
+               00125         extern _ADCON0bits
+               00126         extern _SSP1CON2bits
+               00127         extern _SSPCON2bits
+               00128         extern _SSP1CON1bits
+               00129         extern _SSPCON1bits
+               00130         extern _SSP1STATbits
+               00131         extern _SSPSTATbits
+               00132         extern _T2CONbits
+               00133         extern _T1CONbits
+               00134         extern _RCONbits
+               00135         extern _WDTCONbits
+               00136         extern _ECON1bits
+               00137         extern _OSCCONbits
+               00138         extern _T0CONbits
+               00139         extern _STATUSbits
+               00140         extern _INTCON3bits
+               00141         extern _INTCON2bits
+               00142         extern _INTCONbits
+               00143         extern _STKPTRbits
+               00144         extern _stdin
+               00145         extern _stdout
+               00146         extern _AN0String
+               00147         extern _AppConfig
+               00148         extern _activeUDPSocket
+               00149         extern _UDPSocketInfo
+               00150         extern _UDPTxCount
+               00151         extern _UDPRxCount
+               00152         extern _LCDText
+               00153         extern _MAADR5
+               00154         extern _MAADR6
+               00155         extern _MAADR3
+               00156         extern _MAADR4
+               00157         extern _MAADR1
+               00158         extern _MAADR2
+               00159         extern _EBSTSD
+               00160         extern _EBSTCON
+               00161         extern _EBSTCS
+               00162         extern _EBSTCSL
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00163         extern _EBSTCSH
+               00164         extern _MISTAT
+               00165         extern _EFLOCON
+               00166         extern _EPAUS
+               00167         extern _EPAUSL
+               00168         extern _EPAUSH
+               00169         extern _MACON1
+               00170         extern _MACON2
+               00171         extern _MACON3
+               00172         extern _MACON4
+               00173         extern _MABBIPG
+               00174         extern _MAIPG
+               00175         extern _MAIPGL
+               00176         extern _MAIPGH
+               00177         extern _MACLCON1
+               00178         extern _MACLCON2
+               00179         extern _MAMXFL
+               00180         extern _MAMXFLL
+               00181         extern _MAMXFLH
+               00182         extern _MICON
+               00183         extern _MICMD
+               00184         extern _MIREGADR
+               00185         extern _MIWR
+               00186         extern _MIWRL
+               00187         extern _MIWRH
+               00188         extern _MIRD
+               00189         extern _MIRDL
+               00190         extern _MIRDH
+               00191         extern _EHT0
+               00192         extern _EHT1
+               00193         extern _EHT2
+               00194         extern _EHT3
+               00195         extern _EHT4
+               00196         extern _EHT5
+               00197         extern _EHT6
+               00198         extern _EHT7
+               00199         extern _EPMM0
+               00200         extern _EPMM1
+               00201         extern _EPMM2
+               00202         extern _EPMM3
+               00203         extern _EPMM4
+               00204         extern _EPMM5
+               00205         extern _EPMM6
+               00206         extern _EPMM7
+               00207         extern _EPMCS
+               00208         extern _EPMCSL
+               00209         extern _EPMCSH
+               00210         extern _EPMO
+               00211         extern _EPMOL
+               00212         extern _EPMOH
+               00213         extern _EWOLIE
+               00214         extern _EWOLIR
+               00215         extern _ERXFCON
+               00216         extern _EPKTCNT
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00217         extern _EWRPT
+               00218         extern _EWRPTL
+               00219         extern _EWRPTH
+               00220         extern _ETXST
+               00221         extern _ETXSTL
+               00222         extern _ETXSTH
+               00223         extern _ETXND
+               00224         extern _ETXNDL
+               00225         extern _ETXNDH
+               00226         extern _ERXST
+               00227         extern _ERXSTL
+               00228         extern _ERXSTH
+               00229         extern _ERXND
+               00230         extern _ERXNDL
+               00231         extern _ERXNDH
+               00232         extern _ERXRDPT
+               00233         extern _ERXRDPTL
+               00234         extern _ERXRDPTH
+               00235         extern _ERXWRPT
+               00236         extern _ERXWRPTL
+               00237         extern _ERXWRPTH
+               00238         extern _EDMAST
+               00239         extern _EDMASTL
+               00240         extern _EDMASTH
+               00241         extern _EDMAND
+               00242         extern _EDMANDL
+               00243         extern _EDMANDH
+               00244         extern _EDMADST
+               00245         extern _EDMADSTL
+               00246         extern _EDMADSTH
+               00247         extern _EDMACS
+               00248         extern _EDMACSL
+               00249         extern _EDMACSH
+               00250         extern _EIE
+               00251         extern _ESTAT
+               00252         extern _ECON2
+               00253         extern _EIR
+               00254         extern _EDATA
+               00255         extern _SSP2CON2
+               00256         extern _SSP2CON1
+               00257         extern _SSP2STAT
+               00258         extern _SSP2ADD
+               00259         extern _SSP2BUF
+               00260         extern _ECCP2DEL
+               00261         extern _ECCP2AS
+               00262         extern _ECCP3DEL
+               00263         extern _ECCP3AS
+               00264         extern _RCSTA2
+               00265         extern _TXSTA2
+               00266         extern _TXREG2
+               00267         extern _RCREG2
+               00268         extern _SPBRG2
+               00269         extern _CCP5CON
+               00270         extern _CCPR5
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00271         extern _CCPR5L
+               00272         extern _CCPR5H
+               00273         extern _CCP4CON
+               00274         extern _CCPR4
+               00275         extern _CCPR4L
+               00276         extern _CCPR4H
+               00277         extern _T4CON
+               00278         extern _PR4
+               00279         extern _TMR4
+               00280         extern _ECCP1DEL
+               00281         extern _ERDPT
+               00282         extern _ERDPTL
+               00283         extern _ERDPTH
+               00284         extern _BAUDCON2
+               00285         extern _BAUDCTL2
+               00286         extern _SPBRGH2
+               00287         extern _BAUDCON
+               00288         extern _BAUDCON1
+               00289         extern _BAUDCTL
+               00290         extern _BAUDCTL1
+               00291         extern _SPBRGH
+               00292         extern _SPBRGH1
+               00293         extern _PORTA
+               00294         extern _PORTB
+               00295         extern _PORTC
+               00296         extern _PORTD
+               00297         extern _PORTE
+               00298         extern _PORTF
+               00299         extern _PORTG
+               00300         extern _PORTH
+               00301         extern _PORTJ
+               00302         extern _LATA
+               00303         extern _LATB
+               00304         extern _LATC
+               00305         extern _LATD
+               00306         extern _LATE
+               00307         extern _LATF
+               00308         extern _LATG
+               00309         extern _LATH
+               00310         extern _LATJ
+               00311         extern _DDRA
+               00312         extern _TRISA
+               00313         extern _DDRB
+               00314         extern _TRISB
+               00315         extern _DDRC
+               00316         extern _TRISC
+               00317         extern _DDRD
+               00318         extern _TRISD
+               00319         extern _DDRE
+               00320         extern _TRISE
+               00321         extern _DDRF
+               00322         extern _TRISF
+               00323         extern _DDRG
+               00324         extern _TRISG
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00325         extern _DDRH
+               00326         extern _TRISH
+               00327         extern _DDRJ
+               00328         extern _TRISJ
+               00329         extern _OSCTUNE
+               00330         extern _MEMCON
+               00331         extern _PIE1
+               00332         extern _PIR1
+               00333         extern _IPR1
+               00334         extern _PIE2
+               00335         extern _PIR2
+               00336         extern _IPR2
+               00337         extern _PIE3
+               00338         extern _PIR3
+               00339         extern _IPR3
+               00340         extern _EECON1
+               00341         extern _EECON2
+               00342         extern _RCSTA
+               00343         extern _RCSTA1
+               00344         extern _TXSTA
+               00345         extern _TXSTA1
+               00346         extern _TXREG
+               00347         extern _TXREG1
+               00348         extern _RCREG
+               00349         extern _RCREG1
+               00350         extern _SPBRG
+               00351         extern _SPBRG1
+               00352         extern _PSPCON
+               00353         extern _T3CON
+               00354         extern _TMR3L
+               00355         extern _TMR3H
+               00356         extern _CMCON
+               00357         extern _CVRCON
+               00358         extern _ECCP1AS
+               00359         extern _CCP3CON
+               00360         extern _ECCP3CON
+               00361         extern _CCPR3
+               00362         extern _CCPR3L
+               00363         extern _CCPR3H
+               00364         extern _CCP2CON
+               00365         extern _ECCP2CON
+               00366         extern _CCPR2
+               00367         extern _CCPR2L
+               00368         extern _CCPR2H
+               00369         extern _CCP1CON
+               00370         extern _ECCP1CON
+               00371         extern _CCPR1
+               00372         extern _CCPR1L
+               00373         extern _CCPR1H
+               00374         extern _ADCON2
+               00375         extern _ADCON1
+               00376         extern _ADCON0
+               00377         extern _ADRES
+               00378         extern _ADRESL
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00379         extern _ADRESH
+               00380         extern _SSP1CON2
+               00381         extern _SSPCON2
+               00382         extern _SSP1CON1
+               00383         extern _SSPCON1
+               00384         extern _SSP1STAT
+               00385         extern _SSPSTAT
+               00386         extern _SSP1ADD
+               00387         extern _SSPADD
+               00388         extern _SSP1BUF
+               00389         extern _SSPBUF
+               00390         extern _T2CON
+               00391         extern _PR2
+               00392         extern _TMR2
+               00393         extern _T1CON
+               00394         extern _TMR1L
+               00395         extern _TMR1H
+               00396         extern _RCON
+               00397         extern _WDTCON
+               00398         extern _ECON1
+               00399         extern _OSCCON
+               00400         extern _T0CON
+               00401         extern _TMR0L
+               00402         extern _TMR0H
+               00403         extern _STATUS
+               00404         extern _FSR2L
+               00405         extern _FSR2H
+               00406         extern _PLUSW2
+               00407         extern _PREINC2
+               00408         extern _POSTDEC2
+               00409         extern _POSTINC2
+               00410         extern _INDF2
+               00411         extern _BSR
+               00412         extern _FSR1L
+               00413         extern _FSR1H
+               00414         extern _PLUSW1
+               00415         extern _PREINC1
+               00416         extern _POSTDEC1
+               00417         extern _POSTINC1
+               00418         extern _INDF1
+               00419         extern _WREG
+               00420         extern _FSR0L
+               00421         extern _FSR0H
+               00422         extern _PLUSW0
+               00423         extern _PREINC0
+               00424         extern _POSTDEC0
+               00425         extern _POSTINC0
+               00426         extern _INDF0
+               00427         extern _INTCON3
+               00428         extern _INTCON2
+               00429         extern _INTCON
+               00430         extern _PROD
+               00431         extern _PRODL
+               00432         extern _PRODH
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00433         extern _TABLAT
+               00434         extern _TBLPTR
+               00435         extern _TBLPTRL
+               00436         extern _TBLPTRH
+               00437         extern _TBLPTRU
+               00438         extern _PC
+               00439         extern _PCL
+               00440         extern _PCLATH
+               00441         extern _PCLATU
+               00442         extern _STKPTR
+               00443         extern _TOS
+               00444         extern _TOSL
+               00445         extern _TOSH
+               00446         extern _TOSU
+               00447 ;--------------------------------------------------------
+               00448 ;       Equates to used internal registers
+               00449 ;--------------------------------------------------------
+  00000FD8     00450 STATUS  equ     0xfd8
+  00000FE8     00451 WREG    equ     0xfe8
+  00000FE9     00452 FSR0L   equ     0xfe9
+  00000FE1     00453 FSR1L   equ     0xfe1
+  00000FD9     00454 FSR2L   equ     0xfd9
+  00000FE5     00455 POSTDEC1        equ     0xfe5
+  00000FE4     00456 PREINC1 equ     0xfe4
+  00000FDB     00457 PLUSW2  equ     0xfdb
+  00000FF3     00458 PRODL   equ     0xff3
+               00459 
+               00460 
+               00461 ; Internal registers
+               00462 .registers      udata_ovr       0x0000
+               00463 r0x00   res     1
+               00464 r0x01   res     1
+               00465 r0x02   res     1
+               00466 r0x03   res     1
+               00467 r0x04   res     1
+               00468 r0x05   res     1
+               00469 r0x06   res     1
+               00470 r0x07   res     1
+               00471 r0x08   res     1
+               00472 r0x09   res     1
+               00473 r0x0a   res     1
+               00474 r0x0b   res     1
+               00475 r0x0c   res     1
+               00476 r0x0d   res     1
+               00477 r0x0e   res     1
+               00478 r0x0f   res     1
+               00479 r0x10   res     1
+               00480 r0x11   res     1
+               00481 r0x12   res     1
+               00482 r0x13   res     1
+               00483 r0x14   res     1
+               00484 r0x15   res     1
+               00485 
+               00486 ;--------------------------------------------------------
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+               00487 ; global & static initialisations
+               00488 ;--------------------------------------------------------
+               00489 ; I code from now on!
+               00490 ; ; Starting pCode block
+               00491 S_strlcpy__strlcpy      code
+0000 00492 _strlcpy:
+               00493 ;       .line   43; TCPIP_Stack/strlcpy.c       strlcpy(char *dst, const char *src, size_t siz)
+0000 CFD9 FFE5 00494         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00495         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00496         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00497         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00498         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00499         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00500         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00501         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 00502         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 00503         MOVFF   r0x07, POSTDEC1
+0028 C000 FFE5 00504         MOVFF   r0x08, POSTDEC1
+002C C000 FFE5 00505         MOVFF   r0x09, POSTDEC1
+0030 C000 FFE5 00506         MOVFF   r0x0a, POSTDEC1
+0034 C000 FFE5 00507         MOVFF   r0x0b, POSTDEC1
+0038 C000 FFE5 00508         MOVFF   r0x0c, POSTDEC1
+003C C000 FFE5 00509         MOVFF   r0x0d, POSTDEC1
+0040 C000 FFE5 00510         MOVFF   r0x0e, POSTDEC1
+0044 C000 FFE5 00511         MOVFF   r0x0f, POSTDEC1
+0048 C000 FFE5 00512         MOVFF   r0x10, POSTDEC1
+004C C000 FFE5 00513         MOVFF   r0x11, POSTDEC1
+0050 C000 FFE5 00514         MOVFF   r0x12, POSTDEC1
+0054 C000 FFE5 00515         MOVFF   r0x13, POSTDEC1
+0058 C000 FFE5 00516         MOVFF   r0x14, POSTDEC1
+005C C000 FFE5 00517         MOVFF   r0x15, POSTDEC1
+0060 0E02      00518         MOVLW   0x02
+0062 CFDB F000 00519         MOVFF   PLUSW2, r0x00
+0066 0E03      00520         MOVLW   0x03
+0068 CFDB F000 00521         MOVFF   PLUSW2, r0x01
+006C 0E04      00522         MOVLW   0x04
+006E CFDB F000 00523         MOVFF   PLUSW2, r0x02
+0072 0E05      00524         MOVLW   0x05
+0074 CFDB F000 00525         MOVFF   PLUSW2, r0x03
+0078 0E06      00526         MOVLW   0x06
+007A CFDB F000 00527         MOVFF   PLUSW2, r0x04
+007E 0E07      00528         MOVLW   0x07
+0080 CFDB F000 00529         MOVFF   PLUSW2, r0x05
+0084 0E08      00530         MOVLW   0x08
+0086 CFDB F000 00531         MOVFF   PLUSW2, r0x06
+008A 0E09      00532         MOVLW   0x09
+008C CFDB F000 00533         MOVFF   PLUSW2, r0x07
+               00534 ;       .line   45; TCPIP_Stack/strlcpy.c       char       *d = dst;
+0090 C000 F000 00535         MOVFF   r0x00, r0x08
+0094 C000 F000 00536         MOVFF   r0x01, r0x09
+0098 C000 F000 00537         MOVFF   r0x02, r0x0a
+               00538 ;       .line   46; TCPIP_Stack/strlcpy.c       const char *s = src;
+009C C000 F000 00539         MOVFF   r0x03, r0x0b
+00A0 C000 F000 00540         MOVFF   r0x04, r0x0c
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+00A4 C000 F000 00541         MOVFF   r0x05, r0x0d
+               00542 ;       .line   47; TCPIP_Stack/strlcpy.c       size_t      n = siz;
+00A8 C000 F000 00543         MOVFF   r0x06, r0x0e
+00AC C000 F000 00544         MOVFF   r0x07, r0x0f
+               00545 ;       .line   50; TCPIP_Stack/strlcpy.c       if (n != 0)
+00B0 5000      00546         MOVF    r0x06, W
+00B2 1000      00547         IORWF   r0x07, W
+00B4 B4D8      00548         BTFSC   STATUS, 2
+00B6 D000      00549         BRA     _00111_DS_
+               00550 ;       .line   52; TCPIP_Stack/strlcpy.c       while (--n != 0)
+00B8 C000 F000 00551         MOVFF   r0x03, r0x10
+00BC C000 F000 00552         MOVFF   r0x04, r0x11
+00C0 C000 F000 00553         MOVFF   r0x05, r0x12
+00C4 C000 F000 00554         MOVFF   r0x06, r0x13
+00C8 C000 F000 00555         MOVFF   r0x07, r0x14
+00CC 00556 _00107_DS_:
+00CC 0EFF      00557         MOVLW   0xff
+00CE 2600      00558         ADDWF   r0x13, F
+00D0 A0D8      00559         BTFSS   STATUS, 0
+00D2 0600      00560         DECF    r0x14, F
+00D4 5000      00561         MOVF    r0x13, W
+00D6 1000      00562         IORWF   r0x14, W
+00D8 E000      00563         BZ      _00126_DS_
+               00564 ;       .line   54; TCPIP_Stack/strlcpy.c       if ((*d++ = *s++) == '\0')
+00DA C000 FFE9 00565         MOVFF   r0x10, FSR0L
+00DE C000 FFF3 00566         MOVFF   r0x11, PRODL
+00E2 5000      00567         MOVF    r0x12, W
+00E4 EC00 F000 00568         CALL    __gptrget1
+00E8 6E00      00569         MOVWF   r0x15
+00EA 2A00      00570         INCF    r0x10, F
+00EC B0D8      00571         BTFSC   STATUS, 0
+00EE 2A00      00572         INCF    r0x11, F
+00F0 B0D8      00573         BTFSC   STATUS, 0
+00F2 2A00      00574         INCF    r0x12, F
+00F4 C000 FFE5 00575         MOVFF   r0x15, POSTDEC1
+00F8 C000 FFE9 00576         MOVFF   r0x00, FSR0L
+00FC C000 FFF3 00577         MOVFF   r0x01, PRODL
+0100 5000      00578         MOVF    r0x02, W
+0102 EC00 F000 00579         CALL    __gptrput1
+0106 2A00      00580         INCF    r0x00, F
+0108 B0D8      00581         BTFSC   STATUS, 0
+010A 2A00      00582         INCF    r0x01, F
+010C B0D8      00583         BTFSC   STATUS, 0
+010E 2A00      00584         INCF    r0x02, F
+0110 5000      00585         MOVF    r0x15, W
+0112 E100      00586         BNZ     _00107_DS_
+0114 00587 _00126_DS_:
+               00588 ;       .line   55; TCPIP_Stack/strlcpy.c       break;
+0114 C000 F000 00589         MOVFF   r0x10, r0x0b
+0118 C000 F000 00590         MOVFF   r0x11, r0x0c
+011C C000 F000 00591         MOVFF   r0x12, r0x0d
+0120 C000 F000 00592         MOVFF   r0x00, r0x08
+0124 C000 F000 00593         MOVFF   r0x01, r0x09
+0128 C000 F000 00594         MOVFF   r0x02, r0x0a
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+012C C000 F000 00595         MOVFF   r0x13, r0x0e
+0130 C000 F000 00596         MOVFF   r0x14, r0x0f
+0134 00597 _00111_DS_:
+               00598 ;       .line   60; TCPIP_Stack/strlcpy.c       if (n == 0)
+0134 5000      00599         MOVF    r0x0e, W
+0136 1000      00600         IORWF   r0x0f, W
+0138 E100      00601         BNZ     _00118_DS_
+               00602 ;       .line   62; TCPIP_Stack/strlcpy.c       if (siz != 0)
+013A 5000      00603         MOVF    r0x06, W
+013C 1000      00604         IORWF   r0x07, W
+013E E000      00605         BZ      _00125_DS_
+               00606 ;       .line   63; TCPIP_Stack/strlcpy.c       *d = '\0';          /* NUL-terminate dst */
+0140 0E00      00607         MOVLW   0x00
+0142 6EE5      00608         MOVWF   POSTDEC1
+0144 C000 FFE9 00609         MOVFF   r0x08, FSR0L
+0148 C000 FFF3 00610         MOVFF   r0x09, PRODL
+014C 5000      00611         MOVF    r0x0a, W
+014E EC00 F000 00612         CALL    __gptrput1
+0152 00613 _00125_DS_:
+               00614 ;       .line   64; TCPIP_Stack/strlcpy.c       while (*s++)
+0152 C000 F000 00615         MOVFF   r0x0b, r0x00
+0156 C000 F000 00616         MOVFF   r0x0c, r0x01
+015A C000 F000 00617         MOVFF   r0x0d, r0x02
+015E 00618 _00114_DS_:
+015E C000 FFE9 00619         MOVFF   r0x00, FSR0L
+0162 C000 FFF3 00620         MOVFF   r0x01, PRODL
+0166 5000      00621         MOVF    r0x02, W
+0168 EC00 F000 00622         CALL    __gptrget1
+016C 6E00      00623         MOVWF   r0x06
+016E 2A00      00624         INCF    r0x00, F
+0170 B0D8      00625         BTFSC   STATUS, 0
+0172 2A00      00626         INCF    r0x01, F
+0174 B0D8      00627         BTFSC   STATUS, 0
+0176 2A00      00628         INCF    r0x02, F
+0178 5000      00629         MOVF    r0x06, W
+017A E100      00630         BNZ     _00114_DS_
+017C C000 F000 00631         MOVFF   r0x00, r0x0b
+0180 C000 F000 00632         MOVFF   r0x01, r0x0c
+0184 C000 F000 00633         MOVFF   r0x02, r0x0d
+0188 00634 _00118_DS_:
+               00635 ;       .line   68; TCPIP_Stack/strlcpy.c       return (s - src - 1);       /* count does not include NUL */
+0188 5000      00636         MOVF    r0x03, W
+018A 5C00      00637         SUBWF   r0x0b, W
+018C 6E00      00638         MOVWF   r0x03
+018E 5000      00639         MOVF    r0x04, W
+0190 5800      00640         SUBWFB  r0x0c, W
+0192 6E00      00641         MOVWF   r0x04
+0194 0EFF      00642         MOVLW   0xff
+0196 2600      00643         ADDWF   r0x03, F
+0198 A0D8      00644         BTFSS   STATUS, 0
+019A 0600      00645         DECF    r0x04, F
+019C C000 FFF3 00646         MOVFF   r0x04, PRODL
+01A0 5000      00647         MOVF    r0x03, W
+01A2 CFE4 F000 00648         MOVFF   PREINC1, r0x15
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+01A6 CFE4 F000 00649         MOVFF   PREINC1, r0x14
+01AA CFE4 F000 00650         MOVFF   PREINC1, r0x13
+01AE CFE4 F000 00651         MOVFF   PREINC1, r0x12
+01B2 CFE4 F000 00652         MOVFF   PREINC1, r0x11
+01B6 CFE4 F000 00653         MOVFF   PREINC1, r0x10
+01BA CFE4 F000 00654         MOVFF   PREINC1, r0x0f
+01BE CFE4 F000 00655         MOVFF   PREINC1, r0x0e
+01C2 CFE4 F000 00656         MOVFF   PREINC1, r0x0d
+01C6 CFE4 F000 00657         MOVFF   PREINC1, r0x0c
+01CA CFE4 F000 00658         MOVFF   PREINC1, r0x0b
+01CE CFE4 F000 00659         MOVFF   PREINC1, r0x0a
+01D2 CFE4 F000 00660         MOVFF   PREINC1, r0x09
+01D6 CFE4 F000 00661         MOVFF   PREINC1, r0x08
+01DA CFE4 F000 00662         MOVFF   PREINC1, r0x07
+01DE CFE4 F000 00663         MOVFF   PREINC1, r0x06
+01E2 CFE4 F000 00664         MOVFF   PREINC1, r0x05
+01E6 CFE4 F000 00665         MOVFF   PREINC1, r0x04
+01EA CFE4 F000 00666         MOVFF   PREINC1, r0x03
+01EE CFE4 F000 00667         MOVFF   PREINC1, r0x02
+01F2 CFE4 F000 00668         MOVFF   PREINC1, r0x01
+01F6 CFE4 F000 00669         MOVFF   PREINC1, r0x00
+01FA CFE4 FFD9 00670         MOVFF   PREINC1, FSR2L
+01FE 0012      00671         RETURN  
+               00672 
+               00673 
+               00674 
+               00675 ; Statistics:
+               00676 ; code size:      512 (0x0200) bytes ( 0.39%)
+               00677 ;                 256 (0x0100) words
+               00678 ; udata size:       0 (0x0000) bytes ( 0.00%)
+               00679 ; access size:     22 (0x0016) bytes
+               00680 
+               00681 
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+FSR0L                             00000FE9
+FSR1L                             00000FE1
+FSR2L                             00000FD9
+PLUSW2                            00000FDB
+POSTDEC1                          00000FE5
+PREINC1                           00000FE4
+PRODL                             00000FF3
+STATUS                            00000FD8
+WREG                              00000FE8
+_00107_DS_                        000000CC
+_00111_DS_                        00000134
+_00114_DS_                        0000015E
+_00118_DS_                        00000188
+_00125_DS_                        00000152
+_00126_DS_                        00000114
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADCON2                           00000000
+_ADCON2bits                       00000000
+_ADRES                            00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_AN0String                        00000000
+_AppConfig                        00000000
+_BAUDCON                          00000000
+_BAUDCON1                         00000000
+_BAUDCON1bits                     00000000
+_BAUDCON2                         00000000
+_BAUDCON2bits                     00000000
+_BAUDCONbits                      00000000
+_BAUDCTL                          00000000
+_BAUDCTL1                         00000000
+_BAUDCTL1bits                     00000000
+_BAUDCTL2                         00000000
+_BAUDCTL2bits                     00000000
+_BAUDCTLbits                      00000000
+_BSR                              00000000
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCP3CON                          00000000
+_CCP3CONbits                      00000000
+_CCP4CON                          00000000
+_CCP4CONbits                      00000000
+_CCP5CON                          00000000
+_CCP5CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CCPR3                            00000000
+_CCPR3H                           00000000
+_CCPR3L                           00000000
+_CCPR4                            00000000
+_CCPR4H                           00000000
+_CCPR4L                           00000000
+_CCPR5                            00000000
+_CCPR5H                           00000000
+_CCPR5L                           00000000
+_CMCON                            00000000
+_CMCONbits                        00000000
+_CVRCON                           00000000
+_CVRCONbits                       00000000
+_DDRA                             00000000
+_DDRAbits                         00000000
+_DDRB                             00000000
+_DDRBbits                         00000000
+_DDRC                             00000000
+_DDRCbits                         00000000
+_DDRD                             00000000
+_DDRDbits                         00000000
+_DDRE                             00000000
+_DDREbits                         00000000
+_DDRF                             00000000
+_DDRFbits                         00000000
+_DDRG                             00000000
+_DDRGbits                         00000000
+_DDRH                             00000000
+_DDRHbits                         00000000
+_DDRJ                             00000000
+_DDRJbits                         00000000
+_EBSTCON                          00000000
+_EBSTCONbits                      00000000
+_EBSTCS                           00000000
+_EBSTCSH                          00000000
+_EBSTCSL                          00000000
+_EBSTSD                           00000000
+_ECCP1AS                          00000000
+_ECCP1ASbits                      00000000
+_ECCP1CON                         00000000
+_ECCP1CONbits                     00000000
+_ECCP1DEL                         00000000
+_ECCP1DELbits                     00000000
+_ECCP2AS                          00000000
+_ECCP2ASbits                      00000000
+_ECCP2CON                         00000000
+_ECCP2CONbits                     00000000
+_ECCP2DEL                         00000000
+_ECCP2DELbits                     00000000
+_ECCP3AS                          00000000
+_ECCP3ASbits                      00000000
+_ECCP3CON                         00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_ECCP3CONbits                     00000000
+_ECCP3DEL                         00000000
+_ECCP3DELbits                     00000000
+_ECON1                            00000000
+_ECON1bits                        00000000
+_ECON2                            00000000
+_ECON2bits                        00000000
+_EDATA                            00000000
+_EDATAbits                        00000000
+_EDMACS                           00000000
+_EDMACSH                          00000000
+_EDMACSL                          00000000
+_EDMADST                          00000000
+_EDMADSTH                         00000000
+_EDMADSTL                         00000000
+_EDMAND                           00000000
+_EDMANDH                          00000000
+_EDMANDL                          00000000
+_EDMAST                           00000000
+_EDMASTH                          00000000
+_EDMASTL                          00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EFLOCON                          00000000
+_EFLOCONbits                      00000000
+_EHT0                             00000000
+_EHT1                             00000000
+_EHT2                             00000000
+_EHT3                             00000000
+_EHT4                             00000000
+_EHT5                             00000000
+_EHT6                             00000000
+_EHT7                             00000000
+_EIE                              00000000
+_EIEbits                          00000000
+_EIR                              00000000
+_EIRbits                          00000000
+_EPAUS                            00000000
+_EPAUSH                           00000000
+_EPAUSL                           00000000
+_EPKTCNT                          00000000
+_EPMCS                            00000000
+_EPMCSH                           00000000
+_EPMCSL                           00000000
+_EPMM0                            00000000
+_EPMM1                            00000000
+_EPMM2                            00000000
+_EPMM3                            00000000
+_EPMM4                            00000000
+_EPMM5                            00000000
+_EPMM6                            00000000
+_EPMM7                            00000000
+_EPMO                             00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_EPMOH                            00000000
+_EPMOL                            00000000
+_ERDPT                            00000000
+_ERDPTH                           00000000
+_ERDPTL                           00000000
+_ERXFCON                          00000000
+_ERXFCONbits                      00000000
+_ERXND                            00000000
+_ERXNDH                           00000000
+_ERXNDL                           00000000
+_ERXRDPT                          00000000
+_ERXRDPTH                         00000000
+_ERXRDPTL                         00000000
+_ERXST                            00000000
+_ERXSTH                           00000000
+_ERXSTL                           00000000
+_ERXWRPT                          00000000
+_ERXWRPTH                         00000000
+_ERXWRPTL                         00000000
+_ESTAT                            00000000
+_ESTATbits                        00000000
+_ETXND                            00000000
+_ETXNDH                           00000000
+_ETXNDL                           00000000
+_ETXST                            00000000
+_ETXSTH                           00000000
+_ETXSTL                           00000000
+_EWOLIE                           00000000
+_EWOLIEbits                       00000000
+_EWOLIR                           00000000
+_EWOLIRbits                       00000000
+_EWRPT                            00000000
+_EWRPTH                           00000000
+_EWRPTL                           00000000
+_FSR0H                            00000000
+_FSR0L                            00000000
+_FSR1H                            00000000
+_FSR1L                            00000000
+_FSR2H                            00000000
+_FSR2L                            00000000
+_INDF0                            00000000
+_INDF1                            00000000
+_INDF2                            00000000
+_INTCON                           00000000
+_INTCON2                          00000000
+_INTCON2bits                      00000000
+_INTCON3                          00000000
+_INTCON3bits                      00000000
+_INTCONbits                       00000000
+_IPR1                             00000000
+_IPR1bits                         00000000
+_IPR2                             00000000
+_IPR2bits                         00000000
+_IPR3                             00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_IPR3bits                         00000000
+_LATA                             00000000
+_LATAbits                         00000000
+_LATB                             00000000
+_LATBbits                         00000000
+_LATC                             00000000
+_LATCbits                         00000000
+_LATD                             00000000
+_LATDbits                         00000000
+_LATE                             00000000
+_LATEbits                         00000000
+_LATF                             00000000
+_LATFbits                         00000000
+_LATG                             00000000
+_LATGbits                         00000000
+_LATH                             00000000
+_LATHbits                         00000000
+_LATJ                             00000000
+_LATJbits                         00000000
+_LCDText                          00000000
+_MAADR1                           00000000
+_MAADR2                           00000000
+_MAADR3                           00000000
+_MAADR4                           00000000
+_MAADR5                           00000000
+_MAADR6                           00000000
+_MABBIPG                          00000000
+_MACLCON1                         00000000
+_MACLCON1bits                     00000000
+_MACLCON2                         00000000
+_MACLCON2bits                     00000000
+_MACON1                           00000000
+_MACON1bits                       00000000
+_MACON2                           00000000
+_MACON2bits                       00000000
+_MACON3                           00000000
+_MACON3bits                       00000000
+_MACON4                           00000000
+_MACON4bits                       00000000
+_MAIPG                            00000000
+_MAIPGH                           00000000
+_MAIPGL                           00000000
+_MAMXFL                           00000000
+_MAMXFLH                          00000000
+_MAMXFLL                          00000000
+_MEMCON                           00000000
+_MEMCONbits                       00000000
+_MICMD                            00000000
+_MICMDbits                        00000000
+_MICON                            00000000
+_MICONbits                        00000000
+_MIRD                             00000000
+_MIRDH                            00000000
+_MIRDL                            00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_MIREGADR                         00000000
+_MISTAT                           00000000
+_MISTATbits                       00000000
+_MIWR                             00000000
+_MIWRH                            00000000
+_MIWRL                            00000000
+_OSCCON                           00000000
+_OSCCONbits                       00000000
+_OSCTUNE                          00000000
+_OSCTUNEbits                      00000000
+_PC                               00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCLATU                           00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIE3                             00000000
+_PIE3bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PIR3                             00000000
+_PIR3bits                         00000000
+_PLUSW0                           00000000
+_PLUSW1                           00000000
+_PLUSW2                           00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTD                            00000000
+_PORTDbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PORTF                            00000000
+_PORTFbits                        00000000
+_PORTG                            00000000
+_PORTGbits                        00000000
+_PORTH                            00000000
+_PORTHbits                        00000000
+_PORTJ                            00000000
+_PORTJbits                        00000000
+_POSTDEC0                         00000000
+_POSTDEC1                         00000000
+_POSTDEC2                         00000000
+_POSTINC0                         00000000
+_POSTINC1                         00000000
+_POSTINC2                         00000000
+_PR2                              00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_PR4                              00000000
+_PREINC0                          00000000
+_PREINC1                          00000000
+_PREINC2                          00000000
+_PROD                             00000000
+_PRODH                            00000000
+_PRODL                            00000000
+_PSPCON                           00000000
+_PSPCONbits                       00000000
+_RCON                             00000000
+_RCONbits                         00000000
+_RCREG                            00000000
+_RCREG1                           00000000
+_RCREG2                           00000000
+_RCSTA                            00000000
+_RCSTA1                           00000000
+_RCSTA1bits                       00000000
+_RCSTA2                           00000000
+_RCSTA2bits                       00000000
+_RCSTAbits                        00000000
+_SPBRG                            00000000
+_SPBRG1                           00000000
+_SPBRG2                           00000000
+_SPBRGH                           00000000
+_SPBRGH1                          00000000
+_SPBRGH2                          00000000
+_SSP1ADD                          00000000
+_SSP1BUF                          00000000
+_SSP1CON1                         00000000
+_SSP1CON1bits                     00000000
+_SSP1CON2                         00000000
+_SSP1CON2bits                     00000000
+_SSP1STAT                         00000000
+_SSP1STATbits                     00000000
+_SSP2ADD                          00000000
+_SSP2BUF                          00000000
+_SSP2CON1                         00000000
+_SSP2CON1bits                     00000000
+_SSP2CON2                         00000000
+_SSP2CON2bits                     00000000
+_SSP2STAT                         00000000
+_SSP2STATbits                     00000000
+_SSPADD                           00000000
+_SSPBUF                           00000000
+_SSPCON1                          00000000
+_SSPCON1bits                      00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_STKPTR                           00000000
+_STKPTRbits                       00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_T0CON                            00000000
+_T0CONbits                        00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_T3CON                            00000000
+_T3CONbits                        00000000
+_T4CON                            00000000
+_T4CONbits                        00000000
+_TABLAT                           00000000
+_TBLPTR                           00000000
+_TBLPTRH                          00000000
+_TBLPTRL                          00000000
+_TBLPTRU                          00000000
+_TMR0H                            00000000
+_TMR0L                            00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TMR3H                            00000000
+_TMR3L                            00000000
+_TMR4                             00000000
+_TOS                              00000000
+_TOSH                             00000000
+_TOSL                             00000000
+_TOSU                             00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISD                            00000000
+_TRISDbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TRISF                            00000000
+_TRISFbits                        00000000
+_TRISG                            00000000
+_TRISGbits                        00000000
+_TRISH                            00000000
+_TRISHbits                        00000000
+_TRISJ                            00000000
+_TRISJbits                        00000000
+_TXREG                            00000000
+_TXREG1                           00000000
+_TXREG2                           00000000
+_TXSTA                            00000000
+_TXSTA1                           00000000
+_TXSTA1bits                       00000000
+_TXSTA2                           00000000
+_TXSTA2bits                       00000000
+_TXSTAbits                        00000000
+gpasm-0.13.7 beta               Objects/strlcpy.asm12-9-2017  15:34:32          PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
+_UDPRxCount                       00000000
+_UDPSocketInfo                    00000000
+_UDPTxCount                       00000000
+_WDTCON                           00000000
+_WDTCONbits                       00000000
+_WREG                             00000000
+__18F97J60                        00000001
+__gptrget1                        00000000
+__gptrput1                        00000000
+_activeUDPSocket                  00000000
+_stdin                            00000000
+_stdout                           00000000
+_strlcpy                          00000000
+r0x00                             00000000
+r0x01                             00000001
+r0x02                             00000002
+r0x03                             00000003
+r0x04                             00000004
+r0x05                             00000005
+r0x06                             00000006
+r0x07                             00000007
+r0x08                             00000008
+r0x09                             00000009
+r0x0a                             0000000A
+r0x0b                             0000000B
+r0x0c                             0000000C
+r0x0d                             0000000D
+r0x0e                             0000000E
+r0x0f                             0000000F
+r0x10                             00000010
+r0x11                             00000011
+r0x12                             00000012
+r0x13                             00000013
+r0x14                             00000014
+r0x15                             00000015
+
+
+Errors   :       0
+Warnings :       0 reported,       0 suppressed
+Messages :       0 reported,       0 suppressed
+
