@@ -102,7 +102,6 @@
 
 // define the processor we use
 #define __18F97J60
-
 // define the compiler we use
 #define __SDCC__
 

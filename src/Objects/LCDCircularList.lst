@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  1
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Sat Dec  9 16:29:50 2017
+               00004 ; This file was generated Sun Dec 10 18:22:37 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _TXSTA2bits
                00053         extern _CCP5CONbits
                00054         extern _CCP4CONbits
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  2
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR2bits
                00107         extern _PIE3bits
                00108         extern _PIR3bits
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  3
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR1
                00161         extern _MAADR2
                00162         extern _EBSTSD
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  4
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMOL
                00215         extern _EPMOH
                00216         extern _EWOLIE
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  5
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _TXSTA2
                00269         extern _TXREG2
                00270         extern _RCREG2
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  6
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _DDRE
                00323         extern _TRISE
                00324         extern _DDRF
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  7
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _CCPR1H
                00377         extern _ADCON2
                00378         extern _ADCON1
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  8
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INTCON3
                00431         extern _INTCON2
                00432         extern _INTCON
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE  9
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -537,591 +537,592 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00483 r0x08   res     1
                00484 r0x09   res     1
                00485 
-               00486 udata_LCDCircularList_0 udata
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 10
+               00486 
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00487 _listLCD        res     242
-               00488 
-               00489 ;--------------------------------------------------------
-               00490 ; global & static initialisations
-               00491 ;--------------------------------------------------------
-               00492 ; I code from now on!
-               00493 ; ; Starting pCode block
-               00494 S_LCDCircularList__LCDListPop   code
-0000 00495 _LCDListPop:
-               00496 ;       .line   81; TCPIP_Stack/LCDCircularList.c       char LCDListPop(char *order, char text[])
-0000 CFD9 FFE5 00497         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00498         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00499         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00500         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00501         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00502         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 00503         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 00504         MOVFF   r0x05, POSTDEC1
-0020 C000 FFE5 00505         MOVFF   r0x06, POSTDEC1
-0024 C000 FFE5 00506         MOVFF   r0x07, POSTDEC1
-0028 C000 FFE5 00507         MOVFF   r0x08, POSTDEC1
-002C C000 FFE5 00508         MOVFF   r0x09, POSTDEC1
-0030 0E02      00509         MOVLW   0x02
-0032 CFDB F000 00510         MOVFF   PLUSW2, r0x00
-0036 0E03      00511         MOVLW   0x03
-0038 CFDB F000 00512         MOVFF   PLUSW2, r0x01
-003C 0E04      00513         MOVLW   0x04
-003E CFDB F000 00514         MOVFF   PLUSW2, r0x02
-0042 0E05      00515         MOVLW   0x05
-0044 CFDB F000 00516         MOVFF   PLUSW2, r0x03
-0048 0E06      00517         MOVLW   0x06
-004A CFDB F000 00518         MOVFF   PLUSW2, r0x04
-004E 0E07      00519         MOVLW   0x07
-0050 CFDB F000 00520         MOVFF   PLUSW2, r0x05
-0054 0000      00521         BANKSEL _LCDListReady
-               00522 ;       .line   84; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
-0056 5100      00523         MOVF    _LCDListReady, W, B
-0058 E100      00524         BNZ     _00151_DS_
-               00525 ;       .line   85; TCPIP_Stack/LCDCircularList.c       return -1;
-005A 68E8      00526         SETF    WREG
-005C D000      00527         BRA     _00154_DS_
-005E 00528 _00151_DS_:
-               00529 ;       .line   86; TCPIP_Stack/LCDCircularList.c       if (LCDListIsEmpty())
-005E EC00 F000 00530         CALL    _LCDListIsEmpty
-0062 6E00      00531         MOVWF   r0x06
-0064 5000      00532         MOVF    r0x06, W
-0066 E000      00533         BZ      _00153_DS_
-               00534 ;       .line   87; TCPIP_Stack/LCDCircularList.c       return -2;
-0068 0EFE      00535         MOVLW   0xfe
-006A D000      00536         BRA     _00154_DS_
-006C 00537 _00153_DS_:
-006C 0000      00538         BANKSEL (_listLCD + 241)
-               00539 ;       .line   89; TCPIP_Stack/LCDCircularList.c       *order = listLCD.op[listLCD.tail].order;
-006E 5100      00540         MOVF    (_listLCD + 241), W, B
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 11
+               00487 lcd_scn udata
+               00488 _listLCD        res     378
+               00489 
+               00490 ;--------------------------------------------------------
+               00491 ; global & static initialisations
+               00492 ;--------------------------------------------------------
+               00493 ; I code from now on!
+               00494 ; ; Starting pCode block
+               00495 S_LCDCircularList__LCDListPop   code
+0000 00496 _LCDListPop:
+               00497 ;       .line   81; TCPIP_Stack/LCDCircularList.c       char LCDListPop(char *order, char text[])
+0000 CFD9 FFE5 00498         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00499         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00500         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00501         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00502         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00503         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00504         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00505         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 00506         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 00507         MOVFF   r0x07, POSTDEC1
+0028 C000 FFE5 00508         MOVFF   r0x08, POSTDEC1
+002C C000 FFE5 00509         MOVFF   r0x09, POSTDEC1
+0030 0E02      00510         MOVLW   0x02
+0032 CFDB F000 00511         MOVFF   PLUSW2, r0x00
+0036 0E03      00512         MOVLW   0x03
+0038 CFDB F000 00513         MOVFF   PLUSW2, r0x01
+003C 0E04      00514         MOVLW   0x04
+003E CFDB F000 00515         MOVFF   PLUSW2, r0x02
+0042 0E05      00516         MOVLW   0x05
+0044 CFDB F000 00517         MOVFF   PLUSW2, r0x03
+0048 0E06      00518         MOVLW   0x06
+004A CFDB F000 00519         MOVFF   PLUSW2, r0x04
+004E 0E07      00520         MOVLW   0x07
+0050 CFDB F000 00521         MOVFF   PLUSW2, r0x05
+0054 0000      00522         BANKSEL _LCDListReady
+               00523 ;       .line   84; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
+0056 5100      00524         MOVF    _LCDListReady, W, B
+0058 E100      00525         BNZ     _00151_DS_
+               00526 ;       .line   85; TCPIP_Stack/LCDCircularList.c       return -1;
+005A 68E8      00527         SETF    WREG
+005C D000      00528         BRA     _00154_DS_
+005E 00529 _00151_DS_:
+               00530 ;       .line   86; TCPIP_Stack/LCDCircularList.c       if (LCDListIsEmpty())
+005E EC00 F000 00531         CALL    _LCDListIsEmpty
+0062 6E00      00532         MOVWF   r0x06
+0064 5000      00533         MOVF    r0x06, W
+0066 E000      00534         BZ      _00153_DS_
+               00535 ;       .line   87; TCPIP_Stack/LCDCircularList.c       return -2;
+0068 0EFE      00536         MOVLW   0xfe
+006A D000      00537         BRA     _00154_DS_
+006C 00538 _00153_DS_:
+006C 0000      00539         BANKSEL (_listLCD + 377)
+               00540 ;       .line   89; TCPIP_Stack/LCDCircularList.c       *order = listLCD.op[listLCD.tail].order;
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0070 6EE5      00541         MOVWF   POSTDEC1
-0072 0000      00542         BANKSEL (_listLCD + 240)
-0074 5100      00543         MOVF    (_listLCD + 240), W, B
-0076 6EE5      00544         MOVWF   POSTDEC1
-0078 0E00      00545         MOVLW   0x00
-007A 6EE5      00546         MOVWF   POSTDEC1
-007C 0E22      00547         MOVLW   0x22
-007E 6EE5      00548         MOVWF   POSTDEC1
-0080 EC00 F000 00549         CALL    __mulint
-0084 6E00      00550         MOVWF   r0x06
-0086 CFF3 F000 00551         MOVFF   PRODL, r0x07
-008A 0E04      00552         MOVLW   0x04
-008C 26E1      00553         ADDWF   FSR1L, F
-008E 0E00      00554         MOVLW   LOW(_listLCD)
-0090 2400      00555         ADDWF   r0x06, W
-0092 6E00      00556         MOVWF   r0x08
-0094 0E00      00557         MOVLW   HIGH(_listLCD)
-0096 2000      00558         ADDWFC  r0x07, W
-0098 6E00      00559         MOVWF   r0x09
-009A C000 FFE9 00560         MOVFF   r0x08, FSR0L
-009E C000 FFEA 00561         MOVFF   r0x09, FSR0H
-00A2 CFEF F000 00562         MOVFF   INDF0, r0x08
-00A6 C000 FFE5 00563         MOVFF   r0x08, POSTDEC1
-00AA C000 FFE9 00564         MOVFF   r0x00, FSR0L
-00AE C000 FFF3 00565         MOVFF   r0x01, PRODL
-00B2 5000      00566         MOVF    r0x02, W
-00B4 EC00 F000 00567         CALL    __gptrput1
-               00568 ;       .line   90; TCPIP_Stack/LCDCircularList.c       strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2);
-00B8 0E00      00569         MOVLW   LOW(_listLCD)
-00BA 2600      00570         ADDWF   r0x06, F
-00BC 0E00      00571         MOVLW   HIGH(_listLCD)
-00BE 2200      00572         ADDWFC  r0x07, F
-00C0 2A00      00573         INCF    r0x06, F
-00C2 B0D8      00574         BTFSC   STATUS, 0
-00C4 2A00      00575         INCF    r0x07, F
-00C6 5000      00576         MOVF    r0x07, W
-00C8 6E00      00577         MOVWF   r0x07
-00CA 5000      00578         MOVF    r0x06, W
-00CC 6E00      00579         MOVWF   r0x06
-00CE 0E80      00580         MOVLW   0x80
-00D0 6E00      00581         MOVWF   r0x00
-00D2 0E00      00582         MOVLW   0x00
-00D4 6EE5      00583         MOVWF   POSTDEC1
-00D6 0E20      00584         MOVLW   0x20
-00D8 6EE5      00585         MOVWF   POSTDEC1
-00DA 5000      00586         MOVF    r0x00, W
-00DC 6EE5      00587         MOVWF   POSTDEC1
-00DE 5000      00588         MOVF    r0x07, W
-00E0 6EE5      00589         MOVWF   POSTDEC1
-00E2 5000      00590         MOVF    r0x06, W
-00E4 6EE5      00591         MOVWF   POSTDEC1
-00E6 5000      00592         MOVF    r0x05, W
-00E8 6EE5      00593         MOVWF   POSTDEC1
-00EA 5000      00594         MOVF    r0x04, W
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 12
+006E 5100      00541         MOVF    (_listLCD + 377), W, B
+0070 6EE5      00542         MOVWF   POSTDEC1
+0072 0000      00543         BANKSEL (_listLCD + 376)
+0074 5100      00544         MOVF    (_listLCD + 376), W, B
+0076 6EE5      00545         MOVWF   POSTDEC1
+0078 0E00      00546         MOVLW   0x00
+007A 6EE5      00547         MOVWF   POSTDEC1
+007C 0E22      00548         MOVLW   0x22
+007E 6EE5      00549         MOVWF   POSTDEC1
+0080 EC00 F000 00550         CALL    __mulint
+0084 6E00      00551         MOVWF   r0x06
+0086 CFF3 F000 00552         MOVFF   PRODL, r0x07
+008A 0E04      00553         MOVLW   0x04
+008C 26E1      00554         ADDWF   FSR1L, F
+008E 0E00      00555         MOVLW   LOW(_listLCD)
+0090 2400      00556         ADDWF   r0x06, W
+0092 6E00      00557         MOVWF   r0x08
+0094 0E00      00558         MOVLW   HIGH(_listLCD)
+0096 2000      00559         ADDWFC  r0x07, W
+0098 6E00      00560         MOVWF   r0x09
+009A C000 FFE9 00561         MOVFF   r0x08, FSR0L
+009E C000 FFEA 00562         MOVFF   r0x09, FSR0H
+00A2 CFEF F000 00563         MOVFF   INDF0, r0x08
+00A6 C000 FFE5 00564         MOVFF   r0x08, POSTDEC1
+00AA C000 FFE9 00565         MOVFF   r0x00, FSR0L
+00AE C000 FFF3 00566         MOVFF   r0x01, PRODL
+00B2 5000      00567         MOVF    r0x02, W
+00B4 EC00 F000 00568         CALL    __gptrput1
+               00569 ;       .line   90; TCPIP_Stack/LCDCircularList.c       strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2);
+00B8 0E00      00570         MOVLW   LOW(_listLCD)
+00BA 2600      00571         ADDWF   r0x06, F
+00BC 0E00      00572         MOVLW   HIGH(_listLCD)
+00BE 2200      00573         ADDWFC  r0x07, F
+00C0 2A00      00574         INCF    r0x06, F
+00C2 B0D8      00575         BTFSC   STATUS, 0
+00C4 2A00      00576         INCF    r0x07, F
+00C6 5000      00577         MOVF    r0x07, W
+00C8 6E00      00578         MOVWF   r0x07
+00CA 5000      00579         MOVF    r0x06, W
+00CC 6E00      00580         MOVWF   r0x06
+00CE 0E80      00581         MOVLW   0x80
+00D0 6E00      00582         MOVWF   r0x00
+00D2 0E00      00583         MOVLW   0x00
+00D4 6EE5      00584         MOVWF   POSTDEC1
+00D6 0E20      00585         MOVLW   0x20
+00D8 6EE5      00586         MOVWF   POSTDEC1
+00DA 5000      00587         MOVF    r0x00, W
+00DC 6EE5      00588         MOVWF   POSTDEC1
+00DE 5000      00589         MOVF    r0x07, W
+00E0 6EE5      00590         MOVWF   POSTDEC1
+00E2 5000      00591         MOVF    r0x06, W
+00E4 6EE5      00592         MOVWF   POSTDEC1
+00E6 5000      00593         MOVF    r0x05, W
+00E8 6EE5      00594         MOVWF   POSTDEC1
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00EC 6EE5      00595         MOVWF   POSTDEC1
-00EE 5000      00596         MOVF    r0x03, W
-00F0 6EE5      00597         MOVWF   POSTDEC1
-00F2 EC00 F000 00598         CALL    _strlcpy
-00F6 0E08      00599         MOVLW   0x08
-00F8 26E1      00600         ADDWF   FSR1L, F
-               00601 ;       .line   92; TCPIP_Stack/LCDCircularList.c       listLCD.op[listLCD.tail].order = 0;
-00FA C000 F000 00602         MOVFF   (_listLCD + 240), r0x00
-00FE C000 F000 00603         MOVFF   (_listLCD + 241), r0x01
-0102 5000      00604         MOVF    r0x01, W
-0104 6EE5      00605         MOVWF   POSTDEC1
-0106 5000      00606         MOVF    r0x00, W
-0108 6EE5      00607         MOVWF   POSTDEC1
-010A 0E00      00608         MOVLW   0x00
-010C 6EE5      00609         MOVWF   POSTDEC1
-010E 0E22      00610         MOVLW   0x22
-0110 6EE5      00611         MOVWF   POSTDEC1
-0112 EC00 F000 00612         CALL    __mulint
-0116 6E00      00613         MOVWF   r0x02
-0118 CFF3 F000 00614         MOVFF   PRODL, r0x03
-011C 0E04      00615         MOVLW   0x04
-011E 26E1      00616         ADDWF   FSR1L, F
-0120 0E00      00617         MOVLW   LOW(_listLCD)
-0122 2400      00618         ADDWF   r0x02, W
-0124 6E00      00619         MOVWF   r0x04
-0126 0E00      00620         MOVLW   HIGH(_listLCD)
-0128 2000      00621         ADDWFC  r0x03, W
-012A 6E00      00622         MOVWF   r0x05
-012C C000 FFE9 00623         MOVFF   r0x04, FSR0L
-0130 C000 FFEA 00624         MOVFF   r0x05, FSR0H
-0134 0E00      00625         MOVLW   0x00
-0136 6EEF      00626         MOVWF   INDF0
-               00627 ;       .line   93; TCPIP_Stack/LCDCircularList.c       listLCD.op[listLCD.tail].text[0] = '\0';
-0138 0E00      00628         MOVLW   LOW(_listLCD)
-013A 2600      00629         ADDWF   r0x02, F
-013C 0E00      00630         MOVLW   HIGH(_listLCD)
-013E 2200      00631         ADDWFC  r0x03, F
-0140 2A00      00632         INCF    r0x02, F
-0142 B0D8      00633         BTFSC   STATUS, 0
-0144 2A00      00634         INCF    r0x03, F
-0146 C000 FFE9 00635         MOVFF   r0x02, FSR0L
-014A C000 FFEA 00636         MOVFF   r0x03, FSR0H
-014E 0E00      00637         MOVLW   0x00
-0150 6EEF      00638         MOVWF   INDF0
-               00639 ;       .line   95; TCPIP_Stack/LCDCircularList.c       listLCD.tail = (listLCD.tail + 1) % OP_LIST_SIZE;
-0152 2A00      00640         INCF    r0x00, F
-0154 B0D8      00641         BTFSC   STATUS, 0
-0156 2A00      00642         INCF    r0x01, F
-0158 0E00      00643         MOVLW   0x00
-015A 6EE5      00644         MOVWF   POSTDEC1
-015C 0E07      00645         MOVLW   0x07
-015E 6EE5      00646         MOVWF   POSTDEC1
-0160 5000      00647         MOVF    r0x01, W
-0162 6EE5      00648         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 13
+00EA 5000      00595         MOVF    r0x04, W
+00EC 6EE5      00596         MOVWF   POSTDEC1
+00EE 5000      00597         MOVF    r0x03, W
+00F0 6EE5      00598         MOVWF   POSTDEC1
+00F2 EC00 F000 00599         CALL    _strlcpy
+00F6 0E08      00600         MOVLW   0x08
+00F8 26E1      00601         ADDWF   FSR1L, F
+               00602 ;       .line   92; TCPIP_Stack/LCDCircularList.c       listLCD.op[listLCD.tail].order = 0;
+00FA C000 F000 00603         MOVFF   (_listLCD + 376), r0x00
+00FE C000 F000 00604         MOVFF   (_listLCD + 377), r0x01
+0102 5000      00605         MOVF    r0x01, W
+0104 6EE5      00606         MOVWF   POSTDEC1
+0106 5000      00607         MOVF    r0x00, W
+0108 6EE5      00608         MOVWF   POSTDEC1
+010A 0E00      00609         MOVLW   0x00
+010C 6EE5      00610         MOVWF   POSTDEC1
+010E 0E22      00611         MOVLW   0x22
+0110 6EE5      00612         MOVWF   POSTDEC1
+0112 EC00 F000 00613         CALL    __mulint
+0116 6E00      00614         MOVWF   r0x02
+0118 CFF3 F000 00615         MOVFF   PRODL, r0x03
+011C 0E04      00616         MOVLW   0x04
+011E 26E1      00617         ADDWF   FSR1L, F
+0120 0E00      00618         MOVLW   LOW(_listLCD)
+0122 2400      00619         ADDWF   r0x02, W
+0124 6E00      00620         MOVWF   r0x04
+0126 0E00      00621         MOVLW   HIGH(_listLCD)
+0128 2000      00622         ADDWFC  r0x03, W
+012A 6E00      00623         MOVWF   r0x05
+012C C000 FFE9 00624         MOVFF   r0x04, FSR0L
+0130 C000 FFEA 00625         MOVFF   r0x05, FSR0H
+0134 0E00      00626         MOVLW   0x00
+0136 6EEF      00627         MOVWF   INDF0
+               00628 ;       .line   93; TCPIP_Stack/LCDCircularList.c       listLCD.op[listLCD.tail].text[0] = '\0';
+0138 0E00      00629         MOVLW   LOW(_listLCD)
+013A 2600      00630         ADDWF   r0x02, F
+013C 0E00      00631         MOVLW   HIGH(_listLCD)
+013E 2200      00632         ADDWFC  r0x03, F
+0140 2A00      00633         INCF    r0x02, F
+0142 B0D8      00634         BTFSC   STATUS, 0
+0144 2A00      00635         INCF    r0x03, F
+0146 C000 FFE9 00636         MOVFF   r0x02, FSR0L
+014A C000 FFEA 00637         MOVFF   r0x03, FSR0H
+014E 0E00      00638         MOVLW   0x00
+0150 6EEF      00639         MOVWF   INDF0
+               00640 ;       .line   95; TCPIP_Stack/LCDCircularList.c       listLCD.tail = (listLCD.tail + 1) % OP_LIST_SIZE;
+0152 2A00      00641         INCF    r0x00, F
+0154 B0D8      00642         BTFSC   STATUS, 0
+0156 2A00      00643         INCF    r0x01, F
+0158 0E00      00644         MOVLW   0x00
+015A 6EE5      00645         MOVWF   POSTDEC1
+015C 0E0B      00646         MOVLW   0x0b
+015E 6EE5      00647         MOVWF   POSTDEC1
+0160 5000      00648         MOVF    r0x01, W
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0164 5000      00649         MOVF    r0x00, W
-0166 6EE5      00650         MOVWF   POSTDEC1
-0168 EC00 F000 00651         CALL    __moduint
-016C 6E00      00652         MOVWF   r0x00
-016E CFF3 F000 00653         MOVFF   PRODL, r0x01
-0172 0E04      00654         MOVLW   0x04
-0174 26E1      00655         ADDWF   FSR1L, F
-0176 5000      00656         MOVF    r0x00, W
-0178 0000      00657         BANKSEL (_listLCD + 240)
-017A 6F00      00658         MOVWF   (_listLCD + 240), B
-017C 5000      00659         MOVF    r0x01, W
-017E 0000      00660         BANKSEL (_listLCD + 241)
-0180 6F00      00661         MOVWF   (_listLCD + 241), B
-               00662 ;       .line   96; TCPIP_Stack/LCDCircularList.c       return 0;
-0182 6AE8      00663         CLRF    WREG
-0184 00664 _00154_DS_:
-0184 CFE4 F000 00665         MOVFF   PREINC1, r0x09
-0188 CFE4 F000 00666         MOVFF   PREINC1, r0x08
-018C CFE4 F000 00667         MOVFF   PREINC1, r0x07
-0190 CFE4 F000 00668         MOVFF   PREINC1, r0x06
-0194 CFE4 F000 00669         MOVFF   PREINC1, r0x05
-0198 CFE4 F000 00670         MOVFF   PREINC1, r0x04
-019C CFE4 F000 00671         MOVFF   PREINC1, r0x03
-01A0 CFE4 F000 00672         MOVFF   PREINC1, r0x02
-01A4 CFE4 F000 00673         MOVFF   PREINC1, r0x01
-01A8 CFE4 F000 00674         MOVFF   PREINC1, r0x00
-01AC CFE4 FFD9 00675         MOVFF   PREINC1, FSR2L
-01B0 0012      00676         RETURN  
-               00677 
-               00678 ; ; Starting pCode block
-               00679 S_LCDCircularList__LCDListPush  code
-0000 00680 _LCDListPush:
-               00681 ;       .line   66; TCPIP_Stack/LCDCircularList.c       char LCDListPush(char order, char text[])
-0000 CFD9 FFE5 00682         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00683         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00684         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00685         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00686         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00687         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 00688         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 00689         MOVFF   r0x05, POSTDEC1
-0020 C000 FFE5 00690         MOVFF   r0x06, POSTDEC1
-0024 C000 FFE5 00691         MOVFF   r0x07, POSTDEC1
-0028 0E02      00692         MOVLW   0x02
-002A CFDB F000 00693         MOVFF   PLUSW2, r0x00
-002E 0E03      00694         MOVLW   0x03
-0030 CFDB F000 00695         MOVFF   PLUSW2, r0x01
-0034 0E04      00696         MOVLW   0x04
-0036 CFDB F000 00697         MOVFF   PLUSW2, r0x02
-003A 0E05      00698         MOVLW   0x05
-003C CFDB F000 00699         MOVFF   PLUSW2, r0x03
-0040 0000      00700         BANKSEL _LCDListReady
-               00701 ;       .line   69; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
-0042 5100      00702         MOVF    _LCDListReady, W, B
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 14
+0162 6EE5      00649         MOVWF   POSTDEC1
+0164 5000      00650         MOVF    r0x00, W
+0166 6EE5      00651         MOVWF   POSTDEC1
+0168 EC00 F000 00652         CALL    __moduint
+016C 6E00      00653         MOVWF   r0x00
+016E CFF3 F000 00654         MOVFF   PRODL, r0x01
+0172 0E04      00655         MOVLW   0x04
+0174 26E1      00656         ADDWF   FSR1L, F
+0176 5000      00657         MOVF    r0x00, W
+0178 0000      00658         BANKSEL (_listLCD + 376)
+017A 6F00      00659         MOVWF   (_listLCD + 376), B
+017C 5000      00660         MOVF    r0x01, W
+017E 0000      00661         BANKSEL (_listLCD + 377)
+0180 6F00      00662         MOVWF   (_listLCD + 377), B
+               00663 ;       .line   96; TCPIP_Stack/LCDCircularList.c       return 0;
+0182 6AE8      00664         CLRF    WREG
+0184 00665 _00154_DS_:
+0184 CFE4 F000 00666         MOVFF   PREINC1, r0x09
+0188 CFE4 F000 00667         MOVFF   PREINC1, r0x08
+018C CFE4 F000 00668         MOVFF   PREINC1, r0x07
+0190 CFE4 F000 00669         MOVFF   PREINC1, r0x06
+0194 CFE4 F000 00670         MOVFF   PREINC1, r0x05
+0198 CFE4 F000 00671         MOVFF   PREINC1, r0x04
+019C CFE4 F000 00672         MOVFF   PREINC1, r0x03
+01A0 CFE4 F000 00673         MOVFF   PREINC1, r0x02
+01A4 CFE4 F000 00674         MOVFF   PREINC1, r0x01
+01A8 CFE4 F000 00675         MOVFF   PREINC1, r0x00
+01AC CFE4 FFD9 00676         MOVFF   PREINC1, FSR2L
+01B0 0012      00677         RETURN  
+               00678 
+               00679 ; ; Starting pCode block
+               00680 S_LCDCircularList__LCDListPush  code
+0000 00681 _LCDListPush:
+               00682 ;       .line   66; TCPIP_Stack/LCDCircularList.c       char LCDListPush(char order, char text[])
+0000 CFD9 FFE5 00683         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00684         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00685         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00686         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00687         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00688         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00689         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00690         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 00691         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 00692         MOVFF   r0x07, POSTDEC1
+0028 0E02      00693         MOVLW   0x02
+002A CFDB F000 00694         MOVFF   PLUSW2, r0x00
+002E 0E03      00695         MOVLW   0x03
+0030 CFDB F000 00696         MOVFF   PLUSW2, r0x01
+0034 0E04      00697         MOVLW   0x04
+0036 CFDB F000 00698         MOVFF   PLUSW2, r0x02
+003A 0E05      00699         MOVLW   0x05
+003C CFDB F000 00700         MOVFF   PLUSW2, r0x03
+0040 0000      00701         BANKSEL _LCDListReady
+               00702 ;       .line   69; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0044 E100      00703         BNZ     _00142_DS_
-               00704 ;       .line   70; TCPIP_Stack/LCDCircularList.c       return -1;
-0046 68E8      00705         SETF    WREG
-0048 D000      00706         BRA     _00145_DS_
-004A 00707 _00142_DS_:
-               00708 ;       .line   71; TCPIP_Stack/LCDCircularList.c       if (LCDListIsFull())
-004A EC00 F000 00709         CALL    _LCDListIsFull
-004E 6E00      00710         MOVWF   r0x04
-0050 5000      00711         MOVF    r0x04, W
-0052 E000      00712         BZ      _00144_DS_
-               00713 ;       .line   72; TCPIP_Stack/LCDCircularList.c       return -2;
-0054 0EFE      00714         MOVLW   0xfe
-0056 D000      00715         BRA     _00145_DS_
-0058 00716 _00144_DS_:
-0058 0000      00717         BANKSEL (_listLCD + 239)
-               00718 ;       .line   74; TCPIP_Stack/LCDCircularList.c       listLCD.op[listLCD.head].order = order;
-005A 5100      00719         MOVF    (_listLCD + 239), W, B
-005C 6EE5      00720         MOVWF   POSTDEC1
-005E 0000      00721         BANKSEL (_listLCD + 238)
-0060 5100      00722         MOVF    (_listLCD + 238), W, B
-0062 6EE5      00723         MOVWF   POSTDEC1
-0064 0E00      00724         MOVLW   0x00
-0066 6EE5      00725         MOVWF   POSTDEC1
-0068 0E22      00726         MOVLW   0x22
-006A 6EE5      00727         MOVWF   POSTDEC1
-006C EC00 F000 00728         CALL    __mulint
-0070 6E00      00729         MOVWF   r0x04
-0072 CFF3 F000 00730         MOVFF   PRODL, r0x05
-0076 0E04      00731         MOVLW   0x04
-0078 26E1      00732         ADDWF   FSR1L, F
-007A 0E00      00733         MOVLW   LOW(_listLCD)
-007C 2400      00734         ADDWF   r0x04, W
-007E 6E00      00735         MOVWF   r0x06
-0080 0E00      00736         MOVLW   HIGH(_listLCD)
-0082 2000      00737         ADDWFC  r0x05, W
-0084 6E00      00738         MOVWF   r0x07
-0086 C000 FFE9 00739         MOVFF   r0x06, FSR0L
-008A C000 FFEA 00740         MOVFF   r0x07, FSR0H
-008E C000 FFEF 00741         MOVFF   r0x00, INDF0
-               00742 ;       .line   75; TCPIP_Stack/LCDCircularList.c       strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2);
-0092 0E00      00743         MOVLW   LOW(_listLCD)
-0094 2600      00744         ADDWF   r0x04, F
-0096 0E00      00745         MOVLW   HIGH(_listLCD)
-0098 2200      00746         ADDWFC  r0x05, F
-009A 2A00      00747         INCF    r0x04, F
-009C B0D8      00748         BTFSC   STATUS, 0
-009E 2A00      00749         INCF    r0x05, F
-00A0 5000      00750         MOVF    r0x05, W
-00A2 6E00      00751         MOVWF   r0x05
-00A4 5000      00752         MOVF    r0x04, W
-00A6 6E00      00753         MOVWF   r0x04
-00A8 0E80      00754         MOVLW   0x80
-00AA 6E00      00755         MOVWF   r0x00
-00AC 0E00      00756         MOVLW   0x00
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 15
+0042 5100      00703         MOVF    _LCDListReady, W, B
+0044 E100      00704         BNZ     _00142_DS_
+               00705 ;       .line   70; TCPIP_Stack/LCDCircularList.c       return -1;
+0046 68E8      00706         SETF    WREG
+0048 D000      00707         BRA     _00145_DS_
+004A 00708 _00142_DS_:
+               00709 ;       .line   71; TCPIP_Stack/LCDCircularList.c       if (LCDListIsFull())
+004A EC00 F000 00710         CALL    _LCDListIsFull
+004E 6E00      00711         MOVWF   r0x04
+0050 5000      00712         MOVF    r0x04, W
+0052 E000      00713         BZ      _00144_DS_
+               00714 ;       .line   72; TCPIP_Stack/LCDCircularList.c       return -2;
+0054 0EFE      00715         MOVLW   0xfe
+0056 D000      00716         BRA     _00145_DS_
+0058 00717 _00144_DS_:
+0058 0000      00718         BANKSEL (_listLCD + 375)
+               00719 ;       .line   74; TCPIP_Stack/LCDCircularList.c       listLCD.op[listLCD.head].order = order;
+005A 5100      00720         MOVF    (_listLCD + 375), W, B
+005C 6EE5      00721         MOVWF   POSTDEC1
+005E 0000      00722         BANKSEL (_listLCD + 374)
+0060 5100      00723         MOVF    (_listLCD + 374), W, B
+0062 6EE5      00724         MOVWF   POSTDEC1
+0064 0E00      00725         MOVLW   0x00
+0066 6EE5      00726         MOVWF   POSTDEC1
+0068 0E22      00727         MOVLW   0x22
+006A 6EE5      00728         MOVWF   POSTDEC1
+006C EC00 F000 00729         CALL    __mulint
+0070 6E00      00730         MOVWF   r0x04
+0072 CFF3 F000 00731         MOVFF   PRODL, r0x05
+0076 0E04      00732         MOVLW   0x04
+0078 26E1      00733         ADDWF   FSR1L, F
+007A 0E00      00734         MOVLW   LOW(_listLCD)
+007C 2400      00735         ADDWF   r0x04, W
+007E 6E00      00736         MOVWF   r0x06
+0080 0E00      00737         MOVLW   HIGH(_listLCD)
+0082 2000      00738         ADDWFC  r0x05, W
+0084 6E00      00739         MOVWF   r0x07
+0086 C000 FFE9 00740         MOVFF   r0x06, FSR0L
+008A C000 FFEA 00741         MOVFF   r0x07, FSR0H
+008E C000 FFEF 00742         MOVFF   r0x00, INDF0
+               00743 ;       .line   75; TCPIP_Stack/LCDCircularList.c       strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2);
+0092 0E00      00744         MOVLW   LOW(_listLCD)
+0094 2600      00745         ADDWF   r0x04, F
+0096 0E00      00746         MOVLW   HIGH(_listLCD)
+0098 2200      00747         ADDWFC  r0x05, F
+009A 2A00      00748         INCF    r0x04, F
+009C B0D8      00749         BTFSC   STATUS, 0
+009E 2A00      00750         INCF    r0x05, F
+00A0 5000      00751         MOVF    r0x05, W
+00A2 6E00      00752         MOVWF   r0x05
+00A4 5000      00753         MOVF    r0x04, W
+00A6 6E00      00754         MOVWF   r0x04
+00A8 0E80      00755         MOVLW   0x80
+00AA 6E00      00756         MOVWF   r0x00
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00AE 6EE5      00757         MOVWF   POSTDEC1
-00B0 0E20      00758         MOVLW   0x20
-00B2 6EE5      00759         MOVWF   POSTDEC1
-00B4 5000      00760         MOVF    r0x03, W
-00B6 6EE5      00761         MOVWF   POSTDEC1
-00B8 5000      00762         MOVF    r0x02, W
-00BA 6EE5      00763         MOVWF   POSTDEC1
-00BC 5000      00764         MOVF    r0x01, W
-00BE 6EE5      00765         MOVWF   POSTDEC1
-00C0 5000      00766         MOVF    r0x00, W
-00C2 6EE5      00767         MOVWF   POSTDEC1
-00C4 5000      00768         MOVF    r0x05, W
-00C6 6EE5      00769         MOVWF   POSTDEC1
-00C8 5000      00770         MOVF    r0x04, W
-00CA 6EE5      00771         MOVWF   POSTDEC1
-00CC EC00 F000 00772         CALL    _strlcpy
-00D0 0E08      00773         MOVLW   0x08
-00D2 26E1      00774         ADDWF   FSR1L, F
-00D4 0000      00775         BANKSEL (_listLCD + 238)
-               00776 ;       .line   77; TCPIP_Stack/LCDCircularList.c       listLCD.head = (listLCD.head + 1) % OP_LIST_SIZE;
-00D6 5100      00777         MOVF    (_listLCD + 238), W, B
-00D8 0F01      00778         ADDLW   0x01
-00DA 6E00      00779         MOVWF   r0x00
-00DC 0E00      00780         MOVLW   0x00
-00DE 0000      00781         BANKSEL (_listLCD + 239)
-00E0 2100      00782         ADDWFC  (_listLCD + 239), W, B
-00E2 6E00      00783         MOVWF   r0x01
-00E4 0E00      00784         MOVLW   0x00
-00E6 6EE5      00785         MOVWF   POSTDEC1
-00E8 0E07      00786         MOVLW   0x07
-00EA 6EE5      00787         MOVWF   POSTDEC1
-00EC 5000      00788         MOVF    r0x01, W
-00EE 6EE5      00789         MOVWF   POSTDEC1
-00F0 5000      00790         MOVF    r0x00, W
-00F2 6EE5      00791         MOVWF   POSTDEC1
-00F4 EC00 F000 00792         CALL    __moduint
-00F8 6E00      00793         MOVWF   r0x00
-00FA CFF3 F000 00794         MOVFF   PRODL, r0x01
-00FE 0E04      00795         MOVLW   0x04
-0100 26E1      00796         ADDWF   FSR1L, F
-0102 5000      00797         MOVF    r0x00, W
-0104 0000      00798         BANKSEL (_listLCD + 238)
-0106 6F00      00799         MOVWF   (_listLCD + 238), B
-0108 5000      00800         MOVF    r0x01, W
-010A 0000      00801         BANKSEL (_listLCD + 239)
-010C 6F00      00802         MOVWF   (_listLCD + 239), B
-               00803 ;       .line   78; TCPIP_Stack/LCDCircularList.c       return 0;
-010E 6AE8      00804         CLRF    WREG
-0110 00805 _00145_DS_:
-0110 CFE4 F000 00806         MOVFF   PREINC1, r0x07
-0114 CFE4 F000 00807         MOVFF   PREINC1, r0x06
-0118 CFE4 F000 00808         MOVFF   PREINC1, r0x05
-011C CFE4 F000 00809         MOVFF   PREINC1, r0x04
-0120 CFE4 F000 00810         MOVFF   PREINC1, r0x03
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 16
+00AC 0E00      00757         MOVLW   0x00
+00AE 6EE5      00758         MOVWF   POSTDEC1
+00B0 0E20      00759         MOVLW   0x20
+00B2 6EE5      00760         MOVWF   POSTDEC1
+00B4 5000      00761         MOVF    r0x03, W
+00B6 6EE5      00762         MOVWF   POSTDEC1
+00B8 5000      00763         MOVF    r0x02, W
+00BA 6EE5      00764         MOVWF   POSTDEC1
+00BC 5000      00765         MOVF    r0x01, W
+00BE 6EE5      00766         MOVWF   POSTDEC1
+00C0 5000      00767         MOVF    r0x00, W
+00C2 6EE5      00768         MOVWF   POSTDEC1
+00C4 5000      00769         MOVF    r0x05, W
+00C6 6EE5      00770         MOVWF   POSTDEC1
+00C8 5000      00771         MOVF    r0x04, W
+00CA 6EE5      00772         MOVWF   POSTDEC1
+00CC EC00 F000 00773         CALL    _strlcpy
+00D0 0E08      00774         MOVLW   0x08
+00D2 26E1      00775         ADDWF   FSR1L, F
+00D4 0000      00776         BANKSEL (_listLCD + 374)
+               00777 ;       .line   77; TCPIP_Stack/LCDCircularList.c       listLCD.head = (listLCD.head + 1) % OP_LIST_SIZE;
+00D6 5100      00778         MOVF    (_listLCD + 374), W, B
+00D8 0F01      00779         ADDLW   0x01
+00DA 6E00      00780         MOVWF   r0x00
+00DC 0E00      00781         MOVLW   0x00
+00DE 0000      00782         BANKSEL (_listLCD + 375)
+00E0 2100      00783         ADDWFC  (_listLCD + 375), W, B
+00E2 6E00      00784         MOVWF   r0x01
+00E4 0E00      00785         MOVLW   0x00
+00E6 6EE5      00786         MOVWF   POSTDEC1
+00E8 0E0B      00787         MOVLW   0x0b
+00EA 6EE5      00788         MOVWF   POSTDEC1
+00EC 5000      00789         MOVF    r0x01, W
+00EE 6EE5      00790         MOVWF   POSTDEC1
+00F0 5000      00791         MOVF    r0x00, W
+00F2 6EE5      00792         MOVWF   POSTDEC1
+00F4 EC00 F000 00793         CALL    __moduint
+00F8 6E00      00794         MOVWF   r0x00
+00FA CFF3 F000 00795         MOVFF   PRODL, r0x01
+00FE 0E04      00796         MOVLW   0x04
+0100 26E1      00797         ADDWF   FSR1L, F
+0102 5000      00798         MOVF    r0x00, W
+0104 0000      00799         BANKSEL (_listLCD + 374)
+0106 6F00      00800         MOVWF   (_listLCD + 374), B
+0108 5000      00801         MOVF    r0x01, W
+010A 0000      00802         BANKSEL (_listLCD + 375)
+010C 6F00      00803         MOVWF   (_listLCD + 375), B
+               00804 ;       .line   78; TCPIP_Stack/LCDCircularList.c       return 0;
+010E 6AE8      00805         CLRF    WREG
+0110 00806 _00145_DS_:
+0110 CFE4 F000 00807         MOVFF   PREINC1, r0x07
+0114 CFE4 F000 00808         MOVFF   PREINC1, r0x06
+0118 CFE4 F000 00809         MOVFF   PREINC1, r0x05
+011C CFE4 F000 00810         MOVFF   PREINC1, r0x04
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0124 CFE4 F000 00811         MOVFF   PREINC1, r0x02
-0128 CFE4 F000 00812         MOVFF   PREINC1, r0x01
-012C CFE4 F000 00813         MOVFF   PREINC1, r0x00
-0130 CFE4 FFD9 00814         MOVFF   PREINC1, FSR2L
-0134 0012      00815         RETURN  
-               00816 
-               00817 ; ; Starting pCode block
-               00818 S_LCDCircularList__LCDListIsFull        code
-0000 00819 _LCDListIsFull:
-               00820 ;       .line   58; TCPIP_Stack/LCDCircularList.c       char LCDListIsFull(void)
-0000 CFD9 FFE5 00821         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00822         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00823         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00824         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00825         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00826         MOVFF   r0x03, POSTDEC1
-0018 0000      00827         BANKSEL _LCDListReady
-               00828 ;       .line   61; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
-001A 5100      00829         MOVF    _LCDListReady, W, B
-001C E100      00830         BNZ     _00131_DS_
-               00831 ;       .line   62; TCPIP_Stack/LCDCircularList.c       return -1;
-001E 68E8      00832         SETF    WREG
-0020 D000      00833         BRA     _00132_DS_
-0022 00834 _00131_DS_:
-               00835 ;       .line   63; TCPIP_Stack/LCDCircularList.c       return (listLCD.tail == ((listLCD.head + 1) % OP_LIST_SIZE));
-0022 C000 F000 00836         MOVFF   (_listLCD + 240), r0x00
-0026 C000 F000 00837         MOVFF   (_listLCD + 241), r0x01
-002A 0000      00838         BANKSEL (_listLCD + 238)
-002C 5100      00839         MOVF    (_listLCD + 238), W, B
-002E 0F01      00840         ADDLW   0x01
-0030 6E00      00841         MOVWF   r0x02
-0032 0E00      00842         MOVLW   0x00
-0034 0000      00843         BANKSEL (_listLCD + 239)
-0036 2100      00844         ADDWFC  (_listLCD + 239), W, B
-0038 6E00      00845         MOVWF   r0x03
-003A 0E00      00846         MOVLW   0x00
-003C 6EE5      00847         MOVWF   POSTDEC1
-003E 0E07      00848         MOVLW   0x07
-0040 6EE5      00849         MOVWF   POSTDEC1
-0042 5000      00850         MOVF    r0x03, W
-0044 6EE5      00851         MOVWF   POSTDEC1
-0046 5000      00852         MOVF    r0x02, W
-0048 6EE5      00853         MOVWF   POSTDEC1
-004A EC00 F000 00854         CALL    __moduint
-004E 6E00      00855         MOVWF   r0x02
-0050 CFF3 F000 00856         MOVFF   PRODL, r0x03
-0054 0E04      00857         MOVLW   0x04
-0056 26E1      00858         ADDWF   FSR1L, F
-0058 5000      00859         MOVF    r0x00, W
-005A 1800      00860         XORWF   r0x02, W
-005C E100      00861         BNZ     _00135_DS_
-005E 5000      00862         MOVF    r0x01, W
-0060 1800      00863         XORWF   r0x03, W
-0062 E100      00864         BNZ     _00135_DS_
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 17
+0120 CFE4 F000 00811         MOVFF   PREINC1, r0x03
+0124 CFE4 F000 00812         MOVFF   PREINC1, r0x02
+0128 CFE4 F000 00813         MOVFF   PREINC1, r0x01
+012C CFE4 F000 00814         MOVFF   PREINC1, r0x00
+0130 CFE4 FFD9 00815         MOVFF   PREINC1, FSR2L
+0134 0012      00816         RETURN  
+               00817 
+               00818 ; ; Starting pCode block
+               00819 S_LCDCircularList__LCDListIsFull        code
+0000 00820 _LCDListIsFull:
+               00821 ;       .line   58; TCPIP_Stack/LCDCircularList.c       char LCDListIsFull(void)
+0000 CFD9 FFE5 00822         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00823         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00824         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00825         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00826         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00827         MOVFF   r0x03, POSTDEC1
+0018 0000      00828         BANKSEL _LCDListReady
+               00829 ;       .line   61; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
+001A 5100      00830         MOVF    _LCDListReady, W, B
+001C E100      00831         BNZ     _00131_DS_
+               00832 ;       .line   62; TCPIP_Stack/LCDCircularList.c       return -1;
+001E 68E8      00833         SETF    WREG
+0020 D000      00834         BRA     _00132_DS_
+0022 00835 _00131_DS_:
+               00836 ;       .line   63; TCPIP_Stack/LCDCircularList.c       return (listLCD.tail == ((listLCD.head + 1) % OP_LIST_SIZE));
+0022 C000 F000 00837         MOVFF   (_listLCD + 376), r0x00
+0026 C000 F000 00838         MOVFF   (_listLCD + 377), r0x01
+002A 0000      00839         BANKSEL (_listLCD + 374)
+002C 5100      00840         MOVF    (_listLCD + 374), W, B
+002E 0F01      00841         ADDLW   0x01
+0030 6E00      00842         MOVWF   r0x02
+0032 0E00      00843         MOVLW   0x00
+0034 0000      00844         BANKSEL (_listLCD + 375)
+0036 2100      00845         ADDWFC  (_listLCD + 375), W, B
+0038 6E00      00846         MOVWF   r0x03
+003A 0E00      00847         MOVLW   0x00
+003C 6EE5      00848         MOVWF   POSTDEC1
+003E 0E0B      00849         MOVLW   0x0b
+0040 6EE5      00850         MOVWF   POSTDEC1
+0042 5000      00851         MOVF    r0x03, W
+0044 6EE5      00852         MOVWF   POSTDEC1
+0046 5000      00853         MOVF    r0x02, W
+0048 6EE5      00854         MOVWF   POSTDEC1
+004A EC00 F000 00855         CALL    __moduint
+004E 6E00      00856         MOVWF   r0x02
+0050 CFF3 F000 00857         MOVFF   PRODL, r0x03
+0054 0E04      00858         MOVLW   0x04
+0056 26E1      00859         ADDWF   FSR1L, F
+0058 5000      00860         MOVF    r0x00, W
+005A 1800      00861         XORWF   r0x02, W
+005C E100      00862         BNZ     _00135_DS_
+005E 5000      00863         MOVF    r0x01, W
+0060 1800      00864         XORWF   r0x03, W
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0064 6A00      00865         CLRF    r0x00
-0066 2A00      00866         INCF    r0x00, F
-0068 D000      00867         BRA     _00136_DS_
-006A 00868 _00135_DS_:
-006A 6A00      00869         CLRF    r0x00
-006C 00870 _00136_DS_:
-006C 5000      00871         MOVF    r0x00, W
-006E 00872 _00132_DS_:
-006E CFE4 F000 00873         MOVFF   PREINC1, r0x03
-0072 CFE4 F000 00874         MOVFF   PREINC1, r0x02
-0076 CFE4 F000 00875         MOVFF   PREINC1, r0x01
-007A CFE4 F000 00876         MOVFF   PREINC1, r0x00
-007E CFE4 FFD9 00877         MOVFF   PREINC1, FSR2L
-0082 0012      00878         RETURN  
-               00879 
-               00880 ; ; Starting pCode block
-               00881 S_LCDCircularList__LCDListIsEmpty       code
-0000 00882 _LCDListIsEmpty:
-               00883 ;       .line   50; TCPIP_Stack/LCDCircularList.c       char LCDListIsEmpty(void)
-0000 CFD9 FFE5 00884         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00885         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00886         MOVFF   r0x00, POSTDEC1
-000C 0000      00887         BANKSEL _LCDListReady
-               00888 ;       .line   53; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
-000E 5100      00889         MOVF    _LCDListReady, W, B
-0010 E100      00890         BNZ     _00120_DS_
-               00891 ;       .line   54; TCPIP_Stack/LCDCircularList.c       return -1;
-0012 68E8      00892         SETF    WREG
-0014 D000      00893         BRA     _00121_DS_
-0016 00894 _00120_DS_:
-               00895 ;       .line   55; TCPIP_Stack/LCDCircularList.c       return (listLCD.head == listLCD.tail);
-0016 6A00      00896         CLRF    r0x00
-0018 0000      00897         BANKSEL (_listLCD + 238)
-001A 5100      00898         MOVF    (_listLCD + 238), W, B
-001C 0000      00899         BANKSEL (_listLCD + 240)
-001E 1900      00900         XORWF   (_listLCD + 240), W, B
-0020 E100      00901         BNZ     _00125_DS_
-0022 0000      00902         BANKSEL (_listLCD + 239)
-0024 5100      00903         MOVF    (_listLCD + 239), W, B
-0026 0000      00904         BANKSEL (_listLCD + 241)
-0028 1900      00905         XORWF   (_listLCD + 241), W, B
-002A E100      00906         BNZ     _00125_DS_
-002C 2A00      00907         INCF    r0x00, F
-002E 00908 _00125_DS_:
-002E 5000      00909         MOVF    r0x00, W
-0030 00910 _00121_DS_:
-0030 CFE4 F000 00911         MOVFF   PREINC1, r0x00
-0034 CFE4 FFD9 00912         MOVFF   PREINC1, FSR2L
-0038 0012      00913         RETURN  
-               00914 
-               00915 ; ; Starting pCode block
-               00916 S_LCDCircularList__LCDListInit  code
-0000 00917 _LCDListInit:
-               00918 ;       .line   34; TCPIP_Stack/LCDCircularList.c       char LCDListInit()
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 18
+0062 E100      00865         BNZ     _00135_DS_
+0064 6A00      00866         CLRF    r0x00
+0066 2A00      00867         INCF    r0x00, F
+0068 D000      00868         BRA     _00136_DS_
+006A 00869 _00135_DS_:
+006A 6A00      00870         CLRF    r0x00
+006C 00871 _00136_DS_:
+006C 5000      00872         MOVF    r0x00, W
+006E 00873 _00132_DS_:
+006E CFE4 F000 00874         MOVFF   PREINC1, r0x03
+0072 CFE4 F000 00875         MOVFF   PREINC1, r0x02
+0076 CFE4 F000 00876         MOVFF   PREINC1, r0x01
+007A CFE4 F000 00877         MOVFF   PREINC1, r0x00
+007E CFE4 FFD9 00878         MOVFF   PREINC1, FSR2L
+0082 0012      00879         RETURN  
+               00880 
+               00881 ; ; Starting pCode block
+               00882 S_LCDCircularList__LCDListIsEmpty       code
+0000 00883 _LCDListIsEmpty:
+               00884 ;       .line   50; TCPIP_Stack/LCDCircularList.c       char LCDListIsEmpty(void)
+0000 CFD9 FFE5 00885         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00886         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00887         MOVFF   r0x00, POSTDEC1
+000C 0000      00888         BANKSEL _LCDListReady
+               00889 ;       .line   53; TCPIP_Stack/LCDCircularList.c       if (!LCDListReady)
+000E 5100      00890         MOVF    _LCDListReady, W, B
+0010 E100      00891         BNZ     _00120_DS_
+               00892 ;       .line   54; TCPIP_Stack/LCDCircularList.c       return -1;
+0012 68E8      00893         SETF    WREG
+0014 D000      00894         BRA     _00121_DS_
+0016 00895 _00120_DS_:
+               00896 ;       .line   55; TCPIP_Stack/LCDCircularList.c       return (listLCD.head == listLCD.tail);
+0016 6A00      00897         CLRF    r0x00
+0018 0000      00898         BANKSEL (_listLCD + 374)
+001A 5100      00899         MOVF    (_listLCD + 374), W, B
+001C 0000      00900         BANKSEL (_listLCD + 376)
+001E 1900      00901         XORWF   (_listLCD + 376), W, B
+0020 E100      00902         BNZ     _00125_DS_
+0022 0000      00903         BANKSEL (_listLCD + 375)
+0024 5100      00904         MOVF    (_listLCD + 375), W, B
+0026 0000      00905         BANKSEL (_listLCD + 377)
+0028 1900      00906         XORWF   (_listLCD + 377), W, B
+002A E100      00907         BNZ     _00125_DS_
+002C 2A00      00908         INCF    r0x00, F
+002E 00909 _00125_DS_:
+002E 5000      00910         MOVF    r0x00, W
+0030 00911 _00121_DS_:
+0030 CFE4 F000 00912         MOVFF   PREINC1, r0x00
+0034 CFE4 FFD9 00913         MOVFF   PREINC1, FSR2L
+0038 0012      00914         RETURN  
+               00915 
+               00916 ; ; Starting pCode block
+               00917 S_LCDCircularList__LCDListInit  code
+0000 00918 _LCDListInit:
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0000 CFD9 FFE5 00919         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00920         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00921         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00922         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00923         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00924         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 00925         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 00926         MOVFF   r0x05, POSTDEC1
-0020 0000      00927         BANKSEL (_listLCD + 238)
-               00928 ;       .line   37; TCPIP_Stack/LCDCircularList.c       listLCD.head = 0;
-0022 6B00      00929         CLRF    (_listLCD + 238), B
-0024 0000      00930         BANKSEL (_listLCD + 239)
-0026 6B00      00931         CLRF    (_listLCD + 239), B
-0028 0000      00932         BANKSEL (_listLCD + 240)
-               00933 ;       .line   38; TCPIP_Stack/LCDCircularList.c       listLCD.tail = 0;
-002A 6B00      00934         CLRF    (_listLCD + 240), B
-002C 0000      00935         BANKSEL (_listLCD + 241)
-002E 6B00      00936         CLRF    (_listLCD + 241), B
-               00937 ;       .line   40; TCPIP_Stack/LCDCircularList.c       for (i=0; i<OP_LIST_SIZE; i++)
-0030 6A00      00938         CLRF    r0x00
-0032 6A00      00939         CLRF    r0x01
-0034 6A00      00940         CLRF    r0x02
-0036 6A00      00941         CLRF    r0x03
-0038 00942 _00105_DS_:
-0038 5000      00943         MOVF    r0x01, W
-003A 0F80      00944         ADDLW   0x80
-003C 0F80      00945         ADDLW   0x80
-003E E100      00946         BNZ     _00114_DS_
-0040 0E07      00947         MOVLW   0x07
-0042 5C00      00948         SUBWF   r0x00, W
-0044 00949 _00114_DS_:
-0044 E200      00950         BC      _00108_DS_
-               00951 ;       .line   42; TCPIP_Stack/LCDCircularList.c       listLCD.op[i].order = 0;
-0046 0E00      00952         MOVLW   LOW(_listLCD)
-0048 2400      00953         ADDWF   r0x02, W
-004A 6E00      00954         MOVWF   r0x04
-004C 0E00      00955         MOVLW   HIGH(_listLCD)
-004E 2000      00956         ADDWFC  r0x03, W
-0050 6E00      00957         MOVWF   r0x05
-0052 C000 FFE9 00958         MOVFF   r0x04, FSR0L
-0056 C000 FFEA 00959         MOVFF   r0x05, FSR0H
-005A 0E00      00960         MOVLW   0x00
-005C 6EEF      00961         MOVWF   INDF0
-               00962 ;       .line   43; TCPIP_Stack/LCDCircularList.c       listLCD.op[i].text[0] = '\0';
-005E 0E00      00963         MOVLW   LOW(_listLCD)
-0060 2400      00964         ADDWF   r0x02, W
-0062 6E00      00965         MOVWF   r0x04
-0064 0E00      00966         MOVLW   HIGH(_listLCD)
-0066 2000      00967         ADDWFC  r0x03, W
-0068 6E00      00968         MOVWF   r0x05
-006A 2A00      00969         INCF    r0x04, F
-006C B0D8      00970         BTFSC   STATUS, 0
-006E 2A00      00971         INCF    r0x05, F
-0070 C000 FFE9 00972         MOVFF   r0x04, FSR0L
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 19
+               00919 ;       .line   34; TCPIP_Stack/LCDCircularList.c       char LCDListInit()
+0000 CFD9 FFE5 00920         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00921         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00922         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00923         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00924         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00925         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00926         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00927         MOVFF   r0x05, POSTDEC1
+0020 0000      00928         BANKSEL (_listLCD + 374)
+               00929 ;       .line   37; TCPIP_Stack/LCDCircularList.c       listLCD.head = 0;
+0022 6B00      00930         CLRF    (_listLCD + 374), B
+0024 0000      00931         BANKSEL (_listLCD + 375)
+0026 6B00      00932         CLRF    (_listLCD + 375), B
+0028 0000      00933         BANKSEL (_listLCD + 376)
+               00934 ;       .line   38; TCPIP_Stack/LCDCircularList.c       listLCD.tail = 0;
+002A 6B00      00935         CLRF    (_listLCD + 376), B
+002C 0000      00936         BANKSEL (_listLCD + 377)
+002E 6B00      00937         CLRF    (_listLCD + 377), B
+               00938 ;       .line   40; TCPIP_Stack/LCDCircularList.c       for (i=0; i<OP_LIST_SIZE; i++)
+0030 6A00      00939         CLRF    r0x00
+0032 6A00      00940         CLRF    r0x01
+0034 6A00      00941         CLRF    r0x02
+0036 6A00      00942         CLRF    r0x03
+0038 00943 _00105_DS_:
+0038 5000      00944         MOVF    r0x01, W
+003A 0F80      00945         ADDLW   0x80
+003C 0F80      00946         ADDLW   0x80
+003E E100      00947         BNZ     _00114_DS_
+0040 0E0B      00948         MOVLW   0x0b
+0042 5C00      00949         SUBWF   r0x00, W
+0044 00950 _00114_DS_:
+0044 E200      00951         BC      _00108_DS_
+               00952 ;       .line   42; TCPIP_Stack/LCDCircularList.c       listLCD.op[i].order = 0;
+0046 0E00      00953         MOVLW   LOW(_listLCD)
+0048 2400      00954         ADDWF   r0x02, W
+004A 6E00      00955         MOVWF   r0x04
+004C 0E00      00956         MOVLW   HIGH(_listLCD)
+004E 2000      00957         ADDWFC  r0x03, W
+0050 6E00      00958         MOVWF   r0x05
+0052 C000 FFE9 00959         MOVFF   r0x04, FSR0L
+0056 C000 FFEA 00960         MOVFF   r0x05, FSR0H
+005A 0E00      00961         MOVLW   0x00
+005C 6EEF      00962         MOVWF   INDF0
+               00963 ;       .line   43; TCPIP_Stack/LCDCircularList.c       listLCD.op[i].text[0] = '\0';
+005E 0E00      00964         MOVLW   LOW(_listLCD)
+0060 2400      00965         ADDWF   r0x02, W
+0062 6E00      00966         MOVWF   r0x04
+0064 0E00      00967         MOVLW   HIGH(_listLCD)
+0066 2000      00968         ADDWFC  r0x03, W
+0068 6E00      00969         MOVWF   r0x05
+006A 2A00      00970         INCF    r0x04, F
+006C B0D8      00971         BTFSC   STATUS, 0
+006E 2A00      00972         INCF    r0x05, F
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0074 C000 FFEA 00973         MOVFF   r0x05, FSR0H
-0078 0E00      00974         MOVLW   0x00
-007A 6EEF      00975         MOVWF   INDF0
-               00976 ;       .line   40; TCPIP_Stack/LCDCircularList.c       for (i=0; i<OP_LIST_SIZE; i++)
-007C 0E22      00977         MOVLW   0x22
-007E 2600      00978         ADDWF   r0x02, F
-0080 B0D8      00979         BTFSC   STATUS, 0
-0082 2A00      00980         INCF    r0x03, F
-0084 2A00      00981         INCF    r0x00, F
-0086 B0D8      00982         BTFSC   STATUS, 0
-0088 2A00      00983         INCF    r0x01, F
-008A D000      00984         BRA     _00105_DS_
-008C 00985 _00108_DS_:
-               00986 ;       .line   46; TCPIP_Stack/LCDCircularList.c       LCDListReady = 1;
-008C 0E01      00987         MOVLW   0x01
-008E 0000      00988         BANKSEL _LCDListReady
-0090 6F00      00989         MOVWF   _LCDListReady, B
-               00990 ;       .line   47; TCPIP_Stack/LCDCircularList.c       return 0;
-0092 6AE8      00991         CLRF    WREG
-0094 CFE4 F000 00992         MOVFF   PREINC1, r0x05
-0098 CFE4 F000 00993         MOVFF   PREINC1, r0x04
-009C CFE4 F000 00994         MOVFF   PREINC1, r0x03
-00A0 CFE4 F000 00995         MOVFF   PREINC1, r0x02
-00A4 CFE4 F000 00996         MOVFF   PREINC1, r0x01
-00A8 CFE4 F000 00997         MOVFF   PREINC1, r0x00
-00AC CFE4 FFD9 00998         MOVFF   PREINC1, FSR2L
-00B0 0012      00999         RETURN  
-               01000 
+0070 C000 FFE9 00973         MOVFF   r0x04, FSR0L
+0074 C000 FFEA 00974         MOVFF   r0x05, FSR0H
+0078 0E00      00975         MOVLW   0x00
+007A 6EEF      00976         MOVWF   INDF0
+               00977 ;       .line   40; TCPIP_Stack/LCDCircularList.c       for (i=0; i<OP_LIST_SIZE; i++)
+007C 0E22      00978         MOVLW   0x22
+007E 2600      00979         ADDWF   r0x02, F
+0080 B0D8      00980         BTFSC   STATUS, 0
+0082 2A00      00981         INCF    r0x03, F
+0084 2A00      00982         INCF    r0x00, F
+0086 B0D8      00983         BTFSC   STATUS, 0
+0088 2A00      00984         INCF    r0x01, F
+008A D000      00985         BRA     _00105_DS_
+008C 00986 _00108_DS_:
+               00987 ;       .line   46; TCPIP_Stack/LCDCircularList.c       LCDListReady = 1;
+008C 0E01      00988         MOVLW   0x01
+008E 0000      00989         BANKSEL _LCDListReady
+0090 6F00      00990         MOVWF   _LCDListReady, B
+               00991 ;       .line   47; TCPIP_Stack/LCDCircularList.c       return 0;
+0092 6AE8      00992         CLRF    WREG
+0094 CFE4 F000 00993         MOVFF   PREINC1, r0x05
+0098 CFE4 F000 00994         MOVFF   PREINC1, r0x04
+009C CFE4 F000 00995         MOVFF   PREINC1, r0x03
+00A0 CFE4 F000 00996         MOVFF   PREINC1, r0x02
+00A4 CFE4 F000 00997         MOVFF   PREINC1, r0x01
+00A8 CFE4 F000 00998         MOVFF   PREINC1, r0x00
+00AC CFE4 FFD9 00999         MOVFF   PREINC1, FSR2L
+00B0 0012      01000         RETURN  
                01001 
                01002 
-               01003 ; Statistics:
-               01004 ; code size:     1112 (0x0458) bytes ( 0.85%)
-               01005 ;                 556 (0x022c) words
-               01006 ; udata size:     242 (0x00f2) bytes ( 6.30%)
-               01007 ; access size:     10 (0x000a) bytes
-               01008 
+               01003 
+               01004 ; Statistics:
+               01005 ; code size:     1112 (0x0458) bytes ( 0.85%)
+               01006 ;                 556 (0x022c) words
+               01007 ; udata size:     378 (0x017a) bytes ( 9.84%)
+               01008 ; access size:     10 (0x000a) bytes
                01009 
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 20
+               01010 
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 20
 
 
 SYMBOL TABLE
@@ -1180,7 +1181,7 @@ _BAUDCTLbits                      00000000
 _BSR                              00000000
 _CCP1CON                          00000000
 _CCP1CONbits                      00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 21
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1240,7 +1241,7 @@ _EBSTSD                           00000000
 _ECCP1AS                          00000000
 _ECCP1ASbits                      00000000
 _ECCP1CON                         00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 22
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1300,7 +1301,7 @@ _EPAUS                            00000000
 _EPAUSH                           00000000
 _EPAUSL                           00000000
 _EPKTCNT                          00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 23
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1360,7 +1361,7 @@ _FSR2H                            00000000
 _FSR2L                            00000000
 _INDF0                            00000000
 _INDF1                            00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 24
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1420,7 +1421,7 @@ _MACON1bits                       00000000
 _MACON2                           00000000
 _MACON2bits                       00000000
 _MACON3                           00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 25
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1480,7 +1481,7 @@ _PORTBbits                        00000000
 _PORTC                            00000000
 _PORTCbits                        00000000
 _PORTD                            00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 26
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1540,7 +1541,7 @@ _SSP1STAT                         00000000
 _SSP1STATbits                     00000000
 _SSP2ADD                          00000000
 _SSP2BUF                          00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 27
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1600,7 +1601,7 @@ _TRISCbits                        00000000
 _TRISD                            00000000
 _TRISDbits                        00000000
 _TRISE                            00000000
-gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-9-2017  16:29:50          PAGE 28
+gpasm-0.13.7 beta               Objects/LCDCircularList.asm12-10-2017  18:22:37         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT

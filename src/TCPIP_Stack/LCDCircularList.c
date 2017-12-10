@@ -6,8 +6,7 @@
 #include "../Include/TCPIP_Stack/TCPIP.h" //ML
 
 // One more element is needed for correct handling of "full" state
-//#define OP_LIST_SIZE (OP_LIST_MAX+1)
-#define OP_LIST_SIZE 7
+#define OP_LIST_SIZE (OP_LIST_ITEMS+1)
 
 #ifdef USE_LCD
 
@@ -27,9 +26,10 @@ typedef struct
 } LCDOperationList;
 
 // LCD circular list
+#pragma udata lcd_scn listLCD
 static LCDOperationList listLCD;
+// Ready flag
 static char LCDListReady = 0;
-
 
 char LCDListInit()
 {
