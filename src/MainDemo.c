@@ -107,13 +107,8 @@
 
 // inlude all hardware and compiler dependent definitions
 #include "Include/HardwareProfile.h"
-
 // Include all headers for any enabled TCPIP Stack functions
 #include "Include/TCPIP_Stack/TCPIP.h"
-
-#include "Include/TCPIP_Stack/Delay.h"
-#include "Include/TCPIP_Stack/strlcpy.h"
-
 // Include functions specific to this stack application
 #include "Include/MainDemo.h"
 
@@ -201,11 +196,6 @@ static DWORD dwLastIP = 0;
     // Initialize interrupts and application specific hardware
     InitializeBoard();
 
-    // Initialize and display message on the LCD
-    LCDInit();
-    DelayMs(100);
-    DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
-
     // Initialize Timer0, and low priority interrupts, used as clock.
     TickInit();
 
@@ -219,7 +209,12 @@ static DWORD dwLastIP = 0;
     #ifdef USE_LCD
         LCDTaskInit();
     #endif
-    
+
+    // Initialize and display message on the LCD
+    LCDInit();
+    DelayMs(100);
+    DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
+
     // Now that all items are initialized, begin the co-operative
     // multitasking loop.  This infinite loop will continuously 
     // execute all stack-related tasks, as well as your own
@@ -254,24 +249,26 @@ static DWORD dwLastIP = 0;
         // This tasks invokes each of the core stack application tasks
         //        StackApplications(); //all except dhcp, ping and arp
 
-        // Process application specific tasks here.
+        // LCD task
         #ifdef USE_LCD
             LCDTask();
         #endif
+
+        // Process application specific tasks here.
         
         // If the local IP address has changed (ex: due to DHCP lease change)
         // write the new IP address to the LCD display, UART, and Announce 
         // service
-	if(dwLastIP != AppConfig.MyIPAddr.Val)
-	{
-	     dwLastIP = AppConfig.MyIPAddr.Val;
-             #if defined(__SDCC__)
-                 DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
-                                           // pass aggregates
-             #else
-                 DisplayIPValue(AppConfig.MyIPAddr);
-             #endif
- 	}
+        if(dwLastIP != AppConfig.MyIPAddr.Val)
+        {
+            dwLastIP = AppConfig.MyIPAddr.Val;
+                #if defined(__SDCC__)
+                    DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
+                                            // pass aggregates
+                #else
+                    DisplayIPValue(AppConfig.MyIPAddr);
+                #endif
+        }
     }//end of while(1)
 }//end of main()
 
@@ -313,7 +310,6 @@ void DisplayString(BYTE pos, char* text)
    BYTE max= 32-pos;
    strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
    LCDUpdate();
-
 }
 #endif
 

@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Sun Dec 10 18:22:05 2017
+; This file was generated Sun Dec 10 19:57:47 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -520,10 +520,10 @@ _LCDCurrentText	res	33
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDUpdate	code
 _LCDUpdate:
-;	.line	588; TCPIP_Stack/LCDNonBlocking.c	void LCDUpdate(void)
+;	.line	590; TCPIP_Stack/LCDNonBlocking.c	void LCDUpdate(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	590; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(3, "");
+;	.line	592; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(3, "");
 	MOVLW	UPPER(__str_0)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_0)
@@ -541,10 +541,10 @@ _LCDUpdate:
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDErase	code
 _LCDErase:
-;	.line	565; TCPIP_Stack/LCDNonBlocking.c	void LCDErase(void)
+;	.line	567; TCPIP_Stack/LCDNonBlocking.c	void LCDErase(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	567; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(2, "");
+;	.line	569; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(2, "");
 	MOVLW	UPPER(__str_0)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_0)
@@ -562,10 +562,10 @@ _LCDErase:
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDInit	code
 _LCDInit:
-;	.line	545; TCPIP_Stack/LCDNonBlocking.c	void LCDInit(void)
+;	.line	547; TCPIP_Stack/LCDNonBlocking.c	void LCDInit(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	547; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(1, "");
+;	.line	549; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(1, "");
 	MOVLW	UPPER(__str_0)
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(__str_0)
@@ -583,7 +583,7 @@ _LCDInit:
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDTask	code
 _LCDTask:
-;	.line	489; TCPIP_Stack/LCDNonBlocking.c	void LCDTask(void)
+;	.line	491; TCPIP_Stack/LCDNonBlocking.c	void LCDTask(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -592,30 +592,30 @@ _LCDTask:
 	MOVFF	r0x03, POSTDEC1
 	MOVFF	r0x04, POSTDEC1
 	MOVFF	r0x05, POSTDEC1
-;	.line	491; TCPIP_Stack/LCDNonBlocking.c	if (PIR1bits.TMR1IF && LCDWaiting)		// Time expired
+;	.line	493; TCPIP_Stack/LCDNonBlocking.c	if (PIR1bits.TMR1IF && LCDWaiting)		// Time expired
 	BTFSS	_PIR1bits, 0
 	BRA	_00241_DS_
 	BANKSEL	_LCDWaiting
 	MOVF	_LCDWaiting, W, B
 	BZ	_00241_DS_
 	BANKSEL	_LCDWaiting
-;	.line	493; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 0;
+;	.line	495; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 0;
 	CLRF	_LCDWaiting, B
-;	.line	494; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON = 0;
+;	.line	496; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON = 0;
 	BCF	_T1CONbits, 0
-;	.line	495; TCPIP_Stack/LCDNonBlocking.c	PIR1bits.TMR1IF = 0;
+;	.line	497; TCPIP_Stack/LCDNonBlocking.c	PIR1bits.TMR1IF = 0;
 	BCF	_PIR1bits, 0
 _00241_DS_:
 	BANKSEL	_LCDOpInProgress
-;	.line	497; TCPIP_Stack/LCDNonBlocking.c	if (!LCDOpInProgress)				// No operations being executed
+;	.line	499; TCPIP_Stack/LCDNonBlocking.c	if (!LCDOpInProgress)				// No operations being executed
 	MOVF	_LCDOpInProgress, W, B
 	BNZ	_00246_DS_
-;	.line	499; TCPIP_Stack/LCDNonBlocking.c	if (!LCDListIsEmpty())				// The list contains at least one operation
+;	.line	501; TCPIP_Stack/LCDNonBlocking.c	if (!LCDListIsEmpty())				// The list contains at least one operation
 	CALL	_LCDListIsEmpty
 	MOVWF	r0x00
 	MOVF	r0x00, W
 	BNZ	_00246_DS_
-;	.line	501; TCPIP_Stack/LCDNonBlocking.c	LCDListPop(&LCDCurrentOrder, LCDCurrentText);			// Retrieve the operation to execute
+;	.line	503; TCPIP_Stack/LCDNonBlocking.c	LCDListPop(&LCDCurrentOrder, LCDCurrentText);			// Retrieve the operation to execute
 	MOVLW	HIGH(_LCDCurrentOrder)
 	MOVWF	r0x01
 	MOVLW	LOW(_LCDCurrentOrder)
@@ -643,13 +643,13 @@ _00241_DS_:
 	CALL	_LCDListPop
 	MOVLW	0x06
 	ADDWF	FSR1L, F
-;	.line	502; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 1;		// Set the execution flag
+;	.line	504; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 1;		// Set the execution flag
 	MOVLW	0x01
 	BANKSEL	_LCDOpInProgress
 	MOVWF	_LCDOpInProgress, B
 _00246_DS_:
 	BANKSEL	_LCDWaiting
-;	.line	505; TCPIP_Stack/LCDNonBlocking.c	if (!LCDWaiting && LCDOpInProgress)				// Not waiting for timers
+;	.line	507; TCPIP_Stack/LCDNonBlocking.c	if (!LCDWaiting && LCDOpInProgress)				// Not waiting for timers
 	MOVF	_LCDWaiting, W, B
 	BTFSS	STATUS, 2
 	BRA	_00255_DS_
@@ -657,7 +657,7 @@ _00246_DS_:
 	MOVF	_LCDOpInProgress, W, B
 	BZ	_00255_DS_
 	BANKSEL	_LCDCurrentOrder
-;	.line	507; TCPIP_Stack/LCDNonBlocking.c	switch (LCDCurrentOrder)
+;	.line	509; TCPIP_Stack/LCDNonBlocking.c	switch (LCDCurrentOrder)
 	MOVF	_LCDCurrentOrder, W, B
 	ADDLW	0x80
 	ADDLW	0x7f
@@ -698,20 +698,20 @@ _00267_DS_:
 	GOTO	_00248_DS_
 	GOTO	_00249_DS_
 _00247_DS_:
-;	.line	510; TCPIP_Stack/LCDNonBlocking.c	LCDInitExec();
+;	.line	512; TCPIP_Stack/LCDNonBlocking.c	LCDInitExec();
 	CALL	_LCDInitExec
-;	.line	511; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	513; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00255_DS_
 _00248_DS_:
-;	.line	514; TCPIP_Stack/LCDNonBlocking.c	LCDEraseExec();
+;	.line	516; TCPIP_Stack/LCDNonBlocking.c	LCDEraseExec();
 	CALL	_LCDEraseExec
-;	.line	515; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	517; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00255_DS_
 _00249_DS_:
-;	.line	518; TCPIP_Stack/LCDNonBlocking.c	LCDUpdateExec();
+;	.line	520; TCPIP_Stack/LCDNonBlocking.c	LCDUpdateExec();
 	CALL	_LCDUpdateExec
 _00255_DS_:
-;	.line	524; TCPIP_Stack/LCDNonBlocking.c	}
+;	.line	526; TCPIP_Stack/LCDNonBlocking.c	}
 	MOVFF	PREINC1, r0x05
 	MOVFF	PREINC1, r0x04
 	MOVFF	PREINC1, r0x03
@@ -724,45 +724,45 @@ _00255_DS_:
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDTaskInit	code
 _LCDTaskInit:
-;	.line	465; TCPIP_Stack/LCDNonBlocking.c	void LCDTaskInit(void)
+;	.line	467; TCPIP_Stack/LCDNonBlocking.c	void LCDTaskInit(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	BANKSEL	_st_init
-;	.line	468; TCPIP_Stack/LCDNonBlocking.c	st_init   = LCD_RESET;
+;	.line	470; TCPIP_Stack/LCDNonBlocking.c	st_init   = LCD_RESET;
 	CLRF	_st_init, B
 	BANKSEL	_st_update
-;	.line	469; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOFIRSTLINE;
+;	.line	471; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOFIRSTLINE;
 	CLRF	_st_update, B
 	BANKSEL	_st_erase
-;	.line	470; TCPIP_Stack/LCDNonBlocking.c	st_erase  = LCD_CLEARDISPLAY;
+;	.line	472; TCPIP_Stack/LCDNonBlocking.c	st_erase  = LCD_CLEARDISPLAY;
 	CLRF	_st_erase, B
 	BANKSEL	_LCDWaiting
-;	.line	472; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 0;
+;	.line	474; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 0;
 	CLRF	_LCDWaiting, B
 	BANKSEL	_LCDOpInProgress
-;	.line	473; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
+;	.line	475; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
 	CLRF	_LCDOpInProgress, B
 	BANKSEL	_LCDi
-;	.line	474; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
+;	.line	476; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
 	CLRF	_LCDi, B
 	BANKSEL	_LCDj
-;	.line	475; TCPIP_Stack/LCDNonBlocking.c	LCDj = 0;
+;	.line	477; TCPIP_Stack/LCDNonBlocking.c	LCDj = 0;
 	CLRF	_LCDj, B
-;	.line	477; TCPIP_Stack/LCDNonBlocking.c	LCDListInit();
+;	.line	479; TCPIP_Stack/LCDNonBlocking.c	LCDListInit();
 	CALL	_LCDListInit
-;	.line	479; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	0;		// disable timer1
+;	.line	481; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	0;		// disable timer1
 	BCF	_T1CONbits, 0
-;	.line	480; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.RD16		=	1;		// use timer1 16-bit counter
+;	.line	482; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.RD16		=	1;		// use timer1 16-bit counter
 	BSF	_T1CONbits, 7
-;	.line	481; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1CKPS0	=	0;		// prescaler set to 1:1
+;	.line	483; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1CKPS0	=	0;		// prescaler set to 1:1
 	BCF	_T1CONbits, 4
-;	.line	482; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1CKPS1	=	0;
+;	.line	484; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1CKPS1	=	0;
 	BCF	_T1CONbits, 5
-;	.line	483; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1OSCEN	=	1;		// timer1 oscillator enable
+;	.line	485; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1OSCEN	=	1;		// timer1 oscillator enable
 	BSF	_T1CONbits, 3
-;	.line	484; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1CS	=	1;		// external clock selected
+;	.line	486; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1CS	=	1;		// external clock selected
 	BSF	_T1CONbits, 1
-;	.line	485; TCPIP_Stack/LCDNonBlocking.c	PIR1bits.TMR1IF		=	0;		// clear timer1 overflow bit
+;	.line	487; TCPIP_Stack/LCDNonBlocking.c	PIR1bits.TMR1IF		=	0;		// clear timer1 overflow bit
 	BCF	_PIR1bits, 0
 	MOVFF	PREINC1, FSR2L
 	RETURN	
@@ -770,13 +770,13 @@ _LCDTaskInit:
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDUpdateExec	code
 _LCDUpdateExec:
-;	.line	366; TCPIP_Stack/LCDNonBlocking.c	static void LCDUpdateExec(void)
+;	.line	368; TCPIP_Stack/LCDNonBlocking.c	static void LCDUpdateExec(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
-;	.line	368; TCPIP_Stack/LCDNonBlocking.c	switch(st_update)
+;	.line	370; TCPIP_Stack/LCDNonBlocking.c	switch(st_update)
 	MOVLW	0x05
 	BANKSEL	_st_update
 	SUBWF	_st_update, W, B
@@ -813,7 +813,7 @@ _00226_DS_:
 	GOTO	_00198_DS_
 	GOTO	_00203_DS_
 _00191_DS_:
-;	.line	372; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x02);
+;	.line	374; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x02);
 	MOVLW	0x02
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -821,29 +821,29 @@ _00191_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	374; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	376; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	375; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
+;	.line	377; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
 	MOVLW	0xbe
 	MOVWF	_TMR1L
-;	.line	376; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
+;	.line	378; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	377; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	379; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	378; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_OUTFIRSTLINE;
+;	.line	380; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_OUTFIRSTLINE;
 	MOVLW	0x01
 	BANKSEL	_st_update
 	MOVWF	_st_update, B
 	BANKSEL	_LCDi
-;	.line	379; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
+;	.line	381; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
 	CLRF	_LCDi, B
-;	.line	380; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	382; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00214_DS_
 _00192_DS_:
-;	.line	385; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
+;	.line	387; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
 	MOVLW	LOW(_LCDText)
 	BANKSEL	_LCDi
 	ADDWF	_LCDi, W, B
@@ -856,7 +856,7 @@ _00192_DS_:
 	MOVFF	INDF0, r0x00
 	MOVF	r0x00, W
 	BNZ	_00194_DS_
-;	.line	387; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 16u; LCDj++)
+;	.line	389; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 16u; LCDj++)
 	MOVFF	_LCDi, _LCDj
 _00206_DS_:
 	MOVFF	_LCDj, r0x01
@@ -868,7 +868,7 @@ _00206_DS_:
 	SUBWF	r0x01, W
 _00227_DS_:
 	BC	_00194_DS_
-;	.line	389; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
+;	.line	391; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
 	MOVLW	LOW(_LCDText)
 	BANKSEL	_LCDj
 	ADDWF	_LCDj, W, B
@@ -881,11 +881,11 @@ _00227_DS_:
 	MOVLW	0x20
 	MOVWF	INDF0
 	BANKSEL	_LCDj
-;	.line	387; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 16u; LCDj++)
+;	.line	389; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 16u; LCDj++)
 	INCF	_LCDj, F, B
 	BRA	_00206_DS_
 _00194_DS_:
-;	.line	392; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
+;	.line	394; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	MOVLW	0x01
@@ -893,7 +893,7 @@ _00194_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	394; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 16u)
+;	.line	396; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 16u)
 	MOVFF	_LCDi, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
@@ -903,30 +903,30 @@ _00194_DS_:
 	SUBWF	r0x00, W
 _00228_DS_:
 	BNC	_00196_DS_
-;	.line	395; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOSECONDLINE;
+;	.line	397; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOSECONDLINE;
 	MOVLW	0x02
 	BANKSEL	_st_update
 	MOVWF	_st_update, B
 _00196_DS_:
 	BANKSEL	_LCDi
-;	.line	396; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+;	.line	398; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
 	INCF	_LCDi, F, B
-;	.line	398; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	400; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	399; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
+;	.line	401; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
 	MOVLW	0xfe
 	MOVWF	_TMR1L
-;	.line	400; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
+;	.line	402; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	401; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	403; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	402; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	404; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00214_DS_
 _00197_DS_:
-;	.line	406; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0xC0);
+;	.line	408; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0xC0);
 	MOVLW	0xc0
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -934,30 +934,30 @@ _00197_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	408; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	410; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	409; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
+;	.line	411; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
 	MOVLW	0xfe
 	MOVWF	_TMR1L
-;	.line	410; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
+;	.line	412; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	411; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	413; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	412; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_OUTSECONDLINE;
+;	.line	414; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_OUTSECONDLINE;
 	MOVLW	0x03
 	BANKSEL	_st_update
 	MOVWF	_st_update, B
-;	.line	413; TCPIP_Stack/LCDNonBlocking.c	LCDi = 16;
+;	.line	415; TCPIP_Stack/LCDNonBlocking.c	LCDi = 16;
 	MOVLW	0x10
 	BANKSEL	_LCDi
 	MOVWF	_LCDi, B
-;	.line	414; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	416; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00214_DS_
 _00198_DS_:
-;	.line	419; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
+;	.line	421; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
 	MOVLW	LOW(_LCDText)
 	BANKSEL	_LCDi
 	ADDWF	_LCDi, W, B
@@ -970,7 +970,7 @@ _00198_DS_:
 	MOVFF	INDF0, r0x00
 	MOVF	r0x00, W
 	BNZ	_00200_DS_
-;	.line	421; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 32u; LCDj++)
+;	.line	423; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 32u; LCDj++)
 	MOVFF	_LCDi, _LCDj
 _00210_DS_:
 	MOVFF	_LCDj, r0x01
@@ -982,7 +982,7 @@ _00210_DS_:
 	SUBWF	r0x01, W
 _00229_DS_:
 	BC	_00200_DS_
-;	.line	423; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
+;	.line	425; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
 	MOVLW	LOW(_LCDText)
 	BANKSEL	_LCDj
 	ADDWF	_LCDj, W, B
@@ -995,11 +995,11 @@ _00229_DS_:
 	MOVLW	0x20
 	MOVWF	INDF0
 	BANKSEL	_LCDj
-;	.line	421; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 32u; LCDj++)
+;	.line	423; TCPIP_Stack/LCDNonBlocking.c	for(LCDj=LCDi; LCDj < 32u; LCDj++)
 	INCF	_LCDj, F, B
 	BRA	_00210_DS_
 _00200_DS_:
-;	.line	426; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
+;	.line	428; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	MOVLW	0x01
@@ -1007,7 +1007,7 @@ _00200_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	428; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 32u)
+;	.line	430; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 32u)
 	MOVFF	_LCDi, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
@@ -1017,37 +1017,37 @@ _00200_DS_:
 	SUBWF	r0x00, W
 _00230_DS_:
 	BNC	_00202_DS_
-;	.line	429; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_ENDUPDATE;
+;	.line	431; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_ENDUPDATE;
 	MOVLW	0x04
 	BANKSEL	_st_update
 	MOVWF	_st_update, B
 _00202_DS_:
 	BANKSEL	_LCDi
-;	.line	430; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+;	.line	432; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
 	INCF	_LCDi, F, B
-;	.line	432; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	434; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	433; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
+;	.line	435; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
 	MOVLW	0xfe
 	MOVWF	_TMR1L
-;	.line	434; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
+;	.line	436; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	435; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	437; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	436; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	438; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00214_DS_
 _00203_DS_:
 	BANKSEL	_LCDOpInProgress
-;	.line	439; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
+;	.line	441; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
 	CLRF	_LCDOpInProgress, B
 	BANKSEL	_st_update
-;	.line	440; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOFIRSTLINE;
+;	.line	442; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOFIRSTLINE;
 	CLRF	_st_update, B
 _00214_DS_:
-;	.line	446; TCPIP_Stack/LCDNonBlocking.c	}
+;	.line	448; TCPIP_Stack/LCDNonBlocking.c	}
 	MOVFF	PREINC1, r0x02
 	MOVFF	PREINC1, r0x01
 	MOVFF	PREINC1, r0x00
@@ -1057,11 +1057,11 @@ _00214_DS_:
 ; ; Starting pCode block
 S_LCDNonBlocking__LCDEraseExec	code
 _LCDEraseExec:
-;	.line	334; TCPIP_Stack/LCDNonBlocking.c	static void LCDEraseExec(void)
+;	.line	336; TCPIP_Stack/LCDNonBlocking.c	static void LCDEraseExec(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
-;	.line	336; TCPIP_Stack/LCDNonBlocking.c	switch(st_erase)
+;	.line	338; TCPIP_Stack/LCDNonBlocking.c	switch(st_erase)
 	MOVFF	_st_erase, r0x00
 	MOVF	r0x00, W
 	BZ	_00175_DS_
@@ -1072,7 +1072,7 @@ _00184_DS_:
 	BZ	_00176_DS_
 	BRA	_00179_DS_
 _00175_DS_:
-;	.line	340; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x01);
+;	.line	342; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x01);
 	MOVLW	0x01
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -1080,26 +1080,26 @@ _00175_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	342; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	344; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	343; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
+;	.line	345; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
 	MOVLW	0xbe
 	MOVWF	_TMR1L
-;	.line	344; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
+;	.line	346; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	345; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	347; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	347; TCPIP_Stack/LCDNonBlocking.c	st_erase = LCD_CLEARLOCAL;
+;	.line	349; TCPIP_Stack/LCDNonBlocking.c	st_erase = LCD_CLEARLOCAL;
 	MOVLW	0x01
 	BANKSEL	_st_erase
 	MOVWF	_st_erase, B
-;	.line	348; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	350; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00179_DS_
 _00176_DS_:
-;	.line	352; TCPIP_Stack/LCDNonBlocking.c	memset(LCDText, ' ', 32);
+;	.line	354; TCPIP_Stack/LCDNonBlocking.c	memset(LCDText, ' ', 32);
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x20
@@ -1114,13 +1114,13 @@ _00176_DS_:
 	MOVLW	0x05
 	ADDWF	FSR1L, F
 	BANKSEL	_LCDOpInProgress
-;	.line	354; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
+;	.line	356; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
 	CLRF	_LCDOpInProgress, B
 	BANKSEL	_st_erase
-;	.line	356; TCPIP_Stack/LCDNonBlocking.c	st_erase = LCD_CLEARDISPLAY;
+;	.line	358; TCPIP_Stack/LCDNonBlocking.c	st_erase = LCD_CLEARDISPLAY;
 	CLRF	_st_erase, B
 _00179_DS_:
-;	.line	362; TCPIP_Stack/LCDNonBlocking.c	}
+;	.line	364; TCPIP_Stack/LCDNonBlocking.c	}
 	MOVFF	PREINC1, r0x00
 	MOVFF	PREINC1, FSR2L
 	RETURN	
@@ -1179,7 +1179,11 @@ _00169_DS_:
 	GOTO	_00157_DS_
 	GOTO	_00158_DS_
 _00143_DS_:
-;	.line	178; TCPIP_Stack/LCDNonBlocking.c	memset(LCDText, ' ', sizeof(LCDText)-1);
+;	.line	178; TCPIP_Stack/LCDNonBlocking.c	LED1_TRIS = 0;
+	BCF	_TRISJbits, 1
+;	.line	179; TCPIP_Stack/LCDNonBlocking.c	LED1_IO = 1;
+	BSF	_LATJbits, 1
+;	.line	180; TCPIP_Stack/LCDNonBlocking.c	memset(LCDText, ' ', sizeof(LCDText)-1);
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x20
@@ -1194,57 +1198,57 @@ _00143_DS_:
 	MOVLW	0x05
 	ADDWF	FSR1L, F
 	BANKSEL	(_LCDText + 32)
-;	.line	179; TCPIP_Stack/LCDNonBlocking.c	LCDText[sizeof(LCDText)-1] = 0;
+;	.line	181; TCPIP_Stack/LCDNonBlocking.c	LCDText[sizeof(LCDText)-1] = 0;
 	CLRF	(_LCDText + 32), B
-;	.line	181; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 0;
+;	.line	183; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 0;
 	BCF	_LATHbits, 0
-;	.line	182; TCPIP_Stack/LCDNonBlocking.c	LCD_RD_WR_IO = 0;
+;	.line	184; TCPIP_Stack/LCDNonBlocking.c	LCD_RD_WR_IO = 0;
 	BCF	_LATHbits, 1
-;	.line	184; TCPIP_Stack/LCDNonBlocking.c	LCD_DATA_TRIS = 0x00;
+;	.line	186; TCPIP_Stack/LCDNonBlocking.c	LCD_DATA_TRIS = 0x00;
 	CLRF	_TRISE
-;	.line	197; TCPIP_Stack/LCDNonBlocking.c	LCD_RD_WR_TRIS = 0;
+;	.line	199; TCPIP_Stack/LCDNonBlocking.c	LCD_RD_WR_TRIS = 0;
 	BCF	_TRISHbits, 1
-;	.line	198; TCPIP_Stack/LCDNonBlocking.c	LCD_RS_TRIS = 0;
+;	.line	200; TCPIP_Stack/LCDNonBlocking.c	LCD_RS_TRIS = 0;
 	BCF	_TRISHbits, 2
-;	.line	199; TCPIP_Stack/LCDNonBlocking.c	LCD_E_TRIS = 0;
+;	.line	201; TCPIP_Stack/LCDNonBlocking.c	LCD_E_TRIS = 0;
 	BCF	_TRISHbits, 0
-;	.line	201; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	203; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	202; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 1311)	& 0xff;
+;	.line	204; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 1311)	& 0xff;
 	MOVLW	0xe1
 	MOVWF	_TMR1L
-;	.line	203; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 1311)	>> 8;
+;	.line	205; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 1311)	>> 8;
 	MOVLW	0xfa
 	MOVWF	_TMR1H
-;	.line	204; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	206; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	206; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC1;
+;	.line	208; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC1;
 	MOVLW	0x01
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
-;	.line	207; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	209; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00144_DS_:
-;	.line	216; TCPIP_Stack/LCDNonBlocking.c	LCD_RS_IO = 0;
+;	.line	218; TCPIP_Stack/LCDNonBlocking.c	LCD_RS_IO = 0;
 	BCF	_LATHbits, 2
-;	.line	218; TCPIP_Stack/LCDNonBlocking.c	LCD_DATA_IO = 0x03;
+;	.line	220; TCPIP_Stack/LCDNonBlocking.c	LCD_DATA_IO = 0x03;
 	MOVLW	0x03
 	MOVWF	_LATE
-;	.line	234; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_EPULSETIME;
+;	.line	236; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_EPULSETIME;
 	MOVLW	0x02
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
 	BANKSEL	_LCDi
-;	.line	235; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
+;	.line	237; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
 	CLRF	_LCDi, B
-;	.line	236; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	238; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00145_DS_:
-;	.line	239; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 1;
+;	.line	241; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 1;
 	BSF	_LATHbits, 0
-;	.line	240; TCPIP_Stack/LCDNonBlocking.c	Delay10us(1);			// Wait E Pulse width time (min 230ns)
+;	.line	242; TCPIP_Stack/LCDNonBlocking.c	Delay10us(1);			// Wait E Pulse width time (min 230ns)
 	MOVLW	0x11
 	MOVWF	r0x00
 	CLRF	r0x01
@@ -1268,9 +1272,9 @@ _00146_DS_:
 	IORWF	r0x06, W
 	IORWF	r0x07, W
 	BNZ	_00146_DS_
-;	.line	241; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 0;
+;	.line	243; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 0;
 	BCF	_LATHbits, 0
-;	.line	243; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 3u)
+;	.line	245; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 3u)
 	MOVFF	_LCDi, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
@@ -1280,30 +1284,30 @@ _00146_DS_:
 	SUBWF	r0x00, W
 _00170_DS_:
 	BNC	_00153_DS_
-;	.line	244; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC2;
+;	.line	246; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC2;
 	MOVLW	0x03
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
 _00153_DS_:
 	BANKSEL	_LCDi
-;	.line	245; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+;	.line	247; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
 	INCF	_LCDi, F, B
-;	.line	247; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	249; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	248; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
+;	.line	250; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
 	MOVLW	0xbe
 	MOVWF	_TMR1L
-;	.line	249; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
+;	.line	251; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	250; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	252; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	251; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	253; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00154_DS_:
-;	.line	276; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x38);
+;	.line	278; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x38);
 	MOVLW	0x38
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -1311,26 +1315,26 @@ _00154_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	279; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	281; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	280; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
+;	.line	282; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
 	MOVLW	0xfe
 	MOVWF	_TMR1L
-;	.line	281; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
+;	.line	283; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	282; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	284; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	284; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_ENTRYMODE;
+;	.line	286; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_ENTRYMODE;
 	MOVLW	0x04
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
-;	.line	285; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	287; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00155_DS_:
-;	.line	288; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x06);	// Increment after each write, do not shift
+;	.line	290; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x06);	// Increment after each write, do not shift
 	MOVLW	0x06
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -1338,26 +1342,26 @@ _00155_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	290; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	292; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	291; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
+;	.line	293; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
 	MOVLW	0xfe
 	MOVWF	_TMR1L
-;	.line	292; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
+;	.line	294; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	293; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	295; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	295; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DISPLAYCONTROL;
+;	.line	297; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DISPLAYCONTROL;
 	MOVLW	0x05
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
-;	.line	296; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	298; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00156_DS_:
-;	.line	299; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x0C);		// Turn display on, no cusor, no cursor blink
+;	.line	301; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x0C);		// Turn display on, no cusor, no cursor blink
 	MOVLW	0x0c
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -1365,26 +1369,26 @@ _00156_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	301; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	303; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	302; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
+;	.line	304; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 2)	& 0xff;
 	MOVLW	0xfe
 	MOVWF	_TMR1L
-;	.line	303; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
+;	.line	305; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 2)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	304; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	306; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	306; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_CLEAR;
+;	.line	308; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_CLEAR;
 	MOVLW	0x06
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
-;	.line	307; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	309; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00157_DS_:
-;	.line	310; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x01);	
+;	.line	312; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(0, 0x01);	
 	MOVLW	0x01
 	MOVWF	POSTDEC1
 	MOVLW	0x00
@@ -1392,33 +1396,33 @@ _00157_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	312; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
+;	.line	314; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
 	MOVWF	_LCDWaiting, B
-;	.line	313; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
+;	.line	315; TCPIP_Stack/LCDNonBlocking.c	TMR1L			=	(0x10000 - 66)	& 0xff;
 	MOVLW	0xbe
 	MOVWF	_TMR1L
-;	.line	314; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
+;	.line	316; TCPIP_Stack/LCDNonBlocking.c	TMR1H			=	(0x10000 - 66)	>> 8;
 	MOVLW	0xff
 	MOVWF	_TMR1H
-;	.line	315; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
+;	.line	317; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	1;
 	BSF	_T1CONbits, 0
-;	.line	317; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_ENDINIT;
+;	.line	319; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_ENDINIT;
 	MOVLW	0x07
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
-;	.line	318; TCPIP_Stack/LCDNonBlocking.c	break;
+;	.line	320; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00161_DS_
 _00158_DS_:
 	BANKSEL	_LCDOpInProgress
-;	.line	322; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
+;	.line	324; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
 	CLRF	_LCDOpInProgress, B
 	BANKSEL	_st_init
-;	.line	324; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_RESET;
+;	.line	326; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_RESET;
 	CLRF	_st_init, B
 _00161_DS_:
-;	.line	330; TCPIP_Stack/LCDNonBlocking.c	}
+;	.line	332; TCPIP_Stack/LCDNonBlocking.c	}
 	MOVFF	PREINC1, r0x07
 	MOVFF	PREINC1, r0x06
 	MOVFF	PREINC1, r0x05
@@ -1488,8 +1492,8 @@ __str_0:
 
 
 ; Statistics:
-; code size:	 1716 (0x06b4) bytes ( 1.31%)
-;           	  858 (0x035a) words
+; code size:	 1720 (0x06b8) bytes ( 1.31%)
+;           	  860 (0x035c) words
 ; udata size:	   74 (0x004a) bytes ( 1.93%)
 ; access size:	   10 (0x000a) bytes
 

@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  1
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Sun Dec 10 18:22:05 2017
+               00004 ; This file was generated Sun Dec 10 19:57:47 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _TXSTA2bits
                00053         extern _CCP5CONbits
                00054         extern _CCP4CONbits
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  2
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR2bits
                00107         extern _PIE3bits
                00108         extern _PIR3bits
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  3
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR2
                00161         extern _EBSTSD
                00162         extern _EBSTCON
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  4
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMOH
                00215         extern _EWOLIE
                00216         extern _EWOLIR
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  5
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _TXREG2
                00269         extern _RCREG2
                00270         extern _SPBRG2
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  6
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _TRISE
                00323         extern _DDRF
                00324         extern _TRISF
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  7
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _ADCON2
                00377         extern _ADCON1
                00378         extern _ADCON0
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  8
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INTCON2
                00431         extern _INTCON
                00432         extern _PROD
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE  9
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484 r0x09   res     1
                00485 
                00486 udata_LCDNonBlocking_0  udata
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 10
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -580,10 +580,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00520 ; ; Starting pCode block
                00521 S_LCDNonBlocking__LCDUpdate     code
 0000 00522 _LCDUpdate:
-               00523 ;       .line   588; TCPIP_Stack/LCDNonBlocking.c       void LCDUpdate(void)
+               00523 ;       .line   590; TCPIP_Stack/LCDNonBlocking.c       void LCDUpdate(void)
 0000 CFD9 FFE5 00524         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00525         MOVFF   FSR1L, FSR2L
-               00526 ;       .line   590; TCPIP_Stack/LCDNonBlocking.c       LCDListPush(3, "");
+               00526 ;       .line   592; TCPIP_Stack/LCDNonBlocking.c       LCDListPush(3, "");
 0008 0E00      00527         MOVLW   UPPER(__str_0)
 000A 6EE5      00528         MOVWF   POSTDEC1
 000C 0E00      00529         MOVLW   HIGH(__str_0)
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 CFE4 FFD9 00538         MOVFF   PREINC1, FSR2L
 0024 0012      00539         RETURN  
                00540 
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 11
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -607,10 +607,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00541 ; ; Starting pCode block
                00542 S_LCDNonBlocking__LCDErase      code
 0000 00543 _LCDErase:
-               00544 ;       .line   565; TCPIP_Stack/LCDNonBlocking.c       void LCDErase(void)
+               00544 ;       .line   567; TCPIP_Stack/LCDNonBlocking.c       void LCDErase(void)
 0000 CFD9 FFE5 00545         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00546         MOVFF   FSR1L, FSR2L
-               00547 ;       .line   567; TCPIP_Stack/LCDNonBlocking.c       LCDListPush(2, "");
+               00547 ;       .line   569; TCPIP_Stack/LCDNonBlocking.c       LCDListPush(2, "");
 0008 0E00      00548         MOVLW   UPPER(__str_0)
 000A 6EE5      00549         MOVWF   POSTDEC1
 000C 0E00      00550         MOVLW   HIGH(__str_0)
@@ -628,10 +628,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00562 ; ; Starting pCode block
                00563 S_LCDNonBlocking__LCDInit       code
 0000 00564 _LCDInit:
-               00565 ;       .line   545; TCPIP_Stack/LCDNonBlocking.c       void LCDInit(void)
+               00565 ;       .line   547; TCPIP_Stack/LCDNonBlocking.c       void LCDInit(void)
 0000 CFD9 FFE5 00566         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00567         MOVFF   FSR1L, FSR2L
-               00568 ;       .line   547; TCPIP_Stack/LCDNonBlocking.c       LCDListPush(1, "");
+               00568 ;       .line   549; TCPIP_Stack/LCDNonBlocking.c       LCDListPush(1, "");
 0008 0E00      00569         MOVLW   UPPER(__str_0)
 000A 6EE5      00570         MOVWF   POSTDEC1
 000C 0E00      00571         MOVLW   HIGH(__str_0)
@@ -649,7 +649,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00583 ; ; Starting pCode block
                00584 S_LCDNonBlocking__LCDTask       code
 0000 00585 _LCDTask:
-               00586 ;       .line   489; TCPIP_Stack/LCDNonBlocking.c       void LCDTask(void)
+               00586 ;       .line   491; TCPIP_Stack/LCDNonBlocking.c       void LCDTask(void)
 0000 CFD9 FFE5 00587         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00588         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00589         MOVFF   r0x00, POSTDEC1
@@ -658,36 +658,36 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0014 C000 FFE5 00592         MOVFF   r0x03, POSTDEC1
 0018 C000 FFE5 00593         MOVFF   r0x04, POSTDEC1
 001C C000 FFE5 00594         MOVFF   r0x05, POSTDEC1
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 12
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00595 ;       .line   491; TCPIP_Stack/LCDNonBlocking.c       if (PIR1bits.TMR1IF && LCDWaiting)              // Time expired
+               00595 ;       .line   493; TCPIP_Stack/LCDNonBlocking.c       if (PIR1bits.TMR1IF && LCDWaiting)              // Time expired
 0020 A000      00596         BTFSS   _PIR1bits, 0
 0022 D000      00597         BRA     _00241_DS_
 0024 0000      00598         BANKSEL _LCDWaiting
 0026 5100      00599         MOVF    _LCDWaiting, W, B
 0028 E000      00600         BZ      _00241_DS_
 002A 0000      00601         BANKSEL _LCDWaiting
-               00602 ;       .line   493; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 0;
+               00602 ;       .line   495; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 0;
 002C 6B00      00603         CLRF    _LCDWaiting, B
-               00604 ;       .line   494; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON = 0;
+               00604 ;       .line   496; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON = 0;
 002E 9000      00605         BCF     _T1CONbits, 0
-               00606 ;       .line   495; TCPIP_Stack/LCDNonBlocking.c       PIR1bits.TMR1IF = 0;
+               00606 ;       .line   497; TCPIP_Stack/LCDNonBlocking.c       PIR1bits.TMR1IF = 0;
 0030 9000      00607         BCF     _PIR1bits, 0
 0032 00608 _00241_DS_:
 0032 0000      00609         BANKSEL _LCDOpInProgress
-               00610 ;       .line   497; TCPIP_Stack/LCDNonBlocking.c       if (!LCDOpInProgress)                           // No operations being executed
+               00610 ;       .line   499; TCPIP_Stack/LCDNonBlocking.c       if (!LCDOpInProgress)                           // No operations being executed
 0034 5100      00611         MOVF    _LCDOpInProgress, W, B
 0036 E100      00612         BNZ     _00246_DS_
-               00613 ;       .line   499; TCPIP_Stack/LCDNonBlocking.c       if (!LCDListIsEmpty())                          // The list contains at least one operation
+               00613 ;       .line   501; TCPIP_Stack/LCDNonBlocking.c       if (!LCDListIsEmpty())                          // The list contains at least one operation
 0038 EC00 F000 00614         CALL    _LCDListIsEmpty
 003C 6E00      00615         MOVWF   r0x00
 003E 5000      00616         MOVF    r0x00, W
 0040 E100      00617         BNZ     _00246_DS_
-               00618 ;       .line   501; TCPIP_Stack/LCDNonBlocking.c       LCDListPop(&LCDCurrentOrder, LCDCurrentText);                   // Retrieve the operation to execute
+               00618 ;       .line   503; TCPIP_Stack/LCDNonBlocking.c       LCDListPop(&LCDCurrentOrder, LCDCurrentText);                   // Retrieve the operation to execute
 0042 0E00      00619         MOVLW   HIGH(_LCDCurrentOrder)
 0044 6E00      00620         MOVWF   r0x01
 0046 0E00      00621         MOVLW   LOW(_LCDCurrentOrder)
@@ -715,10 +715,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0072 EC00 F000 00643         CALL    _LCDListPop
 0076 0E06      00644         MOVLW   0x06
 0078 26E1      00645         ADDWF   FSR1L, F
-               00646 ;       .line   502; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 1;            // Set the execution flag
+               00646 ;       .line   504; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 1;            // Set the execution flag
 007A 0E01      00647         MOVLW   0x01
 007C 0000      00648         BANKSEL _LCDOpInProgress
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 13
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -727,7 +727,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 007E 6F00      00649         MOVWF   _LCDOpInProgress, B
 0080 00650 _00246_DS_:
 0080 0000      00651         BANKSEL _LCDWaiting
-               00652 ;       .line   505; TCPIP_Stack/LCDNonBlocking.c       if (!LCDWaiting && LCDOpInProgress)                             // Not waiting for timers
+               00652 ;       .line   507; TCPIP_Stack/LCDNonBlocking.c       if (!LCDWaiting && LCDOpInProgress)                             // Not waiting for timers
 0082 5100      00653         MOVF    _LCDWaiting, W, B
 0084 A4D8      00654         BTFSS   STATUS, 2
 0086 D000      00655         BRA     _00255_DS_
@@ -735,7 +735,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 008A 5100      00657         MOVF    _LCDOpInProgress, W, B
 008C E000      00658         BZ      _00255_DS_
 008E 0000      00659         BANKSEL _LCDCurrentOrder
-               00660 ;       .line   507; TCPIP_Stack/LCDNonBlocking.c       switch (LCDCurrentOrder)
+               00660 ;       .line   509; TCPIP_Stack/LCDNonBlocking.c       switch (LCDCurrentOrder)
 0090 5100      00661         MOVF    _LCDCurrentOrder, W, B
 0092 0F80      00662         ADDLW   0x80
 0094 0F7F      00663         ADDLW   0x7f
@@ -776,26 +776,26 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00E2 EF00 F000 00698         GOTO    _00248_DS_
 00E6 EF00 F000 00699         GOTO    _00249_DS_
 00EA 00700 _00247_DS_:
-               00701 ;       .line   510; TCPIP_Stack/LCDNonBlocking.c       LCDInitExec();
+               00701 ;       .line   512; TCPIP_Stack/LCDNonBlocking.c       LCDInitExec();
 00EA EC00 F000 00702         CALL    _LCDInitExec
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 14
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00703 ;       .line   511; TCPIP_Stack/LCDNonBlocking.c       break;
+               00703 ;       .line   513; TCPIP_Stack/LCDNonBlocking.c       break;
 00EE D000      00704         BRA     _00255_DS_
 00F0 00705 _00248_DS_:
-               00706 ;       .line   514; TCPIP_Stack/LCDNonBlocking.c       LCDEraseExec();
+               00706 ;       .line   516; TCPIP_Stack/LCDNonBlocking.c       LCDEraseExec();
 00F0 EC00 F000 00707         CALL    _LCDEraseExec
-               00708 ;       .line   515; TCPIP_Stack/LCDNonBlocking.c       break;
+               00708 ;       .line   517; TCPIP_Stack/LCDNonBlocking.c       break;
 00F4 D000      00709         BRA     _00255_DS_
 00F6 00710 _00249_DS_:
-               00711 ;       .line   518; TCPIP_Stack/LCDNonBlocking.c       LCDUpdateExec();
+               00711 ;       .line   520; TCPIP_Stack/LCDNonBlocking.c       LCDUpdateExec();
 00F6 EC00 F000 00712         CALL    _LCDUpdateExec
 00FA 00713 _00255_DS_:
-               00714 ;       .line   524; TCPIP_Stack/LCDNonBlocking.c       }
+               00714 ;       .line   526; TCPIP_Stack/LCDNonBlocking.c       }
 00FA CFE4 F000 00715         MOVFF   PREINC1, r0x05
 00FE CFE4 F000 00716         MOVFF   PREINC1, r0x04
 0102 CFE4 F000 00717         MOVFF   PREINC1, r0x03
@@ -808,51 +808,51 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00724 ; ; Starting pCode block
                00725 S_LCDNonBlocking__LCDTaskInit   code
 0000 00726 _LCDTaskInit:
-               00727 ;       .line   465; TCPIP_Stack/LCDNonBlocking.c       void LCDTaskInit(void)
+               00727 ;       .line   467; TCPIP_Stack/LCDNonBlocking.c       void LCDTaskInit(void)
 0000 CFD9 FFE5 00728         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00729         MOVFF   FSR1L, FSR2L
 0008 0000      00730         BANKSEL _st_init
-               00731 ;       .line   468; TCPIP_Stack/LCDNonBlocking.c       st_init   = LCD_RESET;
+               00731 ;       .line   470; TCPIP_Stack/LCDNonBlocking.c       st_init   = LCD_RESET;
 000A 6B00      00732         CLRF    _st_init, B
 000C 0000      00733         BANKSEL _st_update
-               00734 ;       .line   469; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_GOTOFIRSTLINE;
+               00734 ;       .line   471; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_GOTOFIRSTLINE;
 000E 6B00      00735         CLRF    _st_update, B
 0010 0000      00736         BANKSEL _st_erase
-               00737 ;       .line   470; TCPIP_Stack/LCDNonBlocking.c       st_erase  = LCD_CLEARDISPLAY;
+               00737 ;       .line   472; TCPIP_Stack/LCDNonBlocking.c       st_erase  = LCD_CLEARDISPLAY;
 0012 6B00      00738         CLRF    _st_erase, B
 0014 0000      00739         BANKSEL _LCDWaiting
-               00740 ;       .line   472; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 0;
+               00740 ;       .line   474; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 0;
 0016 6B00      00741         CLRF    _LCDWaiting, B
 0018 0000      00742         BANKSEL _LCDOpInProgress
-               00743 ;       .line   473; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
+               00743 ;       .line   475; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
 001A 6B00      00744         CLRF    _LCDOpInProgress, B
 001C 0000      00745         BANKSEL _LCDi
-               00746 ;       .line   474; TCPIP_Stack/LCDNonBlocking.c       LCDi = 0;
+               00746 ;       .line   476; TCPIP_Stack/LCDNonBlocking.c       LCDi = 0;
 001E 6B00      00747         CLRF    _LCDi, B
 0020 0000      00748         BANKSEL _LCDj
-               00749 ;       .line   475; TCPIP_Stack/LCDNonBlocking.c       LCDj = 0;
+               00749 ;       .line   477; TCPIP_Stack/LCDNonBlocking.c       LCDj = 0;
 0022 6B00      00750         CLRF    _LCDj, B
-               00751 ;       .line   477; TCPIP_Stack/LCDNonBlocking.c       LCDListInit();
+               00751 ;       .line   479; TCPIP_Stack/LCDNonBlocking.c       LCDListInit();
 0024 EC00 F000 00752         CALL    _LCDListInit
-               00753 ;       .line   479; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       0;              // disable timer1
+               00753 ;       .line   481; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       0;              // disable timer1
 0028 9000      00754         BCF     _T1CONbits, 0
-               00755 ;       .line   480; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.RD16          =       1;              // use timer1 16-bit counter
+               00755 ;       .line   482; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.RD16          =       1;              // use timer1 16-bit counter
 002A 8E00      00756         BSF     _T1CONbits, 7
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 15
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00757 ;       .line   481; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.T1CKPS0       =       0;              // prescaler set to 1:1
+               00757 ;       .line   483; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.T1CKPS0       =       0;              // prescaler set to 1:1
 002C 9800      00758         BCF     _T1CONbits, 4
-               00759 ;       .line   482; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.T1CKPS1       =       0;
+               00759 ;       .line   484; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.T1CKPS1       =       0;
 002E 9A00      00760         BCF     _T1CONbits, 5
-               00761 ;       .line   483; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.T1OSCEN       =       1;              // timer1 oscillator enable
+               00761 ;       .line   485; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.T1OSCEN       =       1;              // timer1 oscillator enable
 0030 8600      00762         BSF     _T1CONbits, 3
-               00763 ;       .line   484; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1CS        =       1;              // external clock selected
+               00763 ;       .line   486; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1CS        =       1;              // external clock selected
 0032 8200      00764         BSF     _T1CONbits, 1
-               00765 ;       .line   485; TCPIP_Stack/LCDNonBlocking.c       PIR1bits.TMR1IF         =       0;              // clear timer1 overflow bit
+               00765 ;       .line   487; TCPIP_Stack/LCDNonBlocking.c       PIR1bits.TMR1IF         =       0;              // clear timer1 overflow bit
 0034 9000      00766         BCF     _PIR1bits, 0
 0036 CFE4 FFD9 00767         MOVFF   PREINC1, FSR2L
 003A 0012      00768         RETURN  
@@ -860,13 +860,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00770 ; ; Starting pCode block
                00771 S_LCDNonBlocking__LCDUpdateExec code
 0000 00772 _LCDUpdateExec:
-               00773 ;       .line   366; TCPIP_Stack/LCDNonBlocking.c       static void LCDUpdateExec(void)
+               00773 ;       .line   368; TCPIP_Stack/LCDNonBlocking.c       static void LCDUpdateExec(void)
 0000 CFD9 FFE5 00774         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00775         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00776         MOVFF   r0x00, POSTDEC1
 000C C000 FFE5 00777         MOVFF   r0x01, POSTDEC1
 0010 C000 FFE5 00778         MOVFF   r0x02, POSTDEC1
-               00779 ;       .line   368; TCPIP_Stack/LCDNonBlocking.c       switch(st_update)
+               00779 ;       .line   370; TCPIP_Stack/LCDNonBlocking.c       switch(st_update)
 0014 0E05      00780         MOVLW   0x05
 0016 0000      00781         BANKSEL _st_update
 0018 5D00      00782         SUBWF   _st_update, W, B
@@ -898,7 +898,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0054 6EF9      00808         MOVWF   PCL
 0056 00809 _00226_DS_:
 0056 EF00 F000 00810         GOTO    _00191_DS_
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 16
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -909,7 +909,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0062 EF00 F000 00813         GOTO    _00198_DS_
 0066 EF00 F000 00814         GOTO    _00203_DS_
 006A 00815 _00191_DS_:
-               00816 ;       .line   372; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x02);
+               00816 ;       .line   374; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x02);
 006A 0E02      00817         MOVLW   0x02
 006C 6EE5      00818         MOVWF   POSTDEC1
 006E 0E00      00819         MOVLW   0x00
@@ -917,29 +917,29 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0072 EC00 F000 00821         CALL    _LCDWrite
 0076 0E02      00822         MOVLW   0x02
 0078 26E1      00823         ADDWF   FSR1L, F
-               00824 ;       .line   374; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+               00824 ;       .line   376; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
 007A 0E01      00825         MOVLW   0x01
 007C 0000      00826         BANKSEL _LCDWaiting
 007E 6F00      00827         MOVWF   _LCDWaiting, B
-               00828 ;       .line   375; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
+               00828 ;       .line   377; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
 0080 0EBE      00829         MOVLW   0xbe
 0082 6E00      00830         MOVWF   _TMR1L
-               00831 ;       .line   376; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
+               00831 ;       .line   378; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
 0084 0EFF      00832         MOVLW   0xff
 0086 6E00      00833         MOVWF   _TMR1H
-               00834 ;       .line   377; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+               00834 ;       .line   379; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
 0088 8000      00835         BSF     _T1CONbits, 0
-               00836 ;       .line   378; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_OUTFIRSTLINE;
+               00836 ;       .line   380; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_OUTFIRSTLINE;
 008A 0E01      00837         MOVLW   0x01
 008C 0000      00838         BANKSEL _st_update
 008E 6F00      00839         MOVWF   _st_update, B
 0090 0000      00840         BANKSEL _LCDi
-               00841 ;       .line   379; TCPIP_Stack/LCDNonBlocking.c       LCDi = 0;
+               00841 ;       .line   381; TCPIP_Stack/LCDNonBlocking.c       LCDi = 0;
 0092 6B00      00842         CLRF    _LCDi, B
-               00843 ;       .line   380; TCPIP_Stack/LCDNonBlocking.c       break;
+               00843 ;       .line   382; TCPIP_Stack/LCDNonBlocking.c       break;
 0094 D000      00844         BRA     _00214_DS_
 0096 00845 _00192_DS_:
-               00846 ;       .line   385; TCPIP_Stack/LCDNonBlocking.c       if(LCDText[LCDi] == 0u)
+               00846 ;       .line   387; TCPIP_Stack/LCDNonBlocking.c       if(LCDText[LCDi] == 0u)
 0096 0E00      00847         MOVLW   LOW(_LCDText)
 0098 0000      00848         BANKSEL _LCDi
 009A 2500      00849         ADDWF   _LCDi, W, B
@@ -952,13 +952,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00AC CFEF F000 00856         MOVFF   INDF0, r0x00
 00B0 5000      00857         MOVF    r0x00, W
 00B2 E100      00858         BNZ     _00194_DS_
-               00859 ;       .line   387; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 16u; LCDj++)
+               00859 ;       .line   389; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 16u; LCDj++)
 00B4 C000 F000 00860         MOVFF   _LCDi, _LCDj
 00B8 00861 _00206_DS_:
 00B8 C000 F000 00862         MOVFF   _LCDj, r0x01
 00BC 6A00      00863         CLRF    r0x02
 00BE 0E00      00864         MOVLW   0x00
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 17
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -970,7 +970,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C6 5C00      00868         SUBWF   r0x01, W
 00C8 00869 _00227_DS_:
 00C8 E200      00870         BC      _00194_DS_
-               00871 ;       .line   389; TCPIP_Stack/LCDNonBlocking.c       LCDText[LCDj] = ' ';
+               00871 ;       .line   391; TCPIP_Stack/LCDNonBlocking.c       LCDText[LCDj] = ' ';
 00CA 0E00      00872         MOVLW   LOW(_LCDText)
 00CC 0000      00873         BANKSEL _LCDj
 00CE 2500      00874         ADDWF   _LCDj, W, B
@@ -983,11 +983,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00E0 0E20      00881         MOVLW   0x20
 00E2 6EEF      00882         MOVWF   INDF0
 00E4 0000      00883         BANKSEL _LCDj
-               00884 ;       .line   387; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 16u; LCDj++)
+               00884 ;       .line   389; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 16u; LCDj++)
 00E6 2B00      00885         INCF    _LCDj, F, B
 00E8 D000      00886         BRA     _00206_DS_
 00EA 00887 _00194_DS_:
-               00888 ;       .line   392; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(1, LCDText[LCDi]);
+               00888 ;       .line   394; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(1, LCDText[LCDi]);
 00EA 5000      00889         MOVF    r0x00, W
 00EC 6EE5      00890         MOVWF   POSTDEC1
 00EE 0E01      00891         MOVLW   0x01
@@ -995,7 +995,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00F2 EC00 F000 00893         CALL    _LCDWrite
 00F6 0E02      00894         MOVLW   0x02
 00F8 26E1      00895         ADDWF   FSR1L, F
-               00896 ;       .line   394; TCPIP_Stack/LCDNonBlocking.c       if (LCDi >= 16u)
+               00896 ;       .line   396; TCPIP_Stack/LCDNonBlocking.c       if (LCDi >= 16u)
 00FA C000 F000 00897         MOVFF   _LCDi, r0x00
 00FE 6A00      00898         CLRF    r0x01
 0100 0E00      00899         MOVLW   0x00
@@ -1005,20 +1005,20 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0108 5C00      00903         SUBWF   r0x00, W
 010A 00904 _00228_DS_:
 010A E300      00905         BNC     _00196_DS_
-               00906 ;       .line   395; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_GOTOSECONDLINE;
+               00906 ;       .line   397; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_GOTOSECONDLINE;
 010C 0E02      00907         MOVLW   0x02
 010E 0000      00908         BANKSEL _st_update
 0110 6F00      00909         MOVWF   _st_update, B
 0112 00910 _00196_DS_:
 0112 0000      00911         BANKSEL _LCDi
-               00912 ;       .line   396; TCPIP_Stack/LCDNonBlocking.c       LCDi++;
+               00912 ;       .line   398; TCPIP_Stack/LCDNonBlocking.c       LCDi++;
 0114 2B00      00913         INCF    _LCDi, F, B
-               00914 ;       .line   398; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+               00914 ;       .line   400; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
 0116 0E01      00915         MOVLW   0x01
 0118 0000      00916         BANKSEL _LCDWaiting
 011A 6F00      00917         MOVWF   _LCDWaiting, B
-               00918 ;       .line   399; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 18
+               00918 ;       .line   401; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1026,15 +1026,15 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 011C 0EFE      00919         MOVLW   0xfe
 011E 6E00      00920         MOVWF   _TMR1L
-               00921 ;       .line   400; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
+               00921 ;       .line   402; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
 0120 0EFF      00922         MOVLW   0xff
 0122 6E00      00923         MOVWF   _TMR1H
-               00924 ;       .line   401; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+               00924 ;       .line   403; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
 0124 8000      00925         BSF     _T1CONbits, 0
-               00926 ;       .line   402; TCPIP_Stack/LCDNonBlocking.c       break;
+               00926 ;       .line   404; TCPIP_Stack/LCDNonBlocking.c       break;
 0126 D000      00927         BRA     _00214_DS_
 0128 00928 _00197_DS_:
-               00929 ;       .line   406; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0xC0);
+               00929 ;       .line   408; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0xC0);
 0128 0EC0      00930         MOVLW   0xc0
 012A 6EE5      00931         MOVWF   POSTDEC1
 012C 0E00      00932         MOVLW   0x00
@@ -1042,30 +1042,30 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0130 EC00 F000 00934         CALL    _LCDWrite
 0134 0E02      00935         MOVLW   0x02
 0136 26E1      00936         ADDWF   FSR1L, F
-               00937 ;       .line   408; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+               00937 ;       .line   410; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
 0138 0E01      00938         MOVLW   0x01
 013A 0000      00939         BANKSEL _LCDWaiting
 013C 6F00      00940         MOVWF   _LCDWaiting, B
-               00941 ;       .line   409; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
+               00941 ;       .line   411; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
 013E 0EFE      00942         MOVLW   0xfe
 0140 6E00      00943         MOVWF   _TMR1L
-               00944 ;       .line   410; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
+               00944 ;       .line   412; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
 0142 0EFF      00945         MOVLW   0xff
 0144 6E00      00946         MOVWF   _TMR1H
-               00947 ;       .line   411; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+               00947 ;       .line   413; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
 0146 8000      00948         BSF     _T1CONbits, 0
-               00949 ;       .line   412; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_OUTSECONDLINE;
+               00949 ;       .line   414; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_OUTSECONDLINE;
 0148 0E03      00950         MOVLW   0x03
 014A 0000      00951         BANKSEL _st_update
 014C 6F00      00952         MOVWF   _st_update, B
-               00953 ;       .line   413; TCPIP_Stack/LCDNonBlocking.c       LCDi = 16;
+               00953 ;       .line   415; TCPIP_Stack/LCDNonBlocking.c       LCDi = 16;
 014E 0E10      00954         MOVLW   0x10
 0150 0000      00955         BANKSEL _LCDi
 0152 6F00      00956         MOVWF   _LCDi, B
-               00957 ;       .line   414; TCPIP_Stack/LCDNonBlocking.c       break;
+               00957 ;       .line   416; TCPIP_Stack/LCDNonBlocking.c       break;
 0154 D000      00958         BRA     _00214_DS_
 0156 00959 _00198_DS_:
-               00960 ;       .line   419; TCPIP_Stack/LCDNonBlocking.c       if(LCDText[LCDi] == 0u)
+               00960 ;       .line   421; TCPIP_Stack/LCDNonBlocking.c       if(LCDText[LCDi] == 0u)
 0156 0E00      00961         MOVLW   LOW(_LCDText)
 0158 0000      00962         BANKSEL _LCDi
 015A 2500      00963         ADDWF   _LCDi, W, B
@@ -1078,13 +1078,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 016C CFEF F000 00970         MOVFF   INDF0, r0x00
 0170 5000      00971         MOVF    r0x00, W
 0172 E100      00972         BNZ     _00200_DS_
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 19
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00973 ;       .line   421; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 32u; LCDj++)
+               00973 ;       .line   423; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 32u; LCDj++)
 0174 C000 F000 00974         MOVFF   _LCDi, _LCDj
 0178 00975 _00210_DS_:
 0178 C000 F000 00976         MOVFF   _LCDj, r0x01
@@ -1096,7 +1096,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0186 5C00      00982         SUBWF   r0x01, W
 0188 00983 _00229_DS_:
 0188 E200      00984         BC      _00200_DS_
-               00985 ;       .line   423; TCPIP_Stack/LCDNonBlocking.c       LCDText[LCDj] = ' ';
+               00985 ;       .line   425; TCPIP_Stack/LCDNonBlocking.c       LCDText[LCDj] = ' ';
 018A 0E00      00986         MOVLW   LOW(_LCDText)
 018C 0000      00987         BANKSEL _LCDj
 018E 2500      00988         ADDWF   _LCDj, W, B
@@ -1109,11 +1109,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01A0 0E20      00995         MOVLW   0x20
 01A2 6EEF      00996         MOVWF   INDF0
 01A4 0000      00997         BANKSEL _LCDj
-               00998 ;       .line   421; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 32u; LCDj++)
+               00998 ;       .line   423; TCPIP_Stack/LCDNonBlocking.c       for(LCDj=LCDi; LCDj < 32u; LCDj++)
 01A6 2B00      00999         INCF    _LCDj, F, B
 01A8 D000      01000         BRA     _00210_DS_
 01AA 01001 _00200_DS_:
-               01002 ;       .line   426; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(1, LCDText[LCDi]);
+               01002 ;       .line   428; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(1, LCDText[LCDi]);
 01AA 5000      01003         MOVF    r0x00, W
 01AC 6EE5      01004         MOVWF   POSTDEC1
 01AE 0E01      01005         MOVLW   0x01
@@ -1121,7 +1121,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01B2 EC00 F000 01007         CALL    _LCDWrite
 01B6 0E02      01008         MOVLW   0x02
 01B8 26E1      01009         ADDWF   FSR1L, F
-               01010 ;       .line   428; TCPIP_Stack/LCDNonBlocking.c       if (LCDi >= 32u)
+               01010 ;       .line   430; TCPIP_Stack/LCDNonBlocking.c       if (LCDi >= 32u)
 01BA C000 F000 01011         MOVFF   _LCDi, r0x00
 01BE 6A00      01012         CLRF    r0x01
 01C0 0E00      01013         MOVLW   0x00
@@ -1131,43 +1131,43 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01C8 5C00      01017         SUBWF   r0x00, W
 01CA 01018 _00230_DS_:
 01CA E300      01019         BNC     _00202_DS_
-               01020 ;       .line   429; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_ENDUPDATE;
+               01020 ;       .line   431; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_ENDUPDATE;
 01CC 0E04      01021         MOVLW   0x04
 01CE 0000      01022         BANKSEL _st_update
 01D0 6F00      01023         MOVWF   _st_update, B
 01D2 01024 _00202_DS_:
 01D2 0000      01025         BANKSEL _LCDi
-               01026 ;       .line   430; TCPIP_Stack/LCDNonBlocking.c       LCDi++;
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 20
+               01026 ;       .line   432; TCPIP_Stack/LCDNonBlocking.c       LCDi++;
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
 01D4 2B00      01027         INCF    _LCDi, F, B
-               01028 ;       .line   432; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+               01028 ;       .line   434; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
 01D6 0E01      01029         MOVLW   0x01
 01D8 0000      01030         BANKSEL _LCDWaiting
 01DA 6F00      01031         MOVWF   _LCDWaiting, B
-               01032 ;       .line   433; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
+               01032 ;       .line   435; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
 01DC 0EFE      01033         MOVLW   0xfe
 01DE 6E00      01034         MOVWF   _TMR1L
-               01035 ;       .line   434; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
+               01035 ;       .line   436; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
 01E0 0EFF      01036         MOVLW   0xff
 01E2 6E00      01037         MOVWF   _TMR1H
-               01038 ;       .line   435; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+               01038 ;       .line   437; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
 01E4 8000      01039         BSF     _T1CONbits, 0
-               01040 ;       .line   436; TCPIP_Stack/LCDNonBlocking.c       break;
+               01040 ;       .line   438; TCPIP_Stack/LCDNonBlocking.c       break;
 01E6 D000      01041         BRA     _00214_DS_
 01E8 01042 _00203_DS_:
 01E8 0000      01043         BANKSEL _LCDOpInProgress
-               01044 ;       .line   439; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
+               01044 ;       .line   441; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
 01EA 6B00      01045         CLRF    _LCDOpInProgress, B
 01EC 0000      01046         BANKSEL _st_update
-               01047 ;       .line   440; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_GOTOFIRSTLINE;
+               01047 ;       .line   442; TCPIP_Stack/LCDNonBlocking.c       st_update = LCD_GOTOFIRSTLINE;
 01EE 6B00      01048         CLRF    _st_update, B
 01F0 01049 _00214_DS_:
-               01050 ;       .line   446; TCPIP_Stack/LCDNonBlocking.c       }
+               01050 ;       .line   448; TCPIP_Stack/LCDNonBlocking.c       }
 01F0 CFE4 F000 01051         MOVFF   PREINC1, r0x02
 01F4 CFE4 F000 01052         MOVFF   PREINC1, r0x01
 01F8 CFE4 F000 01053         MOVFF   PREINC1, r0x00
@@ -1177,11 +1177,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01057 ; ; Starting pCode block
                01058 S_LCDNonBlocking__LCDEraseExec  code
 0000 01059 _LCDEraseExec:
-               01060 ;       .line   334; TCPIP_Stack/LCDNonBlocking.c       static void LCDEraseExec(void)
+               01060 ;       .line   336; TCPIP_Stack/LCDNonBlocking.c       static void LCDEraseExec(void)
 0000 CFD9 FFE5 01061         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01062         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01063         MOVFF   r0x00, POSTDEC1
-               01064 ;       .line   336; TCPIP_Stack/LCDNonBlocking.c       switch(st_erase)
+               01064 ;       .line   338; TCPIP_Stack/LCDNonBlocking.c       switch(st_erase)
 000C C000 F000 01065         MOVFF   _st_erase, r0x00
 0010 5000      01066         MOVF    r0x00, W
 0012 E000      01067         BZ      _00175_DS_
@@ -1192,13 +1192,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 001A E000      01072         BZ      _00176_DS_
 001C D000      01073         BRA     _00179_DS_
 001E 01074 _00175_DS_:
-               01075 ;       .line   340; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x01);
+               01075 ;       .line   342; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x01);
 001E 0E01      01076         MOVLW   0x01
 0020 6EE5      01077         MOVWF   POSTDEC1
 0022 0E00      01078         MOVLW   0x00
 0024 6EE5      01079         MOVWF   POSTDEC1
 0026 EC00 F000 01080         CALL    _LCDWrite
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 21
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1206,26 +1206,26 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 002A 0E02      01081         MOVLW   0x02
 002C 26E1      01082         ADDWF   FSR1L, F
-               01083 ;       .line   342; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+               01083 ;       .line   344; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
 002E 0E01      01084         MOVLW   0x01
 0030 0000      01085         BANKSEL _LCDWaiting
 0032 6F00      01086         MOVWF   _LCDWaiting, B
-               01087 ;       .line   343; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
+               01087 ;       .line   345; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
 0034 0EBE      01088         MOVLW   0xbe
 0036 6E00      01089         MOVWF   _TMR1L
-               01090 ;       .line   344; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
+               01090 ;       .line   346; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
 0038 0EFF      01091         MOVLW   0xff
 003A 6E00      01092         MOVWF   _TMR1H
-               01093 ;       .line   345; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+               01093 ;       .line   347; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
 003C 8000      01094         BSF     _T1CONbits, 0
-               01095 ;       .line   347; TCPIP_Stack/LCDNonBlocking.c       st_erase = LCD_CLEARLOCAL;
+               01095 ;       .line   349; TCPIP_Stack/LCDNonBlocking.c       st_erase = LCD_CLEARLOCAL;
 003E 0E01      01096         MOVLW   0x01
 0040 0000      01097         BANKSEL _st_erase
 0042 6F00      01098         MOVWF   _st_erase, B
-               01099 ;       .line   348; TCPIP_Stack/LCDNonBlocking.c       break;
+               01099 ;       .line   350; TCPIP_Stack/LCDNonBlocking.c       break;
 0044 D000      01100         BRA     _00179_DS_
 0046 01101 _00176_DS_:
-               01102 ;       .line   352; TCPIP_Stack/LCDNonBlocking.c       memset(LCDText, ' ', 32);
+               01102 ;       .line   354; TCPIP_Stack/LCDNonBlocking.c       memset(LCDText, ' ', 32);
 0046 0E00      01103         MOVLW   0x00
 0048 6EE5      01104         MOVWF   POSTDEC1
 004A 0E20      01105         MOVLW   0x20
@@ -1240,13 +1240,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 005E 0E05      01114         MOVLW   0x05
 0060 26E1      01115         ADDWF   FSR1L, F
 0062 0000      01116         BANKSEL _LCDOpInProgress
-               01117 ;       .line   354; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
+               01117 ;       .line   356; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
 0064 6B00      01118         CLRF    _LCDOpInProgress, B
 0066 0000      01119         BANKSEL _st_erase
-               01120 ;       .line   356; TCPIP_Stack/LCDNonBlocking.c       st_erase = LCD_CLEARDISPLAY;
+               01120 ;       .line   358; TCPIP_Stack/LCDNonBlocking.c       st_erase = LCD_CLEARDISPLAY;
 0068 6B00      01121         CLRF    _st_erase, B
 006A 01122 _00179_DS_:
-               01123 ;       .line   362; TCPIP_Stack/LCDNonBlocking.c       }
+               01123 ;       .line   364; TCPIP_Stack/LCDNonBlocking.c       }
 006A CFE4 F000 01124         MOVFF   PREINC1, r0x00
 006E CFE4 FFD9 01125         MOVFF   PREINC1, FSR2L
 0072 0012      01126         RETURN  
@@ -1258,7 +1258,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000 CFD9 FFE5 01132         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01133         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01134         MOVFF   r0x00, POSTDEC1
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 22
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1311,358 +1311,362 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0082 EF00 F000 01179         GOTO    _00157_DS_
 0086 EF00 F000 01180         GOTO    _00158_DS_
 008A 01181 _00143_DS_:
-               01182 ;       .line   178; TCPIP_Stack/LCDNonBlocking.c       memset(LCDText, ' ', sizeof(LCDText)-1);
-008A 0E00      01183         MOVLW   0x00
-008C 6EE5      01184         MOVWF   POSTDEC1
-008E 0E20      01185         MOVLW   0x20
-0090 6EE5      01186         MOVWF   POSTDEC1
-0092 0E20      01187         MOVLW   0x20
-0094 6EE5      01188         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 23
+               01182 ;       .line   178; TCPIP_Stack/LCDNonBlocking.c       LED1_TRIS = 0;
+008A 9200      01183         BCF     _TRISJbits, 1
+               01184 ;       .line   179; TCPIP_Stack/LCDNonBlocking.c       LED1_IO = 1;
+008C 8200      01185         BSF     _LATJbits, 1
+               01186 ;       .line   180; TCPIP_Stack/LCDNonBlocking.c       memset(LCDText, ' ', sizeof(LCDText)-1);
+008E 0E00      01187         MOVLW   0x00
+0090 6EE5      01188         MOVWF   POSTDEC1
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0096 0E00      01189         MOVLW   HIGH(_LCDText)
-0098 6EE5      01190         MOVWF   POSTDEC1
-009A 0E00      01191         MOVLW   LOW(_LCDText)
-009C 6EE5      01192         MOVWF   POSTDEC1
-009E EC00 F000 01193         CALL    _memset
-00A2 0E05      01194         MOVLW   0x05
-00A4 26E1      01195         ADDWF   FSR1L, F
-00A6 0000      01196         BANKSEL (_LCDText + 32)
-               01197 ;       .line   179; TCPIP_Stack/LCDNonBlocking.c       LCDText[sizeof(LCDText)-1] = 0;
-00A8 6B00      01198         CLRF    (_LCDText + 32), B
-               01199 ;       .line   181; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 0;
-00AA 9000      01200         BCF     _LATHbits, 0
-               01201 ;       .line   182; TCPIP_Stack/LCDNonBlocking.c       LCD_RD_WR_IO = 0;
-00AC 9200      01202         BCF     _LATHbits, 1
-               01203 ;       .line   184; TCPIP_Stack/LCDNonBlocking.c       LCD_DATA_TRIS = 0x00;
-00AE 6A00      01204         CLRF    _TRISE
-               01205 ;       .line   197; TCPIP_Stack/LCDNonBlocking.c       LCD_RD_WR_TRIS = 0;
-00B0 9200      01206         BCF     _TRISHbits, 1
-               01207 ;       .line   198; TCPIP_Stack/LCDNonBlocking.c       LCD_RS_TRIS = 0;
-00B2 9400      01208         BCF     _TRISHbits, 2
-               01209 ;       .line   199; TCPIP_Stack/LCDNonBlocking.c       LCD_E_TRIS = 0;
-00B4 9000      01210         BCF     _TRISHbits, 0
-               01211 ;       .line   201; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
-00B6 0E01      01212         MOVLW   0x01
-00B8 0000      01213         BANKSEL _LCDWaiting
-00BA 6F00      01214         MOVWF   _LCDWaiting, B
-               01215 ;       .line   202; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 1311)        & 0xff;
-00BC 0EE1      01216         MOVLW   0xe1
-00BE 6E00      01217         MOVWF   _TMR1L
-               01218 ;       .line   203; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 1311)        >> 8;
-00C0 0EFA      01219         MOVLW   0xfa
-00C2 6E00      01220         MOVWF   _TMR1H
-               01221 ;       .line   204; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
-00C4 8000      01222         BSF     _T1CONbits, 0
-               01223 ;       .line   206; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_DEFAULTFUNC1;
-00C6 0E01      01224         MOVLW   0x01
-00C8 0000      01225         BANKSEL _st_init
-00CA 6F00      01226         MOVWF   _st_init, B
-               01227 ;       .line   207; TCPIP_Stack/LCDNonBlocking.c       break;
-00CC D000      01228         BRA     _00161_DS_
-00CE 01229 _00144_DS_:
-               01230 ;       .line   216; TCPIP_Stack/LCDNonBlocking.c       LCD_RS_IO = 0;
-00CE 9400      01231         BCF     _LATHbits, 2
-               01232 ;       .line   218; TCPIP_Stack/LCDNonBlocking.c       LCD_DATA_IO = 0x03;
-00D0 0E03      01233         MOVLW   0x03
-00D2 6E00      01234         MOVWF   _LATE
-               01235 ;       .line   234; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_EPULSETIME;
-00D4 0E02      01236         MOVLW   0x02
-00D6 0000      01237         BANKSEL _st_init
-00D8 6F00      01238         MOVWF   _st_init, B
-00DA 0000      01239         BANKSEL _LCDi
-               01240 ;       .line   235; TCPIP_Stack/LCDNonBlocking.c       LCDi = 0;
-00DC 6B00      01241         CLRF    _LCDi, B
-               01242 ;       .line   236; TCPIP_Stack/LCDNonBlocking.c       break;
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 24
+0092 0E20      01189         MOVLW   0x20
+0094 6EE5      01190         MOVWF   POSTDEC1
+0096 0E20      01191         MOVLW   0x20
+0098 6EE5      01192         MOVWF   POSTDEC1
+009A 0E00      01193         MOVLW   HIGH(_LCDText)
+009C 6EE5      01194         MOVWF   POSTDEC1
+009E 0E00      01195         MOVLW   LOW(_LCDText)
+00A0 6EE5      01196         MOVWF   POSTDEC1
+00A2 EC00 F000 01197         CALL    _memset
+00A6 0E05      01198         MOVLW   0x05
+00A8 26E1      01199         ADDWF   FSR1L, F
+00AA 0000      01200         BANKSEL (_LCDText + 32)
+               01201 ;       .line   181; TCPIP_Stack/LCDNonBlocking.c       LCDText[sizeof(LCDText)-1] = 0;
+00AC 6B00      01202         CLRF    (_LCDText + 32), B
+               01203 ;       .line   183; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 0;
+00AE 9000      01204         BCF     _LATHbits, 0
+               01205 ;       .line   184; TCPIP_Stack/LCDNonBlocking.c       LCD_RD_WR_IO = 0;
+00B0 9200      01206         BCF     _LATHbits, 1
+               01207 ;       .line   186; TCPIP_Stack/LCDNonBlocking.c       LCD_DATA_TRIS = 0x00;
+00B2 6A00      01208         CLRF    _TRISE
+               01209 ;       .line   199; TCPIP_Stack/LCDNonBlocking.c       LCD_RD_WR_TRIS = 0;
+00B4 9200      01210         BCF     _TRISHbits, 1
+               01211 ;       .line   200; TCPIP_Stack/LCDNonBlocking.c       LCD_RS_TRIS = 0;
+00B6 9400      01212         BCF     _TRISHbits, 2
+               01213 ;       .line   201; TCPIP_Stack/LCDNonBlocking.c       LCD_E_TRIS = 0;
+00B8 9000      01214         BCF     _TRISHbits, 0
+               01215 ;       .line   203; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+00BA 0E01      01216         MOVLW   0x01
+00BC 0000      01217         BANKSEL _LCDWaiting
+00BE 6F00      01218         MOVWF   _LCDWaiting, B
+               01219 ;       .line   204; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 1311)        & 0xff;
+00C0 0EE1      01220         MOVLW   0xe1
+00C2 6E00      01221         MOVWF   _TMR1L
+               01222 ;       .line   205; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 1311)        >> 8;
+00C4 0EFA      01223         MOVLW   0xfa
+00C6 6E00      01224         MOVWF   _TMR1H
+               01225 ;       .line   206; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+00C8 8000      01226         BSF     _T1CONbits, 0
+               01227 ;       .line   208; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_DEFAULTFUNC1;
+00CA 0E01      01228         MOVLW   0x01
+00CC 0000      01229         BANKSEL _st_init
+00CE 6F00      01230         MOVWF   _st_init, B
+               01231 ;       .line   209; TCPIP_Stack/LCDNonBlocking.c       break;
+00D0 D000      01232         BRA     _00161_DS_
+00D2 01233 _00144_DS_:
+               01234 ;       .line   218; TCPIP_Stack/LCDNonBlocking.c       LCD_RS_IO = 0;
+00D2 9400      01235         BCF     _LATHbits, 2
+               01236 ;       .line   220; TCPIP_Stack/LCDNonBlocking.c       LCD_DATA_IO = 0x03;
+00D4 0E03      01237         MOVLW   0x03
+00D6 6E00      01238         MOVWF   _LATE
+               01239 ;       .line   236; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_EPULSETIME;
+00D8 0E02      01240         MOVLW   0x02
+00DA 0000      01241         BANKSEL _st_init
+00DC 6F00      01242         MOVWF   _st_init, B
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00DE D000      01243         BRA     _00161_DS_
-00E0 01244 _00145_DS_:
-               01245 ;       .line   239; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 1;
-00E0 8000      01246         BSF     _LATHbits, 0
-               01247 ;       .line   240; TCPIP_Stack/LCDNonBlocking.c       Delay10us(1);                   // Wait E Pulse width time (min 230ns)
-00E2 0E11      01248         MOVLW   0x11
-00E4 6E00      01249         MOVWF   r0x00
-00E6 6A00      01250         CLRF    r0x01
-00E8 6A00      01251         CLRF    r0x02
-00EA 6A00      01252         CLRF    r0x03
-00EC 01253 _00146_DS_:
-00EC C000 F000 01254         MOVFF   r0x00, r0x04
-00F0 C000 F000 01255         MOVFF   r0x01, r0x05
-00F4 C000 F000 01256         MOVFF   r0x02, r0x06
-00F8 C000 F000 01257         MOVFF   r0x03, r0x07
-00FC 0EFF      01258         MOVLW   0xff
-00FE 2600      01259         ADDWF   r0x00, F
-0100 0EFF      01260         MOVLW   0xff
-0102 2200      01261         ADDWFC  r0x01, F
-0104 0EFF      01262         MOVLW   0xff
-0106 2200      01263         ADDWFC  r0x02, F
-0108 0EFF      01264         MOVLW   0xff
-010A 2200      01265         ADDWFC  r0x03, F
-010C 5000      01266         MOVF    r0x04, W
-010E 1000      01267         IORWF   r0x05, W
-0110 1000      01268         IORWF   r0x06, W
-0112 1000      01269         IORWF   r0x07, W
-0114 E100      01270         BNZ     _00146_DS_
-               01271 ;       .line   241; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 0;
-0116 9000      01272         BCF     _LATHbits, 0
-               01273 ;       .line   243; TCPIP_Stack/LCDNonBlocking.c       if (LCDi >= 3u)
-0118 C000 F000 01274         MOVFF   _LCDi, r0x00
-011C 6A00      01275         CLRF    r0x01
-011E 0E00      01276         MOVLW   0x00
-0120 5C00      01277         SUBWF   r0x01, W
-0122 E100      01278         BNZ     _00170_DS_
-0124 0E03      01279         MOVLW   0x03
-0126 5C00      01280         SUBWF   r0x00, W
-0128 01281 _00170_DS_:
-0128 E300      01282         BNC     _00153_DS_
-               01283 ;       .line   244; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_DEFAULTFUNC2;
-012A 0E03      01284         MOVLW   0x03
-012C 0000      01285         BANKSEL _st_init
-012E 6F00      01286         MOVWF   _st_init, B
-0130 01287 _00153_DS_:
-0130 0000      01288         BANKSEL _LCDi
-               01289 ;       .line   245; TCPIP_Stack/LCDNonBlocking.c       LCDi++;
-0132 2B00      01290         INCF    _LCDi, F, B
-               01291 ;       .line   247; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
-0134 0E01      01292         MOVLW   0x01
-0136 0000      01293         BANKSEL _LCDWaiting
-0138 6F00      01294         MOVWF   _LCDWaiting, B
-               01295 ;       .line   248; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
-013A 0EBE      01296         MOVLW   0xbe
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 25
+00DE 0000      01243         BANKSEL _LCDi
+               01244 ;       .line   237; TCPIP_Stack/LCDNonBlocking.c       LCDi = 0;
+00E0 6B00      01245         CLRF    _LCDi, B
+               01246 ;       .line   238; TCPIP_Stack/LCDNonBlocking.c       break;
+00E2 D000      01247         BRA     _00161_DS_
+00E4 01248 _00145_DS_:
+               01249 ;       .line   241; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 1;
+00E4 8000      01250         BSF     _LATHbits, 0
+               01251 ;       .line   242; TCPIP_Stack/LCDNonBlocking.c       Delay10us(1);                   // Wait E Pulse width time (min 230ns)
+00E6 0E11      01252         MOVLW   0x11
+00E8 6E00      01253         MOVWF   r0x00
+00EA 6A00      01254         CLRF    r0x01
+00EC 6A00      01255         CLRF    r0x02
+00EE 6A00      01256         CLRF    r0x03
+00F0 01257 _00146_DS_:
+00F0 C000 F000 01258         MOVFF   r0x00, r0x04
+00F4 C000 F000 01259         MOVFF   r0x01, r0x05
+00F8 C000 F000 01260         MOVFF   r0x02, r0x06
+00FC C000 F000 01261         MOVFF   r0x03, r0x07
+0100 0EFF      01262         MOVLW   0xff
+0102 2600      01263         ADDWF   r0x00, F
+0104 0EFF      01264         MOVLW   0xff
+0106 2200      01265         ADDWFC  r0x01, F
+0108 0EFF      01266         MOVLW   0xff
+010A 2200      01267         ADDWFC  r0x02, F
+010C 0EFF      01268         MOVLW   0xff
+010E 2200      01269         ADDWFC  r0x03, F
+0110 5000      01270         MOVF    r0x04, W
+0112 1000      01271         IORWF   r0x05, W
+0114 1000      01272         IORWF   r0x06, W
+0116 1000      01273         IORWF   r0x07, W
+0118 E100      01274         BNZ     _00146_DS_
+               01275 ;       .line   243; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 0;
+011A 9000      01276         BCF     _LATHbits, 0
+               01277 ;       .line   245; TCPIP_Stack/LCDNonBlocking.c       if (LCDi >= 3u)
+011C C000 F000 01278         MOVFF   _LCDi, r0x00
+0120 6A00      01279         CLRF    r0x01
+0122 0E00      01280         MOVLW   0x00
+0124 5C00      01281         SUBWF   r0x01, W
+0126 E100      01282         BNZ     _00170_DS_
+0128 0E03      01283         MOVLW   0x03
+012A 5C00      01284         SUBWF   r0x00, W
+012C 01285 _00170_DS_:
+012C E300      01286         BNC     _00153_DS_
+               01287 ;       .line   246; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_DEFAULTFUNC2;
+012E 0E03      01288         MOVLW   0x03
+0130 0000      01289         BANKSEL _st_init
+0132 6F00      01290         MOVWF   _st_init, B
+0134 01291 _00153_DS_:
+0134 0000      01292         BANKSEL _LCDi
+               01293 ;       .line   247; TCPIP_Stack/LCDNonBlocking.c       LCDi++;
+0136 2B00      01294         INCF    _LCDi, F, B
+               01295 ;       .line   249; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+0138 0E01      01296         MOVLW   0x01
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-013C 6E00      01297         MOVWF   _TMR1L
-               01298 ;       .line   249; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
-013E 0EFF      01299         MOVLW   0xff
-0140 6E00      01300         MOVWF   _TMR1H
-               01301 ;       .line   250; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
-0142 8000      01302         BSF     _T1CONbits, 0
-               01303 ;       .line   251; TCPIP_Stack/LCDNonBlocking.c       break;
-0144 D000      01304         BRA     _00161_DS_
-0146 01305 _00154_DS_:
-               01306 ;       .line   276; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x38);
-0146 0E38      01307         MOVLW   0x38
-0148 6EE5      01308         MOVWF   POSTDEC1
-014A 0E00      01309         MOVLW   0x00
-014C 6EE5      01310         MOVWF   POSTDEC1
-014E EC00 F000 01311         CALL    _LCDWrite
-0152 0E02      01312         MOVLW   0x02
-0154 26E1      01313         ADDWF   FSR1L, F
-               01314 ;       .line   279; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
-0156 0E01      01315         MOVLW   0x01
-0158 0000      01316         BANKSEL _LCDWaiting
-015A 6F00      01317         MOVWF   _LCDWaiting, B
-               01318 ;       .line   280; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
-015C 0EFE      01319         MOVLW   0xfe
-015E 6E00      01320         MOVWF   _TMR1L
-               01321 ;       .line   281; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
-0160 0EFF      01322         MOVLW   0xff
-0162 6E00      01323         MOVWF   _TMR1H
-               01324 ;       .line   282; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
-0164 8000      01325         BSF     _T1CONbits, 0
-               01326 ;       .line   284; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_ENTRYMODE;
-0166 0E04      01327         MOVLW   0x04
-0168 0000      01328         BANKSEL _st_init
-016A 6F00      01329         MOVWF   _st_init, B
-               01330 ;       .line   285; TCPIP_Stack/LCDNonBlocking.c       break;
-016C D000      01331         BRA     _00161_DS_
-016E 01332 _00155_DS_:
-               01333 ;       .line   288; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x06);      // Increment after each write, do not shift
-016E 0E06      01334         MOVLW   0x06
-0170 6EE5      01335         MOVWF   POSTDEC1
-0172 0E00      01336         MOVLW   0x00
-0174 6EE5      01337         MOVWF   POSTDEC1
-0176 EC00 F000 01338         CALL    _LCDWrite
-017A 0E02      01339         MOVLW   0x02
-017C 26E1      01340         ADDWF   FSR1L, F
-               01341 ;       .line   290; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
-017E 0E01      01342         MOVLW   0x01
-0180 0000      01343         BANKSEL _LCDWaiting
-0182 6F00      01344         MOVWF   _LCDWaiting, B
-               01345 ;       .line   291; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
-0184 0EFE      01346         MOVLW   0xfe
-0186 6E00      01347         MOVWF   _TMR1L
-               01348 ;       .line   292; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
-0188 0EFF      01349         MOVLW   0xff
-018A 6E00      01350         MOVWF   _TMR1H
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 26
+013A 0000      01297         BANKSEL _LCDWaiting
+013C 6F00      01298         MOVWF   _LCDWaiting, B
+               01299 ;       .line   250; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
+013E 0EBE      01300         MOVLW   0xbe
+0140 6E00      01301         MOVWF   _TMR1L
+               01302 ;       .line   251; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
+0142 0EFF      01303         MOVLW   0xff
+0144 6E00      01304         MOVWF   _TMR1H
+               01305 ;       .line   252; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+0146 8000      01306         BSF     _T1CONbits, 0
+               01307 ;       .line   253; TCPIP_Stack/LCDNonBlocking.c       break;
+0148 D000      01308         BRA     _00161_DS_
+014A 01309 _00154_DS_:
+               01310 ;       .line   278; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x38);
+014A 0E38      01311         MOVLW   0x38
+014C 6EE5      01312         MOVWF   POSTDEC1
+014E 0E00      01313         MOVLW   0x00
+0150 6EE5      01314         MOVWF   POSTDEC1
+0152 EC00 F000 01315         CALL    _LCDWrite
+0156 0E02      01316         MOVLW   0x02
+0158 26E1      01317         ADDWF   FSR1L, F
+               01318 ;       .line   281; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+015A 0E01      01319         MOVLW   0x01
+015C 0000      01320         BANKSEL _LCDWaiting
+015E 6F00      01321         MOVWF   _LCDWaiting, B
+               01322 ;       .line   282; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
+0160 0EFE      01323         MOVLW   0xfe
+0162 6E00      01324         MOVWF   _TMR1L
+               01325 ;       .line   283; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
+0164 0EFF      01326         MOVLW   0xff
+0166 6E00      01327         MOVWF   _TMR1H
+               01328 ;       .line   284; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+0168 8000      01329         BSF     _T1CONbits, 0
+               01330 ;       .line   286; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_ENTRYMODE;
+016A 0E04      01331         MOVLW   0x04
+016C 0000      01332         BANKSEL _st_init
+016E 6F00      01333         MOVWF   _st_init, B
+               01334 ;       .line   287; TCPIP_Stack/LCDNonBlocking.c       break;
+0170 D000      01335         BRA     _00161_DS_
+0172 01336 _00155_DS_:
+               01337 ;       .line   290; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x06);      // Increment after each write, do not shift
+0172 0E06      01338         MOVLW   0x06
+0174 6EE5      01339         MOVWF   POSTDEC1
+0176 0E00      01340         MOVLW   0x00
+0178 6EE5      01341         MOVWF   POSTDEC1
+017A EC00 F000 01342         CALL    _LCDWrite
+017E 0E02      01343         MOVLW   0x02
+0180 26E1      01344         ADDWF   FSR1L, F
+               01345 ;       .line   292; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+0182 0E01      01346         MOVLW   0x01
+0184 0000      01347         BANKSEL _LCDWaiting
+0186 6F00      01348         MOVWF   _LCDWaiting, B
+               01349 ;       .line   293; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
+0188 0EFE      01350         MOVLW   0xfe
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01351 ;       .line   293; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
-018C 8000      01352         BSF     _T1CONbits, 0
-               01353 ;       .line   295; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_DISPLAYCONTROL;
-018E 0E05      01354         MOVLW   0x05
-0190 0000      01355         BANKSEL _st_init
-0192 6F00      01356         MOVWF   _st_init, B
-               01357 ;       .line   296; TCPIP_Stack/LCDNonBlocking.c       break;
-0194 D000      01358         BRA     _00161_DS_
-0196 01359 _00156_DS_:
-               01360 ;       .line   299; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x0C);              // Turn display on, no cusor, no cursor blink
-0196 0E0C      01361         MOVLW   0x0c
-0198 6EE5      01362         MOVWF   POSTDEC1
-019A 0E00      01363         MOVLW   0x00
-019C 6EE5      01364         MOVWF   POSTDEC1
-019E EC00 F000 01365         CALL    _LCDWrite
-01A2 0E02      01366         MOVLW   0x02
-01A4 26E1      01367         ADDWF   FSR1L, F
-               01368 ;       .line   301; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
-01A6 0E01      01369         MOVLW   0x01
-01A8 0000      01370         BANKSEL _LCDWaiting
-01AA 6F00      01371         MOVWF   _LCDWaiting, B
-               01372 ;       .line   302; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
-01AC 0EFE      01373         MOVLW   0xfe
-01AE 6E00      01374         MOVWF   _TMR1L
-               01375 ;       .line   303; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
-01B0 0EFF      01376         MOVLW   0xff
-01B2 6E00      01377         MOVWF   _TMR1H
-               01378 ;       .line   304; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
-01B4 8000      01379         BSF     _T1CONbits, 0
-               01380 ;       .line   306; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_CLEAR;
-01B6 0E06      01381         MOVLW   0x06
-01B8 0000      01382         BANKSEL _st_init
-01BA 6F00      01383         MOVWF   _st_init, B
-               01384 ;       .line   307; TCPIP_Stack/LCDNonBlocking.c       break;
-01BC D000      01385         BRA     _00161_DS_
-01BE 01386 _00157_DS_:
-               01387 ;       .line   310; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x01);      
-01BE 0E01      01388         MOVLW   0x01
-01C0 6EE5      01389         MOVWF   POSTDEC1
-01C2 0E00      01390         MOVLW   0x00
-01C4 6EE5      01391         MOVWF   POSTDEC1
-01C6 EC00 F000 01392         CALL    _LCDWrite
-01CA 0E02      01393         MOVLW   0x02
-01CC 26E1      01394         ADDWF   FSR1L, F
-               01395 ;       .line   312; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
-01CE 0E01      01396         MOVLW   0x01
-01D0 0000      01397         BANKSEL _LCDWaiting
-01D2 6F00      01398         MOVWF   _LCDWaiting, B
-               01399 ;       .line   313; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
-01D4 0EBE      01400         MOVLW   0xbe
-01D6 6E00      01401         MOVWF   _TMR1L
-               01402 ;       .line   314; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
-01D8 0EFF      01403         MOVLW   0xff
-01DA 6E00      01404         MOVWF   _TMR1H
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 27
+018A 6E00      01351         MOVWF   _TMR1L
+               01352 ;       .line   294; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
+018C 0EFF      01353         MOVLW   0xff
+018E 6E00      01354         MOVWF   _TMR1H
+               01355 ;       .line   295; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+0190 8000      01356         BSF     _T1CONbits, 0
+               01357 ;       .line   297; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_DISPLAYCONTROL;
+0192 0E05      01358         MOVLW   0x05
+0194 0000      01359         BANKSEL _st_init
+0196 6F00      01360         MOVWF   _st_init, B
+               01361 ;       .line   298; TCPIP_Stack/LCDNonBlocking.c       break;
+0198 D000      01362         BRA     _00161_DS_
+019A 01363 _00156_DS_:
+               01364 ;       .line   301; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x0C);              // Turn display on, no cusor, no cursor blink
+019A 0E0C      01365         MOVLW   0x0c
+019C 6EE5      01366         MOVWF   POSTDEC1
+019E 0E00      01367         MOVLW   0x00
+01A0 6EE5      01368         MOVWF   POSTDEC1
+01A2 EC00 F000 01369         CALL    _LCDWrite
+01A6 0E02      01370         MOVLW   0x02
+01A8 26E1      01371         ADDWF   FSR1L, F
+               01372 ;       .line   303; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+01AA 0E01      01373         MOVLW   0x01
+01AC 0000      01374         BANKSEL _LCDWaiting
+01AE 6F00      01375         MOVWF   _LCDWaiting, B
+               01376 ;       .line   304; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 2)   & 0xff;
+01B0 0EFE      01377         MOVLW   0xfe
+01B2 6E00      01378         MOVWF   _TMR1L
+               01379 ;       .line   305; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 2)   >> 8;
+01B4 0EFF      01380         MOVLW   0xff
+01B6 6E00      01381         MOVWF   _TMR1H
+               01382 ;       .line   306; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+01B8 8000      01383         BSF     _T1CONbits, 0
+               01384 ;       .line   308; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_CLEAR;
+01BA 0E06      01385         MOVLW   0x06
+01BC 0000      01386         BANKSEL _st_init
+01BE 6F00      01387         MOVWF   _st_init, B
+               01388 ;       .line   309; TCPIP_Stack/LCDNonBlocking.c       break;
+01C0 D000      01389         BRA     _00161_DS_
+01C2 01390 _00157_DS_:
+               01391 ;       .line   312; TCPIP_Stack/LCDNonBlocking.c       LCDWrite(0, 0x01);      
+01C2 0E01      01392         MOVLW   0x01
+01C4 6EE5      01393         MOVWF   POSTDEC1
+01C6 0E00      01394         MOVLW   0x00
+01C8 6EE5      01395         MOVWF   POSTDEC1
+01CA EC00 F000 01396         CALL    _LCDWrite
+01CE 0E02      01397         MOVLW   0x02
+01D0 26E1      01398         ADDWF   FSR1L, F
+               01399 ;       .line   314; TCPIP_Stack/LCDNonBlocking.c       LCDWaiting = 1;
+01D2 0E01      01400         MOVLW   0x01
+01D4 0000      01401         BANKSEL _LCDWaiting
+01D6 6F00      01402         MOVWF   _LCDWaiting, B
+               01403 ;       .line   315; TCPIP_Stack/LCDNonBlocking.c       TMR1L                   =       (0x10000 - 66)  & 0xff;
+01D8 0EBE      01404         MOVLW   0xbe
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               01405 ;       .line   315; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
-01DC 8000      01406         BSF     _T1CONbits, 0
-               01407 ;       .line   317; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_ENDINIT;
-01DE 0E07      01408         MOVLW   0x07
-01E0 0000      01409         BANKSEL _st_init
-01E2 6F00      01410         MOVWF   _st_init, B
-               01411 ;       .line   318; TCPIP_Stack/LCDNonBlocking.c       break;
-01E4 D000      01412         BRA     _00161_DS_
-01E6 01413 _00158_DS_:
-01E6 0000      01414         BANKSEL _LCDOpInProgress
-               01415 ;       .line   322; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
-01E8 6B00      01416         CLRF    _LCDOpInProgress, B
-01EA 0000      01417         BANKSEL _st_init
-               01418 ;       .line   324; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_RESET;
-01EC 6B00      01419         CLRF    _st_init, B
-01EE 01420 _00161_DS_:
-               01421 ;       .line   330; TCPIP_Stack/LCDNonBlocking.c       }
-01EE CFE4 F000 01422         MOVFF   PREINC1, r0x07
-01F2 CFE4 F000 01423         MOVFF   PREINC1, r0x06
-01F6 CFE4 F000 01424         MOVFF   PREINC1, r0x05
-01FA CFE4 F000 01425         MOVFF   PREINC1, r0x04
-01FE CFE4 F000 01426         MOVFF   PREINC1, r0x03
-0202 CFE4 F000 01427         MOVFF   PREINC1, r0x02
-0206 CFE4 F000 01428         MOVFF   PREINC1, r0x01
-020A CFE4 F000 01429         MOVFF   PREINC1, r0x00
-020E CFE4 FFD9 01430         MOVFF   PREINC1, FSR2L
-0212 0012      01431         RETURN  
-               01432 
-               01433 ; ; Starting pCode block
-               01434 S_LCDNonBlocking__LCDWrite      code
-0000 01435 _LCDWrite:
-               01436 ;       .line   77; TCPIP_Stack/LCDNonBlocking.c        static void LCDWrite(BYTE RS, BYTE Data)
-0000 CFD9 FFE5 01437         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 01438         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 01439         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 01440         MOVFF   r0x01, POSTDEC1
-0010 0E02      01441         MOVLW   0x02
-0012 CFDB F000 01442         MOVFF   PLUSW2, r0x00
-0016 0E03      01443         MOVLW   0x03
-0018 CFDB F000 01444         MOVFF   PLUSW2, r0x01
-               01445 ;       .line   80; TCPIP_Stack/LCDNonBlocking.c        LCD_DATA_TRIS = 0x00;
-001C 6A00      01446         CLRF    _TRISE
-               01447 ;       .line   93; TCPIP_Stack/LCDNonBlocking.c        LCD_RS_TRIS = 0;
-001E 9400      01448         BCF     _TRISHbits, 2
-               01449 ;       .line   94; TCPIP_Stack/LCDNonBlocking.c        LCD_RD_WR_TRIS = 0;
-0020 9200      01450         BCF     _TRISHbits, 1
-               01451 ;       .line   95; TCPIP_Stack/LCDNonBlocking.c        LCD_RD_WR_IO = 0;
-0022 9200      01452         BCF     _LATHbits, 1
-               01453 ;       .line   96; TCPIP_Stack/LCDNonBlocking.c        LCD_RS_IO = RS;
-0024 5000      01454         MOVF    r0x00, W
-0026 0B01      01455         ANDLW   0x01
-0028 44E8      01456         RLNCF   WREG, W
-002A 44E8      01457         RLNCF   WREG, W
-002C 6EF4      01458         MOVWF   PRODH
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 28
+01DA 6E00      01405         MOVWF   _TMR1L
+               01406 ;       .line   316; TCPIP_Stack/LCDNonBlocking.c       TMR1H                   =       (0x10000 - 66)  >> 8;
+01DC 0EFF      01407         MOVLW   0xff
+01DE 6E00      01408         MOVWF   _TMR1H
+               01409 ;       .line   317; TCPIP_Stack/LCDNonBlocking.c       T1CONbits.TMR1ON        =       1;
+01E0 8000      01410         BSF     _T1CONbits, 0
+               01411 ;       .line   319; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_ENDINIT;
+01E2 0E07      01412         MOVLW   0x07
+01E4 0000      01413         BANKSEL _st_init
+01E6 6F00      01414         MOVWF   _st_init, B
+               01415 ;       .line   320; TCPIP_Stack/LCDNonBlocking.c       break;
+01E8 D000      01416         BRA     _00161_DS_
+01EA 01417 _00158_DS_:
+01EA 0000      01418         BANKSEL _LCDOpInProgress
+               01419 ;       .line   324; TCPIP_Stack/LCDNonBlocking.c       LCDOpInProgress = 0;
+01EC 6B00      01420         CLRF    _LCDOpInProgress, B
+01EE 0000      01421         BANKSEL _st_init
+               01422 ;       .line   326; TCPIP_Stack/LCDNonBlocking.c       st_init = LCD_RESET;
+01F0 6B00      01423         CLRF    _st_init, B
+01F2 01424 _00161_DS_:
+               01425 ;       .line   332; TCPIP_Stack/LCDNonBlocking.c       }
+01F2 CFE4 F000 01426         MOVFF   PREINC1, r0x07
+01F6 CFE4 F000 01427         MOVFF   PREINC1, r0x06
+01FA CFE4 F000 01428         MOVFF   PREINC1, r0x05
+01FE CFE4 F000 01429         MOVFF   PREINC1, r0x04
+0202 CFE4 F000 01430         MOVFF   PREINC1, r0x03
+0206 CFE4 F000 01431         MOVFF   PREINC1, r0x02
+020A CFE4 F000 01432         MOVFF   PREINC1, r0x01
+020E CFE4 F000 01433         MOVFF   PREINC1, r0x00
+0212 CFE4 FFD9 01434         MOVFF   PREINC1, FSR2L
+0216 0012      01435         RETURN  
+               01436 
+               01437 ; ; Starting pCode block
+               01438 S_LCDNonBlocking__LCDWrite      code
+0000 01439 _LCDWrite:
+               01440 ;       .line   77; TCPIP_Stack/LCDNonBlocking.c        static void LCDWrite(BYTE RS, BYTE Data)
+0000 CFD9 FFE5 01441         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 01442         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 01443         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 01444         MOVFF   r0x01, POSTDEC1
+0010 0E02      01445         MOVLW   0x02
+0012 CFDB F000 01446         MOVFF   PLUSW2, r0x00
+0016 0E03      01447         MOVLW   0x03
+0018 CFDB F000 01448         MOVFF   PLUSW2, r0x01
+               01449 ;       .line   80; TCPIP_Stack/LCDNonBlocking.c        LCD_DATA_TRIS = 0x00;
+001C 6A00      01450         CLRF    _TRISE
+               01451 ;       .line   93; TCPIP_Stack/LCDNonBlocking.c        LCD_RS_TRIS = 0;
+001E 9400      01452         BCF     _TRISHbits, 2
+               01453 ;       .line   94; TCPIP_Stack/LCDNonBlocking.c        LCD_RD_WR_TRIS = 0;
+0020 9200      01454         BCF     _TRISHbits, 1
+               01455 ;       .line   95; TCPIP_Stack/LCDNonBlocking.c        LCD_RD_WR_IO = 0;
+0022 9200      01456         BCF     _LATHbits, 1
+               01457 ;       .line   96; TCPIP_Stack/LCDNonBlocking.c        LCD_RS_IO = RS;
+0024 5000      01458         MOVF    r0x00, W
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-002E 5000      01459         MOVF    _LATHbits, W
-0030 0BFB      01460         ANDLW   0xfb
-0032 10F4      01461         IORWF   PRODH, W
-0034 6E00      01462         MOVWF   _LATHbits
-               01463 ;       .line   123; TCPIP_Stack/LCDNonBlocking.c       LCD_DATA_IO = Data;
-0036 C000 F000 01464         MOVFF   r0x01, _LATE
-003A 0000      01465         nop 
-003C 0000      01466         nop 
-               01467 ;       .line   138; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 1;
-003E 8000      01468         BSF     _LATHbits, 0
-0040 0000      01469         nop 
-0042 0000      01470         nop 
-0044 0000      01471         nop 
-0046 0000      01472         nop 
-0048 0000      01473         nop 
-004A 0000      01474         nop 
-004C 0000      01475         nop 
-004E 0000      01476         nop 
-0050 0000      01477         nop 
-               01478 ;       .line   148; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 0;
-0052 9000      01479         BCF     _LATHbits, 0
-0054 CFE4 F000 01480         MOVFF   PREINC1, r0x01
-0058 CFE4 F000 01481         MOVFF   PREINC1, r0x00
-005C CFE4 FFD9 01482         MOVFF   PREINC1, FSR2L
-0060 0012      01483         RETURN  
-               01484 
-               01485 ; ; Starting pCode block
-0062 01486 __str_0:
-0062 0000      01487         DB      0x00
+0026 0B01      01459         ANDLW   0x01
+0028 44E8      01460         RLNCF   WREG, W
+002A 44E8      01461         RLNCF   WREG, W
+002C 6EF4      01462         MOVWF   PRODH
+002E 5000      01463         MOVF    _LATHbits, W
+0030 0BFB      01464         ANDLW   0xfb
+0032 10F4      01465         IORWF   PRODH, W
+0034 6E00      01466         MOVWF   _LATHbits
+               01467 ;       .line   123; TCPIP_Stack/LCDNonBlocking.c       LCD_DATA_IO = Data;
+0036 C000 F000 01468         MOVFF   r0x01, _LATE
+003A 0000      01469         nop 
+003C 0000      01470         nop 
+               01471 ;       .line   138; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 1;
+003E 8000      01472         BSF     _LATHbits, 0
+0040 0000      01473         nop 
+0042 0000      01474         nop 
+0044 0000      01475         nop 
+0046 0000      01476         nop 
+0048 0000      01477         nop 
+004A 0000      01478         nop 
+004C 0000      01479         nop 
+004E 0000      01480         nop 
+0050 0000      01481         nop 
+               01482 ;       .line   148; TCPIP_Stack/LCDNonBlocking.c       LCD_E_IO = 0;
+0052 9000      01483         BCF     _LATHbits, 0
+0054 CFE4 F000 01484         MOVFF   PREINC1, r0x01
+0058 CFE4 F000 01485         MOVFF   PREINC1, r0x00
+005C CFE4 FFD9 01486         MOVFF   PREINC1, FSR2L
+0060 0012      01487         RETURN  
                01488 
-               01489 
-               01490 ; Statistics:
-               01491 ; code size:     1716 (0x06b4) bytes ( 1.31%)
-               01492 ;                 858 (0x035a) words
-               01493 ; udata size:      74 (0x004a) bytes ( 1.93%)
-               01494 ; access size:     10 (0x000a) bytes
-               01495 
-               01496 
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 29
+               01489 ; ; Starting pCode block
+0062 01490 __str_0:
+0062 0000      01491         DB      0x00
+               01492 
+               01493 
+               01494 ; Statistics:
+               01495 ; code size:     1720 (0x06b8) bytes ( 1.31%)
+               01496 ;                 860 (0x035c) words
+               01497 ; udata size:      74 (0x004a) bytes ( 1.93%)
+               01498 ; access size:     10 (0x000a) bytes
+               01499 
+               01500 
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 29
 
 
 SYMBOL TABLE
@@ -1683,18 +1687,18 @@ PRODH                             00000FF4
 STATUS                            00000FD8
 WREG                              00000FE8
 _00143_DS_                        0000008A
-_00144_DS_                        000000CE
-_00145_DS_                        000000E0
-_00146_DS_                        000000EC
-_00153_DS_                        00000130
-_00154_DS_                        00000146
-_00155_DS_                        0000016E
-_00156_DS_                        00000196
-_00157_DS_                        000001BE
-_00158_DS_                        000001E6
-_00161_DS_                        000001EE
+_00144_DS_                        000000D2
+_00145_DS_                        000000E4
+_00146_DS_                        000000F0
+_00153_DS_                        00000134
+_00154_DS_                        0000014A
+_00155_DS_                        00000172
+_00156_DS_                        0000019A
+_00157_DS_                        000001C2
+_00158_DS_                        000001EA
+_00161_DS_                        000001F2
 _00169_DS_                        0000006A
-_00170_DS_                        00000128
+_00170_DS_                        0000012C
 _00175_DS_                        0000001E
 _00176_DS_                        00000046
 _00179_DS_                        0000006A
@@ -1721,7 +1725,7 @@ _00246_DS_                        00000080
 _00247_DS_                        000000EA
 _00248_DS_                        000000F0
 _00249_DS_                        000000F6
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 30
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1781,7 +1785,7 @@ _CCPR5L                           00000000
 _CMCON                            00000000
 _CMCONbits                        00000000
 _CVRCON                           00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 31
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1841,7 +1845,7 @@ _EDMACSH                          00000000
 _EDMACSL                          00000000
 _EDMADST                          00000000
 _EDMADSTH                         00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 32
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1901,7 +1905,7 @@ _ERXRDPT                          00000000
 _ERXRDPTH                         00000000
 _ERXRDPTL                         00000000
 _ERXST                            00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 33
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1961,7 +1965,7 @@ _LATEbits                         00000000
 _LATF                             00000000
 _LATFbits                         00000000
 _LATG                             00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 34
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2021,7 +2025,7 @@ _MEMCON                           00000000
 _MEMCONbits                       00000000
 _MICMD                            00000000
 _MICMDbits                        00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 35
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2081,7 +2085,7 @@ _PORTJ                            00000000
 _PORTJbits                        00000000
 _POSTDEC0                         00000000
 _POSTDEC1                         00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 36
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2141,7 +2145,7 @@ _SSPCON1bits                      00000000
 _SSPCON2                          00000000
 _SSPCON2bits                      00000000
 _SSPSTAT                          00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 37
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2201,7 +2205,7 @@ _TXREG                            00000000
 _TXREG1                           00000000
 _TXREG2                           00000000
 _TXSTA                            00000000
-gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  18:22:05         PAGE 38
+gpasm-0.13.7 beta               Objects/LCDNonBlocking.asm12-10-2017  19:57:47         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
