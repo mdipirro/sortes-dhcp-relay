@@ -382,14 +382,14 @@ static void LCDUpdateExec(void)
     	case LCD_OUTFIRSTLINE:
 			// Erase the rest of the line if a null char is 
 			// encountered (good for printing strings directly)
-			if(LCDText[LCDi] == 0u)
+			if(LCDCurrentText[LCDi] == 0u)
 			{
 				for(LCDj=LCDi; LCDj < 16u; LCDj++)
 				{
-					LCDText[LCDj] = ' ';
+					LCDCurrentText[LCDj] = ' ';
 				}
 			}
-			LCDWrite(1, LCDText[LCDi]);
+			LCDWrite(1, LCDCurrentText[LCDi]);
 			// Cyclic access
 			if (LCDi >= 16u)
 				st_update = LCD_GOTOSECONDLINE;
@@ -416,14 +416,14 @@ static void LCDUpdateExec(void)
     	case LCD_OUTSECONDLINE:
 			// Erase the rest of the line if a null char is 
 			// encountered (good for printing strings directly)
-			if(LCDText[LCDi] == 0u)
+			if(LCDCurrentText[LCDi] == 0u)
 			{
 				for(LCDj=LCDi; LCDj < 32u; LCDj++)
 				{
-					LCDText[LCDj] = ' ';
+					LCDCurrentText[LCDj] = ' ';
 				}
 			}
-			LCDWrite(1, LCDText[LCDi]);
+			LCDWrite(1, LCDCurrentText[LCDi]);
 			// Cyclic access
 			if (LCDi >= 32u)
 				st_update = LCD_ENDUPDATE;
@@ -587,7 +587,7 @@ void LCDErase(void)
  *****************************************************************************/
 void LCDUpdate(void)
 {
-	LCDListPush(3, "");
+	LCDListPush(3, LCDText);
 }
 
 #endif	//#ifdef USE_LCD
