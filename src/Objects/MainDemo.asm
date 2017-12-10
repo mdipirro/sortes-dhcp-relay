@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Sun Dec 10 19:57:47 2017
+; This file was generated Sun Dec 10 20:48:41 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -510,13 +510,13 @@ udata_MainDemo_1	udata
 _message	res	3
 
 udata_MainDemo_2	udata
-_DisplayWORD_WDigit_1_1	res	6
+_AppConfig	res	51
 
 udata_MainDemo_3	udata
-_DisplayIPValue_IPDigit_1_1	res	4
+_DisplayWORD_WDigit_1_1	res	6
 
 udata_MainDemo_4	udata
-_AppConfig	res	51
+_DisplayIPValue_IPDigit_1_1	res	4
 
 ;--------------------------------------------------------
 ; interrupt vector 
@@ -591,7 +591,7 @@ _00115_DS_:
 	CALL	_DisplayString
 	MOVLW	0x04
 	ADDWF	FSR1L, F
-_00127_DS_:
+_00129_DS_:
 ;	.line	236; MainDemo.c	nt =  TickGetDiv256();
 	CALL	_TickGetDiv256
 	MOVWF	r0x00
@@ -617,16 +617,16 @@ _00127_DS_:
 	MOVWF	r0x07
 	MOVLW	0x00
 	SUBWF	r0x07, W
-	BNZ	_00136_DS_
+	BNZ	_00139_DS_
 	MOVLW	0x00
 	SUBWF	r0x06, W
-	BNZ	_00136_DS_
+	BNZ	_00139_DS_
 	MOVLW	0x00
 	SUBWF	r0x05, W
-	BNZ	_00136_DS_
+	BNZ	_00139_DS_
 	MOVLW	0x27
 	SUBWF	r0x04, W
-_00136_DS_:
+_00139_DS_:
 	BNC	_00125_DS_
 ;	.line	239; MainDemo.c	t = nt;
 	MOVFF	r0x00, _main_t_1_1
@@ -652,13 +652,57 @@ _00125_DS_:
 	CALL	_StackTask
 ;	.line	254; MainDemo.c	LCDTask();
 	CALL	_LCDTask
-	BRA	_00127_DS_
+;	.line	262; MainDemo.c	if(dwLastIP != AppConfig.MyIPAddr.Val)
+	MOVFF	_AppConfig, r0x00
+	MOVFF	(_AppConfig + 1), r0x01
+	MOVFF	(_AppConfig + 2), r0x02
+	MOVFF	(_AppConfig + 3), r0x03
+	BANKSEL	_main_dwLastIP_1_1
+	MOVF	_main_dwLastIP_1_1, W, B
+	XORWF	r0x00, W
+	BNZ	_00142_DS_
+	BANKSEL	(_main_dwLastIP_1_1 + 1)
+	MOVF	(_main_dwLastIP_1_1 + 1), W, B
+	XORWF	r0x01, W
+	BNZ	_00142_DS_
+	BANKSEL	(_main_dwLastIP_1_1 + 2)
+	MOVF	(_main_dwLastIP_1_1 + 2), W, B
+	XORWF	r0x02, W
+	BNZ	_00142_DS_
+	BANKSEL	(_main_dwLastIP_1_1 + 3)
+	MOVF	(_main_dwLastIP_1_1 + 3), W, B
+	XORWF	r0x03, W
+	BNZ	_00142_DS_
+	BRA	_00129_DS_
+_00142_DS_:
+;	.line	264; MainDemo.c	dwLastIP = AppConfig.MyIPAddr.Val;
+	MOVFF	r0x00, _main_dwLastIP_1_1
+	MOVFF	r0x01, (_main_dwLastIP_1_1 + 1)
+	MOVFF	r0x02, (_main_dwLastIP_1_1 + 2)
+	MOVFF	r0x03, (_main_dwLastIP_1_1 + 3)
+	BANKSEL	(_main_dwLastIP_1_1 + 3)
+;	.line	266; MainDemo.c	DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
+	MOVF	(_main_dwLastIP_1_1 + 3), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	(_main_dwLastIP_1_1 + 2)
+	MOVF	(_main_dwLastIP_1_1 + 2), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	(_main_dwLastIP_1_1 + 1)
+	MOVF	(_main_dwLastIP_1_1 + 1), W, B
+	MOVWF	POSTDEC1
+	BANKSEL	_main_dwLastIP_1_1
+	MOVF	_main_dwLastIP_1_1, W, B
+	MOVWF	POSTDEC1
+	CALL	_DisplayIPValue
+	MOVLW	0x04
+	ADDWF	FSR1L, F
+	BRA	_00129_DS_
 	RETURN	
 
 ; ; Starting pCode block
 S_MainDemo__InitAppConfig	code
 _InitAppConfig:
-;	.line	435; MainDemo.c	static void InitAppConfig(void)
+;	.line	436; MainDemo.c	static void InitAppConfig(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -666,35 +710,35 @@ _InitAppConfig:
 	MOVFF	r0x02, POSTDEC1
 	MOVFF	r0x03, POSTDEC1
 	BANKSEL	(_AppConfig + 44)
-;	.line	437; MainDemo.c	AppConfig.Flags.bIsDHCPEnabled = TRUE;
+;	.line	438; MainDemo.c	AppConfig.Flags.bIsDHCPEnabled = TRUE;
 	BSF	(_AppConfig + 44), 6, B
 	BANKSEL	(_AppConfig + 44)
-;	.line	438; MainDemo.c	AppConfig.Flags.bInConfigMode = TRUE;
+;	.line	439; MainDemo.c	AppConfig.Flags.bInConfigMode = TRUE;
 	BSF	(_AppConfig + 44), 7, B
 	BANKSEL	(_AppConfig + 45)
-;	.line	442; MainDemo.c	AppConfig.MyMACAddr.v[0] = 0;
+;	.line	443; MainDemo.c	AppConfig.MyMACAddr.v[0] = 0;
 	CLRF	(_AppConfig + 45), B
-;	.line	443; MainDemo.c	AppConfig.MyMACAddr.v[1] = 0x04;
+;	.line	444; MainDemo.c	AppConfig.MyMACAddr.v[1] = 0x04;
 	MOVLW	0x04
 	BANKSEL	(_AppConfig + 46)
 	MOVWF	(_AppConfig + 46), B
-;	.line	444; MainDemo.c	AppConfig.MyMACAddr.v[2] = 0xA3;
+;	.line	445; MainDemo.c	AppConfig.MyMACAddr.v[2] = 0xA3;
 	MOVLW	0xa3
 	BANKSEL	(_AppConfig + 47)
 	MOVWF	(_AppConfig + 47), B
-;	.line	445; MainDemo.c	AppConfig.MyMACAddr.v[3] = 0x01;
+;	.line	446; MainDemo.c	AppConfig.MyMACAddr.v[3] = 0x01;
 	MOVLW	0x01
 	BANKSEL	(_AppConfig + 48)
 	MOVWF	(_AppConfig + 48), B
-;	.line	446; MainDemo.c	AppConfig.MyMACAddr.v[4] = 0x02;
+;	.line	447; MainDemo.c	AppConfig.MyMACAddr.v[4] = 0x02;
 	MOVLW	0x02
 	BANKSEL	(_AppConfig + 49)
 	MOVWF	(_AppConfig + 49), B
-;	.line	447; MainDemo.c	AppConfig.MyMACAddr.v[5] = 0x03;
+;	.line	448; MainDemo.c	AppConfig.MyMACAddr.v[5] = 0x03;
 	MOVLW	0x03
 	BANKSEL	(_AppConfig + 50)
 	MOVWF	(_AppConfig + 50), B
-;	.line	450; MainDemo.c	AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
+;	.line	451; MainDemo.c	AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
 	MOVLW	0xc0
 	BANKSEL	_AppConfig
 	MOVWF	_AppConfig, B
@@ -707,7 +751,7 @@ _InitAppConfig:
 	MOVLW	0x3c
 	BANKSEL	(_AppConfig + 3)
 	MOVWF	(_AppConfig + 3), B
-;	.line	453; MainDemo.c	AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
+;	.line	454; MainDemo.c	AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
 	MOVFF	_AppConfig, r0x00
 	MOVFF	(_AppConfig + 1), r0x01
 	MOVFF	(_AppConfig + 2), r0x02
@@ -725,7 +769,7 @@ _InitAppConfig:
 	BANKSEL	(_AppConfig + 23)
 	MOVWF	(_AppConfig + 23), B
 	BANKSEL	(_AppConfig + 4)
-;	.line	454; MainDemo.c	AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
+;	.line	455; MainDemo.c	AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
 	SETF	(_AppConfig + 4), B
 	BANKSEL	(_AppConfig + 5)
 	SETF	(_AppConfig + 5), B
@@ -733,7 +777,7 @@ _InitAppConfig:
 	SETF	(_AppConfig + 6), B
 	BANKSEL	(_AppConfig + 7)
 	CLRF	(_AppConfig + 7), B
-;	.line	457; MainDemo.c	AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
+;	.line	458; MainDemo.c	AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
 	MOVFF	(_AppConfig + 4), r0x00
 	MOVFF	(_AppConfig + 5), r0x01
 	MOVFF	(_AppConfig + 6), r0x02
@@ -750,7 +794,7 @@ _InitAppConfig:
 	MOVF	r0x03, W
 	BANKSEL	(_AppConfig + 27)
 	MOVWF	(_AppConfig + 27), B
-;	.line	458; MainDemo.c	AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
+;	.line	459; MainDemo.c	AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
 	MOVLW	0xc0
 	BANKSEL	(_AppConfig + 8)
 	MOVWF	(_AppConfig + 8), B
@@ -763,7 +807,7 @@ _InitAppConfig:
 	MOVLW	0x01
 	BANKSEL	(_AppConfig + 11)
 	MOVWF	(_AppConfig + 11), B
-;	.line	461; MainDemo.c	AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
+;	.line	462; MainDemo.c	AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
 	MOVLW	0xc0
 	BANKSEL	(_AppConfig + 12)
 	MOVWF	(_AppConfig + 12), B
@@ -777,7 +821,7 @@ _InitAppConfig:
 	BANKSEL	(_AppConfig + 15)
 	MOVWF	(_AppConfig + 15), B
 	BANKSEL	(_AppConfig + 16)
-;	.line	465; MainDemo.c	AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
+;	.line	466; MainDemo.c	AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
 	CLRF	(_AppConfig + 16), B
 	BANKSEL	(_AppConfig + 17)
 	CLRF	(_AppConfig + 17), B
@@ -795,49 +839,49 @@ _InitAppConfig:
 ; ; Starting pCode block
 S_MainDemo__InitializeBoard	code
 _InitializeBoard:
-;	.line	379; MainDemo.c	static void InitializeBoard(void)
+;	.line	380; MainDemo.c	static void InitializeBoard(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	382; MainDemo.c	LED0_TRIS = 0;  //LED0
+;	.line	383; MainDemo.c	LED0_TRIS = 0;  //LED0
 	BCF	_TRISJbits, 0
-;	.line	383; MainDemo.c	LED1_TRIS = 0;  //LED1
+;	.line	384; MainDemo.c	LED1_TRIS = 0;  //LED1
 	BCF	_TRISJbits, 1
-;	.line	384; MainDemo.c	LED2_TRIS = 0;  //LED2
+;	.line	385; MainDemo.c	LED2_TRIS = 0;  //LED2
 	BCF	_TRISJbits, 2
-;	.line	385; MainDemo.c	LED3_TRIS = 0;  //LED_LCD1
+;	.line	386; MainDemo.c	LED3_TRIS = 0;  //LED_LCD1
 	BCF	_TRISGbits, 5
-;	.line	386; MainDemo.c	LED4_TRIS = 0;  //LED_LCD2
+;	.line	387; MainDemo.c	LED4_TRIS = 0;  //LED_LCD2
 	BCF	_TRISGbits, 5
-;	.line	387; MainDemo.c	LED5_TRIS = 0;  //LED5=RELAY1
+;	.line	388; MainDemo.c	LED5_TRIS = 0;  //LED5=RELAY1
 	BCF	_TRISGbits, 7
-;	.line	388; MainDemo.c	LED6_TRIS = 0;  //LED7=RELAY2
+;	.line	389; MainDemo.c	LED6_TRIS = 0;  //LED7=RELAY2
 	BCF	_TRISGbits, 6
-;	.line	393; MainDemo.c	LED_PUT(0x00);  //turn off LED0 - LED2
+;	.line	394; MainDemo.c	LED_PUT(0x00);  //turn off LED0 - LED2
 	MOVLW	0xf8
 	ANDWF	_LATJ, F
-;	.line	394; MainDemo.c	RELAY_PUT(0x00); //turn relays off to save power
+;	.line	395; MainDemo.c	RELAY_PUT(0x00); //turn relays off to save power
 	MOVLW	0x3f
 	ANDWF	_LATG, F
-;	.line	400; MainDemo.c	OSCTUNE = 0x40;
+;	.line	401; MainDemo.c	OSCTUNE = 0x40;
 	MOVLW	0x40
 	MOVWF	_OSCTUNE
-;	.line	407; MainDemo.c	if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
+;	.line	408; MainDemo.c	if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
 	BTFSS	_OSCCONbits, 7
-	BRA	_00206_DS_
-;	.line	408; MainDemo.c	OSCCON = 0x82;
+	BRA	_00212_DS_
+;	.line	409; MainDemo.c	OSCCON = 0x82;
 	MOVLW	0x82
 	MOVWF	_OSCCON
-	BRA	_00207_DS_
-_00206_DS_:
-;	.line	410; MainDemo.c	OSCCON = 0x02;
+	BRA	_00213_DS_
+_00212_DS_:
+;	.line	411; MainDemo.c	OSCCON = 0x02;
 	MOVLW	0x02
 	MOVWF	_OSCCON
-_00207_DS_:
-;	.line	413; MainDemo.c	RCONbits.IPEN = 1;		// Enable interrupt priorities
+_00213_DS_:
+;	.line	414; MainDemo.c	RCONbits.IPEN = 1;		// Enable interrupt priorities
 	BSF	_RCONbits, 7
-;	.line	414; MainDemo.c	INTCONbits.GIEH = 1;
+;	.line	415; MainDemo.c	INTCONbits.GIEH = 1;
 	BSF	_INTCONbits, 7
-;	.line	415; MainDemo.c	INTCONbits.GIEL = 1;
+;	.line	416; MainDemo.c	INTCONbits.GIEL = 1;
 	BSF	_INTCONbits, 6
 	MOVFF	PREINC1, FSR2L
 	RETURN	
@@ -845,7 +889,7 @@ _00207_DS_:
 ; ; Starting pCode block
 S_MainDemo__DisplayIPValue	code
 _DisplayIPValue:
-;	.line	321; MainDemo.c	void DisplayIPValue(DWORD IPdw) // 32 bits
+;	.line	322; MainDemo.c	void DisplayIPValue(DWORD IPdw) // 32 bits
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -870,48 +914,48 @@ _DisplayIPValue:
 	MOVFF	PLUSW2, r0x02
 	MOVLW	0x05
 	MOVFF	PLUSW2, r0x03
-;	.line	329; MainDemo.c	BYTE LCDPos=16;  //write on second line of LCD
+;	.line	330; MainDemo.c	BYTE LCDPos=16;  //write on second line of LCD
 	MOVLW	0x10
 	MOVWF	r0x04
-;	.line	334; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+;	.line	335; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 	CLRF	r0x05
 	CLRF	r0x06
 	CLRF	r0x07
-_00171_DS_:
+_00177_DS_:
 	MOVLW	0x04
 	SUBWF	r0x05, W
 	BTFSC	STATUS, 0
-	BRA	_00174_DS_
-;	.line	337; MainDemo.c	IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
+	BRA	_00180_DS_
+;	.line	338; MainDemo.c	IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
 	MOVFF	r0x00, r0x08
 	MOVFF	r0x01, r0x09
 	MOVFF	r0x02, r0x0a
 	MOVFF	r0x03, r0x0b
 	MOVF	r0x06, W
-	BZ	_00192_DS_
-	BN	_00195_DS_
+	BZ	_00198_DS_
+	BN	_00201_DS_
 	NEGF	WREG
 	BCF	STATUS, 0
-_00193_DS_:
+_00199_DS_:
 	RRCF	r0x0b, F
 	RRCF	r0x0a, F
 	RRCF	r0x09, F
 	RRCF	r0x08, F
 	ADDLW	0x01
-	BNC	_00193_DS_
-	BRA	_00192_DS_
-_00195_DS_:
+	BNC	_00199_DS_
+	BRA	_00198_DS_
+_00201_DS_:
 	BCF	STATUS, 0
-_00194_DS_:
+_00200_DS_:
 	RLCF	r0x08, F
 	RLCF	r0x09, F
 	RLCF	r0x0a, F
 	RLCF	r0x0b, F
 	ADDLW	0x01
-	BNC	_00194_DS_
-_00192_DS_:
+	BNC	_00200_DS_
+_00198_DS_:
 	CLRF	r0x09
-;	.line	338; MainDemo.c	uitoa(IP_field, IPDigit, radix);      //ML
+;	.line	339; MainDemo.c	uitoa(IP_field, IPDigit, radix);      //ML
 	MOVLW	0x0a
 	MOVWF	POSTDEC1
 	MOVLW	HIGH(_DisplayIPValue_IPDigit_1_1)
@@ -925,10 +969,10 @@ _00192_DS_:
 	CALL	_uitoa
 	MOVLW	0x05
 	ADDWF	FSR1L, F
-;	.line	343; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
+;	.line	344; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
 	MOVFF	r0x04, r0x08
 	CLRF	r0x09
-_00177_DS_:
+_00183_DS_:
 	MOVLW	HIGH(_DisplayIPValue_IPDigit_1_1)
 	MOVWF	r0x0b
 	MOVLW	LOW(_DisplayIPValue_IPDigit_1_1)
@@ -954,12 +998,12 @@ _00177_DS_:
 	MOVF	r0x0b, W
 	ADDLW	0x80
 	SUBWF	PRODL, W
-	BNZ	_00197_DS_
+	BNZ	_00203_DS_
 	MOVF	r0x0a, W
 	SUBWF	r0x0c, W
-_00197_DS_:
-	BC	_00189_DS_
-;	.line	345; MainDemo.c	LCDText[LCDPos++] = IPDigit[j];
+_00203_DS_:
+	BC	_00195_DS_
+;	.line	346; MainDemo.c	LCDText[LCDPos++] = IPDigit[j];
 	MOVFF	r0x08, r0x0a
 	INCF	r0x08, F
 	CLRF	r0x0b
@@ -979,16 +1023,16 @@ _00197_DS_:
 	MOVFF	r0x0a, FSR0L
 	MOVFF	r0x0b, FSR0H
 	MOVFF	r0x0c, INDF0
-;	.line	343; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
+;	.line	344; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
 	INCF	r0x09, F
-	BRA	_00177_DS_
-_00189_DS_:
+	BRA	_00183_DS_
+_00195_DS_:
 	MOVFF	r0x08, r0x04
-;	.line	347; MainDemo.c	if(i == sizeof(IP_ADDR)-1)
+;	.line	348; MainDemo.c	if(i == sizeof(IP_ADDR)-1)
 	MOVF	r0x05, W
 	XORLW	0x03
-	BZ	_00174_DS_
-;	.line	349; MainDemo.c	LCDText[LCDPos++] = '.';
+	BZ	_00180_DS_
+;	.line	350; MainDemo.c	LCDText[LCDPos++] = '.';
 	INCF	r0x08, W
 	MOVWF	r0x04
 	CLRF	r0x09
@@ -1000,25 +1044,25 @@ _00189_DS_:
 	MOVFF	r0x09, FSR0H
 	MOVLW	0x2e
 	MOVWF	INDF0
-;	.line	334; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+;	.line	335; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 	MOVLW	0x08
 	ADDWF	r0x06, F
 	BTFSC	STATUS, 0
 	INCF	r0x07, F
 	INCF	r0x05, F
-	BRA	_00171_DS_
-_00174_DS_:
-;	.line	352; MainDemo.c	if(LCDPos < 32u)
+	BRA	_00177_DS_
+_00180_DS_:
+;	.line	353; MainDemo.c	if(LCDPos < 32u)
 	MOVFF	r0x04, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
 	SUBWF	r0x01, W
-	BNZ	_00200_DS_
+	BNZ	_00206_DS_
 	MOVLW	0x20
 	SUBWF	r0x00, W
-_00200_DS_:
-	BC	_00176_DS_
-;	.line	353; MainDemo.c	LCDText[LCDPos] = 0;
+_00206_DS_:
+	BC	_00182_DS_
+;	.line	354; MainDemo.c	LCDText[LCDPos] = 0;
 	CLRF	r0x00
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x04, F
@@ -1028,8 +1072,8 @@ _00200_DS_:
 	MOVFF	r0x00, FSR0H
 	MOVLW	0x00
 	MOVWF	INDF0
-_00176_DS_:
-;	.line	354; MainDemo.c	LCDUpdate();
+_00182_DS_:
+;	.line	355; MainDemo.c	LCDUpdate();
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x0d
 	MOVFF	PREINC1, r0x0c
@@ -1051,7 +1095,7 @@ _00176_DS_:
 ; ; Starting pCode block
 S_MainDemo__DisplayString	code
 _DisplayString:
-;	.line	305; MainDemo.c	void DisplayString(BYTE pos, char* text)
+;	.line	307; MainDemo.c	void DisplayString(BYTE pos, char* text)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -1070,7 +1114,7 @@ _DisplayString:
 	MOVFF	PLUSW2, r0x02
 	MOVLW	0x05
 	MOVFF	PLUSW2, r0x03
-;	.line	307; MainDemo.c	BYTE l= strlen(text)+1;
+;	.line	309; MainDemo.c	BYTE l= strlen(text)+1;
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
 	MOVF	r0x02, W
@@ -1083,11 +1127,11 @@ _DisplayString:
 	MOVLW	0x03
 	ADDWF	FSR1L, F
 	INCF	r0x04, F
-;	.line	308; MainDemo.c	BYTE max= 32-pos;
+;	.line	310; MainDemo.c	BYTE max= 32-pos;
 	MOVF	r0x00, W
 	SUBLW	0x20
 	MOVWF	r0x05
-;	.line	309; MainDemo.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+;	.line	311; MainDemo.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 	CLRF	r0x06
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x00, F
@@ -1101,9 +1145,9 @@ _DisplayString:
 	MOVWF	r0x07
 	MOVF	r0x05, W
 	SUBWF	r0x04, W
-	BNC	_00162_DS_
+	BNC	_00168_DS_
 	MOVFF	r0x05, r0x04
-_00162_DS_:
+_00168_DS_:
 	CLRF	r0x05
 	MOVF	r0x05, W
 	MOVWF	POSTDEC1
@@ -1124,7 +1168,7 @@ _00162_DS_:
 	CALL	_strlcpy
 	MOVLW	0x08
 	ADDWF	FSR1L, F
-;	.line	310; MainDemo.c	LCDUpdate();
+;	.line	312; MainDemo.c	LCDUpdate();
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x07
 	MOVFF	PREINC1, r0x06
@@ -1140,7 +1184,7 @@ _00162_DS_:
 ; ; Starting pCode block
 S_MainDemo__DisplayWORD	code
 _DisplayWORD:
-;	.line	283; MainDemo.c	void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+;	.line	285; MainDemo.c	void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -1155,7 +1199,7 @@ _DisplayWORD:
 	MOVFF	PLUSW2, r0x01
 	MOVLW	0x04
 	MOVFF	PLUSW2, r0x02
-;	.line	291; MainDemo.c	ultoa(w, WDigit, radix);      
+;	.line	293; MainDemo.c	ultoa(w, WDigit, radix);      
 	CLRF	r0x03
 	CLRF	r0x04
 	MOVLW	0x0a
@@ -1175,9 +1219,9 @@ _DisplayWORD:
 	CALL	_ultoa
 	MOVLW	0x07
 	ADDWF	FSR1L, F
-;	.line	292; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
+;	.line	294; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
 	CLRF	r0x01
-_00143_DS_:
+_00149_DS_:
 	MOVLW	HIGH(_DisplayWORD_WDigit_1_1)
 	MOVWF	r0x03
 	MOVLW	LOW(_DisplayWORD_WDigit_1_1)
@@ -1203,12 +1247,12 @@ _00143_DS_:
 	MOVF	r0x03, W
 	ADDLW	0x80
 	SUBWF	PRODL, W
-	BNZ	_00153_DS_
+	BNZ	_00159_DS_
 	MOVF	r0x02, W
 	SUBWF	r0x04, W
-_00153_DS_:
-	BC	_00146_DS_
-;	.line	294; MainDemo.c	LCDText[LCDPos++] = WDigit[j];
+_00159_DS_:
+	BC	_00152_DS_
+;	.line	296; MainDemo.c	LCDText[LCDPos++] = WDigit[j];
 	MOVFF	r0x00, r0x02
 	INCF	r0x00, F
 	CLRF	r0x03
@@ -1228,21 +1272,21 @@ _00153_DS_:
 	MOVFF	r0x02, FSR0L
 	MOVFF	r0x03, FSR0H
 	MOVFF	r0x04, INDF0
-;	.line	292; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
+;	.line	294; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
 	INCF	r0x01, F
-	BRA	_00143_DS_
-_00146_DS_:
-;	.line	296; MainDemo.c	if(LCDPos < 32u)
+	BRA	_00149_DS_
+_00152_DS_:
+;	.line	298; MainDemo.c	if(LCDPos < 32u)
 	MOVFF	r0x00, r0x01
 	CLRF	r0x02
 	MOVLW	0x00
 	SUBWF	r0x02, W
-	BNZ	_00154_DS_
+	BNZ	_00160_DS_
 	MOVLW	0x20
 	SUBWF	r0x01, W
-_00154_DS_:
-	BC	_00142_DS_
-;	.line	297; MainDemo.c	LCDText[LCDPos] = 0;
+_00160_DS_:
+	BC	_00148_DS_
+;	.line	299; MainDemo.c	LCDText[LCDPos] = 0;
 	CLRF	r0x01
 	MOVLW	LOW(_LCDText)
 	ADDWF	r0x00, F
@@ -1252,8 +1296,8 @@ _00154_DS_:
 	MOVFF	r0x01, FSR0H
 	MOVLW	0x00
 	MOVWF	INDF0
-_00142_DS_:
-;	.line	298; MainDemo.c	LCDUpdate();
+_00148_DS_:
+;	.line	300; MainDemo.c	LCDUpdate();
 	CALL	_LCDUpdate
 	MOVFF	PREINC1, r0x05
 	MOVFF	PREINC1, r0x04
@@ -1327,8 +1371,8 @@ __str_0:
 
 
 ; Statistics:
-; code size:	 1716 (0x06b4) bytes ( 1.31%)
-;           	  858 (0x035a) words
+; code size:	 1814 (0x0716) bytes ( 1.38%)
+;           	  907 (0x038b) words
 ; udata size:	   72 (0x0048) bytes ( 1.88%)
 ; access size:	   14 (0x000e) bytes
 

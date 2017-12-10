@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Sun Dec 10 18:45:16 2017
+; This file was generated Sun Dec 10 20:48:42 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -566,7 +566,7 @@ _00153_DS_:
 	MOVFF	r0x01, PRODL
 	MOVF	r0x02, W
 	CALL	__gptrput1
-;	.line	90; TCPIP_Stack/LCDCircularList.c	strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2);
+;	.line	90; TCPIP_Stack/LCDCircularList.c	strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2+1);
 	MOVLW	LOW(_listLCD)
 	ADDWF	r0x06, F
 	MOVLW	HIGH(_listLCD)
@@ -582,7 +582,7 @@ _00153_DS_:
 	MOVWF	r0x00
 	MOVLW	0x00
 	MOVWF	POSTDEC1
-	MOVLW	0x20
+	MOVLW	0x21
 	MOVWF	POSTDEC1
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
@@ -740,7 +740,7 @@ _00144_DS_:
 	MOVFF	r0x06, FSR0L
 	MOVFF	r0x07, FSR0H
 	MOVFF	r0x00, INDF0
-;	.line	75; TCPIP_Stack/LCDCircularList.c	strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2);
+;	.line	75; TCPIP_Stack/LCDCircularList.c	strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2+1);
 	MOVLW	LOW(_listLCD)
 	ADDWF	r0x04, F
 	MOVLW	HIGH(_listLCD)
@@ -756,7 +756,7 @@ _00144_DS_:
 	MOVWF	r0x00
 	MOVLW	0x00
 	MOVWF	POSTDEC1
-	MOVLW	0x20
+	MOVLW	0x21
 	MOVWF	POSTDEC1
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
