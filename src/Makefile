@@ -5,7 +5,7 @@
 
 AS = gpasm
 CC = sdcc
-CFLAGS= -c -mpic16 -p18f97j60 -L/usr/local/share/sdcc/lib/pic16 -o$@ 
+CFLAGS= -c -mpic16 -p18f97j60 -L/usr/local/share/sdcc/lib/pic16 -DUART_DEBUG_ON -o$@ 
 LD = sdcc
 LDFLAGS= -mpic16 -p18f97j60 -L/usr/local/share/sdcc/lib/pic16 \
          -L/usr/local/share/sdcc/lib/src/pic16/libc -llibio18f97j60.lib \
@@ -86,6 +86,7 @@ APP_HEADERS=Include/GenericTypeDefs.h \
    Include/TCPIPConfig.h \
    Include/mib.h \
    Include/MainDemo.h \
+   Include/Debug.h
 
 TCPIP_Demo : $(OBJECTS) 
 	$(LD) $(LDFLAGS) $(OBJECTS)

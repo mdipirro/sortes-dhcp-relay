@@ -58,13 +58,6 @@
 	extern BYTE AN0String[8];
 #endif
 
-#define STACK_USE_UART
-#ifdef UART_DEBUG_ON
-    #define DEBUGMSG(x) UARTPuts(x)
-#else
-    #define DEBUGMSG(x)
-#endif
-
 //MLvoid DoUARTConfig(void);
 
 //ML#if defined(EEPROM_CS_TRIS) || defined(SPIFLASH_CS_TRIS)

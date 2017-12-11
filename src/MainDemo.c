@@ -5,7 +5,7 @@
  *   -Demonstrates how to call and use the Microchip TCP/IP stack
  *	 -Reference: AN833
  *
- *********************************************************************
+ *********************************************************************/
 
 /*
  * This symbol uniquely defines this file as the main entry point.
@@ -16,7 +16,6 @@
  */
 #define THIS_INCLUDES_THE_MAIN_FUNCTION
 #define THIS_IS_STACK_APPLICATION
-//#define UART_DEBUG_ON
 
 // define the processor we use
 #define __18F97J60

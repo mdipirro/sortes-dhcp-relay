@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  1
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Mon Dec 11 18:55:43 2017
+               00004 ; This file was generated Mon Dec 11 22:29:34 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _ECCP3DELbits
                00053         extern _ECCP3ASbits
                00054         extern _RCSTA2bits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  2
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR1bits
                00107         extern _PIE2bits
                00108         extern _PIR2bits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  3
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR4
                00161         extern _MAADR1
                00162         extern _MAADR2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  4
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMO
                00215         extern _EPMOL
                00216         extern _EPMOH
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  5
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _RCSTA2
                00269         extern _TXSTA2
                00270         extern _TXREG2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  6
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _TRISD
                00323         extern _DDRE
                00324         extern _TRISE
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  7
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _CCPR1L
                00377         extern _CCPR1H
                00378         extern _ADCON2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  8
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INDF0
                00431         extern _INTCON3
                00432         extern _INTCON2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE  9
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -515,1025 +515,1028 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00461         extern _LCDTask
                00462         extern _LCDInit
                00463         extern _LCDUpdate
-               00464 ;--------------------------------------------------------
-               00465 ;       Equates to used internal registers
-               00466 ;--------------------------------------------------------
-  00000FD8     00467 STATUS  equ     0xfd8
-  00000FFA     00468 PCLATH  equ     0xffa
-  00000FFB     00469 PCLATU  equ     0xffb
-  00000FE8     00470 WREG    equ     0xfe8
-  00000FE0     00471 BSR     equ     0xfe0
-  00000FE9     00472 FSR0L   equ     0xfe9
-  00000FEA     00473 FSR0H   equ     0xfea
-  00000FE1     00474 FSR1L   equ     0xfe1
-  00000FD9     00475 FSR2L   equ     0xfd9
-  00000FEF     00476 INDF0   equ     0xfef
-  00000FE5     00477 POSTDEC1        equ     0xfe5
-  00000FE4     00478 PREINC1 equ     0xfe4
-  00000FDB     00479 PLUSW2  equ     0xfdb
-  00000FF3     00480 PRODL   equ     0xff3
-  00000FF4     00481 PRODH   equ     0xff4
-               00482 
+               00464         extern _UARTConfig
+               00465 ;--------------------------------------------------------
+               00466 ;       Equates to used internal registers
+               00467 ;--------------------------------------------------------
+  00000FD8     00468 STATUS  equ     0xfd8
+  00000FFA     00469 PCLATH  equ     0xffa
+  00000FFB     00470 PCLATU  equ     0xffb
+  00000FE8     00471 WREG    equ     0xfe8
+  00000FE0     00472 BSR     equ     0xfe0
+  00000FE9     00473 FSR0L   equ     0xfe9
+  00000FEA     00474 FSR0H   equ     0xfea
+  00000FE1     00475 FSR1L   equ     0xfe1
+  00000FD9     00476 FSR2L   equ     0xfd9
+  00000FEF     00477 INDF0   equ     0xfef
+  00000FE5     00478 POSTDEC1        equ     0xfe5
+  00000FE4     00479 PREINC1 equ     0xfe4
+  00000FDB     00480 PLUSW2  equ     0xfdb
+  00000FF3     00481 PRODL   equ     0xff3
+  00000FF4     00482 PRODH   equ     0xff4
                00483 
-               00484         idata
-               00485 _main_t_1_1     db      0x00, 0x00, 0x00, 0x00
-               00486 _main_dwLastIP_1_1      db      0x00, 0x00, 0x00, 0x00
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 10
+               00484 
+               00485         idata
+               00486 _main_t_1_1     db      0x00, 0x00, 0x00, 0x00
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00487 
+               00487 _main_dwLastIP_1_1      db      0x00, 0x00, 0x00, 0x00
                00488 
-               00489 ; Internal registers
-               00490 .registers      udata_ovr       0x0000
-               00491 r0x00   res     1
-               00492 r0x01   res     1
-               00493 r0x02   res     1
-               00494 r0x03   res     1
-               00495 r0x04   res     1
-               00496 r0x05   res     1
-               00497 r0x06   res     1
-               00498 r0x07   res     1
-               00499 r0x08   res     1
-               00500 r0x09   res     1
-               00501 r0x0a   res     1
-               00502 r0x0b   res     1
-               00503 r0x0c   res     1
-               00504 r0x0d   res     1
-               00505 
-               00506 udata_MainDemo_0        udata
-               00507 _AN0String      res     8
-               00508 
-               00509 udata_MainDemo_1        udata
-               00510 _message        res     3
-               00511 
-               00512 udata_MainDemo_2        udata
-               00513 _AppConfig      res     51
-               00514 
-               00515 udata_MainDemo_3        udata
-               00516 _DisplayWORD_WDigit_1_1 res     6
-               00517 
-               00518 udata_MainDemo_4        udata
-               00519 _DisplayIPValue_IPDigit_1_1     res     4
-               00520 
-               00521 ;--------------------------------------------------------
-               00522 ; interrupt vector 
-               00523 ;--------------------------------------------------------
-               00524 
-               00525 ;--------------------------------------------------------
-               00526 ; global & static initialisations
-               00527 ;--------------------------------------------------------
-               00528 ; ; Starting pCode block for absolute section
-               00529 ; ;-----------------------------------------
-               00530 S_MainDemo_ivec_0x2_LowISR      code    0X000018
-0018 00531 ivec_0x2_LowISR:
-0018 EF00 F000 00532         GOTO    _LowISR
-               00533 
-               00534 ; ; Starting pCode block for absolute section
-               00535 ; ;-----------------------------------------
-               00536 S_MainDemo_ivec_0x1_HighISR     code    0X000008
-0008 00537 ivec_0x1_HighISR:
-0008 EF00 F000 00538         GOTO    _HighISR
-               00539 
-               00540 ; I code from now on!
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 11
+               00489 
+               00490 ; Internal registers
+               00491 .registers      udata_ovr       0x0000
+               00492 r0x00   res     1
+               00493 r0x01   res     1
+               00494 r0x02   res     1
+               00495 r0x03   res     1
+               00496 r0x04   res     1
+               00497 r0x05   res     1
+               00498 r0x06   res     1
+               00499 r0x07   res     1
+               00500 r0x08   res     1
+               00501 r0x09   res     1
+               00502 r0x0a   res     1
+               00503 r0x0b   res     1
+               00504 r0x0c   res     1
+               00505 r0x0d   res     1
+               00506 
+               00507 udata_MainDemo_0        udata
+               00508 _AN0String      res     8
+               00509 
+               00510 udata_MainDemo_1        udata
+               00511 _message        res     3
+               00512 
+               00513 udata_MainDemo_2        udata
+               00514 _AppConfig      res     51
+               00515 
+               00516 udata_MainDemo_3        udata
+               00517 _DisplayWORD_WDigit_1_1 res     6
+               00518 
+               00519 udata_MainDemo_4        udata
+               00520 _DisplayIPValue_IPDigit_1_1     res     4
+               00521 
+               00522 ;--------------------------------------------------------
+               00523 ; interrupt vector 
+               00524 ;--------------------------------------------------------
+               00525 
+               00526 ;--------------------------------------------------------
+               00527 ; global & static initialisations
+               00528 ;--------------------------------------------------------
+               00529 ; ; Starting pCode block for absolute section
+               00530 ; ;-----------------------------------------
+               00531 S_MainDemo_ivec_0x2_LowISR      code    0X000018
+0018 00532 ivec_0x2_LowISR:
+0018 EF00 F000 00533         GOTO    _LowISR
+               00534 
+               00535 ; ; Starting pCode block for absolute section
+               00536 ; ;-----------------------------------------
+               00537 S_MainDemo_ivec_0x1_HighISR     code    0X000008
+0008 00538 ivec_0x1_HighISR:
+0008 EF00 F000 00539         GOTO    _HighISR
+               00540 
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00541 ; ; Starting pCode block
-               00542 S_MainDemo__main        code
-0000 00543 _main:
-               00544 ;       .line   113; MainDemo.c InitializeBoard();
-0000 EC00 F000 00545         CALL    _InitializeBoard
-               00546 ;       .line   116; MainDemo.c TickInit();
-0004 EC00 F000 00547         CALL    _TickInit
-               00548 ;       .line   119; MainDemo.c InitAppConfig();
-0008 EC00 F000 00549         CALL    _InitAppConfig
-               00550 ;       .line   123; MainDemo.c StackInit();
-000C EC00 F000 00551         CALL    _StackInit
-               00552 ;       .line   130; MainDemo.c LCDTaskInit();
-0010 EC00 F000 00553         CALL    _LCDTaskInit
-               00554 ;       .line   134; MainDemo.c LCDInit();
-0014 EC00 F000 00555         CALL    _LCDInit
-               00556 ;       .line   135; MainDemo.c DelayMs(100);
-0018 0E10      00557         MOVLW   0x10
-001A 6E00      00558         MOVWF   r0x00
-001C 0E98      00559         MOVLW   0x98
-001E 6E00      00560         MOVWF   r0x01
-0020 0E02      00561         MOVLW   0x02
-0022 6E00      00562         MOVWF   r0x02
-0024 6A00      00563         CLRF    r0x03
-0026 00564 _00115_DS_:
-0026 C000 F000 00565         MOVFF   r0x00, r0x04
-002A C000 F000 00566         MOVFF   r0x01, r0x05
-002E C000 F000 00567         MOVFF   r0x02, r0x06
-0032 C000 F000 00568         MOVFF   r0x03, r0x07
-0036 0EFF      00569         MOVLW   0xff
-0038 2600      00570         ADDWF   r0x00, F
-003A 0EFF      00571         MOVLW   0xff
-003C 2200      00572         ADDWFC  r0x01, F
-003E 0EFF      00573         MOVLW   0xff
-0040 2200      00574         ADDWFC  r0x02, F
-0042 0EFF      00575         MOVLW   0xff
-0044 2200      00576         ADDWFC  r0x03, F
-0046 5000      00577         MOVF    r0x04, W
-0048 1000      00578         IORWF   r0x05, W
-004A 1000      00579         IORWF   r0x06, W
-004C 1000      00580         IORWF   r0x07, W
-004E E100      00581         BNZ     _00115_DS_
-               00582 ;       .line   136; MainDemo.c DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
-0050 0E00      00583         MOVLW   UPPER(__str_0)
-0052 6EE5      00584         MOVWF   POSTDEC1
-0054 0E00      00585         MOVLW   HIGH(__str_0)
-0056 6EE5      00586         MOVWF   POSTDEC1
-0058 0E00      00587         MOVLW   LOW(__str_0)
-005A 6EE5      00588         MOVWF   POSTDEC1
-005C 0E00      00589         MOVLW   0x00
-005E 6EE5      00590         MOVWF   POSTDEC1
-0060 EC00 F000 00591         CALL    _DisplayString
-0064 0E04      00592         MOVLW   0x04
-0066 26E1      00593         ADDWF   FSR1L, F
-0068 00594 _00129_DS_:
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 12
+               00541 ; I code from now on!
+               00542 ; ; Starting pCode block
+               00543 S_MainDemo__main        code
+0000 00544 _main:
+               00545 ;       .line   112; MainDemo.c InitializeBoard();
+0000 EC00 F000 00546         CALL    _InitializeBoard
+               00547 ;       .line   115; MainDemo.c TickInit();
+0004 EC00 F000 00548         CALL    _TickInit
+               00549 ;       .line   118; MainDemo.c InitAppConfig();
+0008 EC00 F000 00550         CALL    _InitAppConfig
+               00551 ;       .line   122; MainDemo.c StackInit();
+000C EC00 F000 00552         CALL    _StackInit
+               00553 ;       .line   125; MainDemo.c UARTConfig();
+0010 EC00 F000 00554         CALL    _UARTConfig
+               00555 ;       .line   129; MainDemo.c LCDTaskInit();
+0014 EC00 F000 00556         CALL    _LCDTaskInit
+               00557 ;       .line   133; MainDemo.c LCDInit();
+0018 EC00 F000 00558         CALL    _LCDInit
+               00559 ;       .line   134; MainDemo.c DelayMs(100);
+001C 0E10      00560         MOVLW   0x10
+001E 6E00      00561         MOVWF   r0x00
+0020 0E98      00562         MOVLW   0x98
+0022 6E00      00563         MOVWF   r0x01
+0024 0E02      00564         MOVLW   0x02
+0026 6E00      00565         MOVWF   r0x02
+0028 6A00      00566         CLRF    r0x03
+002A 00567 _00115_DS_:
+002A C000 F000 00568         MOVFF   r0x00, r0x04
+002E C000 F000 00569         MOVFF   r0x01, r0x05
+0032 C000 F000 00570         MOVFF   r0x02, r0x06
+0036 C000 F000 00571         MOVFF   r0x03, r0x07
+003A 0EFF      00572         MOVLW   0xff
+003C 2600      00573         ADDWF   r0x00, F
+003E 0EFF      00574         MOVLW   0xff
+0040 2200      00575         ADDWFC  r0x01, F
+0042 0EFF      00576         MOVLW   0xff
+0044 2200      00577         ADDWFC  r0x02, F
+0046 0EFF      00578         MOVLW   0xff
+0048 2200      00579         ADDWFC  r0x03, F
+004A 5000      00580         MOVF    r0x04, W
+004C 1000      00581         IORWF   r0x05, W
+004E 1000      00582         IORWF   r0x06, W
+0050 1000      00583         IORWF   r0x07, W
+0052 E100      00584         BNZ     _00115_DS_
+               00585 ;       .line   135; MainDemo.c DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
+0054 0E00      00586         MOVLW   UPPER(__str_0)
+0056 6EE5      00587         MOVWF   POSTDEC1
+0058 0E00      00588         MOVLW   HIGH(__str_0)
+005A 6EE5      00589         MOVWF   POSTDEC1
+005C 0E00      00590         MOVLW   LOW(__str_0)
+005E 6EE5      00591         MOVWF   POSTDEC1
+0060 0E00      00592         MOVLW   0x00
+0062 6EE5      00593         MOVWF   POSTDEC1
+0064 EC00 F000 00594         CALL    _DisplayString
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00595 ;       .line   156; MainDemo.c nt =  TickGetDiv256();
-0068 EC00 F000 00596         CALL    _TickGetDiv256
-006C 6E00      00597         MOVWF   r0x00
-006E CFF3 F000 00598         MOVFF   PRODL, r0x01
-0072 CFF4 F000 00599         MOVFF   PRODH, r0x02
-0076 CFE9 F000 00600         MOVFF   FSR0L, r0x03
-007A 0000      00601         BANKSEL _main_t_1_1
-               00602 ;       .line   157; MainDemo.c if((nt - t) >= (DWORD)(TICK_SECOND/1024ul))
-007C 5100      00603         MOVF    _main_t_1_1, W, B
-007E 5C00      00604         SUBWF   r0x00, W
-0080 6E00      00605         MOVWF   r0x04
-0082 0000      00606         BANKSEL (_main_t_1_1 + 1)
-0084 5100      00607         MOVF    (_main_t_1_1 + 1), W, B
-0086 5800      00608         SUBWFB  r0x01, W
-0088 6E00      00609         MOVWF   r0x05
-008A 0000      00610         BANKSEL (_main_t_1_1 + 2)
-008C 5100      00611         MOVF    (_main_t_1_1 + 2), W, B
-008E 5800      00612         SUBWFB  r0x02, W
-0090 6E00      00613         MOVWF   r0x06
-0092 0000      00614         BANKSEL (_main_t_1_1 + 3)
-0094 5100      00615         MOVF    (_main_t_1_1 + 3), W, B
-0096 5800      00616         SUBWFB  r0x03, W
-0098 6E00      00617         MOVWF   r0x07
-009A 0E00      00618         MOVLW   0x00
-009C 5C00      00619         SUBWF   r0x07, W
-009E E100      00620         BNZ     _00139_DS_
-00A0 0E00      00621         MOVLW   0x00
-00A2 5C00      00622         SUBWF   r0x06, W
-00A4 E100      00623         BNZ     _00139_DS_
-00A6 0E00      00624         MOVLW   0x00
-00A8 5C00      00625         SUBWF   r0x05, W
-00AA E100      00626         BNZ     _00139_DS_
-00AC 0E27      00627         MOVLW   0x27
-00AE 5C00      00628         SUBWF   r0x04, W
-00B0 00629 _00139_DS_:
-00B0 E300      00630         BNC     _00125_DS_
-               00631 ;       .line   159; MainDemo.c t = nt;
-00B2 C000 F000 00632         MOVFF   r0x00, _main_t_1_1
-00B6 C000 F000 00633         MOVFF   r0x01, (_main_t_1_1 + 1)
-00BA C000 F000 00634         MOVFF   r0x02, (_main_t_1_1 + 2)
-00BE C000 F000 00635         MOVFF   r0x03, (_main_t_1_1 + 3)
-               00636 ;       .line   160; MainDemo.c LED0_IO ^= 1;
-00C2 6A00      00637         CLRF    r0x00
-00C4 B000      00638         BTFSC   _LATJbits, 0
-00C6 2A00      00639         INCF    r0x00, F
-00C8 0E01      00640         MOVLW   0x01
-00CA 1A00      00641         XORWF   r0x00, F
-00CC 5000      00642         MOVF    r0x00, W
-00CE 0B01      00643         ANDLW   0x01
-00D0 6EF4      00644         MOVWF   PRODH
-00D2 5000      00645         MOVF    _LATJbits, W
-00D4 0BFE      00646         ANDLW   0xfe
-00D6 10F4      00647         IORWF   PRODH, W
-00D8 6E00      00648         MOVWF   _LATJbits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 13
+0068 0E04      00595         MOVLW   0x04
+006A 26E1      00596         ADDWF   FSR1L, F
+006C 00597 _00129_DS_:
+               00598 ;       .line   155; MainDemo.c nt =  TickGetDiv256();
+006C EC00 F000 00599         CALL    _TickGetDiv256
+0070 6E00      00600         MOVWF   r0x00
+0072 CFF3 F000 00601         MOVFF   PRODL, r0x01
+0076 CFF4 F000 00602         MOVFF   PRODH, r0x02
+007A CFE9 F000 00603         MOVFF   FSR0L, r0x03
+007E 0000      00604         BANKSEL _main_t_1_1
+               00605 ;       .line   156; MainDemo.c if((nt - t) >= (DWORD)(TICK_SECOND/1024ul))
+0080 5100      00606         MOVF    _main_t_1_1, W, B
+0082 5C00      00607         SUBWF   r0x00, W
+0084 6E00      00608         MOVWF   r0x04
+0086 0000      00609         BANKSEL (_main_t_1_1 + 1)
+0088 5100      00610         MOVF    (_main_t_1_1 + 1), W, B
+008A 5800      00611         SUBWFB  r0x01, W
+008C 6E00      00612         MOVWF   r0x05
+008E 0000      00613         BANKSEL (_main_t_1_1 + 2)
+0090 5100      00614         MOVF    (_main_t_1_1 + 2), W, B
+0092 5800      00615         SUBWFB  r0x02, W
+0094 6E00      00616         MOVWF   r0x06
+0096 0000      00617         BANKSEL (_main_t_1_1 + 3)
+0098 5100      00618         MOVF    (_main_t_1_1 + 3), W, B
+009A 5800      00619         SUBWFB  r0x03, W
+009C 6E00      00620         MOVWF   r0x07
+009E 0E00      00621         MOVLW   0x00
+00A0 5C00      00622         SUBWF   r0x07, W
+00A2 E100      00623         BNZ     _00139_DS_
+00A4 0E00      00624         MOVLW   0x00
+00A6 5C00      00625         SUBWF   r0x06, W
+00A8 E100      00626         BNZ     _00139_DS_
+00AA 0E00      00627         MOVLW   0x00
+00AC 5C00      00628         SUBWF   r0x05, W
+00AE E100      00629         BNZ     _00139_DS_
+00B0 0E27      00630         MOVLW   0x27
+00B2 5C00      00631         SUBWF   r0x04, W
+00B4 00632 _00139_DS_:
+00B4 E300      00633         BNC     _00125_DS_
+               00634 ;       .line   158; MainDemo.c t = nt;
+00B6 C000 F000 00635         MOVFF   r0x00, _main_t_1_1
+00BA C000 F000 00636         MOVFF   r0x01, (_main_t_1_1 + 1)
+00BE C000 F000 00637         MOVFF   r0x02, (_main_t_1_1 + 2)
+00C2 C000 F000 00638         MOVFF   r0x03, (_main_t_1_1 + 3)
+               00639 ;       .line   159; MainDemo.c LED0_IO ^= 1;
+00C6 6A00      00640         CLRF    r0x00
+00C8 B000      00641         BTFSC   _LATJbits, 0
+00CA 2A00      00642         INCF    r0x00, F
+00CC 0E01      00643         MOVLW   0x01
+00CE 1A00      00644         XORWF   r0x00, F
+00D0 5000      00645         MOVF    r0x00, W
+00D2 0B01      00646         ANDLW   0x01
+00D4 6EF4      00647         MOVWF   PRODH
+00D6 5000      00648         MOVF    _LATJbits, W
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00DA 0004      00649         clrwdt 
-00DC 00650 _00125_DS_:
-               00651 ;       .line   167; MainDemo.c StackTask();
-00DC EC00 F000 00652         CALL    _StackTask
-               00653 ;       .line   174; MainDemo.c LCDTask();
-00E0 EC00 F000 00654         CALL    _LCDTask
-               00655 ;       .line   182; MainDemo.c if(dwLastIP != AppConfig.MyIPAddr.Val)
-00E4 C000 F000 00656         MOVFF   _AppConfig, r0x00
-00E8 C000 F000 00657         MOVFF   (_AppConfig + 1), r0x01
-00EC C000 F000 00658         MOVFF   (_AppConfig + 2), r0x02
-00F0 C000 F000 00659         MOVFF   (_AppConfig + 3), r0x03
-00F4 0000      00660         BANKSEL _main_dwLastIP_1_1
-00F6 5100      00661         MOVF    _main_dwLastIP_1_1, W, B
-00F8 1800      00662         XORWF   r0x00, W
-00FA E100      00663         BNZ     _00142_DS_
-00FC 0000      00664         BANKSEL (_main_dwLastIP_1_1 + 1)
-00FE 5100      00665         MOVF    (_main_dwLastIP_1_1 + 1), W, B
-0100 1800      00666         XORWF   r0x01, W
-0102 E100      00667         BNZ     _00142_DS_
-0104 0000      00668         BANKSEL (_main_dwLastIP_1_1 + 2)
-0106 5100      00669         MOVF    (_main_dwLastIP_1_1 + 2), W, B
-0108 1800      00670         XORWF   r0x02, W
-010A E100      00671         BNZ     _00142_DS_
-010C 0000      00672         BANKSEL (_main_dwLastIP_1_1 + 3)
-010E 5100      00673         MOVF    (_main_dwLastIP_1_1 + 3), W, B
-0110 1800      00674         XORWF   r0x03, W
-0112 E100      00675         BNZ     _00142_DS_
-0114 D000      00676         BRA     _00129_DS_
-0116 00677 _00142_DS_:
-               00678 ;       .line   184; MainDemo.c dwLastIP = AppConfig.MyIPAddr.Val;
-0116 C000 F000 00679         MOVFF   r0x00, _main_dwLastIP_1_1
-011A C000 F000 00680         MOVFF   r0x01, (_main_dwLastIP_1_1 + 1)
-011E C000 F000 00681         MOVFF   r0x02, (_main_dwLastIP_1_1 + 2)
-0122 C000 F000 00682         MOVFF   r0x03, (_main_dwLastIP_1_1 + 3)
-0126 0000      00683         BANKSEL (_main_dwLastIP_1_1 + 3)
-               00684 ;       .line   186; MainDemo.c DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
-0128 5100      00685         MOVF    (_main_dwLastIP_1_1 + 3), W, B
-012A 6EE5      00686         MOVWF   POSTDEC1
-012C 0000      00687         BANKSEL (_main_dwLastIP_1_1 + 2)
-012E 5100      00688         MOVF    (_main_dwLastIP_1_1 + 2), W, B
-0130 6EE5      00689         MOVWF   POSTDEC1
-0132 0000      00690         BANKSEL (_main_dwLastIP_1_1 + 1)
-0134 5100      00691         MOVF    (_main_dwLastIP_1_1 + 1), W, B
-0136 6EE5      00692         MOVWF   POSTDEC1
-0138 0000      00693         BANKSEL _main_dwLastIP_1_1
-013A 5100      00694         MOVF    _main_dwLastIP_1_1, W, B
-013C 6EE5      00695         MOVWF   POSTDEC1
-013E EC00 F000 00696         CALL    _DisplayIPValue
-0142 0E04      00697         MOVLW   0x04
-0144 26E1      00698         ADDWF   FSR1L, F
-0146 D000      00699         BRA     _00129_DS_
-0148 0012      00700         RETURN  
-               00701 
-               00702 ; ; Starting pCode block
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 14
+00D8 0BFE      00649         ANDLW   0xfe
+00DA 10F4      00650         IORWF   PRODH, W
+00DC 6E00      00651         MOVWF   _LATJbits
+00DE 0004      00652         clrwdt 
+00E0 00653 _00125_DS_:
+               00654 ;       .line   166; MainDemo.c StackTask();
+00E0 EC00 F000 00655         CALL    _StackTask
+               00656 ;       .line   173; MainDemo.c LCDTask();
+00E4 EC00 F000 00657         CALL    _LCDTask
+               00658 ;       .line   181; MainDemo.c if(dwLastIP != AppConfig.MyIPAddr.Val)
+00E8 C000 F000 00659         MOVFF   _AppConfig, r0x00
+00EC C000 F000 00660         MOVFF   (_AppConfig + 1), r0x01
+00F0 C000 F000 00661         MOVFF   (_AppConfig + 2), r0x02
+00F4 C000 F000 00662         MOVFF   (_AppConfig + 3), r0x03
+00F8 0000      00663         BANKSEL _main_dwLastIP_1_1
+00FA 5100      00664         MOVF    _main_dwLastIP_1_1, W, B
+00FC 1800      00665         XORWF   r0x00, W
+00FE E100      00666         BNZ     _00142_DS_
+0100 0000      00667         BANKSEL (_main_dwLastIP_1_1 + 1)
+0102 5100      00668         MOVF    (_main_dwLastIP_1_1 + 1), W, B
+0104 1800      00669         XORWF   r0x01, W
+0106 E100      00670         BNZ     _00142_DS_
+0108 0000      00671         BANKSEL (_main_dwLastIP_1_1 + 2)
+010A 5100      00672         MOVF    (_main_dwLastIP_1_1 + 2), W, B
+010C 1800      00673         XORWF   r0x02, W
+010E E100      00674         BNZ     _00142_DS_
+0110 0000      00675         BANKSEL (_main_dwLastIP_1_1 + 3)
+0112 5100      00676         MOVF    (_main_dwLastIP_1_1 + 3), W, B
+0114 1800      00677         XORWF   r0x03, W
+0116 E100      00678         BNZ     _00142_DS_
+0118 D000      00679         BRA     _00129_DS_
+011A 00680 _00142_DS_:
+               00681 ;       .line   183; MainDemo.c dwLastIP = AppConfig.MyIPAddr.Val;
+011A C000 F000 00682         MOVFF   r0x00, _main_dwLastIP_1_1
+011E C000 F000 00683         MOVFF   r0x01, (_main_dwLastIP_1_1 + 1)
+0122 C000 F000 00684         MOVFF   r0x02, (_main_dwLastIP_1_1 + 2)
+0126 C000 F000 00685         MOVFF   r0x03, (_main_dwLastIP_1_1 + 3)
+012A 0000      00686         BANKSEL (_main_dwLastIP_1_1 + 3)
+               00687 ;       .line   185; MainDemo.c DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
+012C 5100      00688         MOVF    (_main_dwLastIP_1_1 + 3), W, B
+012E 6EE5      00689         MOVWF   POSTDEC1
+0130 0000      00690         BANKSEL (_main_dwLastIP_1_1 + 2)
+0132 5100      00691         MOVF    (_main_dwLastIP_1_1 + 2), W, B
+0134 6EE5      00692         MOVWF   POSTDEC1
+0136 0000      00693         BANKSEL (_main_dwLastIP_1_1 + 1)
+0138 5100      00694         MOVF    (_main_dwLastIP_1_1 + 1), W, B
+013A 6EE5      00695         MOVWF   POSTDEC1
+013C 0000      00696         BANKSEL _main_dwLastIP_1_1
+013E 5100      00697         MOVF    _main_dwLastIP_1_1, W, B
+0140 6EE5      00698         MOVWF   POSTDEC1
+0142 EC00 F000 00699         CALL    _DisplayIPValue
+0146 0E04      00700         MOVLW   0x04
+0148 26E1      00701         ADDWF   FSR1L, F
+014A D000      00702         BRA     _00129_DS_
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00703 S_MainDemo__InitAppConfig       code
-0000 00704 _InitAppConfig:
-               00705 ;       .line   354; MainDemo.c static void InitAppConfig(void)
-0000 CFD9 FFE5 00706         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00707         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00708         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00709         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00710         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00711         MOVFF   r0x03, POSTDEC1
-0018 0000      00712         BANKSEL (_AppConfig + 44)
-               00713 ;       .line   356; MainDemo.c AppConfig.Flags.bIsDHCPEnabled = TRUE;
-001A 8D00      00714         BSF     (_AppConfig + 44), 6, B
-001C 0000      00715         BANKSEL (_AppConfig + 44)
-               00716 ;       .line   357; MainDemo.c AppConfig.Flags.bInConfigMode = TRUE;
-001E 8F00      00717         BSF     (_AppConfig + 44), 7, B
-0020 0000      00718         BANKSEL (_AppConfig + 45)
-               00719 ;       .line   361; MainDemo.c AppConfig.MyMACAddr.v[0] = 0;
-0022 6B00      00720         CLRF    (_AppConfig + 45), B
-               00721 ;       .line   362; MainDemo.c AppConfig.MyMACAddr.v[1] = 0x04;
-0024 0E04      00722         MOVLW   0x04
-0026 0000      00723         BANKSEL (_AppConfig + 46)
-0028 6F00      00724         MOVWF   (_AppConfig + 46), B
-               00725 ;       .line   363; MainDemo.c AppConfig.MyMACAddr.v[2] = 0xA3;
-002A 0EA3      00726         MOVLW   0xa3
-002C 0000      00727         BANKSEL (_AppConfig + 47)
-002E 6F00      00728         MOVWF   (_AppConfig + 47), B
-               00729 ;       .line   364; MainDemo.c AppConfig.MyMACAddr.v[3] = 0x01;
-0030 0E01      00730         MOVLW   0x01
-0032 0000      00731         BANKSEL (_AppConfig + 48)
-0034 6F00      00732         MOVWF   (_AppConfig + 48), B
-               00733 ;       .line   365; MainDemo.c AppConfig.MyMACAddr.v[4] = 0x02;
-0036 0E02      00734         MOVLW   0x02
-0038 0000      00735         BANKSEL (_AppConfig + 49)
-003A 6F00      00736         MOVWF   (_AppConfig + 49), B
-               00737 ;       .line   366; MainDemo.c AppConfig.MyMACAddr.v[5] = 0x03;
-003C 0E03      00738         MOVLW   0x03
-003E 0000      00739         BANKSEL (_AppConfig + 50)
-0040 6F00      00740         MOVWF   (_AppConfig + 50), B
-               00741 ;       .line   369; MainDemo.c AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
-0042 0EC0      00742         MOVLW   0xc0
-0044 0000      00743         BANKSEL _AppConfig
-0046 6F00      00744         MOVWF   _AppConfig, B
-0048 0EA8      00745         MOVLW   0xa8
-004A 0000      00746         BANKSEL (_AppConfig + 1)
-004C 6F00      00747         MOVWF   (_AppConfig + 1), B
-004E 0E61      00748         MOVLW   0x61
-0050 0000      00749         BANKSEL (_AppConfig + 2)
-0052 6F00      00750         MOVWF   (_AppConfig + 2), B
-0054 0E3C      00751         MOVLW   0x3c
-0056 0000      00752         BANKSEL (_AppConfig + 3)
-0058 6F00      00753         MOVWF   (_AppConfig + 3), B
-               00754 ;       .line   372; MainDemo.c AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
-005A C000 F000 00755         MOVFF   _AppConfig, r0x00
-005E C000 F000 00756         MOVFF   (_AppConfig + 1), r0x01
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 15
+014C 0012      00703         RETURN  
+               00704 
+               00705 ; ; Starting pCode block
+               00706 S_MainDemo__InitAppConfig       code
+0000 00707 _InitAppConfig:
+               00708 ;       .line   353; MainDemo.c static void InitAppConfig(void)
+0000 CFD9 FFE5 00709         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00710         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00711         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00712         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00713         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00714         MOVFF   r0x03, POSTDEC1
+0018 0000      00715         BANKSEL (_AppConfig + 44)
+               00716 ;       .line   355; MainDemo.c AppConfig.Flags.bIsDHCPEnabled = TRUE;
+001A 8D00      00717         BSF     (_AppConfig + 44), 6, B
+001C 0000      00718         BANKSEL (_AppConfig + 44)
+               00719 ;       .line   356; MainDemo.c AppConfig.Flags.bInConfigMode = TRUE;
+001E 8F00      00720         BSF     (_AppConfig + 44), 7, B
+0020 0000      00721         BANKSEL (_AppConfig + 45)
+               00722 ;       .line   360; MainDemo.c AppConfig.MyMACAddr.v[0] = 0;
+0022 6B00      00723         CLRF    (_AppConfig + 45), B
+               00724 ;       .line   361; MainDemo.c AppConfig.MyMACAddr.v[1] = 0x04;
+0024 0E04      00725         MOVLW   0x04
+0026 0000      00726         BANKSEL (_AppConfig + 46)
+0028 6F00      00727         MOVWF   (_AppConfig + 46), B
+               00728 ;       .line   362; MainDemo.c AppConfig.MyMACAddr.v[2] = 0xA3;
+002A 0EA3      00729         MOVLW   0xa3
+002C 0000      00730         BANKSEL (_AppConfig + 47)
+002E 6F00      00731         MOVWF   (_AppConfig + 47), B
+               00732 ;       .line   363; MainDemo.c AppConfig.MyMACAddr.v[3] = 0x01;
+0030 0E01      00733         MOVLW   0x01
+0032 0000      00734         BANKSEL (_AppConfig + 48)
+0034 6F00      00735         MOVWF   (_AppConfig + 48), B
+               00736 ;       .line   364; MainDemo.c AppConfig.MyMACAddr.v[4] = 0x02;
+0036 0E02      00737         MOVLW   0x02
+0038 0000      00738         BANKSEL (_AppConfig + 49)
+003A 6F00      00739         MOVWF   (_AppConfig + 49), B
+               00740 ;       .line   365; MainDemo.c AppConfig.MyMACAddr.v[5] = 0x03;
+003C 0E03      00741         MOVLW   0x03
+003E 0000      00742         BANKSEL (_AppConfig + 50)
+0040 6F00      00743         MOVWF   (_AppConfig + 50), B
+               00744 ;       .line   368; MainDemo.c AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
+0042 0EC0      00745         MOVLW   0xc0
+0044 0000      00746         BANKSEL _AppConfig
+0046 6F00      00747         MOVWF   _AppConfig, B
+0048 0EA8      00748         MOVLW   0xa8
+004A 0000      00749         BANKSEL (_AppConfig + 1)
+004C 6F00      00750         MOVWF   (_AppConfig + 1), B
+004E 0E61      00751         MOVLW   0x61
+0050 0000      00752         BANKSEL (_AppConfig + 2)
+0052 6F00      00753         MOVWF   (_AppConfig + 2), B
+0054 0E3C      00754         MOVLW   0x3c
+0056 0000      00755         BANKSEL (_AppConfig + 3)
+0058 6F00      00756         MOVWF   (_AppConfig + 3), B
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0062 C000 F000 00757         MOVFF   (_AppConfig + 2), r0x02
-0066 C000 F000 00758         MOVFF   (_AppConfig + 3), r0x03
-006A 5000      00759         MOVF    r0x00, W
-006C 0000      00760         BANKSEL (_AppConfig + 20)
-006E 6F00      00761         MOVWF   (_AppConfig + 20), B
-0070 5000      00762         MOVF    r0x01, W
-0072 0000      00763         BANKSEL (_AppConfig + 21)
-0074 6F00      00764         MOVWF   (_AppConfig + 21), B
-0076 5000      00765         MOVF    r0x02, W
-0078 0000      00766         BANKSEL (_AppConfig + 22)
-007A 6F00      00767         MOVWF   (_AppConfig + 22), B
-007C 5000      00768         MOVF    r0x03, W
-007E 0000      00769         BANKSEL (_AppConfig + 23)
-0080 6F00      00770         MOVWF   (_AppConfig + 23), B
-0082 0000      00771         BANKSEL (_AppConfig + 4)
-               00772 ;       .line   373; MainDemo.c AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
-0084 6900      00773         SETF    (_AppConfig + 4), B
-0086 0000      00774         BANKSEL (_AppConfig + 5)
-0088 6900      00775         SETF    (_AppConfig + 5), B
-008A 0000      00776         BANKSEL (_AppConfig + 6)
-008C 6900      00777         SETF    (_AppConfig + 6), B
-008E 0000      00778         BANKSEL (_AppConfig + 7)
-0090 6B00      00779         CLRF    (_AppConfig + 7), B
-               00780 ;       .line   376; MainDemo.c AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
-0092 C000 F000 00781         MOVFF   (_AppConfig + 4), r0x00
-0096 C000 F000 00782         MOVFF   (_AppConfig + 5), r0x01
-009A C000 F000 00783         MOVFF   (_AppConfig + 6), r0x02
-009E C000 F000 00784         MOVFF   (_AppConfig + 7), r0x03
-00A2 5000      00785         MOVF    r0x00, W
-00A4 0000      00786         BANKSEL (_AppConfig + 24)
-00A6 6F00      00787         MOVWF   (_AppConfig + 24), B
-00A8 5000      00788         MOVF    r0x01, W
-00AA 0000      00789         BANKSEL (_AppConfig + 25)
-00AC 6F00      00790         MOVWF   (_AppConfig + 25), B
-00AE 5000      00791         MOVF    r0x02, W
-00B0 0000      00792         BANKSEL (_AppConfig + 26)
-00B2 6F00      00793         MOVWF   (_AppConfig + 26), B
-00B4 5000      00794         MOVF    r0x03, W
-00B6 0000      00795         BANKSEL (_AppConfig + 27)
-00B8 6F00      00796         MOVWF   (_AppConfig + 27), B
-               00797 ;       .line   377; MainDemo.c AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
-00BA 0EC0      00798         MOVLW   0xc0
-00BC 0000      00799         BANKSEL (_AppConfig + 8)
-00BE 6F00      00800         MOVWF   (_AppConfig + 8), B
-00C0 0EA8      00801         MOVLW   0xa8
-00C2 0000      00802         BANKSEL (_AppConfig + 9)
-00C4 6F00      00803         MOVWF   (_AppConfig + 9), B
-00C6 0E61      00804         MOVLW   0x61
-00C8 0000      00805         BANKSEL (_AppConfig + 10)
-00CA 6F00      00806         MOVWF   (_AppConfig + 10), B
-00CC 0E01      00807         MOVLW   0x01
-00CE 0000      00808         BANKSEL (_AppConfig + 11)
-00D0 6F00      00809         MOVWF   (_AppConfig + 11), B
-               00810 ;       .line   380; MainDemo.c AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 16
+               00757 ;       .line   371; MainDemo.c AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
+005A C000 F000 00758         MOVFF   _AppConfig, r0x00
+005E C000 F000 00759         MOVFF   (_AppConfig + 1), r0x01
+0062 C000 F000 00760         MOVFF   (_AppConfig + 2), r0x02
+0066 C000 F000 00761         MOVFF   (_AppConfig + 3), r0x03
+006A 5000      00762         MOVF    r0x00, W
+006C 0000      00763         BANKSEL (_AppConfig + 20)
+006E 6F00      00764         MOVWF   (_AppConfig + 20), B
+0070 5000      00765         MOVF    r0x01, W
+0072 0000      00766         BANKSEL (_AppConfig + 21)
+0074 6F00      00767         MOVWF   (_AppConfig + 21), B
+0076 5000      00768         MOVF    r0x02, W
+0078 0000      00769         BANKSEL (_AppConfig + 22)
+007A 6F00      00770         MOVWF   (_AppConfig + 22), B
+007C 5000      00771         MOVF    r0x03, W
+007E 0000      00772         BANKSEL (_AppConfig + 23)
+0080 6F00      00773         MOVWF   (_AppConfig + 23), B
+0082 0000      00774         BANKSEL (_AppConfig + 4)
+               00775 ;       .line   372; MainDemo.c AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
+0084 6900      00776         SETF    (_AppConfig + 4), B
+0086 0000      00777         BANKSEL (_AppConfig + 5)
+0088 6900      00778         SETF    (_AppConfig + 5), B
+008A 0000      00779         BANKSEL (_AppConfig + 6)
+008C 6900      00780         SETF    (_AppConfig + 6), B
+008E 0000      00781         BANKSEL (_AppConfig + 7)
+0090 6B00      00782         CLRF    (_AppConfig + 7), B
+               00783 ;       .line   375; MainDemo.c AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
+0092 C000 F000 00784         MOVFF   (_AppConfig + 4), r0x00
+0096 C000 F000 00785         MOVFF   (_AppConfig + 5), r0x01
+009A C000 F000 00786         MOVFF   (_AppConfig + 6), r0x02
+009E C000 F000 00787         MOVFF   (_AppConfig + 7), r0x03
+00A2 5000      00788         MOVF    r0x00, W
+00A4 0000      00789         BANKSEL (_AppConfig + 24)
+00A6 6F00      00790         MOVWF   (_AppConfig + 24), B
+00A8 5000      00791         MOVF    r0x01, W
+00AA 0000      00792         BANKSEL (_AppConfig + 25)
+00AC 6F00      00793         MOVWF   (_AppConfig + 25), B
+00AE 5000      00794         MOVF    r0x02, W
+00B0 0000      00795         BANKSEL (_AppConfig + 26)
+00B2 6F00      00796         MOVWF   (_AppConfig + 26), B
+00B4 5000      00797         MOVF    r0x03, W
+00B6 0000      00798         BANKSEL (_AppConfig + 27)
+00B8 6F00      00799         MOVWF   (_AppConfig + 27), B
+               00800 ;       .line   376; MainDemo.c AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
+00BA 0EC0      00801         MOVLW   0xc0
+00BC 0000      00802         BANKSEL (_AppConfig + 8)
+00BE 6F00      00803         MOVWF   (_AppConfig + 8), B
+00C0 0EA8      00804         MOVLW   0xa8
+00C2 0000      00805         BANKSEL (_AppConfig + 9)
+00C4 6F00      00806         MOVWF   (_AppConfig + 9), B
+00C6 0E61      00807         MOVLW   0x61
+00C8 0000      00808         BANKSEL (_AppConfig + 10)
+00CA 6F00      00809         MOVWF   (_AppConfig + 10), B
+00CC 0E01      00810         MOVLW   0x01
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00D2 0EC0      00811         MOVLW   0xc0
-00D4 0000      00812         BANKSEL (_AppConfig + 12)
-00D6 6F00      00813         MOVWF   (_AppConfig + 12), B
-00D8 0EA8      00814         MOVLW   0xa8
-00DA 0000      00815         BANKSEL (_AppConfig + 13)
-00DC 6F00      00816         MOVWF   (_AppConfig + 13), B
-00DE 0E61      00817         MOVLW   0x61
-00E0 0000      00818         BANKSEL (_AppConfig + 14)
-00E2 6F00      00819         MOVWF   (_AppConfig + 14), B
-00E4 0E01      00820         MOVLW   0x01
-00E6 0000      00821         BANKSEL (_AppConfig + 15)
-00E8 6F00      00822         MOVWF   (_AppConfig + 15), B
-00EA 0000      00823         BANKSEL (_AppConfig + 16)
-               00824 ;       .line   384; MainDemo.c AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
-00EC 6B00      00825         CLRF    (_AppConfig + 16), B
-00EE 0000      00826         BANKSEL (_AppConfig + 17)
-00F0 6B00      00827         CLRF    (_AppConfig + 17), B
-00F2 0000      00828         BANKSEL (_AppConfig + 18)
-00F4 6B00      00829         CLRF    (_AppConfig + 18), B
-00F6 0000      00830         BANKSEL (_AppConfig + 19)
-00F8 6B00      00831         CLRF    (_AppConfig + 19), B
-00FA CFE4 F000 00832         MOVFF   PREINC1, r0x03
-00FE CFE4 F000 00833         MOVFF   PREINC1, r0x02
-0102 CFE4 F000 00834         MOVFF   PREINC1, r0x01
-0106 CFE4 F000 00835         MOVFF   PREINC1, r0x00
-010A CFE4 FFD9 00836         MOVFF   PREINC1, FSR2L
-010E 0012      00837         RETURN  
-               00838 
-               00839 ; ; Starting pCode block
-               00840 S_MainDemo__InitializeBoard     code
-0000 00841 _InitializeBoard:
-               00842 ;       .line   300; MainDemo.c static void InitializeBoard(void)
-0000 CFD9 FFE5 00843         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00844         MOVFF   FSR1L, FSR2L
-               00845 ;       .line   303; MainDemo.c LED0_TRIS = 0;  //LED0
-0008 9000      00846         BCF     _TRISJbits, 0
-               00847 ;       .line   304; MainDemo.c LED1_TRIS = 0;  //LED1
-000A 9200      00848         BCF     _TRISJbits, 1
-               00849 ;       .line   305; MainDemo.c LED2_TRIS = 0;  //LED2
-000C 9400      00850         BCF     _TRISJbits, 2
-               00851 ;       .line   306; MainDemo.c LED3_TRIS = 0;  //LED_LCD1
-000E 9A00      00852         BCF     _TRISGbits, 5
-               00853 ;       .line   307; MainDemo.c LED4_TRIS = 0;  //LED_LCD2
-0010 9A00      00854         BCF     _TRISGbits, 5
-               00855 ;       .line   308; MainDemo.c LED5_TRIS = 0;  //LED5=RELAY1
-0012 9E00      00856         BCF     _TRISGbits, 7
-               00857 ;       .line   309; MainDemo.c LED6_TRIS = 0;  //LED7=RELAY2
-0014 9C00      00858         BCF     _TRISGbits, 6
-               00859 ;       .line   314; MainDemo.c LED_PUT(0x00);  //turn off LED0 - LED2
-0016 0EF8      00860         MOVLW   0xf8
-0018 1600      00861         ANDWF   _LATJ, F
-               00862 ;       .line   315; MainDemo.c RELAY_PUT(0x00); //turn relays off to save power
-001A 0E3F      00863         MOVLW   0x3f
-001C 1600      00864         ANDWF   _LATG, F
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 17
+00CE 0000      00811         BANKSEL (_AppConfig + 11)
+00D0 6F00      00812         MOVWF   (_AppConfig + 11), B
+               00813 ;       .line   379; MainDemo.c AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
+00D2 0EC0      00814         MOVLW   0xc0
+00D4 0000      00815         BANKSEL (_AppConfig + 12)
+00D6 6F00      00816         MOVWF   (_AppConfig + 12), B
+00D8 0EA8      00817         MOVLW   0xa8
+00DA 0000      00818         BANKSEL (_AppConfig + 13)
+00DC 6F00      00819         MOVWF   (_AppConfig + 13), B
+00DE 0E61      00820         MOVLW   0x61
+00E0 0000      00821         BANKSEL (_AppConfig + 14)
+00E2 6F00      00822         MOVWF   (_AppConfig + 14), B
+00E4 0E01      00823         MOVLW   0x01
+00E6 0000      00824         BANKSEL (_AppConfig + 15)
+00E8 6F00      00825         MOVWF   (_AppConfig + 15), B
+00EA 0000      00826         BANKSEL (_AppConfig + 16)
+               00827 ;       .line   383; MainDemo.c AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
+00EC 6B00      00828         CLRF    (_AppConfig + 16), B
+00EE 0000      00829         BANKSEL (_AppConfig + 17)
+00F0 6B00      00830         CLRF    (_AppConfig + 17), B
+00F2 0000      00831         BANKSEL (_AppConfig + 18)
+00F4 6B00      00832         CLRF    (_AppConfig + 18), B
+00F6 0000      00833         BANKSEL (_AppConfig + 19)
+00F8 6B00      00834         CLRF    (_AppConfig + 19), B
+00FA CFE4 F000 00835         MOVFF   PREINC1, r0x03
+00FE CFE4 F000 00836         MOVFF   PREINC1, r0x02
+0102 CFE4 F000 00837         MOVFF   PREINC1, r0x01
+0106 CFE4 F000 00838         MOVFF   PREINC1, r0x00
+010A CFE4 FFD9 00839         MOVFF   PREINC1, FSR2L
+010E 0012      00840         RETURN  
+               00841 
+               00842 ; ; Starting pCode block
+               00843 S_MainDemo__InitializeBoard     code
+0000 00844 _InitializeBoard:
+               00845 ;       .line   299; MainDemo.c static void InitializeBoard(void)
+0000 CFD9 FFE5 00846         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00847         MOVFF   FSR1L, FSR2L
+               00848 ;       .line   302; MainDemo.c LED0_TRIS = 0;  //LED0
+0008 9000      00849         BCF     _TRISJbits, 0
+               00850 ;       .line   303; MainDemo.c LED1_TRIS = 0;  //LED1
+000A 9200      00851         BCF     _TRISJbits, 1
+               00852 ;       .line   304; MainDemo.c LED2_TRIS = 0;  //LED2
+000C 9400      00853         BCF     _TRISJbits, 2
+               00854 ;       .line   305; MainDemo.c LED3_TRIS = 0;  //LED_LCD1
+000E 9A00      00855         BCF     _TRISGbits, 5
+               00856 ;       .line   306; MainDemo.c LED4_TRIS = 0;  //LED_LCD2
+0010 9A00      00857         BCF     _TRISGbits, 5
+               00858 ;       .line   307; MainDemo.c LED5_TRIS = 0;  //LED5=RELAY1
+0012 9E00      00859         BCF     _TRISGbits, 7
+               00860 ;       .line   308; MainDemo.c LED6_TRIS = 0;  //LED7=RELAY2
+0014 9C00      00861         BCF     _TRISGbits, 6
+               00862 ;       .line   313; MainDemo.c LED_PUT(0x00);  //turn off LED0 - LED2
+0016 0EF8      00863         MOVLW   0xf8
+0018 1600      00864         ANDWF   _LATJ, F
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00865 ;       .line   319; MainDemo.c OSCTUNE = 0x00;
-001E 6A00      00866         CLRF    _OSCTUNE
-               00867 ;       .line   326; MainDemo.c if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
-0020 AE00      00868         BTFSS   _OSCCONbits, 7
-0022 D000      00869         BRA     _00212_DS_
-               00870 ;       .line   327; MainDemo.c OSCCON = 0x82;
-0024 0E82      00871         MOVLW   0x82
-0026 6E00      00872         MOVWF   _OSCCON
-0028 D000      00873         BRA     _00213_DS_
-002A 00874 _00212_DS_:
-               00875 ;       .line   329; MainDemo.c OSCCON = 0x02;
-002A 0E02      00876         MOVLW   0x02
-002C 6E00      00877         MOVWF   _OSCCON
-002E 00878 _00213_DS_:
-               00879 ;       .line   332; MainDemo.c RCONbits.IPEN = 1;              // Enable interrupt priorities
-002E 8E00      00880         BSF     _RCONbits, 7
-               00881 ;       .line   333; MainDemo.c INTCONbits.GIEH = 1;
-0030 8E00      00882         BSF     _INTCONbits, 7
-               00883 ;       .line   334; MainDemo.c INTCONbits.GIEL = 1;
-0032 8C00      00884         BSF     _INTCONbits, 6
-0034 CFE4 FFD9 00885         MOVFF   PREINC1, FSR2L
-0038 0012      00886         RETURN  
-               00887 
-               00888 ; ; Starting pCode block
-               00889 S_MainDemo__DisplayIPValue      code
-0000 00890 _DisplayIPValue:
-               00891 ;       .line   242; MainDemo.c void DisplayIPValue(DWORD IPdw) // 32 bits
-0000 CFD9 FFE5 00892         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00893         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00894         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00895         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00896         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00897         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 00898         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 00899         MOVFF   r0x05, POSTDEC1
-0020 C000 FFE5 00900         MOVFF   r0x06, POSTDEC1
-0024 C000 FFE5 00901         MOVFF   r0x07, POSTDEC1
-0028 C000 FFE5 00902         MOVFF   r0x08, POSTDEC1
-002C C000 FFE5 00903         MOVFF   r0x09, POSTDEC1
-0030 C000 FFE5 00904         MOVFF   r0x0a, POSTDEC1
-0034 C000 FFE5 00905         MOVFF   r0x0b, POSTDEC1
-0038 C000 FFE5 00906         MOVFF   r0x0c, POSTDEC1
-003C C000 FFE5 00907         MOVFF   r0x0d, POSTDEC1
-0040 0E02      00908         MOVLW   0x02
-0042 CFDB F000 00909         MOVFF   PLUSW2, r0x00
-0046 0E03      00910         MOVLW   0x03
-0048 CFDB F000 00911         MOVFF   PLUSW2, r0x01
-004C 0E04      00912         MOVLW   0x04
-004E CFDB F000 00913         MOVFF   PLUSW2, r0x02
-0052 0E05      00914         MOVLW   0x05
-0054 CFDB F000 00915         MOVFF   PLUSW2, r0x03
-               00916 ;       .line   250; MainDemo.c BYTE LCDPos=16;  //write on second line of LCD
-0058 0E10      00917         MOVLW   0x10
-005A 6E00      00918         MOVWF   r0x04
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 18
+               00865 ;       .line   314; MainDemo.c RELAY_PUT(0x00); //turn relays off to save power
+001A 0E3F      00866         MOVLW   0x3f
+001C 1600      00867         ANDWF   _LATG, F
+               00868 ;       .line   318; MainDemo.c OSCTUNE = 0x00;
+001E 6A00      00869         CLRF    _OSCTUNE
+               00870 ;       .line   325; MainDemo.c if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
+0020 AE00      00871         BTFSS   _OSCCONbits, 7
+0022 D000      00872         BRA     _00212_DS_
+               00873 ;       .line   326; MainDemo.c OSCCON = 0x82;
+0024 0E82      00874         MOVLW   0x82
+0026 6E00      00875         MOVWF   _OSCCON
+0028 D000      00876         BRA     _00213_DS_
+002A 00877 _00212_DS_:
+               00878 ;       .line   328; MainDemo.c OSCCON = 0x02;
+002A 0E02      00879         MOVLW   0x02
+002C 6E00      00880         MOVWF   _OSCCON
+002E 00881 _00213_DS_:
+               00882 ;       .line   331; MainDemo.c RCONbits.IPEN = 1;              // Enable interrupt priorities
+002E 8E00      00883         BSF     _RCONbits, 7
+               00884 ;       .line   332; MainDemo.c INTCONbits.GIEH = 1;
+0030 8E00      00885         BSF     _INTCONbits, 7
+               00886 ;       .line   333; MainDemo.c INTCONbits.GIEL = 1;
+0032 8C00      00887         BSF     _INTCONbits, 6
+0034 CFE4 FFD9 00888         MOVFF   PREINC1, FSR2L
+0038 0012      00889         RETURN  
+               00890 
+               00891 ; ; Starting pCode block
+               00892 S_MainDemo__DisplayIPValue      code
+0000 00893 _DisplayIPValue:
+               00894 ;       .line   241; MainDemo.c void DisplayIPValue(DWORD IPdw) // 32 bits
+0000 CFD9 FFE5 00895         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00896         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00897         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00898         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00899         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00900         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 00901         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 00902         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 00903         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 00904         MOVFF   r0x07, POSTDEC1
+0028 C000 FFE5 00905         MOVFF   r0x08, POSTDEC1
+002C C000 FFE5 00906         MOVFF   r0x09, POSTDEC1
+0030 C000 FFE5 00907         MOVFF   r0x0a, POSTDEC1
+0034 C000 FFE5 00908         MOVFF   r0x0b, POSTDEC1
+0038 C000 FFE5 00909         MOVFF   r0x0c, POSTDEC1
+003C C000 FFE5 00910         MOVFF   r0x0d, POSTDEC1
+0040 0E02      00911         MOVLW   0x02
+0042 CFDB F000 00912         MOVFF   PLUSW2, r0x00
+0046 0E03      00913         MOVLW   0x03
+0048 CFDB F000 00914         MOVFF   PLUSW2, r0x01
+004C 0E04      00915         MOVLW   0x04
+004E CFDB F000 00916         MOVFF   PLUSW2, r0x02
+0052 0E05      00917         MOVLW   0x05
+0054 CFDB F000 00918         MOVFF   PLUSW2, r0x03
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00919 ;       .line   255; MainDemo.c for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
-005C 6A00      00920         CLRF    r0x05
-005E 6A00      00921         CLRF    r0x06
-0060 6A00      00922         CLRF    r0x07
-0062 00923 _00177_DS_:
-0062 0E04      00924         MOVLW   0x04
-0064 5C00      00925         SUBWF   r0x05, W
-0066 B0D8      00926         BTFSC   STATUS, 0
-0068 D000      00927         BRA     _00180_DS_
-               00928 ;       .line   258; MainDemo.c IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
-006A C000 F000 00929         MOVFF   r0x00, r0x08
-006E C000 F000 00930         MOVFF   r0x01, r0x09
-0072 C000 F000 00931         MOVFF   r0x02, r0x0a
-0076 C000 F000 00932         MOVFF   r0x03, r0x0b
-007A 5000      00933         MOVF    r0x06, W
-007C E000      00934         BZ      _00198_DS_
-007E E600      00935         BN      _00201_DS_
-0080 6CE8      00936         NEGF    WREG
-0082 90D8      00937         BCF     STATUS, 0
-0084 00938 _00199_DS_:
-0084 3200      00939         RRCF    r0x0b, F
-0086 3200      00940         RRCF    r0x0a, F
-0088 3200      00941         RRCF    r0x09, F
-008A 3200      00942         RRCF    r0x08, F
-008C 0F01      00943         ADDLW   0x01
-008E E300      00944         BNC     _00199_DS_
-0090 D000      00945         BRA     _00198_DS_
-0092 00946 _00201_DS_:
-0092 90D8      00947         BCF     STATUS, 0
-0094 00948 _00200_DS_:
-0094 3600      00949         RLCF    r0x08, F
-0096 3600      00950         RLCF    r0x09, F
-0098 3600      00951         RLCF    r0x0a, F
-009A 3600      00952         RLCF    r0x0b, F
-009C 0F01      00953         ADDLW   0x01
-009E E300      00954         BNC     _00200_DS_
-00A0 00955 _00198_DS_:
-00A0 6A00      00956         CLRF    r0x09
-               00957 ;       .line   259; MainDemo.c uitoa(IP_field, IPDigit, radix);      //ML
-00A2 0E0A      00958         MOVLW   0x0a
-00A4 6EE5      00959         MOVWF   POSTDEC1
-00A6 0E00      00960         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
-00A8 6EE5      00961         MOVWF   POSTDEC1
-00AA 0E00      00962         MOVLW   LOW(_DisplayIPValue_IPDigit_1_1)
-00AC 6EE5      00963         MOVWF   POSTDEC1
-00AE 5000      00964         MOVF    r0x09, W
-00B0 6EE5      00965         MOVWF   POSTDEC1
-00B2 5000      00966         MOVF    r0x08, W
-00B4 6EE5      00967         MOVWF   POSTDEC1
-00B6 EC00 F000 00968         CALL    _uitoa
-00BA 0E05      00969         MOVLW   0x05
-00BC 26E1      00970         ADDWF   FSR1L, F
-               00971 ;       .line   264; MainDemo.c for(j = 0; j < strlen((char*)IPDigit); j++)
-00BE C000 F000 00972         MOVFF   r0x04, r0x08
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 19
+               00919 ;       .line   249; MainDemo.c BYTE LCDPos=16;  //write on second line of LCD
+0058 0E10      00920         MOVLW   0x10
+005A 6E00      00921         MOVWF   r0x04
+               00922 ;       .line   254; MainDemo.c for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+005C 6A00      00923         CLRF    r0x05
+005E 6A00      00924         CLRF    r0x06
+0060 6A00      00925         CLRF    r0x07
+0062 00926 _00177_DS_:
+0062 0E04      00927         MOVLW   0x04
+0064 5C00      00928         SUBWF   r0x05, W
+0066 B0D8      00929         BTFSC   STATUS, 0
+0068 D000      00930         BRA     _00180_DS_
+               00931 ;       .line   257; MainDemo.c IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
+006A C000 F000 00932         MOVFF   r0x00, r0x08
+006E C000 F000 00933         MOVFF   r0x01, r0x09
+0072 C000 F000 00934         MOVFF   r0x02, r0x0a
+0076 C000 F000 00935         MOVFF   r0x03, r0x0b
+007A 5000      00936         MOVF    r0x06, W
+007C E000      00937         BZ      _00198_DS_
+007E E600      00938         BN      _00201_DS_
+0080 6CE8      00939         NEGF    WREG
+0082 90D8      00940         BCF     STATUS, 0
+0084 00941 _00199_DS_:
+0084 3200      00942         RRCF    r0x0b, F
+0086 3200      00943         RRCF    r0x0a, F
+0088 3200      00944         RRCF    r0x09, F
+008A 3200      00945         RRCF    r0x08, F
+008C 0F01      00946         ADDLW   0x01
+008E E300      00947         BNC     _00199_DS_
+0090 D000      00948         BRA     _00198_DS_
+0092 00949 _00201_DS_:
+0092 90D8      00950         BCF     STATUS, 0
+0094 00951 _00200_DS_:
+0094 3600      00952         RLCF    r0x08, F
+0096 3600      00953         RLCF    r0x09, F
+0098 3600      00954         RLCF    r0x0a, F
+009A 3600      00955         RLCF    r0x0b, F
+009C 0F01      00956         ADDLW   0x01
+009E E300      00957         BNC     _00200_DS_
+00A0 00958 _00198_DS_:
+00A0 6A00      00959         CLRF    r0x09
+               00960 ;       .line   258; MainDemo.c uitoa(IP_field, IPDigit, radix);      //ML
+00A2 0E0A      00961         MOVLW   0x0a
+00A4 6EE5      00962         MOVWF   POSTDEC1
+00A6 0E00      00963         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
+00A8 6EE5      00964         MOVWF   POSTDEC1
+00AA 0E00      00965         MOVLW   LOW(_DisplayIPValue_IPDigit_1_1)
+00AC 6EE5      00966         MOVWF   POSTDEC1
+00AE 5000      00967         MOVF    r0x09, W
+00B0 6EE5      00968         MOVWF   POSTDEC1
+00B2 5000      00969         MOVF    r0x08, W
+00B4 6EE5      00970         MOVWF   POSTDEC1
+00B6 EC00 F000 00971         CALL    _uitoa
+00BA 0E05      00972         MOVLW   0x05
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00C2 6A00      00973         CLRF    r0x09
-00C4 00974 _00183_DS_:
-00C4 0E00      00975         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
-00C6 6E00      00976         MOVWF   r0x0b
-00C8 0E00      00977         MOVLW   LOW(_DisplayIPValue_IPDigit_1_1)
-00CA 6E00      00978         MOVWF   r0x0a
-00CC 0E80      00979         MOVLW   0x80
-00CE 6E00      00980         MOVWF   r0x0c
-00D0 5000      00981         MOVF    r0x0c, W
-00D2 6EE5      00982         MOVWF   POSTDEC1
-00D4 5000      00983         MOVF    r0x0b, W
-00D6 6EE5      00984         MOVWF   POSTDEC1
-00D8 5000      00985         MOVF    r0x0a, W
-00DA 6EE5      00986         MOVWF   POSTDEC1
-00DC EC00 F000 00987         CALL    _strlen
-00E0 6E00      00988         MOVWF   r0x0a
-00E2 CFF3 F000 00989         MOVFF   PRODL, r0x0b
-00E6 0E03      00990         MOVLW   0x03
-00E8 26E1      00991         ADDWF   FSR1L, F
-00EA C000 F000 00992         MOVFF   r0x09, r0x0c
-00EE 6A00      00993         CLRF    r0x0d
-00F0 5000      00994         MOVF    r0x0d, W
-00F2 0F80      00995         ADDLW   0x80
-00F4 6EF3      00996         MOVWF   PRODL
-00F6 5000      00997         MOVF    r0x0b, W
-00F8 0F80      00998         ADDLW   0x80
-00FA 5CF3      00999         SUBWF   PRODL, W
-00FC E100      01000         BNZ     _00203_DS_
-00FE 5000      01001         MOVF    r0x0a, W
-0100 5C00      01002         SUBWF   r0x0c, W
-0102 01003 _00203_DS_:
-0102 E200      01004         BC      _00195_DS_
-               01005 ;       .line   266; MainDemo.c LCDText[LCDPos++] = IPDigit[j];
-0104 C000 F000 01006         MOVFF   r0x08, r0x0a
-0108 2A00      01007         INCF    r0x08, F
-010A 6A00      01008         CLRF    r0x0b
-010C 0E00      01009         MOVLW   LOW(_LCDText)
-010E 2600      01010         ADDWF   r0x0a, F
-0110 0E00      01011         MOVLW   HIGH(_LCDText)
-0112 2200      01012         ADDWFC  r0x0b, F
-0114 0E00      01013         MOVLW   LOW(_DisplayIPValue_IPDigit_1_1)
-0116 2400      01014         ADDWF   r0x09, W
-0118 6E00      01015         MOVWF   r0x0c
-011A 6A00      01016         CLRF    r0x0d
-011C 0E00      01017         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
-011E 2200      01018         ADDWFC  r0x0d, F
-0120 C000 FFE9 01019         MOVFF   r0x0c, FSR0L
-0124 C000 FFEA 01020         MOVFF   r0x0d, FSR0H
-0128 CFEF F000 01021         MOVFF   INDF0, r0x0c
-012C C000 FFE9 01022         MOVFF   r0x0a, FSR0L
-0130 C000 FFEA 01023         MOVFF   r0x0b, FSR0H
-0134 C000 FFEF 01024         MOVFF   r0x0c, INDF0
-               01025 ;       .line   264; MainDemo.c for(j = 0; j < strlen((char*)IPDigit); j++)
-0138 2A00      01026         INCF    r0x09, F
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 20
+00BC 26E1      00973         ADDWF   FSR1L, F
+               00974 ;       .line   263; MainDemo.c for(j = 0; j < strlen((char*)IPDigit); j++)
+00BE C000 F000 00975         MOVFF   r0x04, r0x08
+00C2 6A00      00976         CLRF    r0x09
+00C4 00977 _00183_DS_:
+00C4 0E00      00978         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
+00C6 6E00      00979         MOVWF   r0x0b
+00C8 0E00      00980         MOVLW   LOW(_DisplayIPValue_IPDigit_1_1)
+00CA 6E00      00981         MOVWF   r0x0a
+00CC 0E80      00982         MOVLW   0x80
+00CE 6E00      00983         MOVWF   r0x0c
+00D0 5000      00984         MOVF    r0x0c, W
+00D2 6EE5      00985         MOVWF   POSTDEC1
+00D4 5000      00986         MOVF    r0x0b, W
+00D6 6EE5      00987         MOVWF   POSTDEC1
+00D8 5000      00988         MOVF    r0x0a, W
+00DA 6EE5      00989         MOVWF   POSTDEC1
+00DC EC00 F000 00990         CALL    _strlen
+00E0 6E00      00991         MOVWF   r0x0a
+00E2 CFF3 F000 00992         MOVFF   PRODL, r0x0b
+00E6 0E03      00993         MOVLW   0x03
+00E8 26E1      00994         ADDWF   FSR1L, F
+00EA C000 F000 00995         MOVFF   r0x09, r0x0c
+00EE 6A00      00996         CLRF    r0x0d
+00F0 5000      00997         MOVF    r0x0d, W
+00F2 0F80      00998         ADDLW   0x80
+00F4 6EF3      00999         MOVWF   PRODL
+00F6 5000      01000         MOVF    r0x0b, W
+00F8 0F80      01001         ADDLW   0x80
+00FA 5CF3      01002         SUBWF   PRODL, W
+00FC E100      01003         BNZ     _00203_DS_
+00FE 5000      01004         MOVF    r0x0a, W
+0100 5C00      01005         SUBWF   r0x0c, W
+0102 01006 _00203_DS_:
+0102 E200      01007         BC      _00195_DS_
+               01008 ;       .line   265; MainDemo.c LCDText[LCDPos++] = IPDigit[j];
+0104 C000 F000 01009         MOVFF   r0x08, r0x0a
+0108 2A00      01010         INCF    r0x08, F
+010A 6A00      01011         CLRF    r0x0b
+010C 0E00      01012         MOVLW   LOW(_LCDText)
+010E 2600      01013         ADDWF   r0x0a, F
+0110 0E00      01014         MOVLW   HIGH(_LCDText)
+0112 2200      01015         ADDWFC  r0x0b, F
+0114 0E00      01016         MOVLW   LOW(_DisplayIPValue_IPDigit_1_1)
+0116 2400      01017         ADDWF   r0x09, W
+0118 6E00      01018         MOVWF   r0x0c
+011A 6A00      01019         CLRF    r0x0d
+011C 0E00      01020         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
+011E 2200      01021         ADDWFC  r0x0d, F
+0120 C000 FFE9 01022         MOVFF   r0x0c, FSR0L
+0124 C000 FFEA 01023         MOVFF   r0x0d, FSR0H
+0128 CFEF F000 01024         MOVFF   INDF0, r0x0c
+012C C000 FFE9 01025         MOVFF   r0x0a, FSR0L
+0130 C000 FFEA 01026         MOVFF   r0x0b, FSR0H
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-013A D000      01027         BRA     _00183_DS_
-013C 01028 _00195_DS_:
-013C C000 F000 01029         MOVFF   r0x08, r0x04
-               01030 ;       .line   268; MainDemo.c if(i == sizeof(IP_ADDR)-1)
-0140 5000      01031         MOVF    r0x05, W
-0142 0A03      01032         XORLW   0x03
-0144 E000      01033         BZ      _00180_DS_
-               01034 ;       .line   270; MainDemo.c LCDText[LCDPos++] = '.';
-0146 2800      01035         INCF    r0x08, W
-0148 6E00      01036         MOVWF   r0x04
-014A 6A00      01037         CLRF    r0x09
-014C 0E00      01038         MOVLW   LOW(_LCDText)
-014E 2600      01039         ADDWF   r0x08, F
-0150 0E00      01040         MOVLW   HIGH(_LCDText)
-0152 2200      01041         ADDWFC  r0x09, F
-0154 C000 FFE9 01042         MOVFF   r0x08, FSR0L
-0158 C000 FFEA 01043         MOVFF   r0x09, FSR0H
-015C 0E2E      01044         MOVLW   0x2e
-015E 6EEF      01045         MOVWF   INDF0
-               01046 ;       .line   255; MainDemo.c for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
-0160 0E08      01047         MOVLW   0x08
-0162 2600      01048         ADDWF   r0x06, F
-0164 B0D8      01049         BTFSC   STATUS, 0
-0166 2A00      01050         INCF    r0x07, F
-0168 2A00      01051         INCF    r0x05, F
-016A D000      01052         BRA     _00177_DS_
-016C 01053 _00180_DS_:
-               01054 ;       .line   273; MainDemo.c if(LCDPos < 32u)
-016C C000 F000 01055         MOVFF   r0x04, r0x00
-0170 6A00      01056         CLRF    r0x01
-0172 0E00      01057         MOVLW   0x00
-0174 5C00      01058         SUBWF   r0x01, W
-0176 E100      01059         BNZ     _00206_DS_
-0178 0E20      01060         MOVLW   0x20
-017A 5C00      01061         SUBWF   r0x00, W
-017C 01062 _00206_DS_:
-017C E200      01063         BC      _00182_DS_
-               01064 ;       .line   274; MainDemo.c LCDText[LCDPos] = 0;
-017E 6A00      01065         CLRF    r0x00
-0180 0E00      01066         MOVLW   LOW(_LCDText)
-0182 2600      01067         ADDWF   r0x04, F
-0184 0E00      01068         MOVLW   HIGH(_LCDText)
-0186 2200      01069         ADDWFC  r0x00, F
-0188 C000 FFE9 01070         MOVFF   r0x04, FSR0L
-018C C000 FFEA 01071         MOVFF   r0x00, FSR0H
-0190 0E00      01072         MOVLW   0x00
-0192 6EEF      01073         MOVWF   INDF0
-0194 01074 _00182_DS_:
-               01075 ;       .line   275; MainDemo.c LCDUpdate();
-0194 EC00 F000 01076         CALL    _LCDUpdate
-0198 CFE4 F000 01077         MOVFF   PREINC1, r0x0d
-019C CFE4 F000 01078         MOVFF   PREINC1, r0x0c
-01A0 CFE4 F000 01079         MOVFF   PREINC1, r0x0b
-01A4 CFE4 F000 01080         MOVFF   PREINC1, r0x0a
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 21
+0134 C000 FFEF 01027         MOVFF   r0x0c, INDF0
+               01028 ;       .line   263; MainDemo.c for(j = 0; j < strlen((char*)IPDigit); j++)
+0138 2A00      01029         INCF    r0x09, F
+013A D000      01030         BRA     _00183_DS_
+013C 01031 _00195_DS_:
+013C C000 F000 01032         MOVFF   r0x08, r0x04
+               01033 ;       .line   267; MainDemo.c if(i == sizeof(IP_ADDR)-1)
+0140 5000      01034         MOVF    r0x05, W
+0142 0A03      01035         XORLW   0x03
+0144 E000      01036         BZ      _00180_DS_
+               01037 ;       .line   269; MainDemo.c LCDText[LCDPos++] = '.';
+0146 2800      01038         INCF    r0x08, W
+0148 6E00      01039         MOVWF   r0x04
+014A 6A00      01040         CLRF    r0x09
+014C 0E00      01041         MOVLW   LOW(_LCDText)
+014E 2600      01042         ADDWF   r0x08, F
+0150 0E00      01043         MOVLW   HIGH(_LCDText)
+0152 2200      01044         ADDWFC  r0x09, F
+0154 C000 FFE9 01045         MOVFF   r0x08, FSR0L
+0158 C000 FFEA 01046         MOVFF   r0x09, FSR0H
+015C 0E2E      01047         MOVLW   0x2e
+015E 6EEF      01048         MOVWF   INDF0
+               01049 ;       .line   254; MainDemo.c for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+0160 0E08      01050         MOVLW   0x08
+0162 2600      01051         ADDWF   r0x06, F
+0164 B0D8      01052         BTFSC   STATUS, 0
+0166 2A00      01053         INCF    r0x07, F
+0168 2A00      01054         INCF    r0x05, F
+016A D000      01055         BRA     _00177_DS_
+016C 01056 _00180_DS_:
+               01057 ;       .line   272; MainDemo.c if(LCDPos < 32u)
+016C C000 F000 01058         MOVFF   r0x04, r0x00
+0170 6A00      01059         CLRF    r0x01
+0172 0E00      01060         MOVLW   0x00
+0174 5C00      01061         SUBWF   r0x01, W
+0176 E100      01062         BNZ     _00206_DS_
+0178 0E20      01063         MOVLW   0x20
+017A 5C00      01064         SUBWF   r0x00, W
+017C 01065 _00206_DS_:
+017C E200      01066         BC      _00182_DS_
+               01067 ;       .line   273; MainDemo.c LCDText[LCDPos] = 0;
+017E 6A00      01068         CLRF    r0x00
+0180 0E00      01069         MOVLW   LOW(_LCDText)
+0182 2600      01070         ADDWF   r0x04, F
+0184 0E00      01071         MOVLW   HIGH(_LCDText)
+0186 2200      01072         ADDWFC  r0x00, F
+0188 C000 FFE9 01073         MOVFF   r0x04, FSR0L
+018C C000 FFEA 01074         MOVFF   r0x00, FSR0H
+0190 0E00      01075         MOVLW   0x00
+0192 6EEF      01076         MOVWF   INDF0
+0194 01077 _00182_DS_:
+               01078 ;       .line   274; MainDemo.c LCDUpdate();
+0194 EC00 F000 01079         CALL    _LCDUpdate
+0198 CFE4 F000 01080         MOVFF   PREINC1, r0x0d
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-01A8 CFE4 F000 01081         MOVFF   PREINC1, r0x09
-01AC CFE4 F000 01082         MOVFF   PREINC1, r0x08
-01B0 CFE4 F000 01083         MOVFF   PREINC1, r0x07
-01B4 CFE4 F000 01084         MOVFF   PREINC1, r0x06
-01B8 CFE4 F000 01085         MOVFF   PREINC1, r0x05
-01BC CFE4 F000 01086         MOVFF   PREINC1, r0x04
-01C0 CFE4 F000 01087         MOVFF   PREINC1, r0x03
-01C4 CFE4 F000 01088         MOVFF   PREINC1, r0x02
-01C8 CFE4 F000 01089         MOVFF   PREINC1, r0x01
-01CC CFE4 F000 01090         MOVFF   PREINC1, r0x00
-01D0 CFE4 FFD9 01091         MOVFF   PREINC1, FSR2L
-01D4 0012      01092         RETURN  
-               01093 
-               01094 ; ; Starting pCode block
-               01095 S_MainDemo__DisplayString       code
-0000 01096 _DisplayString:
-               01097 ;       .line   227; MainDemo.c void DisplayString(BYTE pos, char* text)
-0000 CFD9 FFE5 01098         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 01099         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 01100         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 01101         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 01102         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 01103         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 01104         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 01105         MOVFF   r0x05, POSTDEC1
-0020 C000 FFE5 01106         MOVFF   r0x06, POSTDEC1
-0024 C000 FFE5 01107         MOVFF   r0x07, POSTDEC1
-0028 0E02      01108         MOVLW   0x02
-002A CFDB F000 01109         MOVFF   PLUSW2, r0x00
-002E 0E03      01110         MOVLW   0x03
-0030 CFDB F000 01111         MOVFF   PLUSW2, r0x01
-0034 0E04      01112         MOVLW   0x04
-0036 CFDB F000 01113         MOVFF   PLUSW2, r0x02
-003A 0E05      01114         MOVLW   0x05
-003C CFDB F000 01115         MOVFF   PLUSW2, r0x03
-               01116 ;       .line   229; MainDemo.c BYTE l= strlen(text)+1;
-0040 5000      01117         MOVF    r0x03, W
-0042 6EE5      01118         MOVWF   POSTDEC1
-0044 5000      01119         MOVF    r0x02, W
-0046 6EE5      01120         MOVWF   POSTDEC1
-0048 5000      01121         MOVF    r0x01, W
-004A 6EE5      01122         MOVWF   POSTDEC1
-004C EC00 F000 01123         CALL    _strlen
-0050 6E00      01124         MOVWF   r0x04
-0052 CFF3 F000 01125         MOVFF   PRODL, r0x05
-0056 0E03      01126         MOVLW   0x03
-0058 26E1      01127         ADDWF   FSR1L, F
-005A 2A00      01128         INCF    r0x04, F
-               01129 ;       .line   230; MainDemo.c BYTE max= 32-pos;
-005C 5000      01130         MOVF    r0x00, W
-005E 0820      01131         SUBLW   0x20
-0060 6E00      01132         MOVWF   r0x05
-               01133 ;       .line   231; MainDemo.c strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
-0062 6A00      01134         CLRF    r0x06
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 22
+019C CFE4 F000 01081         MOVFF   PREINC1, r0x0c
+01A0 CFE4 F000 01082         MOVFF   PREINC1, r0x0b
+01A4 CFE4 F000 01083         MOVFF   PREINC1, r0x0a
+01A8 CFE4 F000 01084         MOVFF   PREINC1, r0x09
+01AC CFE4 F000 01085         MOVFF   PREINC1, r0x08
+01B0 CFE4 F000 01086         MOVFF   PREINC1, r0x07
+01B4 CFE4 F000 01087         MOVFF   PREINC1, r0x06
+01B8 CFE4 F000 01088         MOVFF   PREINC1, r0x05
+01BC CFE4 F000 01089         MOVFF   PREINC1, r0x04
+01C0 CFE4 F000 01090         MOVFF   PREINC1, r0x03
+01C4 CFE4 F000 01091         MOVFF   PREINC1, r0x02
+01C8 CFE4 F000 01092         MOVFF   PREINC1, r0x01
+01CC CFE4 F000 01093         MOVFF   PREINC1, r0x00
+01D0 CFE4 FFD9 01094         MOVFF   PREINC1, FSR2L
+01D4 0012      01095         RETURN  
+               01096 
+               01097 ; ; Starting pCode block
+               01098 S_MainDemo__DisplayString       code
+0000 01099 _DisplayString:
+               01100 ;       .line   226; MainDemo.c void DisplayString(BYTE pos, char* text)
+0000 CFD9 FFE5 01101         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 01102         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 01103         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 01104         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 01105         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 01106         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 01107         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 01108         MOVFF   r0x05, POSTDEC1
+0020 C000 FFE5 01109         MOVFF   r0x06, POSTDEC1
+0024 C000 FFE5 01110         MOVFF   r0x07, POSTDEC1
+0028 0E02      01111         MOVLW   0x02
+002A CFDB F000 01112         MOVFF   PLUSW2, r0x00
+002E 0E03      01113         MOVLW   0x03
+0030 CFDB F000 01114         MOVFF   PLUSW2, r0x01
+0034 0E04      01115         MOVLW   0x04
+0036 CFDB F000 01116         MOVFF   PLUSW2, r0x02
+003A 0E05      01117         MOVLW   0x05
+003C CFDB F000 01118         MOVFF   PLUSW2, r0x03
+               01119 ;       .line   228; MainDemo.c BYTE l= strlen(text)+1;
+0040 5000      01120         MOVF    r0x03, W
+0042 6EE5      01121         MOVWF   POSTDEC1
+0044 5000      01122         MOVF    r0x02, W
+0046 6EE5      01123         MOVWF   POSTDEC1
+0048 5000      01124         MOVF    r0x01, W
+004A 6EE5      01125         MOVWF   POSTDEC1
+004C EC00 F000 01126         CALL    _strlen
+0050 6E00      01127         MOVWF   r0x04
+0052 CFF3 F000 01128         MOVFF   PRODL, r0x05
+0056 0E03      01129         MOVLW   0x03
+0058 26E1      01130         ADDWF   FSR1L, F
+005A 2A00      01131         INCF    r0x04, F
+               01132 ;       .line   229; MainDemo.c BYTE max= 32-pos;
+005C 5000      01133         MOVF    r0x00, W
+005E 0820      01134         SUBLW   0x20
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0064 0E00      01135         MOVLW   LOW(_LCDText)
-0066 2600      01136         ADDWF   r0x00, F
-0068 0E00      01137         MOVLW   HIGH(_LCDText)
-006A 2200      01138         ADDWFC  r0x06, F
-006C 5000      01139         MOVF    r0x06, W
-006E 6E00      01140         MOVWF   r0x06
-0070 5000      01141         MOVF    r0x00, W
-0072 6E00      01142         MOVWF   r0x00
-0074 0E80      01143         MOVLW   0x80
-0076 6E00      01144         MOVWF   r0x07
-0078 5000      01145         MOVF    r0x05, W
-007A 5C00      01146         SUBWF   r0x04, W
-007C E300      01147         BNC     _00168_DS_
-007E C000 F000 01148         MOVFF   r0x05, r0x04
-0082 01149 _00168_DS_:
-0082 6A00      01150         CLRF    r0x05
-0084 5000      01151         MOVF    r0x05, W
-0086 6EE5      01152         MOVWF   POSTDEC1
-0088 5000      01153         MOVF    r0x04, W
-008A 6EE5      01154         MOVWF   POSTDEC1
-008C 5000      01155         MOVF    r0x03, W
-008E 6EE5      01156         MOVWF   POSTDEC1
-0090 5000      01157         MOVF    r0x02, W
-0092 6EE5      01158         MOVWF   POSTDEC1
-0094 5000      01159         MOVF    r0x01, W
-0096 6EE5      01160         MOVWF   POSTDEC1
-0098 5000      01161         MOVF    r0x07, W
-009A 6EE5      01162         MOVWF   POSTDEC1
-009C 5000      01163         MOVF    r0x06, W
-009E 6EE5      01164         MOVWF   POSTDEC1
-00A0 5000      01165         MOVF    r0x00, W
-00A2 6EE5      01166         MOVWF   POSTDEC1
-00A4 EC00 F000 01167         CALL    _strlcpy
-00A8 0E08      01168         MOVLW   0x08
-00AA 26E1      01169         ADDWF   FSR1L, F
-               01170 ;       .line   232; MainDemo.c LCDUpdate();
-00AC EC00 F000 01171         CALL    _LCDUpdate
-00B0 CFE4 F000 01172         MOVFF   PREINC1, r0x07
-00B4 CFE4 F000 01173         MOVFF   PREINC1, r0x06
-00B8 CFE4 F000 01174         MOVFF   PREINC1, r0x05
-00BC CFE4 F000 01175         MOVFF   PREINC1, r0x04
-00C0 CFE4 F000 01176         MOVFF   PREINC1, r0x03
-00C4 CFE4 F000 01177         MOVFF   PREINC1, r0x02
-00C8 CFE4 F000 01178         MOVFF   PREINC1, r0x01
-00CC CFE4 F000 01179         MOVFF   PREINC1, r0x00
-00D0 CFE4 FFD9 01180         MOVFF   PREINC1, FSR2L
-00D4 0012      01181         RETURN  
-               01182 
-               01183 ; ; Starting pCode block
-               01184 S_MainDemo__DisplayWORD code
-0000 01185 _DisplayWORD:
-               01186 ;       .line   205; MainDemo.c void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
-0000 CFD9 FFE5 01187         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 01188         MOVFF   FSR1L, FSR2L
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 23
+0060 6E00      01135         MOVWF   r0x05
+               01136 ;       .line   230; MainDemo.c strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+0062 6A00      01137         CLRF    r0x06
+0064 0E00      01138         MOVLW   LOW(_LCDText)
+0066 2600      01139         ADDWF   r0x00, F
+0068 0E00      01140         MOVLW   HIGH(_LCDText)
+006A 2200      01141         ADDWFC  r0x06, F
+006C 5000      01142         MOVF    r0x06, W
+006E 6E00      01143         MOVWF   r0x06
+0070 5000      01144         MOVF    r0x00, W
+0072 6E00      01145         MOVWF   r0x00
+0074 0E80      01146         MOVLW   0x80
+0076 6E00      01147         MOVWF   r0x07
+0078 5000      01148         MOVF    r0x05, W
+007A 5C00      01149         SUBWF   r0x04, W
+007C E300      01150         BNC     _00168_DS_
+007E C000 F000 01151         MOVFF   r0x05, r0x04
+0082 01152 _00168_DS_:
+0082 6A00      01153         CLRF    r0x05
+0084 5000      01154         MOVF    r0x05, W
+0086 6EE5      01155         MOVWF   POSTDEC1
+0088 5000      01156         MOVF    r0x04, W
+008A 6EE5      01157         MOVWF   POSTDEC1
+008C 5000      01158         MOVF    r0x03, W
+008E 6EE5      01159         MOVWF   POSTDEC1
+0090 5000      01160         MOVF    r0x02, W
+0092 6EE5      01161         MOVWF   POSTDEC1
+0094 5000      01162         MOVF    r0x01, W
+0096 6EE5      01163         MOVWF   POSTDEC1
+0098 5000      01164         MOVF    r0x07, W
+009A 6EE5      01165         MOVWF   POSTDEC1
+009C 5000      01166         MOVF    r0x06, W
+009E 6EE5      01167         MOVWF   POSTDEC1
+00A0 5000      01168         MOVF    r0x00, W
+00A2 6EE5      01169         MOVWF   POSTDEC1
+00A4 EC00 F000 01170         CALL    _strlcpy
+00A8 0E08      01171         MOVLW   0x08
+00AA 26E1      01172         ADDWF   FSR1L, F
+               01173 ;       .line   231; MainDemo.c LCDUpdate();
+00AC EC00 F000 01174         CALL    _LCDUpdate
+00B0 CFE4 F000 01175         MOVFF   PREINC1, r0x07
+00B4 CFE4 F000 01176         MOVFF   PREINC1, r0x06
+00B8 CFE4 F000 01177         MOVFF   PREINC1, r0x05
+00BC CFE4 F000 01178         MOVFF   PREINC1, r0x04
+00C0 CFE4 F000 01179         MOVFF   PREINC1, r0x03
+00C4 CFE4 F000 01180         MOVFF   PREINC1, r0x02
+00C8 CFE4 F000 01181         MOVFF   PREINC1, r0x01
+00CC CFE4 F000 01182         MOVFF   PREINC1, r0x00
+00D0 CFE4 FFD9 01183         MOVFF   PREINC1, FSR2L
+00D4 0012      01184         RETURN  
+               01185 
+               01186 ; ; Starting pCode block
+               01187 S_MainDemo__DisplayWORD code
+0000 01188 _DisplayWORD:
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0008 C000 FFE5 01189         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 01190         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 01191         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 01192         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 01193         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 01194         MOVFF   r0x05, POSTDEC1
-0020 0E02      01195         MOVLW   0x02
-0022 CFDB F000 01196         MOVFF   PLUSW2, r0x00
-0026 0E03      01197         MOVLW   0x03
-0028 CFDB F000 01198         MOVFF   PLUSW2, r0x01
-002C 0E04      01199         MOVLW   0x04
-002E CFDB F000 01200         MOVFF   PLUSW2, r0x02
-               01201 ;       .line   213; MainDemo.c ultoa(w, WDigit, radix);      
-0032 6A00      01202         CLRF    r0x03
-0034 6A00      01203         CLRF    r0x04
-0036 0E0A      01204         MOVLW   0x0a
-0038 6EE5      01205         MOVWF   POSTDEC1
-003A 0E00      01206         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
-003C 6EE5      01207         MOVWF   POSTDEC1
-003E 0E00      01208         MOVLW   LOW(_DisplayWORD_WDigit_1_1)
-0040 6EE5      01209         MOVWF   POSTDEC1
-0042 5000      01210         MOVF    r0x04, W
-0044 6EE5      01211         MOVWF   POSTDEC1
-0046 5000      01212         MOVF    r0x03, W
-0048 6EE5      01213         MOVWF   POSTDEC1
-004A 5000      01214         MOVF    r0x02, W
-004C 6EE5      01215         MOVWF   POSTDEC1
-004E 5000      01216         MOVF    r0x01, W
-0050 6EE5      01217         MOVWF   POSTDEC1
-0052 EC00 F000 01218         CALL    _ultoa
-0056 0E07      01219         MOVLW   0x07
-0058 26E1      01220         ADDWF   FSR1L, F
-               01221 ;       .line   214; MainDemo.c for(j = 0; j < strlen((char*)WDigit); j++)
-005A 6A00      01222         CLRF    r0x01
-005C 01223 _00149_DS_:
-005C 0E00      01224         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
-005E 6E00      01225         MOVWF   r0x03
-0060 0E00      01226         MOVLW   LOW(_DisplayWORD_WDigit_1_1)
-0062 6E00      01227         MOVWF   r0x02
-0064 0E80      01228         MOVLW   0x80
-0066 6E00      01229         MOVWF   r0x04
-0068 5000      01230         MOVF    r0x04, W
-006A 6EE5      01231         MOVWF   POSTDEC1
-006C 5000      01232         MOVF    r0x03, W
-006E 6EE5      01233         MOVWF   POSTDEC1
-0070 5000      01234         MOVF    r0x02, W
-0072 6EE5      01235         MOVWF   POSTDEC1
-0074 EC00 F000 01236         CALL    _strlen
-0078 6E00      01237         MOVWF   r0x02
-007A CFF3 F000 01238         MOVFF   PRODL, r0x03
-007E 0E03      01239         MOVLW   0x03
-0080 26E1      01240         ADDWF   FSR1L, F
-0082 C000 F000 01241         MOVFF   r0x01, r0x04
-0086 6A00      01242         CLRF    r0x05
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 24
+               01189 ;       .line   204; MainDemo.c void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+0000 CFD9 FFE5 01190         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 01191         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 01192         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 01193         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 01194         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 01195         MOVFF   r0x03, POSTDEC1
+0018 C000 FFE5 01196         MOVFF   r0x04, POSTDEC1
+001C C000 FFE5 01197         MOVFF   r0x05, POSTDEC1
+0020 0E02      01198         MOVLW   0x02
+0022 CFDB F000 01199         MOVFF   PLUSW2, r0x00
+0026 0E03      01200         MOVLW   0x03
+0028 CFDB F000 01201         MOVFF   PLUSW2, r0x01
+002C 0E04      01202         MOVLW   0x04
+002E CFDB F000 01203         MOVFF   PLUSW2, r0x02
+               01204 ;       .line   212; MainDemo.c ultoa(w, WDigit, radix);      
+0032 6A00      01205         CLRF    r0x03
+0034 6A00      01206         CLRF    r0x04
+0036 0E0A      01207         MOVLW   0x0a
+0038 6EE5      01208         MOVWF   POSTDEC1
+003A 0E00      01209         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
+003C 6EE5      01210         MOVWF   POSTDEC1
+003E 0E00      01211         MOVLW   LOW(_DisplayWORD_WDigit_1_1)
+0040 6EE5      01212         MOVWF   POSTDEC1
+0042 5000      01213         MOVF    r0x04, W
+0044 6EE5      01214         MOVWF   POSTDEC1
+0046 5000      01215         MOVF    r0x03, W
+0048 6EE5      01216         MOVWF   POSTDEC1
+004A 5000      01217         MOVF    r0x02, W
+004C 6EE5      01218         MOVWF   POSTDEC1
+004E 5000      01219         MOVF    r0x01, W
+0050 6EE5      01220         MOVWF   POSTDEC1
+0052 EC00 F000 01221         CALL    _ultoa
+0056 0E07      01222         MOVLW   0x07
+0058 26E1      01223         ADDWF   FSR1L, F
+               01224 ;       .line   213; MainDemo.c for(j = 0; j < strlen((char*)WDigit); j++)
+005A 6A00      01225         CLRF    r0x01
+005C 01226 _00149_DS_:
+005C 0E00      01227         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
+005E 6E00      01228         MOVWF   r0x03
+0060 0E00      01229         MOVLW   LOW(_DisplayWORD_WDigit_1_1)
+0062 6E00      01230         MOVWF   r0x02
+0064 0E80      01231         MOVLW   0x80
+0066 6E00      01232         MOVWF   r0x04
+0068 5000      01233         MOVF    r0x04, W
+006A 6EE5      01234         MOVWF   POSTDEC1
+006C 5000      01235         MOVF    r0x03, W
+006E 6EE5      01236         MOVWF   POSTDEC1
+0070 5000      01237         MOVF    r0x02, W
+0072 6EE5      01238         MOVWF   POSTDEC1
+0074 EC00 F000 01239         CALL    _strlen
+0078 6E00      01240         MOVWF   r0x02
+007A CFF3 F000 01241         MOVFF   PRODL, r0x03
+007E 0E03      01242         MOVLW   0x03
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0088 5000      01243         MOVF    r0x05, W
-008A 0F80      01244         ADDLW   0x80
-008C 6EF3      01245         MOVWF   PRODL
-008E 5000      01246         MOVF    r0x03, W
-0090 0F80      01247         ADDLW   0x80
-0092 5CF3      01248         SUBWF   PRODL, W
-0094 E100      01249         BNZ     _00159_DS_
-0096 5000      01250         MOVF    r0x02, W
-0098 5C00      01251         SUBWF   r0x04, W
-009A 01252 _00159_DS_:
-009A E200      01253         BC      _00152_DS_
-               01254 ;       .line   216; MainDemo.c LCDText[LCDPos++] = WDigit[j];
-009C C000 F000 01255         MOVFF   r0x00, r0x02
-00A0 2A00      01256         INCF    r0x00, F
-00A2 6A00      01257         CLRF    r0x03
-00A4 0E00      01258         MOVLW   LOW(_LCDText)
-00A6 2600      01259         ADDWF   r0x02, F
-00A8 0E00      01260         MOVLW   HIGH(_LCDText)
-00AA 2200      01261         ADDWFC  r0x03, F
-00AC 0E00      01262         MOVLW   LOW(_DisplayWORD_WDigit_1_1)
-00AE 2400      01263         ADDWF   r0x01, W
-00B0 6E00      01264         MOVWF   r0x04
-00B2 6A00      01265         CLRF    r0x05
-00B4 0E00      01266         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
-00B6 2200      01267         ADDWFC  r0x05, F
-00B8 C000 FFE9 01268         MOVFF   r0x04, FSR0L
-00BC C000 FFEA 01269         MOVFF   r0x05, FSR0H
-00C0 CFEF F000 01270         MOVFF   INDF0, r0x04
-00C4 C000 FFE9 01271         MOVFF   r0x02, FSR0L
-00C8 C000 FFEA 01272         MOVFF   r0x03, FSR0H
-00CC C000 FFEF 01273         MOVFF   r0x04, INDF0
-               01274 ;       .line   214; MainDemo.c for(j = 0; j < strlen((char*)WDigit); j++)
-00D0 2A00      01275         INCF    r0x01, F
-00D2 D000      01276         BRA     _00149_DS_
-00D4 01277 _00152_DS_:
-               01278 ;       .line   218; MainDemo.c if(LCDPos < 32u)
-00D4 C000 F000 01279         MOVFF   r0x00, r0x01
-00D8 6A00      01280         CLRF    r0x02
-00DA 0E00      01281         MOVLW   0x00
-00DC 5C00      01282         SUBWF   r0x02, W
-00DE E100      01283         BNZ     _00160_DS_
-00E0 0E20      01284         MOVLW   0x20
-00E2 5C00      01285         SUBWF   r0x01, W
-00E4 01286 _00160_DS_:
-00E4 E200      01287         BC      _00148_DS_
-               01288 ;       .line   219; MainDemo.c LCDText[LCDPos] = 0;
-00E6 6A00      01289         CLRF    r0x01
-00E8 0E00      01290         MOVLW   LOW(_LCDText)
-00EA 2600      01291         ADDWF   r0x00, F
-00EC 0E00      01292         MOVLW   HIGH(_LCDText)
-00EE 2200      01293         ADDWFC  r0x01, F
-00F0 C000 FFE9 01294         MOVFF   r0x00, FSR0L
-00F4 C000 FFEA 01295         MOVFF   r0x01, FSR0H
-00F8 0E00      01296         MOVLW   0x00
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 25
+0080 26E1      01243         ADDWF   FSR1L, F
+0082 C000 F000 01244         MOVFF   r0x01, r0x04
+0086 6A00      01245         CLRF    r0x05
+0088 5000      01246         MOVF    r0x05, W
+008A 0F80      01247         ADDLW   0x80
+008C 6EF3      01248         MOVWF   PRODL
+008E 5000      01249         MOVF    r0x03, W
+0090 0F80      01250         ADDLW   0x80
+0092 5CF3      01251         SUBWF   PRODL, W
+0094 E100      01252         BNZ     _00159_DS_
+0096 5000      01253         MOVF    r0x02, W
+0098 5C00      01254         SUBWF   r0x04, W
+009A 01255 _00159_DS_:
+009A E200      01256         BC      _00152_DS_
+               01257 ;       .line   215; MainDemo.c LCDText[LCDPos++] = WDigit[j];
+009C C000 F000 01258         MOVFF   r0x00, r0x02
+00A0 2A00      01259         INCF    r0x00, F
+00A2 6A00      01260         CLRF    r0x03
+00A4 0E00      01261         MOVLW   LOW(_LCDText)
+00A6 2600      01262         ADDWF   r0x02, F
+00A8 0E00      01263         MOVLW   HIGH(_LCDText)
+00AA 2200      01264         ADDWFC  r0x03, F
+00AC 0E00      01265         MOVLW   LOW(_DisplayWORD_WDigit_1_1)
+00AE 2400      01266         ADDWF   r0x01, W
+00B0 6E00      01267         MOVWF   r0x04
+00B2 6A00      01268         CLRF    r0x05
+00B4 0E00      01269         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
+00B6 2200      01270         ADDWFC  r0x05, F
+00B8 C000 FFE9 01271         MOVFF   r0x04, FSR0L
+00BC C000 FFEA 01272         MOVFF   r0x05, FSR0H
+00C0 CFEF F000 01273         MOVFF   INDF0, r0x04
+00C4 C000 FFE9 01274         MOVFF   r0x02, FSR0L
+00C8 C000 FFEA 01275         MOVFF   r0x03, FSR0H
+00CC C000 FFEF 01276         MOVFF   r0x04, INDF0
+               01277 ;       .line   213; MainDemo.c for(j = 0; j < strlen((char*)WDigit); j++)
+00D0 2A00      01278         INCF    r0x01, F
+00D2 D000      01279         BRA     _00149_DS_
+00D4 01280 _00152_DS_:
+               01281 ;       .line   217; MainDemo.c if(LCDPos < 32u)
+00D4 C000 F000 01282         MOVFF   r0x00, r0x01
+00D8 6A00      01283         CLRF    r0x02
+00DA 0E00      01284         MOVLW   0x00
+00DC 5C00      01285         SUBWF   r0x02, W
+00DE E100      01286         BNZ     _00160_DS_
+00E0 0E20      01287         MOVLW   0x20
+00E2 5C00      01288         SUBWF   r0x01, W
+00E4 01289 _00160_DS_:
+00E4 E200      01290         BC      _00148_DS_
+               01291 ;       .line   218; MainDemo.c LCDText[LCDPos] = 0;
+00E6 6A00      01292         CLRF    r0x01
+00E8 0E00      01293         MOVLW   LOW(_LCDText)
+00EA 2600      01294         ADDWF   r0x00, F
+00EC 0E00      01295         MOVLW   HIGH(_LCDText)
+00EE 2200      01296         ADDWFC  r0x01, F
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-00FA 6EEF      01297         MOVWF   INDF0
-00FC 01298 _00148_DS_:
-               01299 ;       .line   220; MainDemo.c LCDUpdate();
-00FC EC00 F000 01300         CALL    _LCDUpdate
-0100 CFE4 F000 01301         MOVFF   PREINC1, r0x05
-0104 CFE4 F000 01302         MOVFF   PREINC1, r0x04
-0108 CFE4 F000 01303         MOVFF   PREINC1, r0x03
-010C CFE4 F000 01304         MOVFF   PREINC1, r0x02
-0110 CFE4 F000 01305         MOVFF   PREINC1, r0x01
-0114 CFE4 F000 01306         MOVFF   PREINC1, r0x00
-0118 CFE4 FFD9 01307         MOVFF   PREINC1, FSR2L
-011C 0012      01308         RETURN  
-               01309 
-               01310 ; ; Starting pCode block
-               01311 S_MainDemo__HighISR     code
-0000 01312 _HighISR:
-               01313 ;       .line   75; MainDemo.c  void HighISR(void) __interrupt(1) //ML for sdcc        
-0000 CFE8 FFE5 01314         MOVFF   WREG, POSTDEC1
-0004 CFD8 FFE5 01315         MOVFF   STATUS, POSTDEC1
-0008 CFE0 FFE5 01316         MOVFF   BSR, POSTDEC1
-000C CFF3 FFE5 01317         MOVFF   PRODL, POSTDEC1
-0010 CFF4 FFE5 01318         MOVFF   PRODH, POSTDEC1
-0014 CFE9 FFE5 01319         MOVFF   FSR0L, POSTDEC1
-0018 CFEA FFE5 01320         MOVFF   FSR0H, POSTDEC1
-001C CFFA FFE5 01321         MOVFF   PCLATH, POSTDEC1
-0020 CFFB FFE5 01322         MOVFF   PCLATU, POSTDEC1
-0024 CFD9 FFE5 01323         MOVFF   FSR2L, POSTDEC1
-0028 CFE1 FFD9 01324         MOVFF   FSR1L, FSR2L
-               01325 ;       .line   82; MainDemo.c  }
-002C CFE4 FFD9 01326         MOVFF   PREINC1, FSR2L
-0030 CFE4 FFFB 01327         MOVFF   PREINC1, PCLATU
-0034 CFE4 FFFA 01328         MOVFF   PREINC1, PCLATH
-0038 CFE4 FFEA 01329         MOVFF   PREINC1, FSR0H
-003C CFE4 FFE9 01330         MOVFF   PREINC1, FSR0L
-0040 CFE4 FFF4 01331         MOVFF   PREINC1, PRODH
-0044 CFE4 FFF3 01332         MOVFF   PREINC1, PRODL
-0048 CFE4 FFE0 01333         MOVFF   PREINC1, BSR
-004C CFE4 FFD8 01334         MOVFF   PREINC1, STATUS
-0050 CFE4 FFE8 01335         MOVFF   PREINC1, WREG
-0054 0010      01336         RETFIE  
-               01337 
-               01338 ; ; Starting pCode block
-               01339 S_MainDemo__LowISR      code
-0000 01340 _LowISR:
-               01341 ;       .line   55; MainDemo.c  void LowISR(void) __interrupt (2) //ML for sdcc
-0000 CFE8 FFE5 01342         MOVFF   WREG, POSTDEC1
-0004 CFD8 FFE5 01343         MOVFF   STATUS, POSTDEC1
-0008 CFE0 FFE5 01344         MOVFF   BSR, POSTDEC1
-000C CFF3 FFE5 01345         MOVFF   PRODL, POSTDEC1
-0010 CFF4 FFE5 01346         MOVFF   PRODH, POSTDEC1
-0014 CFE9 FFE5 01347         MOVFF   FSR0L, POSTDEC1
-0018 CFEA FFE5 01348         MOVFF   FSR0H, POSTDEC1
-001C CFFA FFE5 01349         MOVFF   PCLATH, POSTDEC1
-0020 CFFB FFE5 01350         MOVFF   PCLATU, POSTDEC1
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 26
+00F0 C000 FFE9 01297         MOVFF   r0x00, FSR0L
+00F4 C000 FFEA 01298         MOVFF   r0x01, FSR0H
+00F8 0E00      01299         MOVLW   0x00
+00FA 6EEF      01300         MOVWF   INDF0
+00FC 01301 _00148_DS_:
+               01302 ;       .line   219; MainDemo.c LCDUpdate();
+00FC EC00 F000 01303         CALL    _LCDUpdate
+0100 CFE4 F000 01304         MOVFF   PREINC1, r0x05
+0104 CFE4 F000 01305         MOVFF   PREINC1, r0x04
+0108 CFE4 F000 01306         MOVFF   PREINC1, r0x03
+010C CFE4 F000 01307         MOVFF   PREINC1, r0x02
+0110 CFE4 F000 01308         MOVFF   PREINC1, r0x01
+0114 CFE4 F000 01309         MOVFF   PREINC1, r0x00
+0118 CFE4 FFD9 01310         MOVFF   PREINC1, FSR2L
+011C 0012      01311         RETURN  
+               01312 
+               01313 ; ; Starting pCode block
+               01314 S_MainDemo__HighISR     code
+0000 01315 _HighISR:
+               01316 ;       .line   74; MainDemo.c  void HighISR(void) __interrupt(1) //ML for sdcc        
+0000 CFE8 FFE5 01317         MOVFF   WREG, POSTDEC1
+0004 CFD8 FFE5 01318         MOVFF   STATUS, POSTDEC1
+0008 CFE0 FFE5 01319         MOVFF   BSR, POSTDEC1
+000C CFF3 FFE5 01320         MOVFF   PRODL, POSTDEC1
+0010 CFF4 FFE5 01321         MOVFF   PRODH, POSTDEC1
+0014 CFE9 FFE5 01322         MOVFF   FSR0L, POSTDEC1
+0018 CFEA FFE5 01323         MOVFF   FSR0H, POSTDEC1
+001C CFFA FFE5 01324         MOVFF   PCLATH, POSTDEC1
+0020 CFFB FFE5 01325         MOVFF   PCLATU, POSTDEC1
+0024 CFD9 FFE5 01326         MOVFF   FSR2L, POSTDEC1
+0028 CFE1 FFD9 01327         MOVFF   FSR1L, FSR2L
+               01328 ;       .line   81; MainDemo.c  }
+002C CFE4 FFD9 01329         MOVFF   PREINC1, FSR2L
+0030 CFE4 FFFB 01330         MOVFF   PREINC1, PCLATU
+0034 CFE4 FFFA 01331         MOVFF   PREINC1, PCLATH
+0038 CFE4 FFEA 01332         MOVFF   PREINC1, FSR0H
+003C CFE4 FFE9 01333         MOVFF   PREINC1, FSR0L
+0040 CFE4 FFF4 01334         MOVFF   PREINC1, PRODH
+0044 CFE4 FFF3 01335         MOVFF   PREINC1, PRODL
+0048 CFE4 FFE0 01336         MOVFF   PREINC1, BSR
+004C CFE4 FFD8 01337         MOVFF   PREINC1, STATUS
+0050 CFE4 FFE8 01338         MOVFF   PREINC1, WREG
+0054 0010      01339         RETFIE  
+               01340 
+               01341 ; ; Starting pCode block
+               01342 S_MainDemo__LowISR      code
+0000 01343 _LowISR:
+               01344 ;       .line   54; MainDemo.c  void LowISR(void) __interrupt (2) //ML for sdcc
+0000 CFE8 FFE5 01345         MOVFF   WREG, POSTDEC1
+0004 CFD8 FFE5 01346         MOVFF   STATUS, POSTDEC1
+0008 CFE0 FFE5 01347         MOVFF   BSR, POSTDEC1
+000C CFF3 FFE5 01348         MOVFF   PRODL, POSTDEC1
+0010 CFF4 FFE5 01349         MOVFF   PRODH, POSTDEC1
+0014 CFE9 FFE5 01350         MOVFF   FSR0L, POSTDEC1
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0024 CFD9 FFE5 01351         MOVFF   FSR2L, POSTDEC1
-0028 CFE1 FFD9 01352         MOVFF   FSR1L, FSR2L
-               01353 ;       .line   61; MainDemo.c  TickUpdate();
-002C EC00 F000 01354         CALL    _TickUpdate
-0030 CFE4 FFD9 01355         MOVFF   PREINC1, FSR2L
-0034 CFE4 FFFB 01356         MOVFF   PREINC1, PCLATU
-0038 CFE4 FFFA 01357         MOVFF   PREINC1, PCLATH
-003C CFE4 FFEA 01358         MOVFF   PREINC1, FSR0H
-0040 CFE4 FFE9 01359         MOVFF   PREINC1, FSR0L
-0044 CFE4 FFF4 01360         MOVFF   PREINC1, PRODH
-0048 CFE4 FFF3 01361         MOVFF   PREINC1, PRODL
-004C CFE4 FFE0 01362         MOVFF   PREINC1, BSR
-0050 CFE4 FFD8 01363         MOVFF   PREINC1, STATUS
-0054 CFE4 FFE8 01364         MOVFF   PREINC1, WREG
-0058 0010      01365         RETFIE  
-               01366 
-               01367 ; ; Starting pCode block
-005A 01368 __str_0:
-005A 6C4F 6D69 01369         DB      0x4f, 0x6c, 0x69, 0x6d, 0x65, 0x78, 0x00
+0018 CFEA FFE5 01351         MOVFF   FSR0H, POSTDEC1
+001C CFFA FFE5 01352         MOVFF   PCLATH, POSTDEC1
+0020 CFFB FFE5 01353         MOVFF   PCLATU, POSTDEC1
+0024 CFD9 FFE5 01354         MOVFF   FSR2L, POSTDEC1
+0028 CFE1 FFD9 01355         MOVFF   FSR1L, FSR2L
+               01356 ;       .line   60; MainDemo.c  TickUpdate();
+002C EC00 F000 01357         CALL    _TickUpdate
+0030 CFE4 FFD9 01358         MOVFF   PREINC1, FSR2L
+0034 CFE4 FFFB 01359         MOVFF   PREINC1, PCLATU
+0038 CFE4 FFFA 01360         MOVFF   PREINC1, PCLATH
+003C CFE4 FFEA 01361         MOVFF   PREINC1, FSR0H
+0040 CFE4 FFE9 01362         MOVFF   PREINC1, FSR0L
+0044 CFE4 FFF4 01363         MOVFF   PREINC1, PRODH
+0048 CFE4 FFF3 01364         MOVFF   PREINC1, PRODL
+004C CFE4 FFE0 01365         MOVFF   PREINC1, BSR
+0050 CFE4 FFD8 01366         MOVFF   PREINC1, STATUS
+0054 CFE4 FFE8 01367         MOVFF   PREINC1, WREG
+0058 0010      01368         RETFIE  
+               01369 
+               01370 ; ; Starting pCode block
+005A 01371 __str_0:
+005A 6C4F 6D69 01372         DB      0x4f, 0x6c, 0x69, 0x6d, 0x65, 0x78, 0x00
      7865 0000 
-               01370 
-               01371 
-               01372 ; Statistics:
-               01373 ; code size:     1812 (0x0714) bytes ( 1.38%)
-               01374 ;                 906 (0x038a) words
-               01375 ; udata size:      72 (0x0048) bytes ( 1.88%)
-               01376 ; access size:     14 (0x000e) bytes
-               01377 
-               01378 
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 27
+               01373 
+               01374 
+               01375 ; Statistics:
+               01376 ; code size:     1816 (0x0718) bytes ( 1.39%)
+               01377 ;                 908 (0x038c) words
+               01378 ; udata size:      72 (0x0048) bytes ( 1.88%)
+               01379 ; access size:     14 (0x000e) bytes
+               01380 
+               01381 
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 27
 
 
 SYMBOL TABLE
@@ -1554,11 +1557,11 @@ PRODH                             00000FF4
 PRODL                             00000FF3
 STATUS                            00000FD8
 WREG                              00000FE8
-_00115_DS_                        00000026
-_00125_DS_                        000000DC
-_00129_DS_                        00000068
-_00139_DS_                        000000B0
-_00142_DS_                        00000116
+_00115_DS_                        0000002A
+_00125_DS_                        000000E0
+_00129_DS_                        0000006C
+_00139_DS_                        000000B4
+_00142_DS_                        0000011A
 _00148_DS_                        000000FC
 _00149_DS_                        0000005C
 _00152_DS_                        000000D4
@@ -1592,7 +1595,7 @@ _AppConfig                        00000000
 _BAUDCON                          00000000
 _BAUDCON1                         00000000
 _BAUDCON1bits                     00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 28
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1652,7 +1655,7 @@ _DDRFbits                         00000000
 _DDRG                             00000000
 _DDRGbits                         00000000
 _DDRH                             00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 29
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1712,7 +1715,7 @@ _EECON1                           00000000
 _EECON1bits                       00000000
 _EECON2                           00000000
 _EFLOCON                          00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 30
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1772,7 +1775,7 @@ _ETXND                            00000000
 _ETXNDH                           00000000
 _ETXNDL                           00000000
 _ETXST                            00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 31
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1832,7 +1835,7 @@ _LATJbits                         00000000
 _LCDInit                          00000000
 _LCDTask                          00000000
 _LCDTaskInit                      00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 32
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1892,7 +1895,7 @@ _PCLATU                           00000000
 _PIE1                             00000000
 _PIE1bits                         00000000
 _PIE2                             00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 33
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1952,7 +1955,7 @@ _RCREG2                           00000000
 _RCSTA                            00000000
 _RCSTA1                           00000000
 _RCSTA1bits                       00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 34
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2012,7 +2015,7 @@ _TBLPTR                           00000000
 _TBLPTRH                          00000000
 _TBLPTRL                          00000000
 _TBLPTRU                          00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 35
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2060,6 +2063,7 @@ _TXSTAbits                        00000000
 _TickGetDiv256                    00000000
 _TickInit                         00000000
 _TickUpdate                       00000000
+_UARTConfig                       00000000
 _UDPRxCount                       00000000
 _UDPSocketInfo                    00000000
 _UDPTxCount                       00000000
@@ -2071,13 +2075,13 @@ __str_0                           0000005A
 _activeUDPSocket                  00000000
 _main                             00000000
 _main_dwLastIP_1_1                00000004
-_main_t_1_1                       00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  18:55:43         PAGE 36
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:29:34         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
+_main_t_1_1                       00000000
 _message                          00000000
 _stdin                            00000000
 _stdout                           00000000
