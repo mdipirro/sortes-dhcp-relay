@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  1
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -18,14 +18,14 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00012 ;--------------------------------------------------------
                00013 ; public variables in this module
                00014 ;--------------------------------------------------------
-               00015         global _StackInit
-               00016         global _StackTask
-               00017         global _StackApplications
-               00018         global _remoteNode
-               00019 
-               00020 ;--------------------------------------------------------
-               00021 ; extern variables in this module
-               00022 ;--------------------------------------------------------
+               00015         global _UARTConfig
+               00016         global _UARTPutc
+               00017         global _UARTPuts
+               00018 
+               00019 ;--------------------------------------------------------
+               00020 ; extern variables in this module
+               00021 ;--------------------------------------------------------
+               00022         extern __gptrget1
                00023         extern _EBSTCONbits
                00024         extern _MISTATbits
                00025         extern _EFLOCONbits
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _CCP4CONbits
                00053         extern _T4CONbits
                00054         extern _ECCP1DELbits
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  2
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _PIR3bits
                00107         extern _IPR3bits
                00108         extern _EECON1bits
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  3
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _EBSTSD
                00161         extern _EBSTCON
                00162         extern _EBSTCS
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  4
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EWOLIE
                00215         extern _EWOLIR
                00216         extern _ERXFCON
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  5
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _RCREG2
                00269         extern _SPBRG2
                00270         extern _CCP5CON
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  6
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _DDRF
                00323         extern _TRISF
                00324         extern _DDRG
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  7
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _ADCON1
                00377         extern _ADCON0
                00378         extern _ADRES
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  8
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INTCON
                00431         extern _PROD
                00432         extern _PRODL
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE  9
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -499,617 +499,152 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00445         extern _TOSL
                00446         extern _TOSH
                00447         extern _TOSU
-               00448         extern _srand
-               00449         extern _GenerateRandomDWORD
-               00450         extern _MACInit
-               00451         extern _MACIsLinked
-               00452         extern _MACGetHeader
-               00453         extern _IPGetHeader
-               00454         extern _ARPInit
-               00455         extern _ARPProcess
-               00456         extern _UDPInit
-               00457         extern _UDPTask
-               00458         extern _UDPProcess
-               00459         extern _UDPDiscard
-               00460         extern _DHCPInit
-               00461         extern _DHCPTask
-               00462         extern _DHCPDisable
-               00463         extern _DHCPIsBound
-               00464         extern _ICMPProcess
-               00465 ;--------------------------------------------------------
-               00466 ;       Equates to used internal registers
-               00467 ;--------------------------------------------------------
-  00000FD8     00468 STATUS  equ     0xfd8
-  00000FE9     00469 FSR0L   equ     0xfe9
-  00000FE1     00470 FSR1L   equ     0xfe1
-  00000FD9     00471 FSR2L   equ     0xfd9
-  00000FE5     00472 POSTDEC1        equ     0xfe5
-  00000FE4     00473 PREINC1 equ     0xfe4
-  00000FF3     00474 PRODL   equ     0xff3
-  00000FF4     00475 PRODH   equ     0xff4
-               00476 
-               00477 
-               00478         idata
-               00479 _StackTask_bLastLinkState_2_2   db      0x00
-               00480 
-               00481 
-               00482 ; Internal registers
-               00483 .registers      udata_ovr       0x0000
-               00484 r0x00   res     1
-               00485 r0x01   res     1
-               00486 r0x02   res     1
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 10
+               00448 ;--------------------------------------------------------
+               00449 ;       Equates to used internal registers
+               00450 ;--------------------------------------------------------
+  00000FD8     00451 STATUS  equ     0xfd8
+  00000FE9     00452 FSR0L   equ     0xfe9
+  00000FE1     00453 FSR1L   equ     0xfe1
+  00000FD9     00454 FSR2L   equ     0xfd9
+  00000FE5     00455 POSTDEC1        equ     0xfe5
+  00000FE4     00456 PREINC1 equ     0xfe4
+  00000FDB     00457 PLUSW2  equ     0xfdb
+  00000FF3     00458 PRODL   equ     0xff3
+               00459 
+               00460 
+               00461 ; Internal registers
+               00462 .registers      udata_ovr       0x0000
+               00463 r0x00   res     1
+               00464 r0x01   res     1
+               00465 r0x02   res     1
+               00466 r0x03   res     1
+               00467 
+               00468 ;--------------------------------------------------------
+               00469 ; global & static initialisations
+               00470 ;--------------------------------------------------------
+               00471 ; I code from now on!
+               00472 ; ; Starting pCode block
+               00473 S_myUART__UARTPuts      code
+0000 00474 _UARTPuts:
+               00475 ;       .line   39; TCPIP_Stack/myUART.c        void UARTPuts(char *udata)
+0000 CFD9 FFE5 00476         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00477         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00478         MOVFF   r0x00, POSTDEC1
+000C C000 FFE5 00479         MOVFF   r0x01, POSTDEC1
+0010 C000 FFE5 00480         MOVFF   r0x02, POSTDEC1
+0014 C000 FFE5 00481         MOVFF   r0x03, POSTDEC1
+0018 0E02      00482         MOVLW   0x02
+001A CFDB F000 00483         MOVFF   PLUSW2, r0x00
+001E 0E03      00484         MOVLW   0x03
+0020 CFDB F000 00485         MOVFF   PLUSW2, r0x01
+0024 0E04      00486         MOVLW   0x04
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00487 r0x03   res     1
-               00488 r0x04   res     1
-               00489 r0x05   res     1
-               00490 r0x06   res     1
-               00491 r0x07   res     1
-               00492 r0x08   res     1
-               00493 r0x09   res     1
-               00494 r0x0a   res     1
-               00495 r0x0b   res     1
-               00496 r0x0c   res     1
-               00497 r0x0d   res     1
-               00498 
-               00499 udata_StackTsk_0        udata
-               00500 _smStack        res     1
-               00501 
-               00502 udata_StackTsk_1        udata
-               00503 _StackTask_tempLocalIP_1_1      res     4
-               00504 
-               00505 udata_StackTsk_2        udata
-               00506 _remoteNode     res     10
-               00507 
-               00508 udata_StackTsk_3        udata
-               00509 _StackTask_cFrameType_1_1       res     1
-               00510 
-               00511 udata_StackTsk_4        udata
-               00512 _StackTask_cIPFrameType_1_1     res     1
-               00513 
-               00514 udata_StackTsk_5        udata
-               00515 _StackTask_dataCount_1_1        res     2
-               00516 
-               00517 ;--------------------------------------------------------
-               00518 ; global & static initialisations
-               00519 ;--------------------------------------------------------
-               00520 ; I code from now on!
-               00521 ; ; Starting pCode block
-               00522 S_StackTsk__StackApplications   code
-0000 00523 _StackApplications:
-               00524 ;       .line   378; TCPIP_Stack/StackTsk.c     void StackApplications(void)
-0000 CFD9 FFE5 00525         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00526         MOVFF   FSR1L, FSR2L
-               00527 ;       .line   435; TCPIP_Stack/StackTsk.c     }
-0008 CFE4 FFD9 00528         MOVFF   PREINC1, FSR2L
-000C 0012      00529         RETURN  
-               00530 
-               00531 ; ; Starting pCode block
-               00532 S_StackTsk__StackTask   code
-0000 00533 _StackTask:
-               00534 ;       .line   209; TCPIP_Stack/StackTsk.c     void StackTask(void)
-0000 CFD9 FFE5 00535         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00536         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00537         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00538         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00539         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00540         MOVFF   r0x03, POSTDEC1
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 11
+0026 CFDB F000 00487         MOVFF   PLUSW2, r0x02
+002A 00488 _00118_DS_:
+               00489 ;       .line   43; TCPIP_Stack/myUART.c        UARTPutc(*udata);
+002A C000 FFE9 00490         MOVFF   r0x00, FSR0L
+002E C000 FFF3 00491         MOVFF   r0x01, PRODL
+0032 5000      00492         MOVF    r0x02, W
+0034 EC00 F000 00493         CALL    __gptrget1
+0038 6E00      00494         MOVWF   r0x03
+003A 5000      00495         MOVF    r0x03, W
+003C 6EE5      00496         MOVWF   POSTDEC1
+003E EC00 F000 00497         CALL    _UARTPutc
+0042 2AE1      00498         INCF    FSR1L, F
+               00499 ;       .line   44; TCPIP_Stack/myUART.c        } while( *udata++ );
+0044 C000 FFE9 00500         MOVFF   r0x00, FSR0L
+0048 C000 FFF3 00501         MOVFF   r0x01, PRODL
+004C 5000      00502         MOVF    r0x02, W
+004E EC00 F000 00503         CALL    __gptrget1
+0052 6E00      00504         MOVWF   r0x03
+0054 2A00      00505         INCF    r0x00, F
+0056 B0D8      00506         BTFSC   STATUS, 0
+0058 2A00      00507         INCF    r0x01, F
+005A B0D8      00508         BTFSC   STATUS, 0
+005C 2A00      00509         INCF    r0x02, F
+005E 5000      00510         MOVF    r0x03, W
+0060 E100      00511         BNZ     _00118_DS_
+0062 CFE4 F000 00512         MOVFF   PREINC1, r0x03
+0066 CFE4 F000 00513         MOVFF   PREINC1, r0x02
+006A CFE4 F000 00514         MOVFF   PREINC1, r0x01
+006E CFE4 F000 00515         MOVFF   PREINC1, r0x00
+0072 CFE4 FFD9 00516         MOVFF   PREINC1, FSR2L
+0076 0012      00517         RETURN  
+               00518 
+               00519 ; ; Starting pCode block
+               00520 S_myUART__UARTPutc      code
+0000 00521 _UARTPutc:
+               00522 ;       .line   31; TCPIP_Stack/myUART.c        void UARTPutc(char c)
+0000 CFD9 FFE5 00523         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00524         MOVFF   FSR1L, FSR2L
+0008 C000 FFE5 00525         MOVFF   r0x00, POSTDEC1
+000C 0E02      00526         MOVLW   0x02
+000E CFDB F000 00527         MOVFF   PLUSW2, r0x00
+0012 00528 _00110_DS_:
+               00529 ;       .line   34; TCPIP_Stack/myUART.c        while (TXSTA1bits.TRMT == 0) {};
+0012 A200      00530         BTFSS   _TXSTA1bits, 1
+0014 D000      00531         BRA     _00110_DS_
+               00532 ;       .line   35; TCPIP_Stack/myUART.c        TXREG1 = c; // send the new byte
+0016 C000 F000 00533         MOVFF   r0x00, _TXREG1
+001A CFE4 F000 00534         MOVFF   PREINC1, r0x00
+001E CFE4 FFD9 00535         MOVFF   PREINC1, FSR2L
+0022 0012      00536         RETURN  
+               00537 
+               00538 ; ; Starting pCode block
+               00539 S_myUART__UARTConfig    code
+0000 00540 _UARTConfig:
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-0018 C000 FFE5 00541         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 00542         MOVFF   r0x05, POSTDEC1
-0020 C000 FFE5 00543         MOVFF   r0x06, POSTDEC1
-0024 C000 FFE5 00544         MOVFF   r0x07, POSTDEC1
-0028 C000 FFE5 00545         MOVFF   r0x08, POSTDEC1
-002C C000 FFE5 00546         MOVFF   r0x09, POSTDEC1
-0030 C000 FFE5 00547         MOVFF   r0x0a, POSTDEC1
-0034 C000 FFE5 00548         MOVFF   r0x0b, POSTDEC1
-0038 C000 FFE5 00549         MOVFF   r0x0c, POSTDEC1
-003C C000 FFE5 00550         MOVFF   r0x0d, POSTDEC1
-0040 0000      00551         BANKSEL (_AppConfig + 44)
-               00552 ;       .line   229; TCPIP_Stack/StackTsk.c     if(AppConfig.Flags.bIsDHCPEnabled)
-0042 AD00      00553         BTFSS   (_AppConfig + 44), 6, B
-0044 D000      00554         BRA     _00119_DS_
-               00555 ;       .line   234; TCPIP_Stack/StackTsk.c     bCurrentLinkState = MACIsLinked();
-0046 EC00 F000 00556         CALL    _MACIsLinked
-004A 6E00      00557         MOVWF   r0x00
-               00558 ;       .line   235; TCPIP_Stack/StackTsk.c     if(bCurrentLinkState != bLastLinkState)
-004C 5000      00559         MOVF    r0x00, W
-004E 0000      00560         BANKSEL _StackTask_bLastLinkState_2_2
-0050 1900      00561         XORWF   _StackTask_bLastLinkState_2_2, W, B
-0052 E100      00562         BNZ     _00157_DS_
-0054 D000      00563         BRA     _00115_DS_
-0056 00564 _00157_DS_:
-               00565 ;       .line   237; TCPIP_Stack/StackTsk.c     bLastLinkState = bCurrentLinkState;
-0056 C000 F000 00566         MOVFF   r0x00, _StackTask_bLastLinkState_2_2
-               00567 ;       .line   238; TCPIP_Stack/StackTsk.c     if(!bCurrentLinkState) //we lost the MAC link
-005A 5000      00568         MOVF    r0x00, W
-005C E100      00569         BNZ     _00115_DS_
-               00570 ;       .line   240; TCPIP_Stack/StackTsk.c     AppConfig.MyIPAddr.Val = AppConfig.DefaultIPAddr.Val;
-005E C000 F000 00571         MOVFF   (_AppConfig + 20), r0x00
-0062 C000 F000 00572         MOVFF   (_AppConfig + 21), r0x01
-0066 C000 F000 00573         MOVFF   (_AppConfig + 22), r0x02
-006A C000 F000 00574         MOVFF   (_AppConfig + 23), r0x03
-006E 5000      00575         MOVF    r0x00, W
-0070 0000      00576         BANKSEL _AppConfig
-0072 6F00      00577         MOVWF   _AppConfig, B
-0074 5000      00578         MOVF    r0x01, W
-0076 0000      00579         BANKSEL (_AppConfig + 1)
-0078 6F00      00580         MOVWF   (_AppConfig + 1), B
-007A 5000      00581         MOVF    r0x02, W
-007C 0000      00582         BANKSEL (_AppConfig + 2)
-007E 6F00      00583         MOVWF   (_AppConfig + 2), B
-0080 5000      00584         MOVF    r0x03, W
-0082 0000      00585         BANKSEL (_AppConfig + 3)
-0084 6F00      00586         MOVWF   (_AppConfig + 3), B
-               00587 ;       .line   241; TCPIP_Stack/StackTsk.c     AppConfig.MyMask.Val = AppConfig.DefaultMask.Val;
-0086 C000 F000 00588         MOVFF   (_AppConfig + 24), r0x00
-008A C000 F000 00589         MOVFF   (_AppConfig + 25), r0x01
-008E C000 F000 00590         MOVFF   (_AppConfig + 26), r0x02
-0092 C000 F000 00591         MOVFF   (_AppConfig + 27), r0x03
-0096 5000      00592         MOVF    r0x00, W
-0098 0000      00593         BANKSEL (_AppConfig + 4)
-009A 6F00      00594         MOVWF   (_AppConfig + 4), B
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 12
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-009C 5000      00595         MOVF    r0x01, W
-009E 0000      00596         BANKSEL (_AppConfig + 5)
-00A0 6F00      00597         MOVWF   (_AppConfig + 5), B
-00A2 5000      00598         MOVF    r0x02, W
-00A4 0000      00599         BANKSEL (_AppConfig + 6)
-00A6 6F00      00600         MOVWF   (_AppConfig + 6), B
-00A8 5000      00601         MOVF    r0x03, W
-00AA 0000      00602         BANKSEL (_AppConfig + 7)
-00AC 6F00      00603         MOVWF   (_AppConfig + 7), B
-00AE 0000      00604         BANKSEL (_AppConfig + 44)
-               00605 ;       .line   242; TCPIP_Stack/StackTsk.c     AppConfig.Flags.bInConfigMode = TRUE;
-00B0 8F00      00606         BSF     (_AppConfig + 44), 7, B
-               00607 ;       .line   243; TCPIP_Stack/StackTsk.c     DHCPInit(0);
-00B2 0E00      00608         MOVLW   0x00
-00B4 6EE5      00609         MOVWF   POSTDEC1
-00B6 EC00 F000 00610         CALL    _DHCPInit
-00BA 2AE1      00611         INCF    FSR1L, F
-00BC 00612 _00115_DS_:
-               00613 ;       .line   251; TCPIP_Stack/StackTsk.c     DHCPTask();
-00BC EC00 F000 00614         CALL    _DHCPTask
-               00615 ;       .line   253; TCPIP_Stack/StackTsk.c     if(DHCPIsBound(0))
-00C0 0E00      00616         MOVLW   0x00
-00C2 6EE5      00617         MOVWF   POSTDEC1
-00C4 EC00 F000 00618         CALL    _DHCPIsBound
-00C8 6E00      00619         MOVWF   r0x00
-00CA 2AE1      00620         INCF    FSR1L, F
-00CC 5000      00621         MOVF    r0x00, W
-00CE E000      00622         BZ      _00119_DS_
-00D0 0000      00623         BANKSEL (_AppConfig + 44)
-               00624 ;       .line   254; TCPIP_Stack/StackTsk.c     AppConfig.Flags.bInConfigMode = FALSE;
-00D2 9F00      00625         BCF     (_AppConfig + 44), 7, B
-00D4 00626 _00119_DS_:
-               00627 ;       .line   270; TCPIP_Stack/StackTsk.c     UDPTask();
-00D4 EC00 F000 00628         CALL    _UDPTask
-00D8 00629 _00138_DS_:
-               00630 ;       .line   285; TCPIP_Stack/StackTsk.c     UDPDiscard();
-00D8 EC00 F000 00631         CALL    _UDPDiscard
-               00632 ;       .line   290; TCPIP_Stack/StackTsk.c     if(!MACGetHeader(&remoteNode.MACAddr, &cFrameType))
-00DC 0E00      00633         MOVLW   HIGH(_remoteNode + 4)
-00DE 6E00      00634         MOVWF   r0x01
-00E0 0E00      00635         MOVLW   LOW(_remoteNode + 4)
-00E2 6E00      00636         MOVWF   r0x00
-00E4 0E80      00637         MOVLW   0x80
-00E6 6E00      00638         MOVWF   r0x02
-00E8 0E00      00639         MOVLW   HIGH(_StackTask_cFrameType_1_1)
-00EA 6E00      00640         MOVWF   r0x04
-00EC 0E00      00641         MOVLW   LOW(_StackTask_cFrameType_1_1)
-00EE 6E00      00642         MOVWF   r0x03
-00F0 0E80      00643         MOVLW   0x80
-00F2 6E00      00644         MOVWF   r0x05
-00F4 5000      00645         MOVF    r0x05, W
-00F6 6EE5      00646         MOVWF   POSTDEC1
-00F8 5000      00647         MOVF    r0x04, W
-00FA 6EE5      00648         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 13
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-00FC 5000      00649         MOVF    r0x03, W
-00FE 6EE5      00650         MOVWF   POSTDEC1
-0100 5000      00651         MOVF    r0x02, W
-0102 6EE5      00652         MOVWF   POSTDEC1
-0104 5000      00653         MOVF    r0x01, W
-0106 6EE5      00654         MOVWF   POSTDEC1
-0108 5000      00655         MOVF    r0x00, W
-010A 6EE5      00656         MOVWF   POSTDEC1
-010C EC00 F000 00657         CALL    _MACGetHeader
-0110 6E00      00658         MOVWF   r0x00
-0112 0E06      00659         MOVLW   0x06
-0114 26E1      00660         ADDWF   FSR1L, F
-0116 5000      00661         MOVF    r0x00, W
-0118 B4D8      00662         BTFSC   STATUS, 2
-011A D000      00663         BRA     _00140_DS_
-               00664 ;       .line   294; TCPIP_Stack/StackTsk.c     switch(cFrameType)
-011C C000 F000 00665         MOVFF   _StackTask_cFrameType_1_1, r0x00
-0120 6A00      00666         CLRF    r0x01
-0122 5000      00667         MOVF    r0x00, W
-0124 E100      00668         BNZ     _00159_DS_
-0126 5000      00669         MOVF    r0x01, W
-0128 E000      00670         BZ      _00123_DS_
-012A 00671 _00159_DS_:
-012A 5000      00672         MOVF    r0x00, W
-012C 0A06      00673         XORLW   0x06
-012E E100      00674         BNZ     _00160_DS_
-0130 5000      00675         MOVF    r0x01, W
-0132 E000      00676         BZ      _00161_DS_
-0134 00677 _00160_DS_:
-0134 D000      00678         BRA     _00138_DS_
-0136 00679 _00161_DS_:
-               00680 ;       .line   298; TCPIP_Stack/StackTsk.c     ARPProcess();
-0136 EC00 F000 00681         CALL    _ARPProcess
-               00682 ;       .line   299; TCPIP_Stack/StackTsk.c     break;
-013A D000      00683         BRA     _00138_DS_
-013C 00684 _00123_DS_:
-               00685 ;       .line   303; TCPIP_Stack/StackTsk.c     if(!IPGetHeader(&tempLocalIP, &remoteNode, &cIPFrameType, &dataCount))
-013C 0E00      00686         MOVLW   HIGH(_StackTask_tempLocalIP_1_1)
-013E 6E00      00687         MOVWF   r0x01
-0140 0E00      00688         MOVLW   LOW(_StackTask_tempLocalIP_1_1)
-0142 6E00      00689         MOVWF   r0x00
-0144 0E80      00690         MOVLW   0x80
-0146 6E00      00691         MOVWF   r0x02
-0148 0E00      00692         MOVLW   HIGH(_remoteNode)
-014A 6E00      00693         MOVWF   r0x04
-014C 0E00      00694         MOVLW   LOW(_remoteNode)
-014E 6E00      00695         MOVWF   r0x03
-0150 0E80      00696         MOVLW   0x80
-0152 6E00      00697         MOVWF   r0x05
-0154 0E00      00698         MOVLW   HIGH(_StackTask_cIPFrameType_1_1)
-0156 6E00      00699         MOVWF   r0x07
-0158 0E00      00700         MOVLW   LOW(_StackTask_cIPFrameType_1_1)
-015A 6E00      00701         MOVWF   r0x06
-015C 0E80      00702         MOVLW   0x80
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 14
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-015E 6E00      00703         MOVWF   r0x08
-0160 0E00      00704         MOVLW   HIGH(_StackTask_dataCount_1_1)
-0162 6E00      00705         MOVWF   r0x0a
-0164 0E00      00706         MOVLW   LOW(_StackTask_dataCount_1_1)
-0166 6E00      00707         MOVWF   r0x09
-0168 0E80      00708         MOVLW   0x80
-016A 6E00      00709         MOVWF   r0x0b
-016C 5000      00710         MOVF    r0x0b, W
-016E 6EE5      00711         MOVWF   POSTDEC1
-0170 5000      00712         MOVF    r0x0a, W
-0172 6EE5      00713         MOVWF   POSTDEC1
-0174 5000      00714         MOVF    r0x09, W
-0176 6EE5      00715         MOVWF   POSTDEC1
-0178 5000      00716         MOVF    r0x08, W
-017A 6EE5      00717         MOVWF   POSTDEC1
-017C 5000      00718         MOVF    r0x07, W
-017E 6EE5      00719         MOVWF   POSTDEC1
-0180 5000      00720         MOVF    r0x06, W
-0182 6EE5      00721         MOVWF   POSTDEC1
-0184 5000      00722         MOVF    r0x05, W
-0186 6EE5      00723         MOVWF   POSTDEC1
-0188 5000      00724         MOVF    r0x04, W
-018A 6EE5      00725         MOVWF   POSTDEC1
-018C 5000      00726         MOVF    r0x03, W
-018E 6EE5      00727         MOVWF   POSTDEC1
-0190 5000      00728         MOVF    r0x02, W
-0192 6EE5      00729         MOVWF   POSTDEC1
-0194 5000      00730         MOVF    r0x01, W
-0196 6EE5      00731         MOVWF   POSTDEC1
-0198 5000      00732         MOVF    r0x00, W
-019A 6EE5      00733         MOVWF   POSTDEC1
-019C EC00 F000 00734         CALL    _IPGetHeader
-01A0 6E00      00735         MOVWF   r0x00
-01A2 0E0C      00736         MOVLW   0x0c
-01A4 26E1      00737         ADDWF   FSR1L, F
-01A6 5000      00738         MOVF    r0x00, W
-01A8 B4D8      00739         BTFSC   STATUS, 2
-01AA D000      00740         BRA     _00138_DS_
-               00741 ;       .line   307; TCPIP_Stack/StackTsk.c     if(cIPFrameType == IP_PROT_ICMP)
-01AC C000 F000 00742         MOVFF   _StackTask_cIPFrameType_1_1, r0x00
-01B0 6A00      00743         CLRF    r0x01
-01B2 5000      00744         MOVF    r0x00, W
-01B4 0A01      00745         XORLW   0x01
-01B6 E100      00746         BNZ     _00162_DS_
-01B8 5000      00747         MOVF    r0x01, W
-01BA E000      00748         BZ      _00163_DS_
-01BC 00749 _00162_DS_:
-01BC D000      00750         BRA     _00131_DS_
-01BE 00751 _00163_DS_:
-               00752 ;       .line   328; TCPIP_Stack/StackTsk.c     if( (tempLocalIP.Val == AppConfig.MyIPAddr.Val) ||
-01BE C000 F000 00753         MOVFF   _StackTask_tempLocalIP_1_1, r0x02
-01C2 C000 F000 00754         MOVFF   (_StackTask_tempLocalIP_1_1 + 1), r0x03
-01C6 C000 F000 00755         MOVFF   (_StackTask_tempLocalIP_1_1 + 2), r0x04
-01CA C000 F000 00756         MOVFF   (_StackTask_tempLocalIP_1_1 + 3), r0x05
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 15
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-01CE C000 F000 00757         MOVFF   _AppConfig, r0x06
-01D2 C000 F000 00758         MOVFF   (_AppConfig + 1), r0x07
-01D6 C000 F000 00759         MOVFF   (_AppConfig + 2), r0x08
-01DA C000 F000 00760         MOVFF   (_AppConfig + 3), r0x09
-01DE 5000      00761         MOVF    r0x02, W
-01E0 1800      00762         XORWF   r0x06, W
-01E2 E100      00763         BNZ     _00165_DS_
-01E4 5000      00764         MOVF    r0x03, W
-01E6 1800      00765         XORWF   r0x07, W
-01E8 E100      00766         BNZ     _00165_DS_
-01EA 5000      00767         MOVF    r0x04, W
-01EC 1800      00768         XORWF   r0x08, W
-01EE E100      00769         BNZ     _00165_DS_
-01F0 5000      00770         MOVF    r0x05, W
-01F2 1800      00771         XORWF   r0x09, W
-01F4 E100      00772         BNZ     _00165_DS_
-01F6 D000      00773         BRA     _00126_DS_
-01F8 00774 _00165_DS_:
-               00775 ;       .line   329; TCPIP_Stack/StackTsk.c     (tempLocalIP.Val == 0xFFFFFFFF) ||
-01F8 5000      00776         MOVF    r0x02, W
-01FA 0AFF      00777         XORLW   0xff
-01FC E100      00778         BNZ     _00167_DS_
-01FE 5000      00779         MOVF    r0x03, W
-0200 0AFF      00780         XORLW   0xff
-0202 E100      00781         BNZ     _00167_DS_
-0204 5000      00782         MOVF    r0x04, W
-0206 0AFF      00783         XORLW   0xff
-0208 E100      00784         BNZ     _00167_DS_
-020A 5000      00785         MOVF    r0x05, W
-020C 0AFF      00786         XORLW   0xff
-020E E000      00787         BZ      _00126_DS_
-0210 00788 _00167_DS_:
-0210 0000      00789         BANKSEL (_AppConfig + 4)
-               00790 ;       .line   330; TCPIP_Stack/StackTsk.c     (tempLocalIP.Val == ((AppConfig.MyIPAddr.Val & AppConfig.MyMask.Val) | ~AppConfig.MyMask.Val)))
-0212 5100      00791         MOVF    (_AppConfig + 4), W, B
-0214 1600      00792         ANDWF   r0x06, F
-0216 0000      00793         BANKSEL (_AppConfig + 5)
-0218 5100      00794         MOVF    (_AppConfig + 5), W, B
-021A 1600      00795         ANDWF   r0x07, F
-021C 0000      00796         BANKSEL (_AppConfig + 6)
-021E 5100      00797         MOVF    (_AppConfig + 6), W, B
-0220 1600      00798         ANDWF   r0x08, F
-0222 0000      00799         BANKSEL (_AppConfig + 7)
-0224 5100      00800         MOVF    (_AppConfig + 7), W, B
-0226 1600      00801         ANDWF   r0x09, F
-0228 0000      00802         BANKSEL (_AppConfig + 4)
-022A 1D00      00803         COMF    (_AppConfig + 4), W, B
-022C 6E00      00804         MOVWF   r0x0a
-022E 0000      00805         BANKSEL (_AppConfig + 5)
-0230 1D00      00806         COMF    (_AppConfig + 5), W, B
-0232 6E00      00807         MOVWF   r0x0b
-0234 0000      00808         BANKSEL (_AppConfig + 6)
-0236 1D00      00809         COMF    (_AppConfig + 6), W, B
-0238 6E00      00810         MOVWF   r0x0c
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 16
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-023A 0000      00811         BANKSEL (_AppConfig + 7)
-023C 1D00      00812         COMF    (_AppConfig + 7), W, B
-023E 6E00      00813         MOVWF   r0x0d
-0240 5000      00814         MOVF    r0x0a, W
-0242 1200      00815         IORWF   r0x06, F
-0244 5000      00816         MOVF    r0x0b, W
-0246 1200      00817         IORWF   r0x07, F
-0248 5000      00818         MOVF    r0x0c, W
-024A 1200      00819         IORWF   r0x08, F
-024C 5000      00820         MOVF    r0x0d, W
-024E 1200      00821         IORWF   r0x09, F
-0250 5000      00822         MOVF    r0x02, W
-0252 1800      00823         XORWF   r0x06, W
-0254 E100      00824         BNZ     _00170_DS_
-0256 5000      00825         MOVF    r0x03, W
-0258 1800      00826         XORWF   r0x07, W
-025A E100      00827         BNZ     _00170_DS_
-025C 5000      00828         MOVF    r0x04, W
-025E 1800      00829         XORWF   r0x08, W
-0260 E100      00830         BNZ     _00170_DS_
-0262 5000      00831         MOVF    r0x05, W
-0264 1800      00832         XORWF   r0x09, W
-0266 E000      00833         BZ      _00126_DS_
-0268 00834 _00170_DS_:
-0268 D000      00835         BRA     _00138_DS_
-026A 00836 _00126_DS_:
-               00837 ;       .line   332; TCPIP_Stack/StackTsk.c     ICMPProcess(&remoteNode, dataCount);
-026A 0E00      00838         MOVLW   HIGH(_remoteNode)
-026C 6E00      00839         MOVWF   r0x03
-026E 0E00      00840         MOVLW   LOW(_remoteNode)
-0270 6E00      00841         MOVWF   r0x02
-0272 0E80      00842         MOVLW   0x80
-0274 6E00      00843         MOVWF   r0x04
-0276 0000      00844         BANKSEL (_StackTask_dataCount_1_1 + 1)
-0278 5100      00845         MOVF    (_StackTask_dataCount_1_1 + 1), W, B
-027A 6EE5      00846         MOVWF   POSTDEC1
-027C 0000      00847         BANKSEL _StackTask_dataCount_1_1
-027E 5100      00848         MOVF    _StackTask_dataCount_1_1, W, B
-0280 6EE5      00849         MOVWF   POSTDEC1
-0282 5000      00850         MOVF    r0x04, W
-0284 6EE5      00851         MOVWF   POSTDEC1
-0286 5000      00852         MOVF    r0x03, W
-0288 6EE5      00853         MOVWF   POSTDEC1
-028A 5000      00854         MOVF    r0x02, W
-028C 6EE5      00855         MOVWF   POSTDEC1
-028E EC00 F000 00856         CALL    _ICMPProcess
-0292 0E05      00857         MOVLW   0x05
-0294 26E1      00858         ADDWF   FSR1L, F
-               00859 ;       .line   335; TCPIP_Stack/StackTsk.c     break;
-0296 D000      00860         BRA     _00138_DS_
-0298 00861 _00131_DS_:
-               00862 ;       .line   349; TCPIP_Stack/StackTsk.c     if(cIPFrameType == IP_PROT_UDP)
-0298 5000      00863         MOVF    r0x00, W
-029A 0A11      00864         XORLW   0x11
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 17
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-029C E100      00865         BNZ     _00172_DS_
-029E 5000      00866         MOVF    r0x01, W
-02A0 E000      00867         BZ      _00173_DS_
-02A2 00868 _00172_DS_:
-02A2 D000      00869         BRA     _00138_DS_
-02A4 00870 _00173_DS_:
-               00871 ;       .line   353; TCPIP_Stack/StackTsk.c     if(UDPProcess(&remoteNode, &tempLocalIP, dataCount))
-02A4 0E00      00872         MOVLW   HIGH(_remoteNode)
-02A6 6E00      00873         MOVWF   r0x01
-02A8 0E00      00874         MOVLW   LOW(_remoteNode)
-02AA 6E00      00875         MOVWF   r0x00
-02AC 0E80      00876         MOVLW   0x80
-02AE 6E00      00877         MOVWF   r0x02
-02B0 0E00      00878         MOVLW   HIGH(_StackTask_tempLocalIP_1_1)
-02B2 6E00      00879         MOVWF   r0x04
-02B4 0E00      00880         MOVLW   LOW(_StackTask_tempLocalIP_1_1)
-02B6 6E00      00881         MOVWF   r0x03
-02B8 0E80      00882         MOVLW   0x80
-02BA 6E00      00883         MOVWF   r0x05
-02BC 0000      00884         BANKSEL (_StackTask_dataCount_1_1 + 1)
-02BE 5100      00885         MOVF    (_StackTask_dataCount_1_1 + 1), W, B
-02C0 6EE5      00886         MOVWF   POSTDEC1
-02C2 0000      00887         BANKSEL _StackTask_dataCount_1_1
-02C4 5100      00888         MOVF    _StackTask_dataCount_1_1, W, B
-02C6 6EE5      00889         MOVWF   POSTDEC1
-02C8 5000      00890         MOVF    r0x05, W
-02CA 6EE5      00891         MOVWF   POSTDEC1
-02CC 5000      00892         MOVF    r0x04, W
-02CE 6EE5      00893         MOVWF   POSTDEC1
-02D0 5000      00894         MOVF    r0x03, W
-02D2 6EE5      00895         MOVWF   POSTDEC1
-02D4 5000      00896         MOVF    r0x02, W
-02D6 6EE5      00897         MOVWF   POSTDEC1
-02D8 5000      00898         MOVF    r0x01, W
-02DA 6EE5      00899         MOVWF   POSTDEC1
-02DC 5000      00900         MOVF    r0x00, W
-02DE 6EE5      00901         MOVWF   POSTDEC1
-02E0 EC00 F000 00902         CALL    _UDPProcess
-02E4 6E00      00903         MOVWF   r0x00
-02E6 0E08      00904         MOVLW   0x08
-02E8 26E1      00905         ADDWF   FSR1L, F
-02EA 5000      00906         MOVF    r0x00, W
-02EC B4D8      00907         BTFSC   STATUS, 2
-02EE D000      00908         BRA     _00138_DS_
-02F0 00909 _00140_DS_:
-               00910 ;       .line   359; TCPIP_Stack/StackTsk.c     }
-02F0 CFE4 F000 00911         MOVFF   PREINC1, r0x0d
-02F4 CFE4 F000 00912         MOVFF   PREINC1, r0x0c
-02F8 CFE4 F000 00913         MOVFF   PREINC1, r0x0b
-02FC CFE4 F000 00914         MOVFF   PREINC1, r0x0a
-0300 CFE4 F000 00915         MOVFF   PREINC1, r0x09
-0304 CFE4 F000 00916         MOVFF   PREINC1, r0x08
-0308 CFE4 F000 00917         MOVFF   PREINC1, r0x07
-030C CFE4 F000 00918         MOVFF   PREINC1, r0x06
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 18
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-0310 CFE4 F000 00919         MOVFF   PREINC1, r0x05
-0314 CFE4 F000 00920         MOVFF   PREINC1, r0x04
-0318 CFE4 F000 00921         MOVFF   PREINC1, r0x03
-031C CFE4 F000 00922         MOVFF   PREINC1, r0x02
-0320 CFE4 F000 00923         MOVFF   PREINC1, r0x01
-0324 CFE4 F000 00924         MOVFF   PREINC1, r0x00
-0328 CFE4 FFD9 00925         MOVFF   PREINC1, FSR2L
-032C 0012      00926         RETURN  
-               00927 
-               00928 ; ; Starting pCode block
-               00929 S_StackTsk__StackInit   code
-0000 00930 _StackInit:
-               00931 ;       .line   115; TCPIP_Stack/StackTsk.c     void StackInit(void)
-0000 CFD9 FFE5 00932         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00933         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00934         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00935         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00936         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00937         MOVFF   r0x03, POSTDEC1
-0018 0000      00938         BANKSEL _smStack
-               00939 ;       .line   117; TCPIP_Stack/StackTsk.c     smStack                     = SM_STACK_IDLE;
-001A 6B00      00940         CLRF    _smStack, B
-001C 0000      00941         BANKSEL (_AppConfig + 44)
-               00942 ;       .line   124; TCPIP_Stack/StackTsk.c     AppConfig.Flags.bInConfigMode = TRUE;
-001E 8F00      00943         BSF     (_AppConfig + 44), 7, B
-               00944 ;       .line   128; TCPIP_Stack/StackTsk.c     srand(GenerateRandomDWORD());
-0020 EC00 F000 00945         CALL    _GenerateRandomDWORD
-0024 6E00      00946         MOVWF   r0x00
-0026 CFF3 F000 00947         MOVFF   PRODL, r0x01
-002A CFF4 F000 00948         MOVFF   PRODH, r0x02
-002E CFE9 F000 00949         MOVFF   FSR0L, r0x03
-0032 5000      00950         MOVF    r0x03, W
-0034 6EE5      00951         MOVWF   POSTDEC1
-0036 5000      00952         MOVF    r0x02, W
-0038 6EE5      00953         MOVWF   POSTDEC1
-003A 5000      00954         MOVF    r0x01, W
-003C 6EE5      00955         MOVWF   POSTDEC1
-003E 5000      00956         MOVF    r0x00, W
-0040 6EE5      00957         MOVWF   POSTDEC1
-0042 EC00 F000 00958         CALL    _srand
-0046 0E04      00959         MOVLW   0x04
-0048 26E1      00960         ADDWF   FSR1L, F
-               00961 ;       .line   130; TCPIP_Stack/StackTsk.c     MACInit();
-004A EC00 F000 00962         CALL    _MACInit
-               00963 ;       .line   139; TCPIP_Stack/StackTsk.c     ARPInit();
-004E EC00 F000 00964         CALL    _ARPInit
-               00965 ;       .line   142; TCPIP_Stack/StackTsk.c     UDPInit();
-0052 EC00 F000 00966         CALL    _UDPInit
-               00967 ;       .line   174; TCPIP_Stack/StackTsk.c     DHCPInit(0);
-0056 0E00      00968         MOVLW   0x00
-0058 6EE5      00969         MOVWF   POSTDEC1
-005A EC00 F000 00970         CALL    _DHCPInit
-005E 2AE1      00971         INCF    FSR1L, F
-0060 0000      00972         BANKSEL (_AppConfig + 44)
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 19
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-               00973 ;       .line   176; TCPIP_Stack/StackTsk.c     if(!AppConfig.Flags.bIsDHCPEnabled)
-0062 BD00      00974         BTFSC   (_AppConfig + 44), 6, B
-0064 D000      00975         BRA     _00107_DS_
-               00976 ;       .line   178; TCPIP_Stack/StackTsk.c     DHCPDisable(0);  
-0066 0E00      00977         MOVLW   0x00
-0068 6EE5      00978         MOVWF   POSTDEC1
-006A EC00 F000 00979         CALL    _DHCPDisable
-006E 2AE1      00980         INCF    FSR1L, F
-0070 00981 _00107_DS_:
-0070 CFE4 F000 00982         MOVFF   PREINC1, r0x03
-0074 CFE4 F000 00983         MOVFF   PREINC1, r0x02
-0078 CFE4 F000 00984         MOVFF   PREINC1, r0x01
-007C CFE4 F000 00985         MOVFF   PREINC1, r0x00
-0080 CFE4 FFD9 00986         MOVFF   PREINC1, FSR2L
-0084 0012      00987         RETURN  
-               00988 
-               00989 
-               00990 
-               00991 ; Statistics:
-               00992 ; code size:      962 (0x03c2) bytes ( 0.73%)
-               00993 ;                 481 (0x01e1) words
-               00994 ; udata size:      19 (0x0013) bytes ( 0.49%)
-               00995 ; access size:     14 (0x000e) bytes
-               00996 
-               00997 
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 20
+               00541 ;       .line   11; TCPIP_Stack/myUART.c        void UARTConfig(void)
+0000 CFD9 FFE5 00542         MOVFF   FSR2L, POSTDEC1
+0004 CFE1 FFD9 00543         MOVFF   FSR1L, FSR2L
+               00544 ;       .line   13; TCPIP_Stack/myUART.c        TRISCbits.TRISC7 = 1;
+0008 8E00      00545         BSF     _TRISCbits, 7
+               00546 ;       .line   14; TCPIP_Stack/myUART.c        TRISCbits.TRISC6 = 0;
+000A 9C00      00547         BCF     _TRISCbits, 6
+               00548 ;       .line   16; TCPIP_Stack/myUART.c        BAUDCON1bits.BRG16 = 0; // Divisor at 8 bit
+000C 9600      00549         BCF     _BAUDCON1bits, 3
+               00550 ;       .line   17; TCPIP_Stack/myUART.c        BAUDCON1bits.TXCKP = 1; // Inverted polarity
+000E 8800      00551         BSF     _BAUDCON1bits, 4
+               00552 ;       .line   18; TCPIP_Stack/myUART.c        TXSTA1bits.BRGH = 0; // No high-speed baudrate
+0010 9400      00553         BCF     _TXSTA1bits, 2
+               00554 ;       .line   19; TCPIP_Stack/myUART.c        SPBRG1 = 40;    // Divisor for baud rate 9600 at 25 Mhz
+0012 0E28      00555         MOVLW   0x28
+0014 6E00      00556         MOVWF   _SPBRG1
+               00557 ;       .line   21; TCPIP_Stack/myUART.c        TXSTA1bits.SYNC = 0; // Async operation
+0016 9800      00558         BCF     _TXSTA1bits, 4
+               00559 ;       .line   22; TCPIP_Stack/myUART.c        TXSTA1bits.TX9 = 0; // No tx of 9th bit
+0018 9C00      00560         BCF     _TXSTA1bits, 6
+               00561 ;       .line   23; TCPIP_Stack/myUART.c        TXSTA1bits.TXEN = 1; // Enable transmitter
+001A 8A00      00562         BSF     _TXSTA1bits, 5
+               00563 ;       .line   25; TCPIP_Stack/myUART.c        RCSTA1bits.RX9 = 0; // No rx of 9th bit
+001C 9C00      00564         BCF     _RCSTA1bits, 6
+               00565 ;       .line   26; TCPIP_Stack/myUART.c        RCSTA1bits.CREN = 1; // Enable receiver
+001E 8800      00566         BSF     _RCSTA1bits, 4
+               00567 ;       .line   27; TCPIP_Stack/myUART.c        RCSTA1bits.SPEN = 1; // Enable serial port
+0020 8E00      00568         BSF     _RCSTA1bits, 7
+0022 CFE4 FFD9 00569         MOVFF   PREINC1, FSR2L
+0026 0012      00570         RETURN  
+               00571 
+               00572 
+               00573 
+               00574 ; Statistics:
+               00575 ; code size:      196 (0x00c4) bytes ( 0.15%)
+               00576 ;                  98 (0x0062) words
+               00577 ; udata size:       0 (0x0000) bytes ( 0.00%)
+               00578 ; access size:      4 (0x0004) bytes
+               00579 
+               00580 
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 12
 
 
 SYMBOL TABLE
@@ -1118,30 +653,13 @@ SYMBOL TABLE
 FSR0L                             00000FE9
 FSR1L                             00000FE1
 FSR2L                             00000FD9
+PLUSW2                            00000FDB
 POSTDEC1                          00000FE5
 PREINC1                           00000FE4
-PRODH                             00000FF4
 PRODL                             00000FF3
 STATUS                            00000FD8
-_00107_DS_                        00000070
-_00115_DS_                        000000BC
-_00119_DS_                        000000D4
-_00123_DS_                        0000013C
-_00126_DS_                        0000026A
-_00131_DS_                        00000298
-_00138_DS_                        000000D8
-_00140_DS_                        000002F0
-_00157_DS_                        00000056
-_00159_DS_                        0000012A
-_00160_DS_                        00000134
-_00161_DS_                        00000136
-_00162_DS_                        000001BC
-_00163_DS_                        000001BE
-_00165_DS_                        000001F8
-_00167_DS_                        00000210
-_00170_DS_                        00000268
-_00172_DS_                        000002A2
-_00173_DS_                        000002A4
+_00110_DS_                        00000012
+_00118_DS_                        0000002A
 _ADCON0                           00000000
 _ADCON0bits                       00000000
 _ADCON1                           00000000
@@ -1152,8 +670,6 @@ _ADRES                            00000000
 _ADRESH                           00000000
 _ADRESL                           00000000
 _AN0String                        00000000
-_ARPInit                          00000000
-_ARPProcess                       00000000
 _AppConfig                        00000000
 _BAUDCON                          00000000
 _BAUDCON1                         00000000
@@ -1168,12 +684,6 @@ _BAUDCTL2                         00000000
 _BAUDCTL2bits                     00000000
 _BAUDCTLbits                      00000000
 _BSR                              00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 21
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _CCP1CON                          00000000
 _CCP1CONbits                      00000000
 _CCP2CON                          00000000
@@ -1193,6 +703,12 @@ _CCPR2L                           00000000
 _CCPR3                            00000000
 _CCPR3H                           00000000
 _CCPR3L                           00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _CCPR4                            00000000
 _CCPR4H                           00000000
 _CCPR4L                           00000000
@@ -1221,19 +737,9 @@ _DDRH                             00000000
 _DDRHbits                         00000000
 _DDRJ                             00000000
 _DDRJbits                         00000000
-_DHCPDisable                      00000000
-_DHCPInit                         00000000
-_DHCPIsBound                      00000000
-_DHCPTask                         00000000
 _EBSTCON                          00000000
 _EBSTCONbits                      00000000
 _EBSTCS                           00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 22
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _EBSTCSH                          00000000
 _EBSTCSL                          00000000
 _EBSTSD                           00000000
@@ -1257,6 +763,12 @@ _ECCP3DEL                         00000000
 _ECCP3DELbits                     00000000
 _ECON1                            00000000
 _ECON1bits                        00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _ECON2                            00000000
 _ECON2bits                        00000000
 _EDATA                            00000000
@@ -1288,12 +800,6 @@ _EHT6                             00000000
 _EHT7                             00000000
 _EIE                              00000000
 _EIEbits                          00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 23
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _EIR                              00000000
 _EIRbits                          00000000
 _EPAUS                            00000000
@@ -1317,6 +823,12 @@ _EPMOL                            00000000
 _ERDPT                            00000000
 _ERDPTH                           00000000
 _ERDPTL                           00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _ERXFCON                          00000000
 _ERXFCONbits                      00000000
 _ERXND                            00000000
@@ -1348,18 +860,10 @@ _EWRPTH                           00000000
 _EWRPTL                           00000000
 _FSR0H                            00000000
 _FSR0L                            00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 24
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _FSR1H                            00000000
 _FSR1L                            00000000
 _FSR2H                            00000000
 _FSR2L                            00000000
-_GenerateRandomDWORD              00000000
-_ICMPProcess                      00000000
 _INDF0                            00000000
 _INDF1                            00000000
 _INDF2                            00000000
@@ -1369,7 +873,6 @@ _INTCON2bits                      00000000
 _INTCON3                          00000000
 _INTCON3bits                      00000000
 _INTCONbits                       00000000
-_IPGetHeader                      00000000
 _IPR1                             00000000
 _IPR1bits                         00000000
 _IPR2                             00000000
@@ -1380,6 +883,12 @@ _LATA                             00000000
 _LATAbits                         00000000
 _LATB                             00000000
 _LATBbits                         00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _LATC                             00000000
 _LATCbits                         00000000
 _LATD                             00000000
@@ -1402,18 +911,9 @@ _MAADR4                           00000000
 _MAADR5                           00000000
 _MAADR6                           00000000
 _MABBIPG                          00000000
-_MACGetHeader                     00000000
-_MACInit                          00000000
-_MACIsLinked                      00000000
 _MACLCON1                         00000000
 _MACLCON1bits                     00000000
 _MACLCON2                         00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 25
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _MACLCON2bits                     00000000
 _MACON1                           00000000
 _MACON1bits                       00000000
@@ -1443,6 +943,12 @@ _MISTAT                           00000000
 _MISTATbits                       00000000
 _MIWR                             00000000
 _MIWRH                            00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _MIWRL                            00000000
 _OSCCON                           00000000
 _OSCCONbits                       00000000
@@ -1468,12 +974,6 @@ _PLUSW0                           00000000
 _PLUSW1                           00000000
 _PLUSW2                           00000000
 _PORTA                            00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 26
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _PORTAbits                        00000000
 _PORTB                            00000000
 _PORTBbits                        00000000
@@ -1503,6 +1003,12 @@ _PREINC0                          00000000
 _PREINC1                          00000000
 _PREINC2                          00000000
 _PROD                             00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _PRODH                            00000000
 _PRODL                            00000000
 _PSPCON                           00000000
@@ -1528,12 +1034,6 @@ _SSP1ADD                          00000000
 _SSP1BUF                          00000000
 _SSP1CON1                         00000000
 _SSP1CON1bits                     00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 27
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _SSP1CON2                         00000000
 _SSP1CON2bits                     00000000
 _SSP1STAT                         00000000
@@ -1558,19 +1058,17 @@ _STATUS                           00000000
 _STATUSbits                       00000000
 _STKPTR                           00000000
 _STKPTRbits                       00000000
-_StackApplications                00000000
-_StackInit                        00000000
-_StackTask                        00000000
-_StackTask_bLastLinkState_2_2     00000000
-_StackTask_cFrameType_1_1         00000000
-_StackTask_cIPFrameType_1_1       00000000
-_StackTask_dataCount_1_1          00000000
-_StackTask_tempLocalIP_1_1        00000000
 _T0CON                            00000000
 _T0CONbits                        00000000
 _T1CON                            00000000
 _T1CONbits                        00000000
 _T2CON                            00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _T2CONbits                        00000000
 _T3CON                            00000000
 _T3CONbits                        00000000
@@ -1588,12 +1086,6 @@ _TMR1L                            00000000
 _TMR2                             00000000
 _TMR3H                            00000000
 _TMR3L                            00000000
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 28
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _TMR4                             00000000
 _TOS                              00000000
 _TOSH                             00000000
@@ -1626,43 +1118,30 @@ _TXSTA1bits                       00000000
 _TXSTA2                           00000000
 _TXSTA2bits                       00000000
 _TXSTAbits                        00000000
-_UDPDiscard                       00000000
-_UDPInit                          00000000
-_UDPProcess                       00000000
+_UARTConfig                       00000000
+_UARTPutc                         00000000
+_UARTPuts                         00000000
 _UDPRxCount                       00000000
 _UDPSocketInfo                    00000000
-_UDPTask                          00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-11-2017  18:43:13         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _UDPTxCount                       00000000
 _WDTCON                           00000000
 _WDTCONbits                       00000000
 _WREG                             00000000
 __18F97J60                        00000001
+__gptrget1                        00000000
 _activeUDPSocket                  00000000
-_remoteNode                       00000000
-_smStack                          00000000
-_srand                            00000000
 _stdin                            00000000
 _stdout                           00000000
 r0x00                             00000000
 r0x01                             00000001
 r0x02                             00000002
 r0x03                             00000003
-r0x04                             00000004
-gpasm-0.13.7 beta               Objects/StackTsk.asm12-11-2017  18:43:13         PAGE 29
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-r0x05                             00000005
-r0x06                             00000006
-r0x07                             00000007
-r0x08                             00000008
-r0x09                             00000009
-r0x0a                             0000000A
-r0x0b                             0000000B
-r0x0c                             0000000C
-r0x0d                             0000000D
 
 
 Errors   :       0

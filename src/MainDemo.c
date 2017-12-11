@@ -16,6 +16,7 @@
  */
 #define THIS_INCLUDES_THE_MAIN_FUNCTION
 #define THIS_IS_STACK_APPLICATION
+//#define UART_DEBUG_ON
 
 // define the processor we use
 #define __18F97J60
@@ -28,7 +29,6 @@
 #include "Include/TCPIP_Stack/TCPIP.h"
 // Include functions specific to this stack application
 #include "Include/MainDemo.h"
-
 
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
@@ -121,6 +121,10 @@ static DWORD dwLastIP = 0;
     // Initialize core stack layers (MAC, ARP, TCP, UDP) and
     // application modules (HTTP, SNMP, etc.)
     StackInit();
+
+    #ifdef UART_DEBUG_ON
+        UARTConfig();
+    #endif
 
     #ifdef USE_LCD
         LCDTaskInit();
@@ -296,7 +300,7 @@ void DisplayIPValue(IP_ADDR IPVal)
 static void InitializeBoard(void)
 {	
 	// LEDs
-        LED0_TRIS = 0;  //LED0
+    LED0_TRIS = 0;  //LED0
 	LED1_TRIS = 0;  //LED1
 	LED2_TRIS = 0;  //LED2
 	LED3_TRIS = 0;  //LED_LCD1
@@ -310,18 +314,16 @@ static void InitializeBoard(void)
         LED_PUT(0x00);  //turn off LED0 - LED2
 	RELAY_PUT(0x00); //turn relays off to save power
 
-	//set clock to 25 MHz
-
-	// Enable PLL but disable pre and postscalers: the primary oscillator
-        // runs at the speed of the 25MHz external quartz
-	OSCTUNE = 0x40;
+	// Set clock to 25 MHz
+	// The primary oscillator runs at the speed of the 25MHz external quartz
+    OSCTUNE = 0x00;
 
 	// Switch to primary oscillator mode, 
         // regardless of if the config fuses tell us to start operating using 
         // the the internal RC
 	// The external clock must be running and must be 25MHz for the 
 	// Ethernet module and thus this Ethernet bootloader to operate.
-        if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
+    if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
 		OSCCON = 0x82;
 	else
 		OSCCON = 0x02;

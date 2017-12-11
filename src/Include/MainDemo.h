@@ -52,10 +52,17 @@
 #define _MAINDEMO_H
 #include "GenericTypeDefs.h"
 
-#define BAUD_RATE       (19200)		// bps
+//#define BAUD_RATE       (19200)		// bps
 
 #if !defined(THIS_IS_STACK_APPLICATION)
 	extern BYTE AN0String[8];
+#endif
+
+#define STACK_USE_UART
+#ifdef UART_DEBUG_ON
+    #define DEBUGMSG(x) UARTPuts(x)
+#else
+    #define DEBUGMSG(x)
 #endif
 
 //MLvoid DoUARTConfig(void);
@@ -86,4 +93,3 @@ void PingDemo(void);
 #endif
 
 #endif // _MAINDEMO_H
-size_t  strlcpy(char *dst, const char *src, size_t siz);

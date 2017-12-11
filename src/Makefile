@@ -17,7 +17,8 @@ OBJECTS=Objects/MainDemo.o  Objects/Announce.o Objects/ARP.o Objects/Delay.o \
    Objects/DHCP.o Objects/DHCPs.o Objects/DNS.o  Objects/ETH97J60.o  \
    Objects/Hashes.o Objects/Helpers.o Objects/ICMP.o Objects/IP.o \
    Objects/LCDCircularList.o Objects/LCDNonBlocking.o Objects/StackTsk.o \
-   Objects/UDPPerformanceTest.o Objects/Tick.o Objects/UDP.o Objects/strlcpy.o
+   Objects/UDPPerformanceTest.o Objects/Tick.o Objects/UDP.o Objects/strlcpy.o \
+   Objects/myUART.o
 
 SDCC_HEADERS=/usr/local/share/sdcc/include/string.h \
    /usr/local/share/sdcc/include/stdlib.h \
@@ -38,7 +39,7 @@ TCPIP_HEADERS=Include/TCPIP_Stack/Helpers.h \
    Include/TCPIP_Stack/UDP.h \
    Include/TCPIP_Stack/TCP.h \
    Include/TCPIP_Stack/BerkeleyAPI.h \
-   Include/TCPIP_Stack/UART.h \
+   Include/TCPIP_Stack/myUART.h \
    Include/TCPIP_Stack/DHCP.h \
    Include/TCPIP_Stack/DNS.h \
    Include/TCPIP_Stack/DynDNS.h \
@@ -262,9 +263,9 @@ Objects/UART2TCPBridge.o : TCPIP_Stack/UART2TCPBridge.c  $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
 	$(CC) -c -mpic16 -p18f97j60  -o"Objects/UART2TCPBridge.o" -L/usr/local/share/sdcc/lib/pic16  TCPIP_Stack/UART2TCPBridge.c
 
-Objects/UART.o : TCPIP_Stack/UART.c  $(SDCC_HEADERS)  \
+Objects/myUART.o : TCPIP_Stack/myUART.c  $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
-	$(CC) -c -mpic16 -p18f97j60  -o"Objects/UART.o" -L/usr/local/share/sdcc/lib/pic16  TCPIP_Stack/UART.c
+	$(CC) -c -mpic16 -p18f97j60  -o"Objects/myUART.o" -L/usr/local/share/sdcc/lib/pic16  TCPIP_Stack/myUART.c
 
 Objects/UDP.o : TCPIP_Stack/UDP.c $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)

@@ -12,11 +12,14 @@
 ;--------------------------------------------------------
 ; public variables in this module
 ;--------------------------------------------------------
-	global _ICMPProcess
+	global _UARTConfig
+	global _UARTPutc
+	global _UARTPuts
 
 ;--------------------------------------------------------
 ; extern variables in this module
 ;--------------------------------------------------------
+	extern __gptrget1
 	extern _EBSTCONbits
 	extern _MISTATbits
 	extern _EFLOCONbits
@@ -442,19 +445,11 @@
 	extern _TOSL
 	extern _TOSH
 	extern _TOSU
-	extern _MACCalcRxChecksum
-	extern _MACSetWritePtr
-	extern _MACGetArray
-	extern _MACMemCopyAsync
-	extern _MACIsMemCopyDone
-	extern _MACIsTxReady
-	extern _MACPutArray
-	extern _MACFlush
-	extern _IPPutHeader
 ;--------------------------------------------------------
 ;	Equates to used internal registers
 ;--------------------------------------------------------
 STATUS	equ	0xfd8
+FSR0L	equ	0xfe9
 FSR1L	equ	0xfe1
 FSR2L	equ	0xfd9
 POSTDEC1	equ	0xfe5
@@ -469,211 +464,51 @@ r0x00	res	1
 r0x01	res	1
 r0x02	res	1
 r0x03	res	1
-r0x04	res	1
-r0x05	res	1
-r0x06	res	1
-r0x07	res	1
-
-udata_ICMP_0	udata
-_ICMPProcess_dwVal_1_1	res	4
 
 ;--------------------------------------------------------
 ; global & static initialisations
 ;--------------------------------------------------------
 ; I code from now on!
 ; ; Starting pCode block
-S_ICMP__ICMPProcess	code
-_ICMPProcess:
-;	.line	132; TCPIP_Stack/ICMP.c	void ICMPProcess(NODE_INFO *remote, WORD len)
+S_myUART__UARTPuts	code
+_UARTPuts:
+;	.line	39; TCPIP_Stack/myUART.c	void UARTPuts(char *udata)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
 	MOVFF	r0x01, POSTDEC1
 	MOVFF	r0x02, POSTDEC1
 	MOVFF	r0x03, POSTDEC1
-	MOVFF	r0x04, POSTDEC1
-	MOVFF	r0x05, POSTDEC1
-	MOVFF	r0x06, POSTDEC1
-	MOVFF	r0x07, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
 	MOVLW	0x03
 	MOVFF	PLUSW2, r0x01
 	MOVLW	0x04
 	MOVFF	PLUSW2, r0x02
-	MOVLW	0x05
-	MOVFF	PLUSW2, r0x03
-	MOVLW	0x06
-	MOVFF	PLUSW2, r0x04
-;	.line	137; TCPIP_Stack/ICMP.c	MACGetArray((BYTE*)&dwVal, sizeof(dwVal));
-	MOVLW	HIGH(_ICMPProcess_dwVal_1_1)
-	MOVWF	r0x06
-	MOVLW	LOW(_ICMPProcess_dwVal_1_1)
-	MOVWF	r0x05
-	MOVLW	0x80
-	MOVWF	r0x07
-	MOVLW	0x00
-	MOVWF	POSTDEC1
-	MOVLW	0x04
-	MOVWF	POSTDEC1
-	MOVF	r0x07, W
-	MOVWF	POSTDEC1
-	MOVF	r0x06, W
-	MOVWF	POSTDEC1
-	MOVF	r0x05, W
-	MOVWF	POSTDEC1
-	CALL	_MACGetArray
-	MOVLW	0x05
-	ADDWF	FSR1L, F
-	BANKSEL	_ICMPProcess_dwVal_1_1
-;	.line	140; TCPIP_Stack/ICMP.c	if(dwVal.w[0] == 0x0008u)
-	MOVF	_ICMPProcess_dwVal_1_1, W, B
-	XORLW	0x08
-	BNZ	_00129_DS_
-	BANKSEL	(_ICMPProcess_dwVal_1_1 + 1)
-	MOVF	(_ICMPProcess_dwVal_1_1 + 1), W, B
-	BZ	_00130_DS_
-_00129_DS_:
-	BRA	_00119_DS_
-_00130_DS_:
-;	.line	146; TCPIP_Stack/ICMP.c	if(MACCalcRxChecksum(0+sizeof(IP_HEADER), len))
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	MOVLW	0x00
-	MOVWF	POSTDEC1
-	MOVLW	0x14
-	MOVWF	POSTDEC1
-	CALL	_MACCalcRxChecksum
-	MOVWF	r0x05
-	MOVFF	PRODL, r0x06
-	MOVLW	0x04
-	ADDWF	FSR1L, F
-	MOVF	r0x05, W
-	IORWF	r0x06, W
-	BZ	_00106_DS_
-;	.line	147; TCPIP_Stack/ICMP.c	return;
-	BRA	_00119_DS_
-_00106_DS_:
-	BANKSEL	_ICMPProcess_dwVal_1_1
-;	.line	150; TCPIP_Stack/ICMP.c	dwVal.v[0] = 0x00;	// Type: 0 (ICMP echo/ping reply)
-	CLRF	_ICMPProcess_dwVal_1_1, B
-;	.line	151; TCPIP_Stack/ICMP.c	dwVal.v[2] += 8;	// Subtract 0x0800 from the checksum
-	MOVLW	0x08
-	BANKSEL	(_ICMPProcess_dwVal_1_1 + 2)
-	ADDWF	(_ICMPProcess_dwVal_1_1 + 2), W, B
-	MOVWF	r0x05
-	MOVF	r0x05, W
-	BANKSEL	(_ICMPProcess_dwVal_1_1 + 2)
-	MOVWF	(_ICMPProcess_dwVal_1_1 + 2), B
-;	.line	152; TCPIP_Stack/ICMP.c	if(dwVal.v[2] < 8u)
-	MOVFF	(_ICMPProcess_dwVal_1_1 + 2), r0x06
-	CLRF	r0x07
-	MOVLW	0x00
-	SUBWF	r0x07, W
-	BNZ	_00131_DS_
-	MOVLW	0x08
-	SUBWF	r0x05, W
-_00131_DS_:
-	BC	_00111_DS_
-;	.line	154; TCPIP_Stack/ICMP.c	dwVal.v[3]++;
-	MOVFF	(_ICMPProcess_dwVal_1_1 + 3), r0x05
-	INCF	r0x05, F
-	MOVF	r0x05, W
-	BANKSEL	(_ICMPProcess_dwVal_1_1 + 3)
-	MOVWF	(_ICMPProcess_dwVal_1_1 + 3), B
-	BANKSEL	(_ICMPProcess_dwVal_1_1 + 3)
-;	.line	155; TCPIP_Stack/ICMP.c	if(dwVal.v[3] == 0u) dwVal.v[2]++;
-	MOVF	(_ICMPProcess_dwVal_1_1 + 3), W, B
-	BNZ	_00111_DS_
-	INCF	r0x06, F
-	MOVF	r0x06, W
-	BANKSEL	(_ICMPProcess_dwVal_1_1 + 2)
-	MOVWF	(_ICMPProcess_dwVal_1_1 + 2), B
-_00111_DS_:
-;	.line	160; TCPIP_Stack/ICMP.c	while(!IPIsTxReady());
-	CALL	_MACIsTxReady
-	MOVWF	r0x05
-	MOVF	r0x05, W
-	BZ	_00111_DS_
-;	.line	165; TCPIP_Stack/ICMP.c	MACSetWritePtr(BASE_TX_ADDR + sizeof(ETHER_HEADER));
-	MOVLW	0x1a
-	MOVWF	POSTDEC1
-	MOVLW	0x19
-	MOVWF	POSTDEC1
-	CALL	_MACSetWritePtr
-	MOVLW	0x02
-	ADDWF	FSR1L, F
-;	.line	168; TCPIP_Stack/ICMP.c	IPPutHeader(remote, IP_PROT_ICMP, len);
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	MOVLW	0x01
-	MOVWF	POSTDEC1
+_00118_DS_:
+;	.line	43; TCPIP_Stack/myUART.c	UARTPutc(*udata);
+	MOVFF	r0x00, FSR0L
+	MOVFF	r0x01, PRODL
 	MOVF	r0x02, W
-	MOVWF	POSTDEC1
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	CALL	_IPPutHeader
-	MOVLW	0x06
-	ADDWF	FSR1L, F
-;	.line	171; TCPIP_Stack/ICMP.c	MACPutArray((BYTE*)&dwVal, sizeof(dwVal));
-	MOVLW	HIGH(_ICMPProcess_dwVal_1_1)
-	MOVWF	r0x01
-	MOVLW	LOW(_ICMPProcess_dwVal_1_1)
-	MOVWF	r0x00
-	MOVLW	0x80
-	MOVWF	r0x02
-	MOVLW	0x00
-	MOVWF	POSTDEC1
-	MOVLW	0x04
-	MOVWF	POSTDEC1
-	MOVF	r0x02, W
-	MOVWF	POSTDEC1
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	CALL	_MACPutArray
-	MOVLW	0x05
-	ADDWF	FSR1L, F
-;	.line	172; TCPIP_Stack/ICMP.c	MACMemCopyAsync(-1, -1, len-4);
-	MOVLW	0xfc
-	ADDWF	r0x03, F
-	BTFSS	STATUS, 0
-	DECF	r0x04, F
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
+	CALL	__gptrget1
+	MOVWF	r0x03
 	MOVF	r0x03, W
 	MOVWF	POSTDEC1
-	MOVLW	0xff
-	MOVWF	POSTDEC1
-	MOVLW	0xff
-	MOVWF	POSTDEC1
-	MOVLW	0xff
-	MOVWF	POSTDEC1
-	MOVLW	0xff
-	MOVWF	POSTDEC1
-	CALL	_MACMemCopyAsync
-	MOVLW	0x06
-	ADDWF	FSR1L, F
-_00114_DS_:
-;	.line	173; TCPIP_Stack/ICMP.c	while(!MACIsMemCopyDone());
-	CALL	_MACIsMemCopyDone
-	MOVWF	r0x00
-	MOVF	r0x00, W
-	BZ	_00114_DS_
-;	.line	176; TCPIP_Stack/ICMP.c	MACFlush();
-	CALL	_MACFlush
-_00119_DS_:
-	MOVFF	PREINC1, r0x07
-	MOVFF	PREINC1, r0x06
-	MOVFF	PREINC1, r0x05
-	MOVFF	PREINC1, r0x04
+	CALL	_UARTPutc
+	INCF	FSR1L, F
+;	.line	44; TCPIP_Stack/myUART.c	} while( *udata++ );
+	MOVFF	r0x00, FSR0L
+	MOVFF	r0x01, PRODL
+	MOVF	r0x02, W
+	CALL	__gptrget1
+	MOVWF	r0x03
+	INCF	r0x00, F
+	BTFSC	STATUS, 0
+	INCF	r0x01, F
+	BTFSC	STATUS, 0
+	INCF	r0x02, F
+	MOVF	r0x03, W
+	BNZ	_00118_DS_
 	MOVFF	PREINC1, r0x03
 	MOVFF	PREINC1, r0x02
 	MOVFF	PREINC1, r0x01
@@ -681,13 +516,66 @@ _00119_DS_:
 	MOVFF	PREINC1, FSR2L
 	RETURN	
 
+; ; Starting pCode block
+S_myUART__UARTPutc	code
+_UARTPutc:
+;	.line	31; TCPIP_Stack/myUART.c	void UARTPutc(char c)
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+	MOVFF	r0x00, POSTDEC1
+	MOVLW	0x02
+	MOVFF	PLUSW2, r0x00
+_00110_DS_:
+;	.line	34; TCPIP_Stack/myUART.c	while (TXSTA1bits.TRMT == 0) {};
+	BTFSS	_TXSTA1bits, 1
+	BRA	_00110_DS_
+;	.line	35; TCPIP_Stack/myUART.c	TXREG1 = c; // send the new byte
+	MOVFF	r0x00, _TXREG1
+	MOVFF	PREINC1, r0x00
+	MOVFF	PREINC1, FSR2L
+	RETURN	
+
+; ; Starting pCode block
+S_myUART__UARTConfig	code
+_UARTConfig:
+;	.line	11; TCPIP_Stack/myUART.c	void UARTConfig(void)
+	MOVFF	FSR2L, POSTDEC1
+	MOVFF	FSR1L, FSR2L
+;	.line	13; TCPIP_Stack/myUART.c	TRISCbits.TRISC7 = 1;
+	BSF	_TRISCbits, 7
+;	.line	14; TCPIP_Stack/myUART.c	TRISCbits.TRISC6 = 0;
+	BCF	_TRISCbits, 6
+;	.line	16; TCPIP_Stack/myUART.c	BAUDCON1bits.BRG16 = 0; // Divisor at 8 bit
+	BCF	_BAUDCON1bits, 3
+;	.line	17; TCPIP_Stack/myUART.c	BAUDCON1bits.TXCKP = 1; // Inverted polarity
+	BSF	_BAUDCON1bits, 4
+;	.line	18; TCPIP_Stack/myUART.c	TXSTA1bits.BRGH = 0; // No high-speed baudrate
+	BCF	_TXSTA1bits, 2
+;	.line	19; TCPIP_Stack/myUART.c	SPBRG1 = 40;	// Divisor for baud rate 9600 at 25 Mhz
+	MOVLW	0x28
+	MOVWF	_SPBRG1
+;	.line	21; TCPIP_Stack/myUART.c	TXSTA1bits.SYNC = 0; // Async operation
+	BCF	_TXSTA1bits, 4
+;	.line	22; TCPIP_Stack/myUART.c	TXSTA1bits.TX9 = 0; // No tx of 9th bit
+	BCF	_TXSTA1bits, 6
+;	.line	23; TCPIP_Stack/myUART.c	TXSTA1bits.TXEN = 1; // Enable transmitter
+	BSF	_TXSTA1bits, 5
+;	.line	25; TCPIP_Stack/myUART.c	RCSTA1bits.RX9 = 0; // No rx of 9th bit
+	BCF	_RCSTA1bits, 6
+;	.line	26; TCPIP_Stack/myUART.c	RCSTA1bits.CREN = 1; // Enable receiver
+	BSF	_RCSTA1bits, 4
+;	.line	27; TCPIP_Stack/myUART.c	RCSTA1bits.SPEN = 1; // Enable serial port
+	BSF	_RCSTA1bits, 7
+	MOVFF	PREINC1, FSR2L
+	RETURN	
+
 
 
 ; Statistics:
-; code size:	  416 (0x01a0) bytes ( 0.32%)
-;           	  208 (0x00d0) words
-; udata size:	    4 (0x0004) bytes ( 0.10%)
-; access size:	    8 (0x0008) bytes
+; code size:	  196 (0x00c4) bytes ( 0.15%)
+;           	   98 (0x0062) words
+; udata size:	    0 (0x0000) bytes ( 0.00%)
+; access size:	    4 (0x0004) bytes
 
 
 	end
