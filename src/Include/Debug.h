@@ -3,8 +3,10 @@
 
 #ifdef UART_DEBUG_ON
     #define STACK_USE_UART
-    #define DEBUGMSG(x) UARTPuts(x)
+    #define DEBUGCHAR(x) UARTPutc(x)
+    #define DEBUGMSG(x)  UARTPuts(x)
 #else
+    #define DEBUGCHAR(x)
     #define DEBUGMSG(x)
 #endif
 

@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  1
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Mon Dec 11 22:29:35 2017
+               00004 ; This file was generated Mon Dec 11 22:42:09 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _TXSTA2bits
                00053         extern _CCP5CONbits
                00054         extern _CCP4CONbits
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  2
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR2bits
                00107         extern _PIE3bits
                00108         extern _PIR3bits
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  3
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR1
                00161         extern _MAADR2
                00162         extern _EBSTSD
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  4
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMOL
                00215         extern _EPMOH
                00216         extern _EWOLIE
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  5
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _TXSTA2
                00269         extern _TXREG2
                00270         extern _RCREG2
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  6
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _DDRE
                00323         extern _TRISE
                00324         extern _DDRF
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  7
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _CCPR1H
                00377         extern _ADCON2
                00378         extern _ADCON1
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  8
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INTCON3
                00431         extern _INTCON2
                00432         extern _INTCON
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE  9
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484 _TickGetDiv64K_ret_1_1  res     4
                00485 
                00486 ;--------------------------------------------------------
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 10
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00538 ;       .line   335; TCPIP_Stack/Tick.c return (dwTickValue+(TICKS_PER_SECOND/2000ul))/((DWORD)(TICKS_PER_SECOND/1000ul));
 0030 0E14      00539         MOVLW   0x14
 0032 2600      00540         ADDWF   r0x00, F
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 11
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -658,7 +658,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0010 0000      00592         BANKSEL _TickGetDiv64K_ret_1_1
 0012 6F00      00593         MOVWF   _TickGetDiv64K_ret_1_1, B
 0014 0000      00594         BANKSEL (_vTickReading + 3)
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 12
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -718,7 +718,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00646 ;       .line   265; TCPIP_Stack/Tick.c return ret.Val;
 002C C000 FFE9 00647         MOVFF   (_TickGetDiv256_ret_1_1 + 3), FSR0L
 0030 C000 FFF4 00648         MOVFF   (_TickGetDiv256_ret_1_1 + 2), PRODH
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 13
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -778,7 +778,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0028 6F00      00700         MOVWF   (_vTickReading + 3), B
 002A 0000      00701         BANKSEL (_dwInternalTicks + 2)
 002C 5100      00702         MOVF    (_dwInternalTicks + 2), W, B
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 14
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -829,7 +829,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00745 ; access size:      4 (0x0004) bytes
                00746 
                00747 
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 15
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 15
 
 
 SYMBOL TABLE
@@ -888,7 +888,7 @@ _CCPR1                            00000000
 _CCPR1H                           00000000
 _CCPR1L                           00000000
 _CCPR2                            00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 16
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -948,7 +948,7 @@ _ECCP2DELbits                     00000000
 _ECCP3AS                          00000000
 _ECCP3ASbits                      00000000
 _ECCP3CON                         00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 17
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1008,7 +1008,7 @@ _EPMM5                            00000000
 _EPMM6                            00000000
 _EPMM7                            00000000
 _EPMO                             00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 18
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1068,7 +1068,7 @@ _IPR1                             00000000
 _IPR1bits                         00000000
 _IPR2                             00000000
 _IPR2bits                         00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 19
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1128,7 +1128,7 @@ _MICON                            00000000
 _MICONbits                        00000000
 _MIRD                             00000000
 _MIRDH                            00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 20
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1188,7 +1188,7 @@ _POSTDEC2                         00000000
 _POSTINC0                         00000000
 _POSTINC1                         00000000
 _POSTINC2                         00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 21
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1248,7 +1248,7 @@ _SSPSTATbits                      00000000
 _STATUS                           00000000
 _STATUSbits                       00000000
 _STKPTR                           00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 22
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1308,7 +1308,7 @@ _TXSTA1                           00000000
 _TXSTA1bits                       00000000
 _TXSTA2                           00000000
 _TXSTA2bits                       00000000
-gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:29:35         PAGE 23
+gpasm-0.13.7 beta               Objects/Tick.asm12-11-2017  22:42:09         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
