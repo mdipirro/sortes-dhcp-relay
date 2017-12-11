@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 12-11-2017  18:47:12
+Listing File Generated: 12-11-2017  18:55:43
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-                                           ; This file was generated Mon Dec 11 18:47:12 2017
+                                           ; This file was generated Mon Dec 11 18:55:43 2017
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -676,13 +676,13 @@ Address  Value    Disassembly              Source
 004ef6   6e91     movwf	0x91, 0            	MOVWF	_LATJbits
 004ef8   0004     clrwdt                   	clrwdt 
                                            _00125_DS_:
-                                           ;	.line	168; MainDemo.c	StackTask();
+                                           ;	.line	167; MainDemo.c	StackTask();
 004efa   ece5     call	0x1bca, 0           	CALL	_StackTask
 004efc   f00d
-                                           ;	.line	175; MainDemo.c	LCDTask();
+                                           ;	.line	174; MainDemo.c	LCDTask();
 004efe   ecf3     call	0x59e6, 0           	CALL	_LCDTask
 004f00   f02c
-                                           ;	.line	183; MainDemo.c	if(dwLastIP != AppConfig.MyIPAddr.Val)
+                                           ;	.line	182; MainDemo.c	if(dwLastIP != AppConfig.MyIPAddr.Val)
 004f02   ce00     movff	0xe00, 0           	MOVFF	_AppConfig, r0x00
 004f04   f000
 004f06   ce01     movff	0xe01, 0x1         	MOVFF	(_AppConfig + 1), r0x01
@@ -709,7 +709,7 @@ Address  Value    Disassembly              Source
 004f30   e101     bnz	0x4f34               	BNZ	_00142_DS_
 004f32   d7a9     bra	0x4e86               	BRA	_00129_DS_
                                            _00142_DS_:
-                                           ;	.line	185; MainDemo.c	dwLastIP = AppConfig.MyIPAddr.Val;
+                                           ;	.line	184; MainDemo.c	dwLastIP = AppConfig.MyIPAddr.Val;
 004f34   c000     movff	0, 0x858           	MOVFF	r0x00, _main_dwLastIP_1_1
 004f36   f858
 004f38   c001     movff	0x1, 0x859         	MOVFF	r0x01, (_main_dwLastIP_1_1 + 1)
@@ -719,7 +719,7 @@ Address  Value    Disassembly              Source
 004f40   c003     movff	0x3, 0x85b         	MOVFF	r0x03, (_main_dwLastIP_1_1 + 3)
 004f42   f85b
 004f44   0108     movlb	0x8                	BANKSEL	(_main_dwLastIP_1_1 + 3)
-                                           ;	.line	187; MainDemo.c	DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
+                                           ;	.line	186; MainDemo.c	DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
 004f46   515b     movf	0x5b, 0, 0x1        	MOVF	(_main_dwLastIP_1_1 + 3), W, B
 004f48   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 004f4a   0108     movlb	0x8                	BANKSEL	(_main_dwLastIP_1_1 + 2)
@@ -741,7 +741,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__InitAppConfig	code
                                            _InitAppConfig:
-                                           ;	.line	358; MainDemo.c	static void InitAppConfig(void)
+                                           ;	.line	354; MainDemo.c	static void InitAppConfig(void)
 005d2a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 005d2c   ffe5
 005d2e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -755,35 +755,35 @@ Address  Value    Disassembly              Source
 005d3e   c003     movff	0x3, 0xfe5         	MOVFF	r0x03, POSTDEC1
 005d40   ffe5
 005d42   010e     movlb	0xe                	BANKSEL	(_AppConfig + 44)
-                                           ;	.line	360; MainDemo.c	AppConfig.Flags.bIsDHCPEnabled = TRUE;
+                                           ;	.line	356; MainDemo.c	AppConfig.Flags.bIsDHCPEnabled = TRUE;
 005d44   8d2c     bsf	0x2c, 0x6, 0x1       	BSF	(_AppConfig + 44), 6, B
 005d46   010e     movlb	0xe                	BANKSEL	(_AppConfig + 44)
-                                           ;	.line	361; MainDemo.c	AppConfig.Flags.bInConfigMode = TRUE;
+                                           ;	.line	357; MainDemo.c	AppConfig.Flags.bInConfigMode = TRUE;
 005d48   8f2c     bsf	0x2c, 0x7, 0x1       	BSF	(_AppConfig + 44), 7, B
 005d4a   010e     movlb	0xe                	BANKSEL	(_AppConfig + 45)
-                                           ;	.line	365; MainDemo.c	AppConfig.MyMACAddr.v[0] = 0;
+                                           ;	.line	361; MainDemo.c	AppConfig.MyMACAddr.v[0] = 0;
 005d4c   6b2d     clrf	0x2d, 0x1           	CLRF	(_AppConfig + 45), B
-                                           ;	.line	366; MainDemo.c	AppConfig.MyMACAddr.v[1] = 0x04;
+                                           ;	.line	362; MainDemo.c	AppConfig.MyMACAddr.v[1] = 0x04;
 005d4e   0e04     movlw	0x4                	MOVLW	0x04
 005d50   010e     movlb	0xe                	BANKSEL	(_AppConfig + 46)
 005d52   6f2e     movwf	0x2e, 0x1          	MOVWF	(_AppConfig + 46), B
-                                           ;	.line	367; MainDemo.c	AppConfig.MyMACAddr.v[2] = 0xA3;
+                                           ;	.line	363; MainDemo.c	AppConfig.MyMACAddr.v[2] = 0xA3;
 005d54   0ea3     movlw	0xa3               	MOVLW	0xa3
 005d56   010e     movlb	0xe                	BANKSEL	(_AppConfig + 47)
 005d58   6f2f     movwf	0x2f, 0x1          	MOVWF	(_AppConfig + 47), B
-                                           ;	.line	368; MainDemo.c	AppConfig.MyMACAddr.v[3] = 0x01;
+                                           ;	.line	364; MainDemo.c	AppConfig.MyMACAddr.v[3] = 0x01;
 005d5a   0e01     movlw	0x1                	MOVLW	0x01
 005d5c   010e     movlb	0xe                	BANKSEL	(_AppConfig + 48)
 005d5e   6f30     movwf	0x30, 0x1          	MOVWF	(_AppConfig + 48), B
-                                           ;	.line	369; MainDemo.c	AppConfig.MyMACAddr.v[4] = 0x02;
+                                           ;	.line	365; MainDemo.c	AppConfig.MyMACAddr.v[4] = 0x02;
 005d60   0e02     movlw	0x2                	MOVLW	0x02
 005d62   010e     movlb	0xe                	BANKSEL	(_AppConfig + 49)
 005d64   6f31     movwf	0x31, 0x1          	MOVWF	(_AppConfig + 49), B
-                                           ;	.line	370; MainDemo.c	AppConfig.MyMACAddr.v[5] = 0x03;
+                                           ;	.line	366; MainDemo.c	AppConfig.MyMACAddr.v[5] = 0x03;
 005d66   0e03     movlw	0x3                	MOVLW	0x03
 005d68   010e     movlb	0xe                	BANKSEL	(_AppConfig + 50)
 005d6a   6f32     movwf	0x32, 0x1          	MOVWF	(_AppConfig + 50), B
-                                           ;	.line	373; MainDemo.c	AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
+                                           ;	.line	369; MainDemo.c	AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
 005d6c   0ec0     movlw	0xc0               	MOVLW	0xc0
 005d6e   010e     movlb	0xe                	BANKSEL	_AppConfig
 005d70   6f00     movwf	0, 0x1             	MOVWF	_AppConfig, B
@@ -796,7 +796,7 @@ Address  Value    Disassembly              Source
 005d7e   0e3c     movlw	0x3c               	MOVLW	0x3c
 005d80   010e     movlb	0xe                	BANKSEL	(_AppConfig + 3)
 005d82   6f03     movwf	0x3, 0x1           	MOVWF	(_AppConfig + 3), B
-                                           ;	.line	376; MainDemo.c	AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
+                                           ;	.line	372; MainDemo.c	AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
 005d84   ce00     movff	0xe00, 0           	MOVFF	_AppConfig, r0x00
 005d86   f000
 005d88   ce01     movff	0xe01, 0x1         	MOVFF	(_AppConfig + 1), r0x01
@@ -818,7 +818,7 @@ Address  Value    Disassembly              Source
 005da8   010e     movlb	0xe                	BANKSEL	(_AppConfig + 23)
 005daa   6f17     movwf	0x17, 0x1          	MOVWF	(_AppConfig + 23), B
 005dac   010e     movlb	0xe                	BANKSEL	(_AppConfig + 4)
-                                           ;	.line	377; MainDemo.c	AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
+                                           ;	.line	373; MainDemo.c	AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
 005dae   6904     setf	0x4, 0x1            	SETF	(_AppConfig + 4), B
 005db0   010e     movlb	0xe                	BANKSEL	(_AppConfig + 5)
 005db2   6905     setf	0x5, 0x1            	SETF	(_AppConfig + 5), B
@@ -826,7 +826,7 @@ Address  Value    Disassembly              Source
 005db6   6906     setf	0x6, 0x1            	SETF	(_AppConfig + 6), B
 005db8   010e     movlb	0xe                	BANKSEL	(_AppConfig + 7)
 005dba   6b07     clrf	0x7, 0x1            	CLRF	(_AppConfig + 7), B
-                                           ;	.line	380; MainDemo.c	AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
+                                           ;	.line	376; MainDemo.c	AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
 005dbc   ce04     movff	0xe04, 0           	MOVFF	(_AppConfig + 4), r0x00
 005dbe   f000
 005dc0   ce05     movff	0xe05, 0x1         	MOVFF	(_AppConfig + 5), r0x01
@@ -847,7 +847,7 @@ Address  Value    Disassembly              Source
 005dde   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 005de0   010e     movlb	0xe                	BANKSEL	(_AppConfig + 27)
 005de2   6f1b     movwf	0x1b, 0x1          	MOVWF	(_AppConfig + 27), B
-                                           ;	.line	381; MainDemo.c	AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
+                                           ;	.line	377; MainDemo.c	AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
 005de4   0ec0     movlw	0xc0               	MOVLW	0xc0
 005de6   010e     movlb	0xe                	BANKSEL	(_AppConfig + 8)
 005de8   6f08     movwf	0x8, 0x1           	MOVWF	(_AppConfig + 8), B
@@ -860,7 +860,7 @@ Address  Value    Disassembly              Source
 005df6   0e01     movlw	0x1                	MOVLW	0x01
 005df8   010e     movlb	0xe                	BANKSEL	(_AppConfig + 11)
 005dfa   6f0b     movwf	0xb, 0x1           	MOVWF	(_AppConfig + 11), B
-                                           ;	.line	384; MainDemo.c	AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
+                                           ;	.line	380; MainDemo.c	AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
 005dfc   0ec0     movlw	0xc0               	MOVLW	0xc0
 005dfe   010e     movlb	0xe                	BANKSEL	(_AppConfig + 12)
 005e00   6f0c     movwf	0xc, 0x1           	MOVWF	(_AppConfig + 12), B
@@ -874,7 +874,7 @@ Address  Value    Disassembly              Source
 005e10   010e     movlb	0xe                	BANKSEL	(_AppConfig + 15)
 005e12   6f0f     movwf	0xf, 0x1           	MOVWF	(_AppConfig + 15), B
 005e14   010e     movlb	0xe                	BANKSEL	(_AppConfig + 16)
-                                           ;	.line	388; MainDemo.c	AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
+                                           ;	.line	384; MainDemo.c	AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
 005e16   6b10     clrf	0x10, 0x1           	CLRF	(_AppConfig + 16), B
 005e18   010e     movlb	0xe                	BANKSEL	(_AppConfig + 17)
 005e1a   6b11     clrf	0x11, 0x1           	CLRF	(_AppConfig + 17), B
@@ -897,50 +897,50 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__InitializeBoard	code
                                            _InitializeBoard:
-                                           ;	.line	301; MainDemo.c	static void InitializeBoard(void)
+                                           ;	.line	300; MainDemo.c	static void InitializeBoard(void)
 007d7a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 007d7c   ffe5
 007d7e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
 007d80   ffd9
-                                           ;	.line	304; MainDemo.c	LED0_TRIS = 0;  //LED0
+                                           ;	.line	303; MainDemo.c	LED0_TRIS = 0;  //LED0
 007d82   909a     bcf	0x9a, 0, 0           	BCF	_TRISJbits, 0
-                                           ;	.line	305; MainDemo.c	LED1_TRIS = 0;  //LED1
+                                           ;	.line	304; MainDemo.c	LED1_TRIS = 0;  //LED1
 007d84   929a     bcf	0x9a, 0x1, 0         	BCF	_TRISJbits, 1
-                                           ;	.line	306; MainDemo.c	LED2_TRIS = 0;  //LED2
+                                           ;	.line	305; MainDemo.c	LED2_TRIS = 0;  //LED2
 007d86   949a     bcf	0x9a, 0x2, 0         	BCF	_TRISJbits, 2
-                                           ;	.line	307; MainDemo.c	LED3_TRIS = 0;  //LED_LCD1
+                                           ;	.line	306; MainDemo.c	LED3_TRIS = 0;  //LED_LCD1
 007d88   9a98     bcf	0x98, 0x5, 0         	BCF	_TRISGbits, 5
-                                           ;	.line	308; MainDemo.c	LED4_TRIS = 0;  //LED_LCD2
+                                           ;	.line	307; MainDemo.c	LED4_TRIS = 0;  //LED_LCD2
 007d8a   9a98     bcf	0x98, 0x5, 0         	BCF	_TRISGbits, 5
-                                           ;	.line	309; MainDemo.c	LED5_TRIS = 0;  //LED5=RELAY1
+                                           ;	.line	308; MainDemo.c	LED5_TRIS = 0;  //LED5=RELAY1
 007d8c   9e98     bcf	0x98, 0x7, 0         	BCF	_TRISGbits, 7
-                                           ;	.line	310; MainDemo.c	LED6_TRIS = 0;  //LED7=RELAY2
+                                           ;	.line	309; MainDemo.c	LED6_TRIS = 0;  //LED7=RELAY2
 007d8e   9c98     bcf	0x98, 0x6, 0         	BCF	_TRISGbits, 6
-                                           ;	.line	315; MainDemo.c	LED_PUT(0x00);  //turn off LED0 - LED2
+                                           ;	.line	314; MainDemo.c	LED_PUT(0x00);  //turn off LED0 - LED2
 007d90   0ef8     movlw	0xf8               	MOVLW	0xf8
 007d92   1691     andwf	0x91, 0x1, 0       	ANDWF	_LATJ, F
-                                           ;	.line	316; MainDemo.c	RELAY_PUT(0x00); //turn relays off to save power
+                                           ;	.line	315; MainDemo.c	RELAY_PUT(0x00); //turn relays off to save power
 007d94   0e3f     movlw	0x3f               	MOVLW	0x3f
 007d96   168f     andwf	0x8f, 0x1, 0       	ANDWF	_LATG, F
-                                           ;	.line	323; MainDemo.c	OSCTUNE = 0x00;
+                                           ;	.line	319; MainDemo.c	OSCTUNE = 0x00;
 007d98   6a9b     clrf	0x9b, 0             	CLRF	_OSCTUNE
-                                           ;	.line	330; MainDemo.c	if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
+                                           ;	.line	326; MainDemo.c	if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
 007d9a   aed3     btfss	0xd3, 0x7, 0       	BTFSS	_OSCCONbits, 7
 007d9c   d003     bra	0x7da4               	BRA	_00212_DS_
-                                           ;	.line	331; MainDemo.c	OSCCON = 0x82;
+                                           ;	.line	327; MainDemo.c	OSCCON = 0x82;
 007d9e   0e82     movlw	0x82               	MOVLW	0x82
 007da0   6ed3     movwf	0xd3, 0            	MOVWF	_OSCCON
 007da2   d002     bra	0x7da8               	BRA	_00213_DS_
                                            _00212_DS_:
-                                           ;	.line	333; MainDemo.c	OSCCON = 0x02;
+                                           ;	.line	329; MainDemo.c	OSCCON = 0x02;
 007da4   0e02     movlw	0x2                	MOVLW	0x02
 007da6   6ed3     movwf	0xd3, 0            	MOVWF	_OSCCON
                                            _00213_DS_:
-                                           ;	.line	336; MainDemo.c	RCONbits.IPEN = 1;		// Enable interrupt priorities
+                                           ;	.line	332; MainDemo.c	RCONbits.IPEN = 1;		// Enable interrupt priorities
 007da8   8ed0     bsf	0xd0, 0x7, 0         	BSF	_RCONbits, 7
-                                           ;	.line	337; MainDemo.c	INTCONbits.GIEH = 1;
+                                           ;	.line	333; MainDemo.c	INTCONbits.GIEH = 1;
 007daa   8ef2     bsf	0xf2, 0x7, 0         	BSF	_INTCONbits, 7
-                                           ;	.line	338; MainDemo.c	INTCONbits.GIEL = 1;
+                                           ;	.line	334; MainDemo.c	INTCONbits.GIEL = 1;
 007dac   8cf2     bsf	0xf2, 0x6, 0         	BSF	_INTCONbits, 6
 007dae   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
 007db0   ffd9
@@ -949,7 +949,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__DisplayIPValue	code
                                            _DisplayIPValue:
-                                           ;	.line	243; MainDemo.c	void DisplayIPValue(DWORD IPdw) // 32 bits
+                                           ;	.line	242; MainDemo.c	void DisplayIPValue(DWORD IPdw) // 32 bits
 00433e   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 004340   ffe5
 004342   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -994,10 +994,10 @@ Address  Value    Disassembly              Source
 004390   0e05     movlw	0x5                	MOVLW	0x05
 004392   cfdb     movff	0xfdb, 0x3         	MOVFF	PLUSW2, r0x03
 004394   f003
-                                           ;	.line	251; MainDemo.c	BYTE LCDPos=16;  //write on second line of LCD
+                                           ;	.line	250; MainDemo.c	BYTE LCDPos=16;  //write on second line of LCD
 004396   0e10     movlw	0x10               	MOVLW	0x10
 004398   6e04     movwf	0x4, 0             	MOVWF	r0x04
-                                           ;	.line	256; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+                                           ;	.line	255; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 00439a   6a05     clrf	0x5, 0              	CLRF	r0x05
 00439c   6a06     clrf	0x6, 0              	CLRF	r0x06
 00439e   6a07     clrf	0x7, 0              	CLRF	r0x07
@@ -1006,7 +1006,7 @@ Address  Value    Disassembly              Source
 0043a2   5c05     subwf	0x5, 0, 0          	SUBWF	r0x05, W
 0043a4   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
 0043a6   d081     bra	0x44aa               	BRA	_00180_DS_
-                                           ;	.line	259; MainDemo.c	IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
+                                           ;	.line	258; MainDemo.c	IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
 0043a8   c000     movff	0, 0x8             	MOVFF	r0x00, r0x08
 0043aa   f008
 0043ac   c001     movff	0x1, 0x9           	MOVFF	r0x01, r0x09
@@ -1039,7 +1039,7 @@ Address  Value    Disassembly              Source
 0043dc   e3fa     bnc	0x43d2               	BNC	_00200_DS_
                                            _00198_DS_:
 0043de   6a09     clrf	0x9, 0              	CLRF	r0x09
-                                           ;	.line	260; MainDemo.c	uitoa(IP_field, IPDigit, radix);      //ML
+                                           ;	.line	259; MainDemo.c	uitoa(IP_field, IPDigit, radix);      //ML
 0043e0   0e0a     movlw	0xa                	MOVLW	0x0a
 0043e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0043e4   0e08     movlw	0x8                	MOVLW	HIGH(_DisplayIPValue_IPDigit_1_1)
@@ -1054,7 +1054,7 @@ Address  Value    Disassembly              Source
 0043f6   f03b
 0043f8   0e05     movlw	0x5                	MOVLW	0x05
 0043fa   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	265; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
+                                           ;	.line	264; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
 0043fc   c004     movff	0x4, 0x8           	MOVFF	r0x04, r0x08
 0043fe   f008
 004400   6a09     clrf	0x9, 0              	CLRF	r0x09
@@ -1092,7 +1092,7 @@ Address  Value    Disassembly              Source
 00443e   5c0c     subwf	0xc, 0, 0          	SUBWF	r0x0c, W
                                            _00203_DS_:
 004440   e21c     bc	0x447a                	BC	_00195_DS_
-                                           ;	.line	267; MainDemo.c	LCDText[LCDPos++] = IPDigit[j];
+                                           ;	.line	266; MainDemo.c	LCDText[LCDPos++] = IPDigit[j];
 004442   c008     movff	0x8, 0xa           	MOVFF	r0x08, r0x0a
 004444   f00a
 004446   2a08     incf	0x8, 0x1, 0         	INCF	r0x08, F
@@ -1119,17 +1119,17 @@ Address  Value    Disassembly              Source
 004470   ffea
 004472   c00c     movff	0xc, 0xfef         	MOVFF	r0x0c, INDF0
 004474   ffef
-                                           ;	.line	265; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
+                                           ;	.line	264; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
 004476   2a09     incf	0x9, 0x1, 0         	INCF	r0x09, F
 004478   d7c4     bra	0x4402               	BRA	_00183_DS_
                                            _00195_DS_:
 00447a   c008     movff	0x8, 0x4           	MOVFF	r0x08, r0x04
 00447c   f004
-                                           ;	.line	269; MainDemo.c	if(i == sizeof(IP_ADDR)-1)
+                                           ;	.line	268; MainDemo.c	if(i == sizeof(IP_ADDR)-1)
 00447e   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
 004480   0a03     xorlw	0x3                	XORLW	0x03
 004482   e013     bz	0x44aa                	BZ	_00180_DS_
-                                           ;	.line	271; MainDemo.c	LCDText[LCDPos++] = '.';
+                                           ;	.line	270; MainDemo.c	LCDText[LCDPos++] = '.';
 004484   2808     incf	0x8, 0, 0           	INCF	r0x08, W
 004486   6e04     movwf	0x4, 0             	MOVWF	r0x04
 004488   6a09     clrf	0x9, 0              	CLRF	r0x09
@@ -1143,7 +1143,7 @@ Address  Value    Disassembly              Source
 004498   ffea
 00449a   0e2e     movlw	0x2e               	MOVLW	0x2e
 00449c   6eef     movwf	0xef, 0            	MOVWF	INDF0
-                                           ;	.line	256; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+                                           ;	.line	255; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 00449e   0e08     movlw	0x8                	MOVLW	0x08
 0044a0   2606     addwf	0x6, 0x1, 0        	ADDWF	r0x06, F
 0044a2   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
@@ -1151,7 +1151,7 @@ Address  Value    Disassembly              Source
 0044a6   2a05     incf	0x5, 0x1, 0         	INCF	r0x05, F
 0044a8   d77b     bra	0x43a0               	BRA	_00177_DS_
                                            _00180_DS_:
-                                           ;	.line	274; MainDemo.c	if(LCDPos < 32u)
+                                           ;	.line	273; MainDemo.c	if(LCDPos < 32u)
 0044aa   c004     movff	0x4, 0             	MOVFF	r0x04, r0x00
 0044ac   f000
 0044ae   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -1162,7 +1162,7 @@ Address  Value    Disassembly              Source
 0044b8   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
                                            _00206_DS_:
 0044ba   e20b     bc	0x44d2                	BC	_00182_DS_
-                                           ;	.line	275; MainDemo.c	LCDText[LCDPos] = 0;
+                                           ;	.line	274; MainDemo.c	LCDText[LCDPos] = 0;
 0044bc   6a00     clrf	0, 0                	CLRF	r0x00
 0044be   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
 0044c0   2604     addwf	0x4, 0x1, 0        	ADDWF	r0x04, F
@@ -1175,7 +1175,7 @@ Address  Value    Disassembly              Source
 0044ce   0e00     movlw	0                  	MOVLW	0x00
 0044d0   6eef     movwf	0xef, 0            	MOVWF	INDF0
                                            _00182_DS_:
-                                           ;	.line	276; MainDemo.c	LCDUpdate();
+                                           ;	.line	275; MainDemo.c	LCDUpdate();
 0044d2   ecb1     call	0x7b62, 0           	CALL	_LCDUpdate
 0044d4   f03d
 0044d6   cfe4     movff	0xfe4, 0xd         	MOVFF	PREINC1, r0x0d
@@ -1213,7 +1213,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__DisplayString	code
                                            _DisplayString:
-                                           ;	.line	228; MainDemo.c	void DisplayString(BYTE pos, char* text)
+                                           ;	.line	227; MainDemo.c	void DisplayString(BYTE pos, char* text)
 00659a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 00659c   ffe5
 00659e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -1246,7 +1246,7 @@ Address  Value    Disassembly              Source
 0065d4   0e05     movlw	0x5                	MOVLW	0x05
 0065d6   cfdb     movff	0xfdb, 0x3         	MOVFF	PLUSW2, r0x03
 0065d8   f003
-                                           ;	.line	230; MainDemo.c	BYTE l= strlen(text)+1;
+                                           ;	.line	229; MainDemo.c	BYTE l= strlen(text)+1;
 0065da   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0065dc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0065de   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
@@ -1261,11 +1261,11 @@ Address  Value    Disassembly              Source
 0065f0   0e03     movlw	0x3                	MOVLW	0x03
 0065f2   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 0065f4   2a04     incf	0x4, 0x1, 0         	INCF	r0x04, F
-                                           ;	.line	231; MainDemo.c	BYTE max= 32-pos;
+                                           ;	.line	230; MainDemo.c	BYTE max= 32-pos;
 0065f6   5000     movf	0, 0, 0             	MOVF	r0x00, W
 0065f8   0820     sublw	0x20               	SUBLW	0x20
 0065fa   6e05     movwf	0x5, 0             	MOVWF	r0x05
-                                           ;	.line	232; MainDemo.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+                                           ;	.line	231; MainDemo.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 0065fc   6a06     clrf	0x6, 0              	CLRF	r0x06
 0065fe   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
 006600   2600     addwf	0, 0x1, 0          	ADDWF	r0x00, F
@@ -1304,7 +1304,7 @@ Address  Value    Disassembly              Source
 006640   f01e
 006642   0e08     movlw	0x8                	MOVLW	0x08
 006644   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	233; MainDemo.c	LCDUpdate();
+                                           ;	.line	232; MainDemo.c	LCDUpdate();
 006646   ecb1     call	0x7b62, 0           	CALL	_LCDUpdate
 006648   f03d
 00664a   cfe4     movff	0xfe4, 0x7         	MOVFF	PREINC1, r0x07
@@ -1330,7 +1330,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__DisplayWORD	code
                                            _DisplayWORD:
-                                           ;	.line	206; MainDemo.c	void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+                                           ;	.line	205; MainDemo.c	void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 00557a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 00557c   ffe5
 00557e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -1356,7 +1356,7 @@ Address  Value    Disassembly              Source
 0055a6   0e04     movlw	0x4                	MOVLW	0x04
 0055a8   cfdb     movff	0xfdb, 0x2         	MOVFF	PLUSW2, r0x02
 0055aa   f002
-                                           ;	.line	214; MainDemo.c	ultoa(w, WDigit, radix);      
+                                           ;	.line	213; MainDemo.c	ultoa(w, WDigit, radix);      
 0055ac   6a03     clrf	0x3, 0              	CLRF	r0x03
 0055ae   6a04     clrf	0x4, 0              	CLRF	r0x04
 0055b0   0e0a     movlw	0xa                	MOVLW	0x0a
@@ -1377,7 +1377,7 @@ Address  Value    Disassembly              Source
 0055ce   f022
 0055d0   0e07     movlw	0x7                	MOVLW	0x07
 0055d2   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	215; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
+                                           ;	.line	214; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
 0055d4   6a01     clrf	0x1, 0              	CLRF	r0x01
                                            _00149_DS_:
 0055d6   0e08     movlw	0x8                	MOVLW	HIGH(_DisplayWORD_WDigit_1_1)
@@ -1413,7 +1413,7 @@ Address  Value    Disassembly              Source
 005612   5c04     subwf	0x4, 0, 0          	SUBWF	r0x04, W
                                            _00159_DS_:
 005614   e21c     bc	0x564e                	BC	_00152_DS_
-                                           ;	.line	217; MainDemo.c	LCDText[LCDPos++] = WDigit[j];
+                                           ;	.line	216; MainDemo.c	LCDText[LCDPos++] = WDigit[j];
 005616   c000     movff	0, 0x2             	MOVFF	r0x00, r0x02
 005618   f002
 00561a   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
@@ -1440,11 +1440,11 @@ Address  Value    Disassembly              Source
 005644   ffea
 005646   c004     movff	0x4, 0xfef         	MOVFF	r0x04, INDF0
 005648   ffef
-                                           ;	.line	215; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
+                                           ;	.line	214; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
 00564a   2a01     incf	0x1, 0x1, 0         	INCF	r0x01, F
 00564c   d7c4     bra	0x55d6               	BRA	_00149_DS_
                                            _00152_DS_:
-                                           ;	.line	219; MainDemo.c	if(LCDPos < 32u)
+                                           ;	.line	218; MainDemo.c	if(LCDPos < 32u)
 00564e   c000     movff	0, 0x1             	MOVFF	r0x00, r0x01
 005650   f001
 005652   6a02     clrf	0x2, 0              	CLRF	r0x02
@@ -1455,7 +1455,7 @@ Address  Value    Disassembly              Source
 00565c   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
                                            _00160_DS_:
 00565e   e20b     bc	0x5676                	BC	_00148_DS_
-                                           ;	.line	220; MainDemo.c	LCDText[LCDPos] = 0;
+                                           ;	.line	219; MainDemo.c	LCDText[LCDPos] = 0;
 005660   6a01     clrf	0x1, 0              	CLRF	r0x01
 005662   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
 005664   2600     addwf	0, 0x1, 0          	ADDWF	r0x00, F
@@ -1468,7 +1468,7 @@ Address  Value    Disassembly              Source
 005672   0e00     movlw	0                  	MOVLW	0x00
 005674   6eef     movwf	0xef, 0            	MOVWF	INDF0
                                            _00148_DS_:
-                                           ;	.line	221; MainDemo.c	LCDUpdate();
+                                           ;	.line	220; MainDemo.c	LCDUpdate();
 005676   ecb1     call	0x7b62, 0           	CALL	_LCDUpdate
 005678   f03d
 00567a   cfe4     movff	0xfe4, 0x5         	MOVFF	PREINC1, r0x05
