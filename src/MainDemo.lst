@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 12-10-2017  20:48:42
+Listing File Generated: 12-11-2017  01:24:42
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-                                           ; This file was generated Sun Dec 10 20:48:41 2017
+                                           ; This file was generated Sun Dec 10 23:45:13 2017
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -550,25 +550,25 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__main	code
                                            _main:
-                                           ;	.line	197; MainDemo.c	InitializeBoard();
-004e1e   ec3e     call	0x7c7c, 0           	CALL	_InitializeBoard
+                                           ;	.line	113; MainDemo.c	InitializeBoard();
+004e1e   ec63     call	0x7cc6, 0           	CALL	_InitializeBoard
 004e20   f03e
-                                           ;	.line	200; MainDemo.c	TickInit();
-004e22   ecf7     call	0x7fee, 0           	CALL	_TickInit
-004e24   f03f
-                                           ;	.line	203; MainDemo.c	InitAppConfig();
+                                           ;	.line	116; MainDemo.c	TickInit();
+004e22   ec09     call	0x8012, 0           	CALL	_TickInit
+004e24   f040
+                                           ;	.line	119; MainDemo.c	InitAppConfig();
 004e26   ec95     call	0x5d2a, 0           	CALL	_InitAppConfig
 004e28   f02e
-                                           ;	.line	207; MainDemo.c	StackInit();
+                                           ;	.line	123; MainDemo.c	StackInit();
 004e2a   ec51     call	0x70a2, 0           	CALL	_StackInit
 004e2c   f038
-                                           ;	.line	210; MainDemo.c	LCDTaskInit();
-004e2e   ec5c     call	0x7cb8, 0           	CALL	_LCDTaskInit
+                                           ;	.line	126; MainDemo.c	LCDTaskInit();
+004e2e   ec81     call	0x7d02, 0           	CALL	_LCDTaskInit
 004e30   f03e
-                                           ;	.line	214; MainDemo.c	LCDInit();
-004e32   ec44     call	0x7e88, 0           	CALL	_LCDInit
+                                           ;	.line	130; MainDemo.c	LCDInit();
+004e32   ec56     call	0x7eac, 0           	CALL	_LCDInit
 004e34   f03f
-                                           ;	.line	215; MainDemo.c	DelayMs(100);
+                                           ;	.line	131; MainDemo.c	DelayMs(100);
 004e36   0e10     movlw	0x10               	MOVLW	0x10
 004e38   6e00     movwf	0, 0               	MOVWF	r0x00
 004e3a   0e98     movlw	0x98               	MOVLW	0x98
@@ -598,7 +598,7 @@ Address  Value    Disassembly              Source
 004e68   1006     iorwf	0x6, 0, 0          	IORWF	r0x06, W
 004e6a   1007     iorwf	0x7, 0, 0          	IORWF	r0x07, W
 004e6c   e1eb     bnz	0x4e44               	BNZ	_00115_DS_
-                                           ;	.line	216; MainDemo.c	DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
+                                           ;	.line	132; MainDemo.c	DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
 004e6e   0e00     movlw	0                  	MOVLW	UPPER(__str_0)
 004e70   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 004e72   0e77     movlw	0x77               	MOVLW	HIGH(__str_0)
@@ -612,9 +612,9 @@ Address  Value    Disassembly              Source
 004e82   0e04     movlw	0x4                	MOVLW	0x04
 004e84   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
                                            _00129_DS_:
-                                           ;	.line	236; MainDemo.c	nt =  TickGetDiv256();
-004e86   ecfd     call	0x7bfa, 0           	CALL	_TickGetDiv256
-004e88   f03d
+                                           ;	.line	152; MainDemo.c	nt =  TickGetDiv256();
+004e86   ec22     call	0x7c44, 0           	CALL	_TickGetDiv256
+004e88   f03e
 004e8a   6e00     movwf	0, 0               	MOVWF	r0x00
 004e8c   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
 004e8e   f001
@@ -623,7 +623,7 @@ Address  Value    Disassembly              Source
 004e94   cfe9     movff	0xfe9, 0x3         	MOVFF	FSR0L, r0x03
 004e96   f003
 004e98   0108     movlb	0x8                	BANKSEL	_main_t_1_1
-                                           ;	.line	237; MainDemo.c	if((nt - t) >= (DWORD)(TICK_SECOND/1024ul))
+                                           ;	.line	153; MainDemo.c	if((nt - t) >= (DWORD)(TICK_SECOND/1024ul))
 004e9a   5154     movf	0x54, 0, 0x1        	MOVF	_main_t_1_1, W, B
 004e9c   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
 004e9e   6e04     movwf	0x4, 0             	MOVWF	r0x04
@@ -652,7 +652,7 @@ Address  Value    Disassembly              Source
 004ecc   5c04     subwf	0x4, 0, 0          	SUBWF	r0x04, W
                                            _00139_DS_:
 004ece   e315     bnc	0x4efa               	BNC	_00125_DS_
-                                           ;	.line	239; MainDemo.c	t = nt;
+                                           ;	.line	155; MainDemo.c	t = nt;
 004ed0   c000     movff	0, 0x854           	MOVFF	r0x00, _main_t_1_1
 004ed2   f854
 004ed4   c001     movff	0x1, 0x855         	MOVFF	r0x01, (_main_t_1_1 + 1)
@@ -661,7 +661,7 @@ Address  Value    Disassembly              Source
 004eda   f856
 004edc   c003     movff	0x3, 0x857         	MOVFF	r0x03, (_main_t_1_1 + 3)
 004ede   f857
-                                           ;	.line	240; MainDemo.c	LED0_IO ^= 1;
+                                           ;	.line	156; MainDemo.c	LED0_IO ^= 1;
 004ee0   6a00     clrf	0, 0                	CLRF	r0x00
 004ee2   b091     btfsc	0x91, 0, 0         	BTFSC	_LATJbits, 0
 004ee4   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
@@ -676,13 +676,13 @@ Address  Value    Disassembly              Source
 004ef6   6e91     movwf	0x91, 0            	MOVWF	_LATJbits
 004ef8   0004     clrwdt                   	clrwdt 
                                            _00125_DS_:
-                                           ;	.line	247; MainDemo.c	StackTask();
+                                           ;	.line	163; MainDemo.c	StackTask();
 004efa   ece5     call	0x1bca, 0           	CALL	_StackTask
 004efc   f00d
-                                           ;	.line	254; MainDemo.c	LCDTask();
+                                           ;	.line	170; MainDemo.c	LCDTask();
 004efe   ecf3     call	0x59e6, 0           	CALL	_LCDTask
 004f00   f02c
-                                           ;	.line	262; MainDemo.c	if(dwLastIP != AppConfig.MyIPAddr.Val)
+                                           ;	.line	178; MainDemo.c	if(dwLastIP != AppConfig.MyIPAddr.Val)
 004f02   ce00     movff	0xe00, 0           	MOVFF	_AppConfig, r0x00
 004f04   f000
 004f06   ce01     movff	0xe01, 0x1         	MOVFF	(_AppConfig + 1), r0x01
@@ -709,7 +709,7 @@ Address  Value    Disassembly              Source
 004f30   e101     bnz	0x4f34               	BNZ	_00142_DS_
 004f32   d7a9     bra	0x4e86               	BRA	_00129_DS_
                                            _00142_DS_:
-                                           ;	.line	264; MainDemo.c	dwLastIP = AppConfig.MyIPAddr.Val;
+                                           ;	.line	180; MainDemo.c	dwLastIP = AppConfig.MyIPAddr.Val;
 004f34   c000     movff	0, 0x858           	MOVFF	r0x00, _main_dwLastIP_1_1
 004f36   f858
 004f38   c001     movff	0x1, 0x859         	MOVFF	r0x01, (_main_dwLastIP_1_1 + 1)
@@ -719,7 +719,7 @@ Address  Value    Disassembly              Source
 004f40   c003     movff	0x3, 0x85b         	MOVFF	r0x03, (_main_dwLastIP_1_1 + 3)
 004f42   f85b
 004f44   0108     movlb	0x8                	BANKSEL	(_main_dwLastIP_1_1 + 3)
-                                           ;	.line	266; MainDemo.c	DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
+                                           ;	.line	182; MainDemo.c	DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
 004f46   515b     movf	0x5b, 0, 0x1        	MOVF	(_main_dwLastIP_1_1 + 3), W, B
 004f48   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 004f4a   0108     movlb	0x8                	BANKSEL	(_main_dwLastIP_1_1 + 2)
@@ -741,7 +741,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__InitAppConfig	code
                                            _InitAppConfig:
-                                           ;	.line	436; MainDemo.c	static void InitAppConfig(void)
+                                           ;	.line	352; MainDemo.c	static void InitAppConfig(void)
 005d2a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 005d2c   ffe5
 005d2e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -755,35 +755,35 @@ Address  Value    Disassembly              Source
 005d3e   c003     movff	0x3, 0xfe5         	MOVFF	r0x03, POSTDEC1
 005d40   ffe5
 005d42   010e     movlb	0xe                	BANKSEL	(_AppConfig + 44)
-                                           ;	.line	438; MainDemo.c	AppConfig.Flags.bIsDHCPEnabled = TRUE;
+                                           ;	.line	354; MainDemo.c	AppConfig.Flags.bIsDHCPEnabled = TRUE;
 005d44   8d2c     bsf	0x2c, 0x6, 0x1       	BSF	(_AppConfig + 44), 6, B
 005d46   010e     movlb	0xe                	BANKSEL	(_AppConfig + 44)
-                                           ;	.line	439; MainDemo.c	AppConfig.Flags.bInConfigMode = TRUE;
+                                           ;	.line	355; MainDemo.c	AppConfig.Flags.bInConfigMode = TRUE;
 005d48   8f2c     bsf	0x2c, 0x7, 0x1       	BSF	(_AppConfig + 44), 7, B
 005d4a   010e     movlb	0xe                	BANKSEL	(_AppConfig + 45)
-                                           ;	.line	443; MainDemo.c	AppConfig.MyMACAddr.v[0] = 0;
+                                           ;	.line	359; MainDemo.c	AppConfig.MyMACAddr.v[0] = 0;
 005d4c   6b2d     clrf	0x2d, 0x1           	CLRF	(_AppConfig + 45), B
-                                           ;	.line	444; MainDemo.c	AppConfig.MyMACAddr.v[1] = 0x04;
+                                           ;	.line	360; MainDemo.c	AppConfig.MyMACAddr.v[1] = 0x04;
 005d4e   0e04     movlw	0x4                	MOVLW	0x04
 005d50   010e     movlb	0xe                	BANKSEL	(_AppConfig + 46)
 005d52   6f2e     movwf	0x2e, 0x1          	MOVWF	(_AppConfig + 46), B
-                                           ;	.line	445; MainDemo.c	AppConfig.MyMACAddr.v[2] = 0xA3;
+                                           ;	.line	361; MainDemo.c	AppConfig.MyMACAddr.v[2] = 0xA3;
 005d54   0ea3     movlw	0xa3               	MOVLW	0xa3
 005d56   010e     movlb	0xe                	BANKSEL	(_AppConfig + 47)
 005d58   6f2f     movwf	0x2f, 0x1          	MOVWF	(_AppConfig + 47), B
-                                           ;	.line	446; MainDemo.c	AppConfig.MyMACAddr.v[3] = 0x01;
+                                           ;	.line	362; MainDemo.c	AppConfig.MyMACAddr.v[3] = 0x01;
 005d5a   0e01     movlw	0x1                	MOVLW	0x01
 005d5c   010e     movlb	0xe                	BANKSEL	(_AppConfig + 48)
 005d5e   6f30     movwf	0x30, 0x1          	MOVWF	(_AppConfig + 48), B
-                                           ;	.line	447; MainDemo.c	AppConfig.MyMACAddr.v[4] = 0x02;
+                                           ;	.line	363; MainDemo.c	AppConfig.MyMACAddr.v[4] = 0x02;
 005d60   0e02     movlw	0x2                	MOVLW	0x02
 005d62   010e     movlb	0xe                	BANKSEL	(_AppConfig + 49)
 005d64   6f31     movwf	0x31, 0x1          	MOVWF	(_AppConfig + 49), B
-                                           ;	.line	448; MainDemo.c	AppConfig.MyMACAddr.v[5] = 0x03;
+                                           ;	.line	364; MainDemo.c	AppConfig.MyMACAddr.v[5] = 0x03;
 005d66   0e03     movlw	0x3                	MOVLW	0x03
 005d68   010e     movlb	0xe                	BANKSEL	(_AppConfig + 50)
 005d6a   6f32     movwf	0x32, 0x1          	MOVWF	(_AppConfig + 50), B
-                                           ;	.line	451; MainDemo.c	AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
+                                           ;	.line	367; MainDemo.c	AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
 005d6c   0ec0     movlw	0xc0               	MOVLW	0xc0
 005d6e   010e     movlb	0xe                	BANKSEL	_AppConfig
 005d70   6f00     movwf	0, 0x1             	MOVWF	_AppConfig, B
@@ -796,7 +796,7 @@ Address  Value    Disassembly              Source
 005d7e   0e3c     movlw	0x3c               	MOVLW	0x3c
 005d80   010e     movlb	0xe                	BANKSEL	(_AppConfig + 3)
 005d82   6f03     movwf	0x3, 0x1           	MOVWF	(_AppConfig + 3), B
-                                           ;	.line	454; MainDemo.c	AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
+                                           ;	.line	370; MainDemo.c	AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
 005d84   ce00     movff	0xe00, 0           	MOVFF	_AppConfig, r0x00
 005d86   f000
 005d88   ce01     movff	0xe01, 0x1         	MOVFF	(_AppConfig + 1), r0x01
@@ -818,7 +818,7 @@ Address  Value    Disassembly              Source
 005da8   010e     movlb	0xe                	BANKSEL	(_AppConfig + 23)
 005daa   6f17     movwf	0x17, 0x1          	MOVWF	(_AppConfig + 23), B
 005dac   010e     movlb	0xe                	BANKSEL	(_AppConfig + 4)
-                                           ;	.line	455; MainDemo.c	AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
+                                           ;	.line	371; MainDemo.c	AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
 005dae   6904     setf	0x4, 0x1            	SETF	(_AppConfig + 4), B
 005db0   010e     movlb	0xe                	BANKSEL	(_AppConfig + 5)
 005db2   6905     setf	0x5, 0x1            	SETF	(_AppConfig + 5), B
@@ -826,7 +826,7 @@ Address  Value    Disassembly              Source
 005db6   6906     setf	0x6, 0x1            	SETF	(_AppConfig + 6), B
 005db8   010e     movlb	0xe                	BANKSEL	(_AppConfig + 7)
 005dba   6b07     clrf	0x7, 0x1            	CLRF	(_AppConfig + 7), B
-                                           ;	.line	458; MainDemo.c	AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
+                                           ;	.line	374; MainDemo.c	AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
 005dbc   ce04     movff	0xe04, 0           	MOVFF	(_AppConfig + 4), r0x00
 005dbe   f000
 005dc0   ce05     movff	0xe05, 0x1         	MOVFF	(_AppConfig + 5), r0x01
@@ -847,7 +847,7 @@ Address  Value    Disassembly              Source
 005dde   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 005de0   010e     movlb	0xe                	BANKSEL	(_AppConfig + 27)
 005de2   6f1b     movwf	0x1b, 0x1          	MOVWF	(_AppConfig + 27), B
-                                           ;	.line	459; MainDemo.c	AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
+                                           ;	.line	375; MainDemo.c	AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
 005de4   0ec0     movlw	0xc0               	MOVLW	0xc0
 005de6   010e     movlb	0xe                	BANKSEL	(_AppConfig + 8)
 005de8   6f08     movwf	0x8, 0x1           	MOVWF	(_AppConfig + 8), B
@@ -860,7 +860,7 @@ Address  Value    Disassembly              Source
 005df6   0e01     movlw	0x1                	MOVLW	0x01
 005df8   010e     movlb	0xe                	BANKSEL	(_AppConfig + 11)
 005dfa   6f0b     movwf	0xb, 0x1           	MOVWF	(_AppConfig + 11), B
-                                           ;	.line	462; MainDemo.c	AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
+                                           ;	.line	378; MainDemo.c	AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
 005dfc   0ec0     movlw	0xc0               	MOVLW	0xc0
 005dfe   010e     movlb	0xe                	BANKSEL	(_AppConfig + 12)
 005e00   6f0c     movwf	0xc, 0x1           	MOVWF	(_AppConfig + 12), B
@@ -874,7 +874,7 @@ Address  Value    Disassembly              Source
 005e10   010e     movlb	0xe                	BANKSEL	(_AppConfig + 15)
 005e12   6f0f     movwf	0xf, 0x1           	MOVWF	(_AppConfig + 15), B
 005e14   010e     movlb	0xe                	BANKSEL	(_AppConfig + 16)
-                                           ;	.line	466; MainDemo.c	AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
+                                           ;	.line	382; MainDemo.c	AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
 005e16   6b10     clrf	0x10, 0x1           	CLRF	(_AppConfig + 16), B
 005e18   010e     movlb	0xe                	BANKSEL	(_AppConfig + 17)
 005e1a   6b11     clrf	0x11, 0x1           	CLRF	(_AppConfig + 17), B
@@ -897,60 +897,60 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__InitializeBoard	code
                                            _InitializeBoard:
-                                           ;	.line	380; MainDemo.c	static void InitializeBoard(void)
-007c7c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007c7e   ffe5
-007c80   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007c82   ffd9
-                                           ;	.line	383; MainDemo.c	LED0_TRIS = 0;  //LED0
-007c84   909a     bcf	0x9a, 0, 0           	BCF	_TRISJbits, 0
-                                           ;	.line	384; MainDemo.c	LED1_TRIS = 0;  //LED1
-007c86   929a     bcf	0x9a, 0x1, 0         	BCF	_TRISJbits, 1
-                                           ;	.line	385; MainDemo.c	LED2_TRIS = 0;  //LED2
-007c88   949a     bcf	0x9a, 0x2, 0         	BCF	_TRISJbits, 2
-                                           ;	.line	386; MainDemo.c	LED3_TRIS = 0;  //LED_LCD1
-007c8a   9a98     bcf	0x98, 0x5, 0         	BCF	_TRISGbits, 5
-                                           ;	.line	387; MainDemo.c	LED4_TRIS = 0;  //LED_LCD2
-007c8c   9a98     bcf	0x98, 0x5, 0         	BCF	_TRISGbits, 5
-                                           ;	.line	388; MainDemo.c	LED5_TRIS = 0;  //LED5=RELAY1
-007c8e   9e98     bcf	0x98, 0x7, 0         	BCF	_TRISGbits, 7
-                                           ;	.line	389; MainDemo.c	LED6_TRIS = 0;  //LED7=RELAY2
-007c90   9c98     bcf	0x98, 0x6, 0         	BCF	_TRISGbits, 6
-                                           ;	.line	394; MainDemo.c	LED_PUT(0x00);  //turn off LED0 - LED2
-007c92   0ef8     movlw	0xf8               	MOVLW	0xf8
-007c94   1691     andwf	0x91, 0x1, 0       	ANDWF	_LATJ, F
-                                           ;	.line	395; MainDemo.c	RELAY_PUT(0x00); //turn relays off to save power
-007c96   0e3f     movlw	0x3f               	MOVLW	0x3f
-007c98   168f     andwf	0x8f, 0x1, 0       	ANDWF	_LATG, F
-                                           ;	.line	401; MainDemo.c	OSCTUNE = 0x40;
-007c9a   0e40     movlw	0x40               	MOVLW	0x40
-007c9c   6e9b     movwf	0x9b, 0            	MOVWF	_OSCTUNE
-                                           ;	.line	408; MainDemo.c	if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
-007c9e   aed3     btfss	0xd3, 0x7, 0       	BTFSS	_OSCCONbits, 7
-007ca0   d003     bra	0x7ca8               	BRA	_00212_DS_
-                                           ;	.line	409; MainDemo.c	OSCCON = 0x82;
-007ca2   0e82     movlw	0x82               	MOVLW	0x82
-007ca4   6ed3     movwf	0xd3, 0            	MOVWF	_OSCCON
-007ca6   d002     bra	0x7cac               	BRA	_00213_DS_
+                                           ;	.line	296; MainDemo.c	static void InitializeBoard(void)
+007cc6   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007cc8   ffe5
+007cca   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007ccc   ffd9
+                                           ;	.line	299; MainDemo.c	LED0_TRIS = 0;  //LED0
+007cce   909a     bcf	0x9a, 0, 0           	BCF	_TRISJbits, 0
+                                           ;	.line	300; MainDemo.c	LED1_TRIS = 0;  //LED1
+007cd0   929a     bcf	0x9a, 0x1, 0         	BCF	_TRISJbits, 1
+                                           ;	.line	301; MainDemo.c	LED2_TRIS = 0;  //LED2
+007cd2   949a     bcf	0x9a, 0x2, 0         	BCF	_TRISJbits, 2
+                                           ;	.line	302; MainDemo.c	LED3_TRIS = 0;  //LED_LCD1
+007cd4   9a98     bcf	0x98, 0x5, 0         	BCF	_TRISGbits, 5
+                                           ;	.line	303; MainDemo.c	LED4_TRIS = 0;  //LED_LCD2
+007cd6   9a98     bcf	0x98, 0x5, 0         	BCF	_TRISGbits, 5
+                                           ;	.line	304; MainDemo.c	LED5_TRIS = 0;  //LED5=RELAY1
+007cd8   9e98     bcf	0x98, 0x7, 0         	BCF	_TRISGbits, 7
+                                           ;	.line	305; MainDemo.c	LED6_TRIS = 0;  //LED7=RELAY2
+007cda   9c98     bcf	0x98, 0x6, 0         	BCF	_TRISGbits, 6
+                                           ;	.line	310; MainDemo.c	LED_PUT(0x00);  //turn off LED0 - LED2
+007cdc   0ef8     movlw	0xf8               	MOVLW	0xf8
+007cde   1691     andwf	0x91, 0x1, 0       	ANDWF	_LATJ, F
+                                           ;	.line	311; MainDemo.c	RELAY_PUT(0x00); //turn relays off to save power
+007ce0   0e3f     movlw	0x3f               	MOVLW	0x3f
+007ce2   168f     andwf	0x8f, 0x1, 0       	ANDWF	_LATG, F
+                                           ;	.line	317; MainDemo.c	OSCTUNE = 0x40;
+007ce4   0e40     movlw	0x40               	MOVLW	0x40
+007ce6   6e9b     movwf	0x9b, 0            	MOVWF	_OSCTUNE
+                                           ;	.line	324; MainDemo.c	if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
+007ce8   aed3     btfss	0xd3, 0x7, 0       	BTFSS	_OSCCONbits, 7
+007cea   d003     bra	0x7cf2               	BRA	_00212_DS_
+                                           ;	.line	325; MainDemo.c	OSCCON = 0x82;
+007cec   0e82     movlw	0x82               	MOVLW	0x82
+007cee   6ed3     movwf	0xd3, 0            	MOVWF	_OSCCON
+007cf0   d002     bra	0x7cf6               	BRA	_00213_DS_
                                            _00212_DS_:
-                                           ;	.line	411; MainDemo.c	OSCCON = 0x02;
-007ca8   0e02     movlw	0x2                	MOVLW	0x02
-007caa   6ed3     movwf	0xd3, 0            	MOVWF	_OSCCON
+                                           ;	.line	327; MainDemo.c	OSCCON = 0x02;
+007cf2   0e02     movlw	0x2                	MOVLW	0x02
+007cf4   6ed3     movwf	0xd3, 0            	MOVWF	_OSCCON
                                            _00213_DS_:
-                                           ;	.line	414; MainDemo.c	RCONbits.IPEN = 1;		// Enable interrupt priorities
-007cac   8ed0     bsf	0xd0, 0x7, 0         	BSF	_RCONbits, 7
-                                           ;	.line	415; MainDemo.c	INTCONbits.GIEH = 1;
-007cae   8ef2     bsf	0xf2, 0x7, 0         	BSF	_INTCONbits, 7
-                                           ;	.line	416; MainDemo.c	INTCONbits.GIEL = 1;
-007cb0   8cf2     bsf	0xf2, 0x6, 0         	BSF	_INTCONbits, 6
-007cb2   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007cb4   ffd9
-007cb6   0012     return	0                 	RETURN	
+                                           ;	.line	330; MainDemo.c	RCONbits.IPEN = 1;		// Enable interrupt priorities
+007cf6   8ed0     bsf	0xd0, 0x7, 0         	BSF	_RCONbits, 7
+                                           ;	.line	331; MainDemo.c	INTCONbits.GIEH = 1;
+007cf8   8ef2     bsf	0xf2, 0x7, 0         	BSF	_INTCONbits, 7
+                                           ;	.line	332; MainDemo.c	INTCONbits.GIEL = 1;
+007cfa   8cf2     bsf	0xf2, 0x6, 0         	BSF	_INTCONbits, 6
+007cfc   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007cfe   ffd9
+007d00   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_MainDemo__DisplayIPValue	code
                                            _DisplayIPValue:
-                                           ;	.line	322; MainDemo.c	void DisplayIPValue(DWORD IPdw) // 32 bits
+                                           ;	.line	238; MainDemo.c	void DisplayIPValue(DWORD IPdw) // 32 bits
 00433e   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 004340   ffe5
 004342   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -995,10 +995,10 @@ Address  Value    Disassembly              Source
 004390   0e05     movlw	0x5                	MOVLW	0x05
 004392   cfdb     movff	0xfdb, 0x3         	MOVFF	PLUSW2, r0x03
 004394   f003
-                                           ;	.line	330; MainDemo.c	BYTE LCDPos=16;  //write on second line of LCD
+                                           ;	.line	246; MainDemo.c	BYTE LCDPos=16;  //write on second line of LCD
 004396   0e10     movlw	0x10               	MOVLW	0x10
 004398   6e04     movwf	0x4, 0             	MOVWF	r0x04
-                                           ;	.line	335; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+                                           ;	.line	251; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 00439a   6a05     clrf	0x5, 0              	CLRF	r0x05
 00439c   6a06     clrf	0x6, 0              	CLRF	r0x06
 00439e   6a07     clrf	0x7, 0              	CLRF	r0x07
@@ -1007,7 +1007,7 @@ Address  Value    Disassembly              Source
 0043a2   5c05     subwf	0x5, 0, 0          	SUBWF	r0x05, W
 0043a4   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
 0043a6   d081     bra	0x44aa               	BRA	_00180_DS_
-                                           ;	.line	338; MainDemo.c	IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
+                                           ;	.line	254; MainDemo.c	IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
 0043a8   c000     movff	0, 0x8             	MOVFF	r0x00, r0x08
 0043aa   f008
 0043ac   c001     movff	0x1, 0x9           	MOVFF	r0x01, r0x09
@@ -1040,7 +1040,7 @@ Address  Value    Disassembly              Source
 0043dc   e3fa     bnc	0x43d2               	BNC	_00200_DS_
                                            _00198_DS_:
 0043de   6a09     clrf	0x9, 0              	CLRF	r0x09
-                                           ;	.line	339; MainDemo.c	uitoa(IP_field, IPDigit, radix);      //ML
+                                           ;	.line	255; MainDemo.c	uitoa(IP_field, IPDigit, radix);      //ML
 0043e0   0e0a     movlw	0xa                	MOVLW	0x0a
 0043e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0043e4   0e08     movlw	0x8                	MOVLW	HIGH(_DisplayIPValue_IPDigit_1_1)
@@ -1055,7 +1055,7 @@ Address  Value    Disassembly              Source
 0043f6   f03a
 0043f8   0e05     movlw	0x5                	MOVLW	0x05
 0043fa   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	344; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
+                                           ;	.line	260; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
 0043fc   c004     movff	0x4, 0x8           	MOVFF	r0x04, r0x08
 0043fe   f008
 004400   6a09     clrf	0x9, 0              	CLRF	r0x09
@@ -1093,7 +1093,7 @@ Address  Value    Disassembly              Source
 00443e   5c0c     subwf	0xc, 0, 0          	SUBWF	r0x0c, W
                                            _00203_DS_:
 004440   e21c     bc	0x447a                	BC	_00195_DS_
-                                           ;	.line	346; MainDemo.c	LCDText[LCDPos++] = IPDigit[j];
+                                           ;	.line	262; MainDemo.c	LCDText[LCDPos++] = IPDigit[j];
 004442   c008     movff	0x8, 0xa           	MOVFF	r0x08, r0x0a
 004444   f00a
 004446   2a08     incf	0x8, 0x1, 0         	INCF	r0x08, F
@@ -1120,17 +1120,17 @@ Address  Value    Disassembly              Source
 004470   ffea
 004472   c00c     movff	0xc, 0xfef         	MOVFF	r0x0c, INDF0
 004474   ffef
-                                           ;	.line	344; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
+                                           ;	.line	260; MainDemo.c	for(j = 0; j < strlen((char*)IPDigit); j++)
 004476   2a09     incf	0x9, 0x1, 0         	INCF	r0x09, F
 004478   d7c4     bra	0x4402               	BRA	_00183_DS_
                                            _00195_DS_:
 00447a   c008     movff	0x8, 0x4           	MOVFF	r0x08, r0x04
 00447c   f004
-                                           ;	.line	348; MainDemo.c	if(i == sizeof(IP_ADDR)-1)
+                                           ;	.line	264; MainDemo.c	if(i == sizeof(IP_ADDR)-1)
 00447e   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
 004480   0a03     xorlw	0x3                	XORLW	0x03
 004482   e013     bz	0x44aa                	BZ	_00180_DS_
-                                           ;	.line	350; MainDemo.c	LCDText[LCDPos++] = '.';
+                                           ;	.line	266; MainDemo.c	LCDText[LCDPos++] = '.';
 004484   2808     incf	0x8, 0, 0           	INCF	r0x08, W
 004486   6e04     movwf	0x4, 0             	MOVWF	r0x04
 004488   6a09     clrf	0x9, 0              	CLRF	r0x09
@@ -1144,7 +1144,7 @@ Address  Value    Disassembly              Source
 004498   ffea
 00449a   0e2e     movlw	0x2e               	MOVLW	0x2e
 00449c   6eef     movwf	0xef, 0            	MOVWF	INDF0
-                                           ;	.line	335; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+                                           ;	.line	251; MainDemo.c	for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 00449e   0e08     movlw	0x8                	MOVLW	0x08
 0044a0   2606     addwf	0x6, 0x1, 0        	ADDWF	r0x06, F
 0044a2   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
@@ -1152,7 +1152,7 @@ Address  Value    Disassembly              Source
 0044a6   2a05     incf	0x5, 0x1, 0         	INCF	r0x05, F
 0044a8   d77b     bra	0x43a0               	BRA	_00177_DS_
                                            _00180_DS_:
-                                           ;	.line	353; MainDemo.c	if(LCDPos < 32u)
+                                           ;	.line	269; MainDemo.c	if(LCDPos < 32u)
 0044aa   c004     movff	0x4, 0             	MOVFF	r0x04, r0x00
 0044ac   f000
 0044ae   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -1163,7 +1163,7 @@ Address  Value    Disassembly              Source
 0044b8   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
                                            _00206_DS_:
 0044ba   e20b     bc	0x44d2                	BC	_00182_DS_
-                                           ;	.line	354; MainDemo.c	LCDText[LCDPos] = 0;
+                                           ;	.line	270; MainDemo.c	LCDText[LCDPos] = 0;
 0044bc   6a00     clrf	0, 0                	CLRF	r0x00
 0044be   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
 0044c0   2604     addwf	0x4, 0x1, 0        	ADDWF	r0x04, F
@@ -1176,9 +1176,9 @@ Address  Value    Disassembly              Source
 0044ce   0e00     movlw	0                  	MOVLW	0x00
 0044d0   6eef     movwf	0xef, 0            	MOVWF	INDF0
                                            _00182_DS_:
-                                           ;	.line	355; MainDemo.c	LCDUpdate();
-0044d2   ec1e     call	0x7e3c, 0           	CALL	_LCDUpdate
-0044d4   f03f
+                                           ;	.line	271; MainDemo.c	LCDUpdate();
+0044d2   ec75     call	0x7aea, 0           	CALL	_LCDUpdate
+0044d4   f03d
 0044d6   cfe4     movff	0xfe4, 0xd         	MOVFF	PREINC1, r0x0d
 0044d8   f00d
 0044da   cfe4     movff	0xfe4, 0xc         	MOVFF	PREINC1, r0x0c
@@ -1214,7 +1214,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__DisplayString	code
                                            _DisplayString:
-                                           ;	.line	307; MainDemo.c	void DisplayString(BYTE pos, char* text)
+                                           ;	.line	223; MainDemo.c	void DisplayString(BYTE pos, char* text)
 00659a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 00659c   ffe5
 00659e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -1247,7 +1247,7 @@ Address  Value    Disassembly              Source
 0065d4   0e05     movlw	0x5                	MOVLW	0x05
 0065d6   cfdb     movff	0xfdb, 0x3         	MOVFF	PLUSW2, r0x03
 0065d8   f003
-                                           ;	.line	309; MainDemo.c	BYTE l= strlen(text)+1;
+                                           ;	.line	225; MainDemo.c	BYTE l= strlen(text)+1;
 0065da   5003     movf	0x3, 0, 0           	MOVF	r0x03, W
 0065dc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0065de   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
@@ -1262,11 +1262,11 @@ Address  Value    Disassembly              Source
 0065f0   0e03     movlw	0x3                	MOVLW	0x03
 0065f2   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
 0065f4   2a04     incf	0x4, 0x1, 0         	INCF	r0x04, F
-                                           ;	.line	310; MainDemo.c	BYTE max= 32-pos;
+                                           ;	.line	226; MainDemo.c	BYTE max= 32-pos;
 0065f6   5000     movf	0, 0, 0             	MOVF	r0x00, W
 0065f8   0820     sublw	0x20               	SUBLW	0x20
 0065fa   6e05     movwf	0x5, 0             	MOVWF	r0x05
-                                           ;	.line	311; MainDemo.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+                                           ;	.line	227; MainDemo.c	strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 0065fc   6a06     clrf	0x6, 0              	CLRF	r0x06
 0065fe   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
 006600   2600     addwf	0, 0x1, 0          	ADDWF	r0x00, F
@@ -1305,9 +1305,9 @@ Address  Value    Disassembly              Source
 006640   f01e
 006642   0e08     movlw	0x8                	MOVLW	0x08
 006644   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	312; MainDemo.c	LCDUpdate();
-006646   ec1e     call	0x7e3c, 0           	CALL	_LCDUpdate
-006648   f03f
+                                           ;	.line	228; MainDemo.c	LCDUpdate();
+006646   ec75     call	0x7aea, 0           	CALL	_LCDUpdate
+006648   f03d
 00664a   cfe4     movff	0xfe4, 0x7         	MOVFF	PREINC1, r0x07
 00664c   f007
 00664e   cfe4     movff	0xfe4, 0x6         	MOVFF	PREINC1, r0x06
@@ -1331,7 +1331,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__DisplayWORD	code
                                            _DisplayWORD:
-                                           ;	.line	285; MainDemo.c	void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+                                           ;	.line	201; MainDemo.c	void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 00557a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
 00557c   ffe5
 00557e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
@@ -1357,7 +1357,7 @@ Address  Value    Disassembly              Source
 0055a6   0e04     movlw	0x4                	MOVLW	0x04
 0055a8   cfdb     movff	0xfdb, 0x2         	MOVFF	PLUSW2, r0x02
 0055aa   f002
-                                           ;	.line	293; MainDemo.c	ultoa(w, WDigit, radix);      
+                                           ;	.line	209; MainDemo.c	ultoa(w, WDigit, radix);      
 0055ac   6a03     clrf	0x3, 0              	CLRF	r0x03
 0055ae   6a04     clrf	0x4, 0              	CLRF	r0x04
 0055b0   0e0a     movlw	0xa                	MOVLW	0x0a
@@ -1378,7 +1378,7 @@ Address  Value    Disassembly              Source
 0055ce   f022
 0055d0   0e07     movlw	0x7                	MOVLW	0x07
 0055d2   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	294; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
+                                           ;	.line	210; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
 0055d4   6a01     clrf	0x1, 0              	CLRF	r0x01
                                            _00149_DS_:
 0055d6   0e08     movlw	0x8                	MOVLW	HIGH(_DisplayWORD_WDigit_1_1)
@@ -1414,7 +1414,7 @@ Address  Value    Disassembly              Source
 005612   5c04     subwf	0x4, 0, 0          	SUBWF	r0x04, W
                                            _00159_DS_:
 005614   e21c     bc	0x564e                	BC	_00152_DS_
-                                           ;	.line	296; MainDemo.c	LCDText[LCDPos++] = WDigit[j];
+                                           ;	.line	212; MainDemo.c	LCDText[LCDPos++] = WDigit[j];
 005616   c000     movff	0, 0x2             	MOVFF	r0x00, r0x02
 005618   f002
 00561a   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
@@ -1441,11 +1441,11 @@ Address  Value    Disassembly              Source
 005644   ffea
 005646   c004     movff	0x4, 0xfef         	MOVFF	r0x04, INDF0
 005648   ffef
-                                           ;	.line	294; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
+                                           ;	.line	210; MainDemo.c	for(j = 0; j < strlen((char*)WDigit); j++)
 00564a   2a01     incf	0x1, 0x1, 0         	INCF	r0x01, F
 00564c   d7c4     bra	0x55d6               	BRA	_00149_DS_
                                            _00152_DS_:
-                                           ;	.line	298; MainDemo.c	if(LCDPos < 32u)
+                                           ;	.line	214; MainDemo.c	if(LCDPos < 32u)
 00564e   c000     movff	0, 0x1             	MOVFF	r0x00, r0x01
 005650   f001
 005652   6a02     clrf	0x2, 0              	CLRF	r0x02
@@ -1456,7 +1456,7 @@ Address  Value    Disassembly              Source
 00565c   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
                                            _00160_DS_:
 00565e   e20b     bc	0x5676                	BC	_00148_DS_
-                                           ;	.line	299; MainDemo.c	LCDText[LCDPos] = 0;
+                                           ;	.line	215; MainDemo.c	LCDText[LCDPos] = 0;
 005660   6a01     clrf	0x1, 0              	CLRF	r0x01
 005662   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
 005664   2600     addwf	0, 0x1, 0          	ADDWF	r0x00, F
@@ -1469,9 +1469,9 @@ Address  Value    Disassembly              Source
 005672   0e00     movlw	0                  	MOVLW	0x00
 005674   6eef     movwf	0xef, 0            	MOVWF	INDF0
                                            _00148_DS_:
-                                           ;	.line	300; MainDemo.c	LCDUpdate();
-005676   ec1e     call	0x7e3c, 0           	CALL	_LCDUpdate
-005678   f03f
+                                           ;	.line	216; MainDemo.c	LCDUpdate();
+005676   ec75     call	0x7aea, 0           	CALL	_LCDUpdate
+005678   f03d
 00567a   cfe4     movff	0xfe4, 0x5         	MOVFF	PREINC1, r0x05
 00567c   f005
 00567e   cfe4     movff	0xfe4, 0x4         	MOVFF	PREINC1, r0x04
@@ -1491,7 +1491,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__HighISR	code
                                            _HighISR:
-                                           ;	.line	159; MainDemo.c	void HighISR(void) __interrupt(1) //ML for sdcc        
+                                           ;	.line	75; MainDemo.c	void HighISR(void) __interrupt(1) //ML for sdcc        
 007864   cfe8     movff	0xfe8, 0xfe5       	MOVFF	WREG, POSTDEC1
 007866   ffe5
 007868   cfd8     movff	0xfd8, 0xfe5       	MOVFF	STATUS, POSTDEC1
@@ -1514,7 +1514,7 @@ Address  Value    Disassembly              Source
 00788a   ffe5
 00788c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
 00788e   ffd9
-                                           ;	.line	166; MainDemo.c	}
+                                           ;	.line	82; MainDemo.c	}
 007890   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
 007892   ffd9
 007894   cfe4     movff	0xfe4, 0xffb       	MOVFF	PREINC1, PCLATU
@@ -1540,7 +1540,7 @@ Address  Value    Disassembly              Source
                                            ; ; Starting pCode block
                                            S_MainDemo__LowISR	code
                                            _LowISR:
-                                           ;	.line	139; MainDemo.c	void LowISR(void) __interrupt (2) //ML for sdcc
+                                           ;	.line	55; MainDemo.c	void LowISR(void) __interrupt (2) //ML for sdcc
 00774c   cfe8     movff	0xfe8, 0xfe5       	MOVFF	WREG, POSTDEC1
 00774e   ffe5
 007750   cfd8     movff	0xfd8, 0xfe5       	MOVFF	STATUS, POSTDEC1
@@ -1563,9 +1563,9 @@ Address  Value    Disassembly              Source
 007772   ffe5
 007774   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
 007776   ffd9
-                                           ;	.line	145; MainDemo.c	TickUpdate();
-007778   ecf4     call	0x7de8, 0           	CALL	_TickUpdate
-00777a   f03e
+                                           ;	.line	61; MainDemo.c	TickUpdate();
+007778   ec19     call	0x7e32, 0           	CALL	_TickUpdate
+00777a   f03f
 00777c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
 00777e   ffd9
 007780   cfe4     movff	0xfe4, 0xffb       	MOVFF	PREINC1, PCLATU
@@ -2607,7 +2607,7 @@ Address  Value    Disassembly              Source
 0050e6   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 0050e8   fff3
 0050ea   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-0050ec   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+0050ec   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 0050ee   f03e
 0050f0   6e03     movwf	0x3, 0             	MOVWF	r0x03
 0050f2   cff3     movff	0xff3, 0x4         	MOVFF	PRODL, r0x04
@@ -2632,7 +2632,7 @@ Address  Value    Disassembly              Source
 005118   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 00511a   fff3
 00511c   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00511e   ec1e     call	0x803c, 0           	CALL	__gptrput2
+00511e   ec30     call	0x8060, 0           	CALL	__gptrput2
 005120   f040
                                            ;	.line	415; TCPIP_Stack/ARP.c	p->Protocol         = swaps(p->Protocol);
 005122   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -2649,7 +2649,7 @@ Address  Value    Disassembly              Source
 005138   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 00513a   fff3
 00513c   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-00513e   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+00513e   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 005140   f03e
 005142   6e06     movwf	0x6, 0             	MOVWF	r0x06
 005144   cff3     movff	0xff3, 0x7         	MOVFF	PRODL, r0x07
@@ -2674,7 +2674,7 @@ Address  Value    Disassembly              Source
 00516a   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 00516c   fff3
 00516e   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-005170   ec1e     call	0x803c, 0           	CALL	__gptrput2
+005170   ec30     call	0x8060, 0           	CALL	__gptrput2
 005172   f040
                                            ;	.line	416; TCPIP_Stack/ARP.c	p->Operation        = swaps(p->Operation);
 005174   0e06     movlw	0x6                	MOVLW	0x06
@@ -2688,7 +2688,7 @@ Address  Value    Disassembly              Source
 005184   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 005186   fff3
 005188   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00518a   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+00518a   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 00518c   f03e
 00518e   6e03     movwf	0x3, 0             	MOVWF	r0x03
 005190   cff3     movff	0xff3, 0x4         	MOVFF	PRODL, r0x04
@@ -2713,7 +2713,7 @@ Address  Value    Disassembly              Source
 0051b6   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 0051b8   fff3
 0051ba   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-0051bc   ec1e     call	0x803c, 0           	CALL	__gptrput2
+0051bc   ec30     call	0x8060, 0           	CALL	__gptrput2
 0051be   f040
 0051c0   cfe4     movff	0xfe4, 0x7         	MOVFF	PREINC1, r0x07
 0051c2   f007
@@ -2797,7 +2797,7 @@ Address  Value    Disassembly              Source
 004a8a   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 004a8c   fff3
 004a8e   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-004a90   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+004a90   ec43     call	0x7c86, 0           	CALL	__gptrget4
 004a92   f03e
 004a94   6e00     movwf	0, 0               	MOVWF	r0x00
 004a96   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
@@ -2993,7 +2993,7 @@ Address  Value    Disassembly              Source
 005246   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 005248   fff3
 00524a   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00524c   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+00524c   ec43     call	0x7c86, 0           	CALL	__gptrget4
 00524e   f03e
 005250   6e00     movwf	0, 0               	MOVWF	r0x00
 005252   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
@@ -3481,40 +3481,40 @@ Address  Value    Disassembly              Source
                                            S_ARP__ARPInit	code
                                            _ARPInit:
                                            ;	.line	165; TCPIP_Stack/ARP.c	void ARPInit(void)
-007d2e   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007d30   ffe5
-007d32   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007d34   ffd9
-007d36   010e     movlb	0xe                	BANKSEL	(_Cache + 4)
+007d78   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007d7a   ffe5
+007d7c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007d7e   ffd9
+007d80   010e     movlb	0xe                	BANKSEL	(_Cache + 4)
                                            ;	.line	167; TCPIP_Stack/ARP.c	Cache.MACAddr.v[0] = 0xff;
-007d38   6979     setf	0x79, 0x1           	SETF	(_Cache + 4), B
-007d3a   010e     movlb	0xe                	BANKSEL	(_Cache + 5)
+007d82   6979     setf	0x79, 0x1           	SETF	(_Cache + 4), B
+007d84   010e     movlb	0xe                	BANKSEL	(_Cache + 5)
                                            ;	.line	168; TCPIP_Stack/ARP.c	Cache.MACAddr.v[1] = 0xff;
-007d3c   697a     setf	0x7a, 0x1           	SETF	(_Cache + 5), B
-007d3e   010e     movlb	0xe                	BANKSEL	(_Cache + 6)
+007d86   697a     setf	0x7a, 0x1           	SETF	(_Cache + 5), B
+007d88   010e     movlb	0xe                	BANKSEL	(_Cache + 6)
                                            ;	.line	169; TCPIP_Stack/ARP.c	Cache.MACAddr.v[2] = 0xff;
-007d40   697b     setf	0x7b, 0x1           	SETF	(_Cache + 6), B
-007d42   010e     movlb	0xe                	BANKSEL	(_Cache + 7)
+007d8a   697b     setf	0x7b, 0x1           	SETF	(_Cache + 6), B
+007d8c   010e     movlb	0xe                	BANKSEL	(_Cache + 7)
                                            ;	.line	170; TCPIP_Stack/ARP.c	Cache.MACAddr.v[3] = 0xff;
-007d44   697c     setf	0x7c, 0x1           	SETF	(_Cache + 7), B
-007d46   010e     movlb	0xe                	BANKSEL	(_Cache + 8)
+007d8e   697c     setf	0x7c, 0x1           	SETF	(_Cache + 7), B
+007d90   010e     movlb	0xe                	BANKSEL	(_Cache + 8)
                                            ;	.line	171; TCPIP_Stack/ARP.c	Cache.MACAddr.v[4] = 0xff;
-007d48   697d     setf	0x7d, 0x1           	SETF	(_Cache + 8), B
-007d4a   010e     movlb	0xe                	BANKSEL	(_Cache + 9)
+007d92   697d     setf	0x7d, 0x1           	SETF	(_Cache + 8), B
+007d94   010e     movlb	0xe                	BANKSEL	(_Cache + 9)
                                            ;	.line	172; TCPIP_Stack/ARP.c	Cache.MACAddr.v[5] = 0xff;
-007d4c   697e     setf	0x7e, 0x1           	SETF	(_Cache + 9), B
-007d4e   010e     movlb	0xe                	BANKSEL	_Cache
+007d96   697e     setf	0x7e, 0x1           	SETF	(_Cache + 9), B
+007d98   010e     movlb	0xe                	BANKSEL	_Cache
                                            ;	.line	174; TCPIP_Stack/ARP.c	Cache.IPAddr.Val = 0x0;
-007d50   6b75     clrf	0x75, 0x1           	CLRF	_Cache, B
-007d52   010e     movlb	0xe                	BANKSEL	(_Cache + 1)
-007d54   6b76     clrf	0x76, 0x1           	CLRF	(_Cache + 1), B
-007d56   010e     movlb	0xe                	BANKSEL	(_Cache + 2)
-007d58   6b77     clrf	0x77, 0x1           	CLRF	(_Cache + 2), B
-007d5a   010e     movlb	0xe                	BANKSEL	(_Cache + 3)
-007d5c   6b78     clrf	0x78, 0x1           	CLRF	(_Cache + 3), B
-007d5e   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007d60   ffd9
-007d62   0012     return	0                 	RETURN	
+007d9a   6b75     clrf	0x75, 0x1           	CLRF	_Cache, B
+007d9c   010e     movlb	0xe                	BANKSEL	(_Cache + 1)
+007d9e   6b76     clrf	0x76, 0x1           	CLRF	(_Cache + 1), B
+007da0   010e     movlb	0xe                	BANKSEL	(_Cache + 2)
+007da2   6b77     clrf	0x77, 0x1           	CLRF	(_Cache + 2), B
+007da4   010e     movlb	0xe                	BANKSEL	(_Cache + 3)
+007da6   6b78     clrf	0x78, 0x1           	CLRF	(_Cache + 3), B
+007da8   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007daa   ffd9
+007dac   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ARP__ARPPut	code
@@ -3579,7 +3579,7 @@ Address  Value    Disassembly              Source
 003fce   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 003fd0   fff3
 003fd2   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-003fd4   ec1e     call	0x803c, 0           	CALL	__gptrput2
+003fd4   ec30     call	0x8060, 0           	CALL	__gptrput2
 003fd6   f040
                                            ;	.line	118; TCPIP_Stack/ARP.c	packet->Protocol      = ARP_IP;
 003fd8   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -3600,7 +3600,7 @@ Address  Value    Disassembly              Source
 003ff6   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 003ff8   fff3
 003ffa   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-003ffc   ec1e     call	0x803c, 0           	CALL	__gptrput2
+003ffc   ec30     call	0x8060, 0           	CALL	__gptrput2
 003ffe   f040
                                            ;	.line	119; TCPIP_Stack/ARP.c	packet->MACAddrLen    = sizeof(MAC_ADDR);
 004000   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -3619,7 +3619,7 @@ Address  Value    Disassembly              Source
 00401a   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 00401c   fff3
 00401e   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-004020   ec3e     call	0x807c, 0           	CALL	__gptrput1
+004020   ec50     call	0x80a0, 0           	CALL	__gptrput1
 004022   f040
                                            ;	.line	120; TCPIP_Stack/ARP.c	packet->ProtocolLen   = sizeof(IP_ADDR);
 004024   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -3638,7 +3638,7 @@ Address  Value    Disassembly              Source
 00403e   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 004040   fff3
 004042   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-004044   ec3e     call	0x807c, 0           	CALL	__gptrput1
+004044   ec50     call	0x80a0, 0           	CALL	__gptrput1
 004046   f040
                                            ;	.line	122; TCPIP_Stack/ARP.c	memcpy(&packet->SenderMACAddr, (void*)&AppConfig.MyMACAddr, 
 004048   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -3708,7 +3708,7 @@ Address  Value    Disassembly              Source
 0040c4   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 0040c6   fff3
 0040c8   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-0040ca   ecac     call	0x7f58, 0           	CALL	__gptrput4
+0040ca   ecbe     call	0x7f7c, 0           	CALL	__gptrput4
 0040cc   f03f
                                            ;	.line	129; TCPIP_Stack/ARP.c	SwapARPPacket(packet);
 0040ce   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
@@ -6285,7 +6285,7 @@ Address  Value    Disassembly              Source
 0006d6   6b84     clrf	0x84, 0x1           	CLRF	__DHCPReceive_type_1_1, B
                                            _00350_DS_:
                                            ;	.line	1010; TCPIP_Stack/DHCP.c	UDPDiscard();  // We are done with this packet
-0006d8   ec09     call	0x7e12, 0           	CALL	_UDPDiscard
+0006d8   ec2e     call	0x7e5c, 0           	CALL	_UDPDiscard
 0006da   f03f
 0006dc   010a     movlb	0xa                	BANKSEL	__DHCPReceive_type_1_1
                                            ;	.line	1011; TCPIP_Stack/DHCP.c	return type;
@@ -6293,7 +6293,7 @@ Address  Value    Disassembly              Source
 0006e0   d003     bra	0x6e8                	BRA	_00377_DS_
                                            _00351_DS_:
                                            ;	.line	1014; TCPIP_Stack/DHCP.c	UDPDiscard();
-0006e2   ec09     call	0x7e12, 0           	CALL	_UDPDiscard
+0006e2   ec2e     call	0x7e5c, 0           	CALL	_UDPDiscard
 0006e4   f03f
                                            ;	.line	1015; TCPIP_Stack/DHCP.c	return DHCP_UNKNOWN_MESSAGE;
 0006e6   6ae8     clrf	0xe8, 0             	CLRF	WREG
@@ -6484,7 +6484,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	515; TCPIP_Stack/DHCP.c	DHCPClient.flags.bits.bOfferReceived = FALSE;
 00082a   953a     bcf	0x3a, 0x2, 0x1       	BCF	(_DHCPClient + 2), 2, B
                                            ;	.line	519; TCPIP_Stack/DHCP.c	if(!MACIsLinked()) break;
-00082c   ecba     call	0x7b74, 0           	CALL	_MACIsLinked
+00082c   ecdf     call	0x7bbe, 0           	CALL	_MACIsLinked
 00082e   f03d
 000830   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000832   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
@@ -6566,7 +6566,7 @@ Address  Value    Disassembly              Source
 0008b8   0e02     movlw	0x2                	MOVLW	0x02
 0008ba   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
                                            ;	.line	540; TCPIP_Stack/DHCP.c	DHCPClient.dwTimer = TickGet();
-0008bc   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+0008bc   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 0008be   f03f
 0008c0   6e01     movwf	0x1, 0             	MOVWF	r0x01
 0008c2   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -6613,7 +6613,7 @@ Address  Value    Disassembly              Source
                                            _00266_DS_:
 00090c   e228     bc	0x95e                 	BC	_00182_DS_
                                            ;	.line	550; TCPIP_Stack/DHCP.c	if(TickGet() - DHCPClient.dwTimer >= DHCP_TIMEOUT)
-00090e   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+00090e   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000910   f03f
 000912   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000914   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -6737,7 +6737,7 @@ Address  Value    Disassembly              Source
 0009dc   0e02     movlw	0x2                	MOVLW	0x02
 0009de   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
                                            ;	.line	579; TCPIP_Stack/DHCP.c	DHCPClient.dwTimer = TickGet();
-0009e0   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+0009e0   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 0009e2   f03f
 0009e4   6e01     movwf	0x1, 0             	MOVWF	r0x01
 0009e6   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -6784,7 +6784,7 @@ Address  Value    Disassembly              Source
                                            _00271_DS_:
 000a30   e226     bc	0xa7e                 	BC	_00192_DS_
                                            ;	.line	589; TCPIP_Stack/DHCP.c	if(TickGet() - DHCPClient.dwTimer >= DHCP_TIMEOUT)
-000a32   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+000a32   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000a34   f03f
 000a36   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000a38   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -6857,7 +6857,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	599; TCPIP_Stack/DHCP.c	DHCPClient.hDHCPSocket = INVALID_UDP_SOCKET;
 000aac   6938     setf	0x38, 0x1           	SETF	_DHCPClient, B
                                            ;	.line	600; TCPIP_Stack/DHCP.c	DHCPClient.dwTimer = TickGet();
-000aae   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+000aae   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000ab0   f03f
 000ab2   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000ab4   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -6964,7 +6964,7 @@ Address  Value    Disassembly              Source
 000b60   d12f     bra	0xdc0                	BRA	_00229_DS_
                                            _00202_DS_:
                                            ;	.line	633; TCPIP_Stack/DHCP.c	if(TickGet() - DHCPClient.dwTimer < TICK_SECOND) break;
-000b62   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+000b62   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000b64   f03f
 000b66   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000b68   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -7140,7 +7140,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	659; TCPIP_Stack/DHCP.c	DHCPClient.flags.bits.bOfferReceived = FALSE;
 000c9e   953a     bcf	0x3a, 0x2, 0x1       	BCF	(_DHCPClient + 2), 2, B
                                            ;	.line	662; TCPIP_Stack/DHCP.c	DHCPClient.dwTimer = TickGet();
-000ca0   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+000ca0   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000ca2   f03f
 000ca4   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000ca6   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -7189,7 +7189,7 @@ Address  Value    Disassembly              Source
                                            _00282_DS_:
 000cf4   e230     bc	0xd56                 	BC	_00222_DS_
                                            ;	.line	674; TCPIP_Stack/DHCP.c	if(TickGet() - DHCPClient.dwTimer >=  DHCP_TIMEOUT)
-000cf6   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+000cf6   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000cf8   f03f
 000cfa   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000cfc   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -7272,7 +7272,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	687; TCPIP_Stack/DHCP.c	DHCPClient.hDHCPSocket = INVALID_UDP_SOCKET;
 000d82   6938     setf	0x38, 0x1           	SETF	_DHCPClient, B
                                            ;	.line	688; TCPIP_Stack/DHCP.c	DHCPClient.dwTimer = TickGet();
-000d84   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+000d84   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 000d86   f03f
 000d88   6e01     movwf	0x1, 0             	MOVWF	r0x01
 000d8a   cff3     movff	0xff3, 0x2         	MOVFF	PRODL, r0x02
@@ -7339,125 +7339,125 @@ Address  Value    Disassembly              Source
                                            S_DHCP__DHCPIsServerDetected	code
                                            _DHCPIsServerDetected:
                                            ;	.line	457; TCPIP_Stack/DHCP.c	BOOL DHCPIsServerDetected(BYTE vInterface)
-007f18   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007f1a   ffe5
-007f1c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007f1e   ffd9
-007f20   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
-007f22   ffe5
+007f3c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007f3e   ffe5
+007f40   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007f42   ffd9
+007f44   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007f46   ffe5
                                            ;	.line	460; TCPIP_Stack/DHCP.c	return DHCPClient.flags.bits.bDHCPServerDetected;
-007f24   6a00     clrf	0, 0                	CLRF	r0x00
-007f26   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
-007f28   b73a     btfsc	0x3a, 0x3, 0x1     	BTFSC	(_DHCPClient + 2), 3, B
-007f2a   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
-007f2c   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007f2e   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
-007f30   f000
-007f32   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007f34   ffd9
-007f36   0012     return	0                 	RETURN	
+007f48   6a00     clrf	0, 0                	CLRF	r0x00
+007f4a   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
+007f4c   b73a     btfsc	0x3a, 0x3, 0x1     	BTFSC	(_DHCPClient + 2), 3, B
+007f4e   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
+007f50   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007f52   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007f54   f000
+007f56   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007f58   ffd9
+007f5a   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_DHCP__DHCPStateChanged	code
                                            _DHCPStateChanged:
                                            ;	.line	420; TCPIP_Stack/DHCP.c	BOOL DHCPStateChanged(BYTE vInterface)
-007f78   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007f7a   ffe5
-007f7c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007f7e   ffd9
-007f80   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
+007f9c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007f9e   ffe5
+007fa0   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007fa2   ffd9
+007fa4   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
                                            ;	.line	423; TCPIP_Stack/DHCP.c	if(DHCPClient.flags.bits.bEvent)
-007f82   a33a     btfss	0x3a, 0x1, 0x1     	BTFSS	(_DHCPClient + 2), 1, B
-007f84   d004     bra	0x7f8e               	BRA	_00158_DS_
-007f86   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
+007fa6   a33a     btfss	0x3a, 0x1, 0x1     	BTFSS	(_DHCPClient + 2), 1, B
+007fa8   d004     bra	0x7fb2               	BRA	_00158_DS_
+007faa   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
                                            ;	.line	425; TCPIP_Stack/DHCP.c	DHCPClient.flags.bits.bEvent = 0;
-007f88   933a     bcf	0x3a, 0x1, 0x1       	BCF	(_DHCPClient + 2), 1, B
+007fac   933a     bcf	0x3a, 0x1, 0x1       	BCF	(_DHCPClient + 2), 1, B
                                            ;	.line	426; TCPIP_Stack/DHCP.c	return TRUE;
-007f8a   0e01     movlw	0x1                	MOVLW	0x01
-007f8c   d001     bra	0x7f90               	BRA	_00159_DS_
+007fae   0e01     movlw	0x1                	MOVLW	0x01
+007fb0   d001     bra	0x7fb4               	BRA	_00159_DS_
                                            _00158_DS_:
                                            ;	.line	428; TCPIP_Stack/DHCP.c	return FALSE;
-007f8e   6ae8     clrf	0xe8, 0             	CLRF	WREG
+007fb2   6ae8     clrf	0xe8, 0             	CLRF	WREG
                                            _00159_DS_:
-007f90   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007f92   ffd9
-007f94   0012     return	0                 	RETURN	
+007fb4   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007fb6   ffd9
+007fb8   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_DHCP__DHCPIsBound	code
                                            _DHCPIsBound:
                                            ;	.line	386; TCPIP_Stack/DHCP.c	BOOL DHCPIsBound(BYTE vInterface)
-007f38   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007f3a   ffe5
-007f3c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007f3e   ffd9
-007f40   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
-007f42   ffe5
+007f5c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007f5e   ffe5
+007f60   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007f62   ffd9
+007f64   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007f66   ffe5
                                            ;	.line	389; TCPIP_Stack/DHCP.c	return DHCPClient.flags.bits.bIsBound;
-007f44   6a00     clrf	0, 0                	CLRF	r0x00
-007f46   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
-007f48   b13a     btfsc	0x3a, 0, 0x1       	BTFSC	(_DHCPClient + 2), 0, B
-007f4a   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
-007f4c   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007f4e   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
-007f50   f000
-007f52   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007f54   ffd9
-007f56   0012     return	0                 	RETURN	
+007f68   6a00     clrf	0, 0                	CLRF	r0x00
+007f6a   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
+007f6c   b13a     btfsc	0x3a, 0, 0x1       	BTFSC	(_DHCPClient + 2), 0, B
+007f6e   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
+007f70   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007f72   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007f74   f000
+007f76   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007f78   ffd9
+007f7a   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_DHCP__DHCPIsEnabled	code
                                            _DHCPIsEnabled:
                                            ;	.line	355; TCPIP_Stack/DHCP.c	BOOL DHCPIsEnabled(BYTE vInterface)
-007d64   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007d66   ffe5
-007d68   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007d6a   ffd9
-007d6c   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
-007d6e   ffe5
+007dae   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007db0   ffe5
+007db2   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007db4   ffd9
+007db6   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007db8   ffe5
                                            ;	.line	358; TCPIP_Stack/DHCP.c	return DHCPClient.smState != SM_DHCP_DISABLED;
-007d70   6a00     clrf	0, 0                	CLRF	r0x00
-007d72   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 1)
-007d74   5139     movf	0x39, 0, 0x1        	MOVF	(_DHCPClient + 1), W, B
-007d76   e101     bnz	0x7d7a               	BNZ	_00147_DS_
-007d78   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
+007dba   6a00     clrf	0, 0                	CLRF	r0x00
+007dbc   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 1)
+007dbe   5139     movf	0x39, 0, 0x1        	MOVF	(_DHCPClient + 1), W, B
+007dc0   e101     bnz	0x7dc4               	BNZ	_00147_DS_
+007dc2   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
                                            _00147_DS_:
-007d7a   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007d7c   80d8     bsf	0xd8, 0, 0           	BSF	STATUS, 0
-007d7e   66e8     tstfsz	0xe8, 0           	TSTFSZ	WREG
-007d80   90d8     bcf	0xd8, 0, 0           	BCF	STATUS, 0
-007d82   6a00     clrf	0, 0                	CLRF	r0x00
-007d84   3600     rlcf	0, 0x1, 0           	RLCF	r0x00, F
-007d86   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007d88   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
-007d8a   f000
-007d8c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007d8e   ffd9
-007d90   0012     return	0                 	RETURN	
+007dc4   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007dc6   80d8     bsf	0xd8, 0, 0           	BSF	STATUS, 0
+007dc8   66e8     tstfsz	0xe8, 0           	TSTFSZ	WREG
+007dca   90d8     bcf	0xd8, 0, 0           	BCF	STATUS, 0
+007dcc   6a00     clrf	0, 0                	CLRF	r0x00
+007dce   3600     rlcf	0, 0x1, 0           	RLCF	r0x00, F
+007dd0   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007dd2   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007dd4   f000
+007dd6   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007dd8   ffd9
+007dda   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_DHCP__DHCPEnable	code
                                            _DHCPEnable:
                                            ;	.line	324; TCPIP_Stack/DHCP.c	void DHCPEnable(BYTE vInterface)
-007f96   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007f98   ffe5
-007f9a   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007f9c   ffd9
-007f9e   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 1)
+007fba   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007fbc   ffe5
+007fbe   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007fc0   ffd9
+007fc2   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 1)
                                            ;	.line	328; TCPIP_Stack/DHCP.c	if(DHCPClient.smState == SM_DHCP_DISABLED)
-007fa0   5139     movf	0x39, 0, 0x1        	MOVF	(_DHCPClient + 1), W, B
-007fa2   e105     bnz	0x7fae               	BNZ	_00139_DS_
+007fc4   5139     movf	0x39, 0, 0x1        	MOVF	(_DHCPClient + 1), W, B
+007fc6   e105     bnz	0x7fd2               	BNZ	_00139_DS_
                                            ;	.line	330; TCPIP_Stack/DHCP.c	DHCPClient.smState = SM_DHCP_GET_SOCKET;
-007fa4   0e01     movlw	0x1                	MOVLW	0x01
-007fa6   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 1)
-007fa8   6f39     movwf	0x39, 0x1          	MOVWF	(_DHCPClient + 1), B
-007faa   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
+007fc8   0e01     movlw	0x1                	MOVLW	0x01
+007fca   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 1)
+007fcc   6f39     movwf	0x39, 0x1          	MOVWF	(_DHCPClient + 1), B
+007fce   0108     movlb	0x8                	BANKSEL	(_DHCPClient + 2)
                                            ;	.line	331; TCPIP_Stack/DHCP.c	DHCPClient.flags.bits.bIsBound = FALSE;
-007fac   913a     bcf	0x3a, 0, 0x1         	BCF	(_DHCPClient + 2), 0, B
+007fd0   913a     bcf	0x3a, 0, 0x1         	BCF	(_DHCPClient + 2), 0, B
                                            _00139_DS_:
-007fae   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007fb0   ffd9
-007fb2   0012     return	0                 	RETURN	
+007fd2   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007fd4   ffd9
+007fd6   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_DHCP__DHCPDisable	code
@@ -9262,8 +9262,8 @@ Address  Value    Disassembly              Source
                                            ;	.line	1471; TCPIP_Stack/ETH97J60.c	LCDText[32]=0;
 004df2   6b53     clrf	0x53, 0x1           	CLRF	(_LCDText + 32), B
                                            ;	.line	1473; TCPIP_Stack/ETH97J60.c	LCDUpdate();
-004df4   ec1e     call	0x7e3c, 0           	CALL	_LCDUpdate
-004df6   f03f
+004df4   ec75     call	0x7aea, 0           	CALL	_LCDUpdate
+004df6   f03d
 004df8   cfe4     movff	0xfe4, 0x7         	MOVFF	PREINC1, r0x07
 004dfa   f007
 004dfc   cfe4     movff	0xfe4, 0x6         	MOVFF	PREINC1, r0x06
@@ -9288,51 +9288,51 @@ Address  Value    Disassembly              Source
                                            S_ETH97J60__MACPowerUp	code
                                            _MACPowerUp:
                                            ;	.line	1357; TCPIP_Stack/ETH97J60.c	void MACPowerUp(void)
-007fd2   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007fd4   ffe5
-007fd6   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007fd8   ffd9
-007fda   010e     movlb	0xe                	BANKSEL	_ECON2bits
+007ff6   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007ff8   ffe5
+007ffa   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007ffc   ffd9
+007ffe   010e     movlb	0xe                	BANKSEL	_ECON2bits
                                            ;	.line	1360; TCPIP_Stack/ETH97J60.c	ECON2bits.ETHEN = 1;
-007fdc   8bfe     bsf	0xfe, 0x5, 0x1       	BSF	_ECON2bits, 5, B
+008000   8bfe     bsf	0xfe, 0x5, 0x1       	BSF	_ECON2bits, 5, B
                                            _00484_DS_:
-007fde   010e     movlb	0xe                	BANKSEL	_ESTATbits
+008002   010e     movlb	0xe                	BANKSEL	_ESTATbits
                                            ;	.line	1363; TCPIP_Stack/ETH97J60.c	while(!ESTATbits.PHYRDY)
-007fe0   b1fd     btfsc	0xfd, 0, 0x1       	BTFSC	_ESTATbits, 0, B
-007fe2   d002     bra	0x7fe8               	BRA	_00487_DS_
+008004   b1fd     btfsc	0xfd, 0, 0x1       	BTFSC	_ESTATbits, 0, B
+008006   d002     bra	0x800c               	BRA	_00487_DS_
                                            ;	.line	1366; TCPIP_Stack/ETH97J60.c	ECON1bits.RXEN = 1;
-007fe4   84d2     bsf	0xd2, 0x2, 0         	BSF	_ECON1bits, 2
-007fe6   d7fb     bra	0x7fde               	BRA	_00484_DS_
+008008   84d2     bsf	0xd2, 0x2, 0         	BSF	_ECON1bits, 2
+00800a   d7fb     bra	0x8002               	BRA	_00484_DS_
                                            _00487_DS_:
-007fe8   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007fea   ffd9
-007fec   0012     return	0                 	RETURN	
+00800c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+00800e   ffd9
+008010   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__MACPowerDown	code
                                            _MACPowerDown:
                                            ;	.line	1320; TCPIP_Stack/ETH97J60.c	void MACPowerDown(void)
-007fb4   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007fb6   ffe5
-007fb8   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007fba   ffd9
+007fd8   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007fda   ffe5
+007fdc   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007fde   ffd9
                                            ;	.line	1323; TCPIP_Stack/ETH97J60.c	ECON1bits.RXEN = 0;
-007fbc   94d2     bcf	0xd2, 0x2, 0         	BCF	_ECON1bits, 2
+007fe0   94d2     bcf	0xd2, 0x2, 0         	BCF	_ECON1bits, 2
                                            _00473_DS_:
-007fbe   010e     movlb	0xe                	BANKSEL	_ESTATbits
+007fe2   010e     movlb	0xe                	BANKSEL	_ESTATbits
                                            ;	.line	1327; TCPIP_Stack/ETH97J60.c	while(ESTATbits.RXBUSY);
-007fc0   b5fd     btfsc	0xfd, 0x2, 0x1     	BTFSC	_ESTATbits, 2, B
-007fc2   d7fd     bra	0x7fbe               	BRA	_00473_DS_
+007fe4   b5fd     btfsc	0xfd, 0x2, 0x1     	BTFSC	_ESTATbits, 2, B
+007fe6   d7fd     bra	0x7fe2               	BRA	_00473_DS_
                                            _00476_DS_:
                                            ;	.line	1330; TCPIP_Stack/ETH97J60.c	while(ECON1bits.TXRTS);
-007fc4   b6d2     btfsc	0xd2, 0x3, 0       	BTFSC	_ECON1bits, 3
-007fc6   d7fe     bra	0x7fc4               	BRA	_00476_DS_
-007fc8   010e     movlb	0xe                	BANKSEL	_ECON2bits
+007fe8   b6d2     btfsc	0xd2, 0x3, 0       	BTFSC	_ECON1bits, 3
+007fea   d7fe     bra	0x7fe8               	BRA	_00476_DS_
+007fec   010e     movlb	0xe                	BANKSEL	_ECON2bits
                                            ;	.line	1333; TCPIP_Stack/ETH97J60.c	ECON2bits.ETHEN = 0;
-007fca   9bfe     bcf	0xfe, 0x5, 0x1       	BCF	_ECON2bits, 5, B
-007fcc   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007fce   ffd9
-007fd0   0012     return	0                 	RETURN	
+007fee   9bfe     bcf	0xfe, 0x5, 0x1       	BCF	_ECON2bits, 5, B
+007ff0   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007ff2   ffd9
+007ff4   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__WritePHYReg	code
@@ -9390,47 +9390,47 @@ Address  Value    Disassembly              Source
                                            S_ETH97J60__ReadPHYReg	code
                                            _ReadPHYReg:
                                            ;	.line	1208; TCPIP_Stack/ETH97J60.c	WORD ReadPHYReg(BYTE Register)
-007b30   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007b32   ffe5
-007b34   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007b36   ffd9
-007b38   0e02     movlw	0x2                	MOVLW	0x02
-007b3a   cfdb     movff	0xfdb, 0xeb4       	MOVFF	PLUSW2, _MIREGADR
-007b3c   feb4
-007b3e   0000     nop                      	nop 
+007b7a   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007b7c   ffe5
+007b7e   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007b80   ffd9
+007b82   0e02     movlw	0x2                	MOVLW	0x02
+007b84   cfdb     movff	0xfdb, 0xeb4       	MOVFF	PLUSW2, _MIREGADR
+007b86   feb4
+007b88   0000     nop                      	nop 
                                            ;	.line	1215; TCPIP_Stack/ETH97J60.c	MICMD = MICMD_MIIRD; Nop();
-007b40   0e01     movlw	0x1                	MOVLW	0x01
-007b42   010e     movlb	0xe                	BANKSEL	_MICMD
-007b44   6fb2     movwf	0xb2, 0x1          	MOVWF	_MICMD, B
-007b46   0000     nop                      	nop 
+007b8a   0e01     movlw	0x1                	MOVLW	0x01
+007b8c   010e     movlb	0xe                	BANKSEL	_MICMD
+007b8e   6fb2     movwf	0xb2, 0x1          	MOVWF	_MICMD, B
+007b90   0000     nop                      	nop 
                                            _00451_DS_:
-007b48   010e     movlb	0xe                	BANKSEL	_MISTATbits
+007b92   010e     movlb	0xe                	BANKSEL	_MISTATbits
                                            ;	.line	1219; TCPIP_Stack/ETH97J60.c	while(MISTATbits.BUSY);
-007b4a   b18a     btfsc	0x8a, 0, 0x1       	BTFSC	_MISTATbits, 0, B
-007b4c   d7fd     bra	0x7b48               	BRA	_00451_DS_
-007b4e   010e     movlb	0xe                	BANKSEL	_MICMD
+007b94   b18a     btfsc	0x8a, 0, 0x1       	BTFSC	_MISTATbits, 0, B
+007b96   d7fd     bra	0x7b92               	BRA	_00451_DS_
+007b98   010e     movlb	0xe                	BANKSEL	_MICMD
                                            ;	.line	1222; TCPIP_Stack/ETH97J60.c	MICMD = 0x00; Nop();
-007b50   6bb2     clrf	0xb2, 0x1           	CLRF	_MICMD, B
-007b52   0000     nop                      	nop 
-007b54   010e     movlb	0xe                	BANKSEL	_MIRDL
+007b9a   6bb2     clrf	0xb2, 0x1           	CLRF	_MICMD, B
+007b9c   0000     nop                      	nop 
+007b9e   010e     movlb	0xe                	BANKSEL	_MIRDL
                                            ;	.line	1225; TCPIP_Stack/ETH97J60.c	Result.VAL.v[0] = MIRDL;
-007b56   51b8     movf	0xb8, 0, 0x1        	MOVF	_MIRDL, W, B
-007b58   010a     movlb	0xa                	BANKSEL	_ReadPHYReg_Result_1_1
-007b5a   6f62     movwf	0x62, 0x1          	MOVWF	_ReadPHYReg_Result_1_1, B
-007b5c   0000     nop                      	nop 
-007b5e   010e     movlb	0xe                	BANKSEL	_MIRDH
+007ba0   51b8     movf	0xb8, 0, 0x1        	MOVF	_MIRDL, W, B
+007ba2   010a     movlb	0xa                	BANKSEL	_ReadPHYReg_Result_1_1
+007ba4   6f62     movwf	0x62, 0x1          	MOVWF	_ReadPHYReg_Result_1_1, B
+007ba6   0000     nop                      	nop 
+007ba8   010e     movlb	0xe                	BANKSEL	_MIRDH
                                            ;	.line	1227; TCPIP_Stack/ETH97J60.c	Result.VAL.v[1] = MIRDH;
-007b60   51b9     movf	0xb9, 0, 0x1        	MOVF	_MIRDH, W, B
-007b62   010a     movlb	0xa                	BANKSEL	(_ReadPHYReg_Result_1_1 + 1)
-007b64   6f63     movwf	0x63, 0x1          	MOVWF	(_ReadPHYReg_Result_1_1 + 1), B
+007baa   51b9     movf	0xb9, 0, 0x1        	MOVF	_MIRDH, W, B
+007bac   010a     movlb	0xa                	BANKSEL	(_ReadPHYReg_Result_1_1 + 1)
+007bae   6f63     movwf	0x63, 0x1          	MOVWF	(_ReadPHYReg_Result_1_1 + 1), B
                                            ;	.line	1229; TCPIP_Stack/ETH97J60.c	return Result2;
-007b66   ca63     movff	0xa63, 0xff3       	MOVFF	(_ReadPHYReg_Result_1_1 + 1), PRODL
-007b68   fff3
-007b6a   010a     movlb	0xa                	BANKSEL	_ReadPHYReg_Result_1_1
-007b6c   5162     movf	0x62, 0, 0x1        	MOVF	_ReadPHYReg_Result_1_1, W, B
-007b6e   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007b70   ffd9
-007b72   0012     return	0                 	RETURN	
+007bb0   ca63     movff	0xa63, 0xff3       	MOVFF	(_ReadPHYReg_Result_1_1 + 1), PRODL
+007bb2   fff3
+007bb4   010a     movlb	0xa                	BANKSEL	_ReadPHYReg_Result_1_1
+007bb6   5162     movf	0x62, 0, 0x1        	MOVF	_ReadPHYReg_Result_1_1, W, B
+007bb8   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007bba   ffd9
+007bbc   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__MACPutArray	code
@@ -9488,7 +9488,7 @@ Address  Value    Disassembly              Source
 006d90   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 006d92   fff3
 006d94   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-006d96   ec7b     call	0x7ef6, 0           	CALL	__gptrget1
+006d96   ec8d     call	0x7f1a, 0           	CALL	__gptrget1
 006d98   f03f
 006d9a   6e61     movwf	0x61, 0            	MOVWF	_EDATA
 006d9c   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
@@ -9520,17 +9520,17 @@ Address  Value    Disassembly              Source
                                            S_ETH97J60__MACPut	code
                                            _MACPut:
                                            ;	.line	1104; TCPIP_Stack/ETH97J60.c	void MACPut(BYTE val)
-008054   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-008056   ffe5
-008058   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-00805a   ffd9
-00805c   0e02     movlw	0x2                	MOVLW	0x02
-00805e   cfdb     movff	0xfdb, 0xf61       	MOVFF	PLUSW2, _EDATA
-008060   ff61
+008078   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+00807a   ffe5
+00807c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+00807e   ffd9
+008080   0e02     movlw	0x2                	MOVLW	0x02
+008082   cfdb     movff	0xfdb, 0xf61       	MOVFF	PLUSW2, _EDATA
+008084   ff61
                                            ;	.line	1121; TCPIP_Stack/ETH97J60.c	EDATA = val;
-008062   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-008064   ffd9
-008066   0012     return	0                 	RETURN	
+008086   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+008088   ffd9
+00808a   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__MACGetArray	code
@@ -9603,7 +9603,7 @@ Address  Value    Disassembly              Source
 006372   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 006374   fff3
 006376   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-006378   ec3e     call	0x807c, 0           	CALL	__gptrput1
+006378   ec50     call	0x80a0, 0           	CALL	__gptrput1
 00637a   f040
 00637c   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
 00637e   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
@@ -9664,42 +9664,42 @@ Address  Value    Disassembly              Source
                                            S_ETH97J60__MACGet	code
                                            _MACGet:
                                            ;	.line	1037; TCPIP_Stack/ETH97J60.c	BYTE MACGet()
-008090   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-008092   ffe5
-008094   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-008096   ffd9
+0080b4   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+0080b6   ffe5
+0080b8   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+0080ba   ffd9
                                            ;	.line	1039; TCPIP_Stack/ETH97J60.c	return EDATA;
-008098   5061     movf	0x61, 0, 0          	MOVF	_EDATA, W
-00809a   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-00809c   ffd9
-00809e   0012     return	0                 	RETURN	
+0080bc   5061     movf	0x61, 0, 0          	MOVF	_EDATA, W
+0080be   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+0080c0   ffd9
+0080c2   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__MACIsMemCopyDone	code
                                            _MACIsMemCopyDone:
                                            ;	.line	1014; TCPIP_Stack/ETH97J60.c	BOOL MACIsMemCopyDone(void)
-007dbe   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007dc0   ffe5
-007dc2   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007dc4   ffd9
-007dc6   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
-007dc8   ffe5
+007e08   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007e0a   ffe5
+007e0c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007e0e   ffd9
+007e10   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007e12   ffe5
                                            ;	.line	1016; TCPIP_Stack/ETH97J60.c	return !ECON1bits.DMAST;
-007dca   6a00     clrf	0, 0                	CLRF	r0x00
-007dcc   bad2     btfsc	0xd2, 0x5, 0       	BTFSC	_ECON1bits, 5
-007dce   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
-007dd0   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007dd2   80d8     bsf	0xd8, 0, 0           	BSF	STATUS, 0
-007dd4   66e8     tstfsz	0xe8, 0           	TSTFSZ	WREG
-007dd6   90d8     bcf	0xd8, 0, 0           	BCF	STATUS, 0
-007dd8   6a00     clrf	0, 0                	CLRF	r0x00
-007dda   3600     rlcf	0, 0x1, 0           	RLCF	r0x00, F
-007ddc   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007dde   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
-007de0   f000
-007de2   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007de4   ffd9
-007de6   0012     return	0                 	RETURN	
+007e14   6a00     clrf	0, 0                	CLRF	r0x00
+007e16   bad2     btfsc	0xd2, 0x5, 0       	BTFSC	_ECON1bits, 5
+007e18   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
+007e1a   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007e1c   80d8     bsf	0xd8, 0, 0           	BSF	STATUS, 0
+007e1e   66e8     tstfsz	0xe8, 0           	TSTFSZ	WREG
+007e20   90d8     bcf	0xd8, 0, 0           	BCF	STATUS, 0
+007e22   6a00     clrf	0, 0                	CLRF	r0x00
+007e24   3600     rlcf	0, 0x1, 0           	RLCF	r0x00, F
+007e26   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007e28   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007e2a   f000
+007e2c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007e2e   ffd9
+007e30   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__MACMemCopyAsync	code
@@ -9897,12 +9897,12 @@ Address  Value    Disassembly              Source
 0019be   5006     movf	0x6, 0, 0           	MOVF	r0x06, W
 0019c0   1007     iorwf	0x7, 0, 0          	IORWF	r0x07, W
 0019c2   e009     bz	0x19d6                	BZ	_00330_DS_
-0019c4   ec48     call	0x8090, 0           	CALL	_MACGet
+0019c4   ec5a     call	0x80b4, 0           	CALL	_MACGet
 0019c6   f040
 0019c8   6e06     movwf	0x6, 0             	MOVWF	r0x06
 0019ca   5006     movf	0x6, 0, 0           	MOVF	r0x06, W
 0019cc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0019ce   ec2a     call	0x8054, 0           	CALL	_MACPut
+0019ce   ec3c     call	0x8078, 0           	CALL	_MACPut
 0019d0   f040
 0019d2   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
 0019d4   d7ec     bra	0x19ae               	BRA	_00328_DS_
@@ -10549,7 +10549,7 @@ Address  Value    Disassembly              Source
 00107a   c005     movff	0x5, 0xff3         	MOVFF	r0x05, PRODL
 00107c   fff3
 00107e   5006     movf	0x6, 0, 0           	MOVF	r0x06, W
-001080   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+001080   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 001082   f03e
 001084   6e09     movwf	0x9, 0             	MOVWF	r0x09
 001086   cff3     movff	0xff3, 0xa         	MOVFF	PRODL, r0x0a
@@ -11143,7 +11143,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	582; TCPIP_Stack/ETH97J60.c	ECON1bits.TXRTS = 1;
 0076b2   86d2     bsf	0xd2, 0x3, 0         	BSF	_ECON1bits, 3
                                            ;	.line	583; TCPIP_Stack/ETH97J60.c	wTXWatchdog = TickGet();
-0076b4   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+0076b4   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 0076b6   f03f
 0076b8   6e00     movwf	0, 0               	MOVWF	r0x00
 0076ba   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
@@ -11297,7 +11297,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	536; TCPIP_Stack/ETH97J60.c	MACPut(0x08);
 00504a   0e08     movlw	0x8                	MOVLW	0x08
 00504c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-00504e   ec2a     call	0x8054, 0           	CALL	_MACPut
+00504e   ec3c     call	0x8078, 0           	CALL	_MACPut
 005050   f040
 005052   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
                                            ;	.line	537; TCPIP_Stack/ETH97J60.c	MACPut((type == MAC_IP) ? ETHER_IP : ETHER_ARP);
@@ -11319,7 +11319,7 @@ Address  Value    Disassembly              Source
                                            _00257_DS_:
 005070   5000     movf	0, 0, 0             	MOVF	r0x00, W
 005072   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-005074   ec2a     call	0x8054, 0           	CALL	_MACPut
+005074   ec3c     call	0x8078, 0           	CALL	_MACPut
 005076   f040
 005078   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
 00507a   cfe4     movff	0xfe4, 0x9         	MOVFF	PREINC1, r0x09
@@ -11583,7 +11583,7 @@ Address  Value    Disassembly              Source
 003ae8   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 003aea   fff3
 003aec   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-003aee   ec3e     call	0x807c, 0           	CALL	__gptrput1
+003aee   ec50     call	0x80a0, 0           	CALL	__gptrput1
 003af0   f040
                                            ;	.line	479; TCPIP_Stack/ETH97J60.c	if( (header.Type.v[1] == 0x08u) &&
 003af2   c0ff     movff	0xff, 0            	MOVFF	(_MACGetHeader_header_1_1 + 19), r0x00
@@ -11621,7 +11621,7 @@ Address  Value    Disassembly              Source
 003b26   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 003b28   fff3
 003b2a   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-003b2c   ec3e     call	0x807c, 0           	CALL	__gptrput1
+003b2c   ec50     call	0x80a0, 0           	CALL	__gptrput1
 003b2e   f040
                                            _00227_DS_:
 003b30   010a     movlb	0xa                	BANKSEL	_WasDiscarded
@@ -11929,7 +11929,7 @@ Address  Value    Disassembly              Source
 0074d6   d021     bra	0x751a               	BRA	_00164_DS_
                                            _00161_DS_:
                                            ;	.line	285; TCPIP_Stack/ETH97J60.c	if((WORD)TickGet() - wTXWatchdog >= (3ull*TICK_SECOND/1000ull))
-0074d8   ec6a     call	0x7ed4, 0           	CALL	_TickGet
+0074d8   ec7c     call	0x7ef8, 0           	CALL	_TickGet
 0074da   f03f
 0074dc   6e00     movwf	0, 0               	MOVWF	r0x00
 0074de   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
@@ -11984,42 +11984,42 @@ Address  Value    Disassembly              Source
                                            S_ETH97J60__MACIsLinked	code
                                            _MACIsLinked:
                                            ;	.line	244; TCPIP_Stack/ETH97J60.c	BOOL MACIsLinked(void)
-007b74   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007b76   ffe5
-007b78   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007b7a   ffd9
-007b7c   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
-007b7e   ffe5
-007b80   c001     movff	0x1, 0xfe5         	MOVFF	r0x01, POSTDEC1
-007b82   ffe5
+007bbe   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007bc0   ffe5
+007bc2   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007bc4   ffd9
+007bc6   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007bc8   ffe5
+007bca   c001     movff	0x1, 0xfe5         	MOVFF	r0x01, POSTDEC1
+007bcc   ffe5
                                            ;	.line	253; TCPIP_Stack/ETH97J60.c	pr.Val= ReadPHYReg(PHSTAT1);
-007b84   0e01     movlw	0x1                	MOVLW	0x01
-007b86   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007b88   ec98     call	0x7b30, 0           	CALL	_ReadPHYReg
-007b8a   f03d
-007b8c   6e00     movwf	0, 0               	MOVWF	r0x00
-007b8e   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
-007b90   f001
-007b92   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
-007b94   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007b96   010a     movlb	0xa                	BANKSEL	_MACIsLinked_pr_1_1
-007b98   6f4e     movwf	0x4e, 0x1          	MOVWF	_MACIsLinked_pr_1_1, B
-007b9a   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
-007b9c   010a     movlb	0xa                	BANKSEL	(_MACIsLinked_pr_1_1 + 1)
-007b9e   6f4f     movwf	0x4f, 0x1          	MOVWF	(_MACIsLinked_pr_1_1 + 1), B
+007bce   0e01     movlw	0x1                	MOVLW	0x01
+007bd0   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007bd2   ecbd     call	0x7b7a, 0           	CALL	_ReadPHYReg
+007bd4   f03d
+007bd6   6e00     movwf	0, 0               	MOVWF	r0x00
+007bd8   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
+007bda   f001
+007bdc   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
+007bde   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007be0   010a     movlb	0xa                	BANKSEL	_MACIsLinked_pr_1_1
+007be2   6f4e     movwf	0x4e, 0x1          	MOVWF	_MACIsLinked_pr_1_1, B
+007be4   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
+007be6   010a     movlb	0xa                	BANKSEL	(_MACIsLinked_pr_1_1 + 1)
+007be8   6f4f     movwf	0x4f, 0x1          	MOVWF	(_MACIsLinked_pr_1_1 + 1), B
                                            ;	.line	254; TCPIP_Stack/ETH97J60.c	return pr.PHSTAT1bits.LLSTAT;
-007ba0   6a00     clrf	0, 0                	CLRF	r0x00
-007ba2   010a     movlb	0xa                	BANKSEL	_MACIsLinked_pr_1_1
-007ba4   b54e     btfsc	0x4e, 0x2, 0x1     	BTFSC	_MACIsLinked_pr_1_1, 2, B
-007ba6   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
-007ba8   5000     movf	0, 0, 0             	MOVF	r0x00, W
-007baa   cfe4     movff	0xfe4, 0x1         	MOVFF	PREINC1, r0x01
-007bac   f001
-007bae   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
-007bb0   f000
-007bb2   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007bb4   ffd9
-007bb6   0012     return	0                 	RETURN	
+007bea   6a00     clrf	0, 0                	CLRF	r0x00
+007bec   010a     movlb	0xa                	BANKSEL	_MACIsLinked_pr_1_1
+007bee   b54e     btfsc	0x4e, 0x2, 0x1     	BTFSC	_MACIsLinked_pr_1_1, 2, B
+007bf0   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
+007bf2   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007bf4   cfe4     movff	0xfe4, 0x1         	MOVFF	PREINC1, r0x01
+007bf6   f001
+007bf8   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007bfa   f000
+007bfc   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007bfe   ffd9
+007c00   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_ETH97J60__MACInit	code
@@ -13280,7 +13280,7 @@ Address  Value    Disassembly              Source
 005fc2   c007     movff	0x7, 0xff3         	MOVFF	r0x07, PRODL
 005fc4   fff3
 005fc6   5008     movf	0x8, 0, 0           	MOVF	r0x08, W
-005fc8   ec7b     call	0x7ef6, 0           	CALL	__gptrget1
+005fc8   ec8d     call	0x7f1a, 0           	CALL	__gptrget1
 005fca   f03f
 005fcc   6e09     movwf	0x9, 0             	MOVWF	r0x09
 005fce   2a06     incf	0x6, 0x1, 0         	INCF	r0x06, F
@@ -13746,7 +13746,7 @@ Address  Value    Disassembly              Source
 0020ea   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 0020ec   fff3
 0020ee   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-0020f0   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+0020f0   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 0020f2   f03e
 0020f4   6e05     movwf	0x5, 0             	MOVWF	r0x05
 0020f6   cff3     movff	0xff3, 0x6         	MOVFF	PRODL, r0x06
@@ -13795,7 +13795,7 @@ Address  Value    Disassembly              Source
 002146   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 002148   fff3
 00214a   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00214c   ec7b     call	0x7ef6, 0           	CALL	__gptrget1
+00214c   ec8d     call	0x7f1a, 0           	CALL	__gptrget1
 00214e   f03f
 002150   6e00     movwf	0, 0               	MOVWF	r0x00
 002152   6a01     clrf	0x1, 0              	CLRF	r0x01
@@ -14396,7 +14396,7 @@ Address  Value    Disassembly              Source
 0022a0   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 0022a2   fff3
 0022a4   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-0022a6   ec7b     call	0x7ef6, 0           	CALL	__gptrget1
+0022a6   ec8d     call	0x7f1a, 0           	CALL	__gptrget1
 0022a8   f03f
 0022aa   6e08     movwf	0x8, 0             	MOVWF	r0x08
 0022ac   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
@@ -14525,7 +14525,7 @@ Address  Value    Disassembly              Source
 002370   c00a     movff	0xa, 0xff3         	MOVFF	r0x0a, PRODL
 002372   fff3
 002374   500b     movf	0xb, 0, 0           	MOVF	r0x0b, W
-002376   ec3e     call	0x807c, 0           	CALL	__gptrput1
+002376   ec50     call	0x80a0, 0           	CALL	__gptrput1
 002378   f040
                                            ;	.line	361; TCPIP_Stack/Helpers.c	charLen = 0;
 00237a   6a06     clrf	0x6, 0              	CLRF	r0x06
@@ -14609,7 +14609,7 @@ Address  Value    Disassembly              Source
 0023f6   c00a     movff	0xa, 0xff3         	MOVFF	r0x0a, PRODL
 0023f8   fff3
 0023fa   500b     movf	0xb, 0, 0           	MOVF	r0x0b, W
-0023fc   ec3e     call	0x807c, 0           	CALL	__gptrput1
+0023fc   ec50     call	0x80a0, 0           	CALL	__gptrput1
 0023fe   f040
                                            ;	.line	373; TCPIP_Stack/Helpers.c	charLen = 0;
 002400   6a06     clrf	0x6, 0              	CLRF	r0x06
@@ -14768,7 +14768,7 @@ Address  Value    Disassembly              Source
 0024f6   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 0024f8   fff3
 0024fa   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-0024fc   ec3e     call	0x807c, 0           	CALL	__gptrput1
+0024fc   ec50     call	0x80a0, 0           	CALL	__gptrput1
 0024fe   f040
                                            ;	.line	398; TCPIP_Stack/Helpers.c	return TRUE;
 002500   0e01     movlw	0x1                	MOVLW	0x01
@@ -15086,7 +15086,7 @@ Address  Value    Disassembly              Source
 002cfc   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 002cfe   5010     movf	0x10, 0, 0          	MOVF	r0x10, W
 002d00   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-002d02   ec57     call	0x7eae, 0           	CALL	_srand
+002d02   ec69     call	0x7ed2, 0           	CALL	_srand
 002d04   f03f
 002d06   0e04     movlw	0x4                	MOVLW	0x04
 002d08   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
@@ -15921,8 +15921,8 @@ Address  Value    Disassembly              Source
 0049e8   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
                                            _00114_DS_:
                                            ;	.line	173; TCPIP_Stack/ICMP.c	while(!MACIsMemCopyDone());
-0049ea   ecdf     call	0x7dbe, 0           	CALL	_MACIsMemCopyDone
-0049ec   f03e
+0049ea   ec04     call	0x7e08, 0           	CALL	_MACIsMemCopyDone
+0049ec   f03f
 0049ee   6e00     movwf	0, 0               	MOVWF	r0x00
 0049f0   5000     movf	0, 0, 0             	MOVF	r0x00, W
 0049f2   e0fb     bz	0x49ea                	BZ	_00114_DS_
@@ -16522,7 +16522,7 @@ Address  Value    Disassembly              Source
 004bd2   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 004bd4   fff3
 004bd6   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-004bd8   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+004bd8   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 004bda   f03e
 004bdc   6e06     movwf	0x6, 0             	MOVWF	r0x06
 004bde   cff3     movff	0xff3, 0x7         	MOVFF	PRODL, r0x07
@@ -16547,7 +16547,7 @@ Address  Value    Disassembly              Source
 004c04   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 004c06   fff3
 004c08   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-004c0a   ec1e     call	0x803c, 0           	CALL	__gptrput2
+004c0a   ec30     call	0x8060, 0           	CALL	__gptrput2
 004c0c   f040
                                            ;	.line	305; TCPIP_Stack/IP.c	h->Identification   = swaps(h->Identification);
 004c0e   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -16564,7 +16564,7 @@ Address  Value    Disassembly              Source
 004c24   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 004c26   fff3
 004c28   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-004c2a   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+004c2a   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 004c2c   f03e
 004c2e   6e06     movwf	0x6, 0             	MOVWF	r0x06
 004c30   cff3     movff	0xff3, 0x7         	MOVFF	PRODL, r0x07
@@ -16589,7 +16589,7 @@ Address  Value    Disassembly              Source
 004c56   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 004c58   fff3
 004c5a   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-004c5c   ec1e     call	0x803c, 0           	CALL	__gptrput2
+004c5c   ec30     call	0x8060, 0           	CALL	__gptrput2
 004c5e   f040
                                            ;	.line	306; TCPIP_Stack/IP.c	h->HeaderChecksum   = swaps(h->HeaderChecksum);
 004c60   0e0a     movlw	0xa                	MOVLW	0x0a
@@ -16603,7 +16603,7 @@ Address  Value    Disassembly              Source
 004c70   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 004c72   fff3
 004c74   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-004c76   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+004c76   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 004c78   f03e
 004c7a   6e03     movwf	0x3, 0             	MOVWF	r0x03
 004c7c   cff3     movff	0xff3, 0x4         	MOVFF	PRODL, r0x04
@@ -16628,7 +16628,7 @@ Address  Value    Disassembly              Source
 004ca2   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 004ca4   fff3
 004ca6   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-004ca8   ec1e     call	0x803c, 0           	CALL	__gptrput2
+004ca8   ec30     call	0x8060, 0           	CALL	__gptrput2
 004caa   f040
 004cac   cfe4     movff	0xfe4, 0x7         	MOVFF	PREINC1, r0x07
 004cae   f007
@@ -16822,7 +16822,7 @@ Address  Value    Disassembly              Source
 004232   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 004234   fff3
 004236   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-004238   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+004238   ec43     call	0x7c86, 0           	CALL	__gptrget4
 00423a   f03e
 00423c   6e03     movwf	0x3, 0             	MOVWF	r0x03
 00423e   cff3     movff	0xff3, 0x6         	MOVFF	PRODL, r0x06
@@ -17183,7 +17183,7 @@ Address  Value    Disassembly              Source
 003468   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 00346a   fff3
 00346c   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00346e   ecac     call	0x7f58, 0           	CALL	__gptrput4
+00346e   ecbe     call	0x7f7c, 0           	CALL	__gptrput4
 003470   f03f
                                            _00112_DS_:
                                            ;	.line	219; TCPIP_Stack/IP.c	remote->IPAddr.Val  = header.SourceAddress.Val;
@@ -17208,7 +17208,7 @@ Address  Value    Disassembly              Source
 003496   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 003498   fff3
 00349a   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-00349c   ecac     call	0x7f58, 0           	CALL	__gptrput4
+00349c   ecbe     call	0x7f7c, 0           	CALL	__gptrput4
 00349e   f03f
                                            ;	.line	220; TCPIP_Stack/IP.c	*protocol           = header.Protocol;
 0034a0   c88a     movff	0x88a, 0           	MOVFF	(_IPGetHeader_header_1_1 + 9), r0x00
@@ -17220,7 +17220,7 @@ Address  Value    Disassembly              Source
 0034ac   c007     movff	0x7, 0xff3         	MOVFF	r0x07, PRODL
 0034ae   fff3
 0034b0   5008     movf	0x8, 0, 0           	MOVF	r0x08, W
-0034b2   ec3e     call	0x807c, 0           	CALL	__gptrput1
+0034b2   ec50     call	0x80a0, 0           	CALL	__gptrput1
 0034b4   f040
                                            ;	.line	221; TCPIP_Stack/IP.c	*len 		= header.TotalLength - IPHeaderLen;
 0034b6   ca8a     movff	0xa8a, 0           	MOVFF	_IPHeaderLen, r0x00
@@ -17243,7 +17243,7 @@ Address  Value    Disassembly              Source
 0034d8   c00a     movff	0xa, 0xff3         	MOVFF	r0x0a, PRODL
 0034da   fff3
 0034dc   500b     movf	0xb, 0, 0           	MOVF	r0x0b, W
-0034de   ec1e     call	0x803c, 0           	CALL	__gptrput2
+0034de   ec30     call	0x8060, 0           	CALL	__gptrput2
 0034e0   f040
                                            ;	.line	223; TCPIP_Stack/IP.c	return TRUE;
 0034e2   0e01     movlw	0x1                	MOVLW	0x01
@@ -17842,7 +17842,7 @@ Address  Value    Disassembly              Source
 004728   d093     bra	0x4850               	BRA	_00154_DS_
                                            _00151_DS_:
                                            ;	.line	86; TCPIP_Stack/LCDCircularList.c	if (LCDListIsEmpty())
-00472a   ec7a     call	0x7cf4, 0           	CALL	_LCDListIsEmpty
+00472a   ec9f     call	0x7d3e, 0           	CALL	_LCDListIsEmpty
 00472c   f03e
 00472e   6e06     movwf	0x6, 0             	MOVWF	r0x06
 004730   5006     movf	0x6, 0, 0           	MOVF	r0x06, W
@@ -17888,7 +17888,7 @@ Address  Value    Disassembly              Source
 00477a   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 00477c   fff3
 00477e   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-004780   ec3e     call	0x807c, 0           	CALL	__gptrput1
+004780   ec50     call	0x80a0, 0           	CALL	__gptrput1
 004782   f040
                                            ;	.line	90; TCPIP_Stack/LCDCircularList.c	strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2+1);
 004784   0e00     movlw	0                  	MOVLW	LOW(_listLCD)
@@ -18275,41 +18275,41 @@ Address  Value    Disassembly              Source
                                            S_LCDCircularList__LCDListIsEmpty	code
                                            _LCDListIsEmpty:
                                            ;	.line	50; TCPIP_Stack/LCDCircularList.c	char LCDListIsEmpty(void)
-007cf4   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007cf6   ffe5
-007cf8   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007cfa   ffd9
-007cfc   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
-007cfe   ffe5
-007d00   0108     movlb	0x8                	BANKSEL	_LCDListReady
+007d3e   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007d40   ffe5
+007d42   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007d44   ffd9
+007d46   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007d48   ffe5
+007d4a   0108     movlb	0x8                	BANKSEL	_LCDListReady
                                            ;	.line	53; TCPIP_Stack/LCDCircularList.c	if (!LCDListReady)
-007d02   5160     movf	0x60, 0, 0x1        	MOVF	_LCDListReady, W, B
-007d04   e102     bnz	0x7d0a               	BNZ	_00120_DS_
+007d4c   5160     movf	0x60, 0, 0x1        	MOVF	_LCDListReady, W, B
+007d4e   e102     bnz	0x7d54               	BNZ	_00120_DS_
                                            ;	.line	54; TCPIP_Stack/LCDCircularList.c	return -1;
-007d06   68e8     setf	0xe8, 0             	SETF	WREG
-007d08   d00d     bra	0x7d24               	BRA	_00121_DS_
+007d50   68e8     setf	0xe8, 0             	SETF	WREG
+007d52   d00d     bra	0x7d6e               	BRA	_00121_DS_
                                            _00120_DS_:
                                            ;	.line	55; TCPIP_Stack/LCDCircularList.c	return (listLCD.head == listLCD.tail);
-007d0a   6a00     clrf	0, 0                	CLRF	r0x00
-007d0c   0104     movlb	0x4                	BANKSEL	(_listLCD + 374)
-007d0e   5176     movf	0x76, 0, 0x1        	MOVF	(_listLCD + 374), W, B
-007d10   0104     movlb	0x4                	BANKSEL	(_listLCD + 376)
-007d12   1978     xorwf	0x78, 0, 0x1       	XORWF	(_listLCD + 376), W, B
-007d14   e106     bnz	0x7d22               	BNZ	_00125_DS_
-007d16   0104     movlb	0x4                	BANKSEL	(_listLCD + 375)
-007d18   5177     movf	0x77, 0, 0x1        	MOVF	(_listLCD + 375), W, B
-007d1a   0104     movlb	0x4                	BANKSEL	(_listLCD + 377)
-007d1c   1979     xorwf	0x79, 0, 0x1       	XORWF	(_listLCD + 377), W, B
-007d1e   e101     bnz	0x7d22               	BNZ	_00125_DS_
-007d20   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
+007d54   6a00     clrf	0, 0                	CLRF	r0x00
+007d56   0104     movlb	0x4                	BANKSEL	(_listLCD + 374)
+007d58   5176     movf	0x76, 0, 0x1        	MOVF	(_listLCD + 374), W, B
+007d5a   0104     movlb	0x4                	BANKSEL	(_listLCD + 376)
+007d5c   1978     xorwf	0x78, 0, 0x1       	XORWF	(_listLCD + 376), W, B
+007d5e   e106     bnz	0x7d6c               	BNZ	_00125_DS_
+007d60   0104     movlb	0x4                	BANKSEL	(_listLCD + 375)
+007d62   5177     movf	0x77, 0, 0x1        	MOVF	(_listLCD + 375), W, B
+007d64   0104     movlb	0x4                	BANKSEL	(_listLCD + 377)
+007d66   1979     xorwf	0x79, 0, 0x1       	XORWF	(_listLCD + 377), W, B
+007d68   e101     bnz	0x7d6c               	BNZ	_00125_DS_
+007d6a   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
                                            _00125_DS_:
-007d22   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007d6c   5000     movf	0, 0, 0             	MOVF	r0x00, W
                                            _00121_DS_:
-007d24   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
-007d26   f000
-007d28   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007d2a   ffd9
-007d2c   0012     return	0                 	RETURN	
+007d6e   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007d70   f000
+007d72   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007d74   ffd9
+007d76   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_LCDCircularList__LCDListInit	code
@@ -18429,7 +18429,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-                                           ; This file was generated Sun Dec 10 20:48:42 2017
+                                           ; This file was generated Mon Dec 11 01:24:42 2017
                                            ;--------------------------------------------------------
                                            ; PIC16 port for the Microchip 16-bit core micros
                                            ;--------------------------------------------------------
@@ -18949,76 +18949,94 @@ Address  Value    Disassembly              Source
                                            S_LCDNonBlocking__LCDUpdate	code
                                            _LCDUpdate:
                                            ;	.line	588; TCPIP_Stack/LCDNonBlocking.c	void LCDUpdate(void)
-007e3c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007e3e   ffe5
-007e40   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007e42   ffd9
-                                           ;	.line	590; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(3, "");
-007e44   0e00     movlw	0                  	MOVLW	UPPER(__str_0)
-007e46   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e48   0e77     movlw	0x77               	MOVLW	HIGH(__str_0)
-007e4a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e4c   0e4a     movlw	0x4a               	MOVLW	LOW(__str_0)
-007e4e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e50   0e03     movlw	0x3                	MOVLW	0x03
-007e52   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e54   ec90     call	0x5320, 0           	CALL	_LCDListPush
-007e56   f029
-007e58   0e04     movlw	0x4                	MOVLW	0x04
-007e5a   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-007e5c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007e5e   ffd9
-007e60   0012     return	0                 	RETURN	
+007aea   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007aec   ffe5
+007aee   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007af0   ffd9
+007af2   c000     movff	0, 0xfe5           	MOVFF	r0x00, POSTDEC1
+007af4   ffe5
+007af6   c001     movff	0x1, 0xfe5         	MOVFF	r0x01, POSTDEC1
+007af8   ffe5
+007afa   c002     movff	0x2, 0xfe5         	MOVFF	r0x02, POSTDEC1
+007afc   ffe5
+                                           ;	.line	590; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(3, LCDText);
+007afe   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDText)
+007b00   6e01     movwf	0x1, 0             	MOVWF	r0x01
+007b02   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
+007b04   6e00     movwf	0, 0               	MOVWF	r0x00
+007b06   0e80     movlw	0x80               	MOVLW	0x80
+007b08   6e02     movwf	0x2, 0             	MOVWF	r0x02
+007b0a   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
+007b0c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007b0e   5001     movf	0x1, 0, 0           	MOVF	r0x01, W
+007b10   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007b12   5000     movf	0, 0, 0             	MOVF	r0x00, W
+007b14   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007b16   0e03     movlw	0x3                	MOVLW	0x03
+007b18   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007b1a   ec90     call	0x5320, 0           	CALL	_LCDListPush
+007b1c   f029
+007b1e   0e04     movlw	0x4                	MOVLW	0x04
+007b20   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
+007b22   cfe4     movff	0xfe4, 0x2         	MOVFF	PREINC1, r0x02
+007b24   f002
+007b26   cfe4     movff	0xfe4, 0x1         	MOVFF	PREINC1, r0x01
+007b28   f001
+007b2a   cfe4     movff	0xfe4, 0           	MOVFF	PREINC1, r0x00
+007b2c   f000
+007b2e   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007b30   ffd9
+007b32   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_LCDNonBlocking__LCDErase	code
                                            _LCDErase:
                                            ;	.line	565; TCPIP_Stack/LCDNonBlocking.c	void LCDErase(void)
-007e62   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007e64   ffe5
-007e66   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007e68   ffd9
+007e86   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007e88   ffe5
+007e8a   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007e8c   ffd9
                                            ;	.line	567; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(2, "");
-007e6a   0e00     movlw	0                  	MOVLW	UPPER(__str_0)
-007e6c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e6e   0e77     movlw	0x77               	MOVLW	HIGH(__str_0)
-007e70   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e72   0e4a     movlw	0x4a               	MOVLW	LOW(__str_0)
-007e74   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e76   0e02     movlw	0x2                	MOVLW	0x02
-007e78   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e7a   ec90     call	0x5320, 0           	CALL	_LCDListPush
-007e7c   f029
-007e7e   0e04     movlw	0x4                	MOVLW	0x04
-007e80   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-007e82   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007e84   ffd9
-007e86   0012     return	0                 	RETURN	
+007e8e   0e00     movlw	0                  	MOVLW	UPPER(__str_0)
+007e90   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007e92   0e77     movlw	0x77               	MOVLW	HIGH(__str_0)
+007e94   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007e96   0e4a     movlw	0x4a               	MOVLW	LOW(__str_0)
+007e98   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007e9a   0e02     movlw	0x2                	MOVLW	0x02
+007e9c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007e9e   ec90     call	0x5320, 0           	CALL	_LCDListPush
+007ea0   f029
+007ea2   0e04     movlw	0x4                	MOVLW	0x04
+007ea4   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
+007ea6   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007ea8   ffd9
+007eaa   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_LCDNonBlocking__LCDInit	code
                                            _LCDInit:
                                            ;	.line	545; TCPIP_Stack/LCDNonBlocking.c	void LCDInit(void)
-007e88   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007e8a   ffe5
-007e8c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007e8e   ffd9
+007eac   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007eae   ffe5
+007eb0   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007eb2   ffd9
                                            ;	.line	547; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(1, "");
-007e90   0e00     movlw	0                  	MOVLW	UPPER(__str_0)
-007e92   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e94   0e77     movlw	0x77               	MOVLW	HIGH(__str_0)
-007e96   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e98   0e4a     movlw	0x4a               	MOVLW	LOW(__str_0)
-007e9a   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007e9c   0e01     movlw	0x1                	MOVLW	0x01
-007e9e   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-007ea0   ec90     call	0x5320, 0           	CALL	_LCDListPush
-007ea2   f029
-007ea4   0e04     movlw	0x4                	MOVLW	0x04
-007ea6   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-007ea8   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007eaa   ffd9
-007eac   0012     return	0                 	RETURN	
+007eb4   0e00     movlw	0                  	MOVLW	UPPER(__str_0)
+007eb6   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007eb8   0e77     movlw	0x77               	MOVLW	HIGH(__str_0)
+007eba   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007ebc   0e4a     movlw	0x4a               	MOVLW	LOW(__str_0)
+007ebe   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007ec0   0e01     movlw	0x1                	MOVLW	0x01
+007ec2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
+007ec4   ec90     call	0x5320, 0           	CALL	_LCDListPush
+007ec6   f029
+007ec8   0e04     movlw	0x4                	MOVLW	0x04
+007eca   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
+007ecc   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007ece   ffd9
+007ed0   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_LCDNonBlocking__LCDTask	code
@@ -19059,7 +19077,7 @@ Address  Value    Disassembly              Source
 005a1a   5191     movf	0x91, 0, 0x1        	MOVF	_LCDOpInProgress, W, B
 005a1c   e124     bnz	0x5a66               	BNZ	_00246_DS_
                                            ;	.line	499; TCPIP_Stack/LCDNonBlocking.c	if (!LCDListIsEmpty())				// The list contains at least one operation
-005a1e   ec7a     call	0x7cf4, 0           	CALL	_LCDListIsEmpty
+005a1e   ec9f     call	0x7d3e, 0           	CALL	_LCDListIsEmpty
 005a20   f03e
 005a22   6e00     movwf	0, 0               	MOVWF	r0x00
 005a24   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -19192,51 +19210,51 @@ Address  Value    Disassembly              Source
                                            S_LCDNonBlocking__LCDTaskInit	code
                                            _LCDTaskInit:
                                            ;	.line	465; TCPIP_Stack/LCDNonBlocking.c	void LCDTaskInit(void)
-007cb8   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007cba   ffe5
-007cbc   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007cbe   ffd9
-007cc0   010a     movlb	0xa                	BANKSEL	_st_init
+007d02   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007d04   ffe5
+007d06   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007d08   ffd9
+007d0a   010a     movlb	0xa                	BANKSEL	_st_init
                                            ;	.line	468; TCPIP_Stack/LCDNonBlocking.c	st_init   = LCD_RESET;
-007cc2   6b8d     clrf	0x8d, 0x1           	CLRF	_st_init, B
-007cc4   010a     movlb	0xa                	BANKSEL	_st_update
+007d0c   6b8d     clrf	0x8d, 0x1           	CLRF	_st_init, B
+007d0e   010a     movlb	0xa                	BANKSEL	_st_update
                                            ;	.line	469; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOFIRSTLINE;
-007cc6   6b8e     clrf	0x8e, 0x1           	CLRF	_st_update, B
-007cc8   010a     movlb	0xa                	BANKSEL	_st_erase
+007d10   6b8e     clrf	0x8e, 0x1           	CLRF	_st_update, B
+007d12   010a     movlb	0xa                	BANKSEL	_st_erase
                                            ;	.line	470; TCPIP_Stack/LCDNonBlocking.c	st_erase  = LCD_CLEARDISPLAY;
-007cca   6b8f     clrf	0x8f, 0x1           	CLRF	_st_erase, B
-007ccc   010a     movlb	0xa                	BANKSEL	_LCDWaiting
+007d14   6b8f     clrf	0x8f, 0x1           	CLRF	_st_erase, B
+007d16   010a     movlb	0xa                	BANKSEL	_LCDWaiting
                                            ;	.line	472; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 0;
-007cce   6b90     clrf	0x90, 0x1           	CLRF	_LCDWaiting, B
-007cd0   010a     movlb	0xa                	BANKSEL	_LCDOpInProgress
+007d18   6b90     clrf	0x90, 0x1           	CLRF	_LCDWaiting, B
+007d1a   010a     movlb	0xa                	BANKSEL	_LCDOpInProgress
                                            ;	.line	473; TCPIP_Stack/LCDNonBlocking.c	LCDOpInProgress = 0;
-007cd2   6b91     clrf	0x91, 0x1           	CLRF	_LCDOpInProgress, B
-007cd4   010a     movlb	0xa                	BANKSEL	_LCDi
+007d1c   6b91     clrf	0x91, 0x1           	CLRF	_LCDOpInProgress, B
+007d1e   010a     movlb	0xa                	BANKSEL	_LCDi
                                            ;	.line	474; TCPIP_Stack/LCDNonBlocking.c	LCDi = 0;
-007cd6   6b8b     clrf	0x8b, 0x1           	CLRF	_LCDi, B
-007cd8   010a     movlb	0xa                	BANKSEL	_LCDj
+007d20   6b8b     clrf	0x8b, 0x1           	CLRF	_LCDi, B
+007d22   010a     movlb	0xa                	BANKSEL	_LCDj
                                            ;	.line	475; TCPIP_Stack/LCDNonBlocking.c	LCDj = 0;
-007cda   6b8c     clrf	0x8c, 0x1           	CLRF	_LCDj, B
+007d24   6b8c     clrf	0x8c, 0x1           	CLRF	_LCDj, B
                                            ;	.line	477; TCPIP_Stack/LCDNonBlocking.c	LCDListInit();
-007cdc   ecba     call	0x6974, 0           	CALL	_LCDListInit
-007cde   f034
+007d26   ecba     call	0x6974, 0           	CALL	_LCDListInit
+007d28   f034
                                            ;	.line	479; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1ON	=	0;		// disable timer1
-007ce0   90cd     bcf	0xcd, 0, 0           	BCF	_T1CONbits, 0
+007d2a   90cd     bcf	0xcd, 0, 0           	BCF	_T1CONbits, 0
                                            ;	.line	480; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.RD16		=	1;		// use timer1 16-bit counter
-007ce2   8ecd     bsf	0xcd, 0x7, 0         	BSF	_T1CONbits, 7
+007d2c   8ecd     bsf	0xcd, 0x7, 0         	BSF	_T1CONbits, 7
                                            ;	.line	481; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1CKPS0	=	0;		// prescaler set to 1:1
-007ce4   98cd     bcf	0xcd, 0x4, 0         	BCF	_T1CONbits, 4
+007d2e   98cd     bcf	0xcd, 0x4, 0         	BCF	_T1CONbits, 4
                                            ;	.line	482; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1CKPS1	=	0;
-007ce6   9acd     bcf	0xcd, 0x5, 0         	BCF	_T1CONbits, 5
+007d30   9acd     bcf	0xcd, 0x5, 0         	BCF	_T1CONbits, 5
                                            ;	.line	483; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.T1OSCEN	=	1;		// timer1 oscillator enable
-007ce8   86cd     bsf	0xcd, 0x3, 0         	BSF	_T1CONbits, 3
+007d32   86cd     bsf	0xcd, 0x3, 0         	BSF	_T1CONbits, 3
                                            ;	.line	484; TCPIP_Stack/LCDNonBlocking.c	T1CONbits.TMR1CS	=	1;		// external clock selected
-007cea   82cd     bsf	0xcd, 0x1, 0         	BSF	_T1CONbits, 1
+007d34   82cd     bsf	0xcd, 0x1, 0         	BSF	_T1CONbits, 1
                                            ;	.line	485; TCPIP_Stack/LCDNonBlocking.c	PIR1bits.TMR1IF		=	0;		// clear timer1 overflow bit
-007cec   909e     bcf	0x9e, 0, 0           	BCF	_PIR1bits, 0
-007cee   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007cf0   ffd9
-007cf2   0012     return	0                 	RETURN	
+007d36   909e     bcf	0x9e, 0, 0           	BCF	_PIR1bits, 0
+007d38   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007d3a   ffd9
+007d3c   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_LCDNonBlocking__LCDUpdateExec	code
@@ -19329,13 +19347,13 @@ Address  Value    Disassembly              Source
                                            ;	.line	380; TCPIP_Stack/LCDNonBlocking.c	break;
 003bf8   d0ad     bra	0x3d54               	BRA	_00214_DS_
                                            _00192_DS_:
-                                           ;	.line	385; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
-003bfa   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
+                                           ;	.line	385; TCPIP_Stack/LCDNonBlocking.c	if(LCDCurrentText[LCDi] == 0u)
+003bfa   0e54     movlw	0x54               	MOVLW	LOW(_LCDCurrentText)
 003bfc   010a     movlb	0xa                	BANKSEL	_LCDi
 003bfe   258b     addwf	0x8b, 0, 0x1       	ADDWF	_LCDi, W, B
 003c00   6e00     movwf	0, 0               	MOVWF	r0x00
 003c02   6a01     clrf	0x1, 0              	CLRF	r0x01
-003c04   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDText)
+003c04   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDCurrentText)
 003c06   2201     addwfc	0x1, 0x1, 0       	ADDWFC	r0x01, F
 003c08   c000     movff	0, 0xfe9           	MOVFF	r0x00, FSR0L
 003c0a   ffe9
@@ -19359,13 +19377,13 @@ Address  Value    Disassembly              Source
 003c2a   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
                                            _00227_DS_:
 003c2c   e210     bc	0x3c4e                	BC	_00194_DS_
-                                           ;	.line	389; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
-003c2e   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
+                                           ;	.line	389; TCPIP_Stack/LCDNonBlocking.c	LCDCurrentText[LCDj] = ' ';
+003c2e   0e54     movlw	0x54               	MOVLW	LOW(_LCDCurrentText)
 003c30   010a     movlb	0xa                	BANKSEL	_LCDj
 003c32   258c     addwf	0x8c, 0, 0x1       	ADDWF	_LCDj, W, B
 003c34   6e01     movwf	0x1, 0             	MOVWF	r0x01
 003c36   6a02     clrf	0x2, 0              	CLRF	r0x02
-003c38   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDText)
+003c38   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDCurrentText)
 003c3a   2202     addwfc	0x2, 0x1, 0       	ADDWFC	r0x02, F
 003c3c   c001     movff	0x1, 0xfe9         	MOVFF	r0x01, FSR0L
 003c3e   ffe9
@@ -19378,7 +19396,7 @@ Address  Value    Disassembly              Source
 003c4a   2b8c     incf	0x8c, 0x1, 0x1      	INCF	_LCDj, F, B
 003c4c   d7e7     bra	0x3c1c               	BRA	_00206_DS_
                                            _00194_DS_:
-                                           ;	.line	392; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
+                                           ;	.line	392; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDCurrentText[LCDi]);
 003c4e   5000     movf	0, 0, 0             	MOVF	r0x00, W
 003c50   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 003c52   0e01     movlw	0x1                	MOVLW	0x01
@@ -19387,25 +19405,25 @@ Address  Value    Disassembly              Source
 003c58   f03b
 003c5a   0e02     movlw	0x2                	MOVLW	0x02
 003c5c   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	394; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 16u)
-003c5e   ca8b     movff	0xa8b, 0           	MOVFF	_LCDi, r0x00
-003c60   f000
-003c62   6a01     clrf	0x1, 0              	CLRF	r0x01
-003c64   0e00     movlw	0                  	MOVLW	0x00
-003c66   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
-003c68   e102     bnz	0x3c6e               	BNZ	_00228_DS_
-003c6a   0e10     movlw	0x10               	MOVLW	0x10
-003c6c   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
+003c5e   010a     movlb	0xa                	BANKSEL	_LCDi
+                                           ;	.line	394; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+003c60   2b8b     incf	0x8b, 0x1, 0x1      	INCF	_LCDi, F, B
+                                           ;	.line	395; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 16u)
+003c62   ca8b     movff	0xa8b, 0           	MOVFF	_LCDi, r0x00
+003c64   f000
+003c66   6a01     clrf	0x1, 0              	CLRF	r0x01
+003c68   0e00     movlw	0                  	MOVLW	0x00
+003c6a   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
+003c6c   e102     bnz	0x3c72               	BNZ	_00228_DS_
+003c6e   0e10     movlw	0x10               	MOVLW	0x10
+003c70   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
                                            _00228_DS_:
-003c6e   e303     bnc	0x3c76               	BNC	_00196_DS_
-                                           ;	.line	395; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOSECONDLINE;
-003c70   0e02     movlw	0x2                	MOVLW	0x02
-003c72   010a     movlb	0xa                	BANKSEL	_st_update
-003c74   6f8e     movwf	0x8e, 0x1          	MOVWF	_st_update, B
+003c72   e303     bnc	0x3c7a               	BNC	_00196_DS_
+                                           ;	.line	396; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOSECONDLINE;
+003c74   0e02     movlw	0x2                	MOVLW	0x02
+003c76   010a     movlb	0xa                	BANKSEL	_st_update
+003c78   6f8e     movwf	0x8e, 0x1          	MOVWF	_st_update, B
                                            _00196_DS_:
-003c76   010a     movlb	0xa                	BANKSEL	_LCDi
-                                           ;	.line	396; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
-003c78   2b8b     incf	0x8b, 0x1, 0x1      	INCF	_LCDi, F, B
                                            ;	.line	398; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 003c7a   0e01     movlw	0x1                	MOVLW	0x01
 003c7c   010a     movlb	0xa                	BANKSEL	_LCDWaiting
@@ -19453,13 +19471,13 @@ Address  Value    Disassembly              Source
                                            ;	.line	414; TCPIP_Stack/LCDNonBlocking.c	break;
 003cb8   d04d     bra	0x3d54               	BRA	_00214_DS_
                                            _00198_DS_:
-                                           ;	.line	419; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
-003cba   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
+                                           ;	.line	419; TCPIP_Stack/LCDNonBlocking.c	if(LCDCurrentText[LCDi] == 0u)
+003cba   0e54     movlw	0x54               	MOVLW	LOW(_LCDCurrentText)
 003cbc   010a     movlb	0xa                	BANKSEL	_LCDi
 003cbe   258b     addwf	0x8b, 0, 0x1       	ADDWF	_LCDi, W, B
 003cc0   6e00     movwf	0, 0               	MOVWF	r0x00
 003cc2   6a01     clrf	0x1, 0              	CLRF	r0x01
-003cc4   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDText)
+003cc4   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDCurrentText)
 003cc6   2201     addwfc	0x1, 0x1, 0       	ADDWFC	r0x01, F
 003cc8   c000     movff	0, 0xfe9           	MOVFF	r0x00, FSR0L
 003cca   ffe9
@@ -19483,13 +19501,13 @@ Address  Value    Disassembly              Source
 003cea   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
                                            _00229_DS_:
 003cec   e210     bc	0x3d0e                	BC	_00200_DS_
-                                           ;	.line	423; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
-003cee   0e33     movlw	0x33               	MOVLW	LOW(_LCDText)
+                                           ;	.line	423; TCPIP_Stack/LCDNonBlocking.c	LCDCurrentText[LCDj] = ' ';
+003cee   0e54     movlw	0x54               	MOVLW	LOW(_LCDCurrentText)
 003cf0   010a     movlb	0xa                	BANKSEL	_LCDj
 003cf2   258c     addwf	0x8c, 0, 0x1       	ADDWF	_LCDj, W, B
 003cf4   6e01     movwf	0x1, 0             	MOVWF	r0x01
 003cf6   6a02     clrf	0x2, 0              	CLRF	r0x02
-003cf8   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDText)
+003cf8   0e0e     movlw	0xe                	MOVLW	HIGH(_LCDCurrentText)
 003cfa   2202     addwfc	0x2, 0x1, 0       	ADDWFC	r0x02, F
 003cfc   c001     movff	0x1, 0xfe9         	MOVFF	r0x01, FSR0L
 003cfe   ffe9
@@ -19502,7 +19520,7 @@ Address  Value    Disassembly              Source
 003d0a   2b8c     incf	0x8c, 0x1, 0x1      	INCF	_LCDj, F, B
 003d0c   d7e7     bra	0x3cdc               	BRA	_00210_DS_
                                            _00200_DS_:
-                                           ;	.line	426; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
+                                           ;	.line	426; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDCurrentText[LCDi]);
 003d0e   5000     movf	0, 0, 0             	MOVF	r0x00, W
 003d10   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 003d12   0e01     movlw	0x1                	MOVLW	0x01
@@ -19511,25 +19529,25 @@ Address  Value    Disassembly              Source
 003d18   f03b
 003d1a   0e02     movlw	0x2                	MOVLW	0x02
 003d1c   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
-                                           ;	.line	428; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 32u)
-003d1e   ca8b     movff	0xa8b, 0           	MOVFF	_LCDi, r0x00
-003d20   f000
-003d22   6a01     clrf	0x1, 0              	CLRF	r0x01
-003d24   0e00     movlw	0                  	MOVLW	0x00
-003d26   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
-003d28   e102     bnz	0x3d2e               	BNZ	_00230_DS_
-003d2a   0e20     movlw	0x20               	MOVLW	0x20
-003d2c   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
+003d1e   010a     movlb	0xa                	BANKSEL	_LCDi
+                                           ;	.line	428; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+003d20   2b8b     incf	0x8b, 0x1, 0x1      	INCF	_LCDi, F, B
+                                           ;	.line	429; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 32u)
+003d22   ca8b     movff	0xa8b, 0           	MOVFF	_LCDi, r0x00
+003d24   f000
+003d26   6a01     clrf	0x1, 0              	CLRF	r0x01
+003d28   0e00     movlw	0                  	MOVLW	0x00
+003d2a   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
+003d2c   e102     bnz	0x3d32               	BNZ	_00230_DS_
+003d2e   0e20     movlw	0x20               	MOVLW	0x20
+003d30   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
                                            _00230_DS_:
-003d2e   e303     bnc	0x3d36               	BNC	_00202_DS_
-                                           ;	.line	429; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_ENDUPDATE;
-003d30   0e04     movlw	0x4                	MOVLW	0x04
-003d32   010a     movlb	0xa                	BANKSEL	_st_update
-003d34   6f8e     movwf	0x8e, 0x1          	MOVWF	_st_update, B
+003d32   e303     bnc	0x3d3a               	BNC	_00202_DS_
+                                           ;	.line	430; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_ENDUPDATE;
+003d34   0e04     movlw	0x4                	MOVLW	0x04
+003d36   010a     movlb	0xa                	BANKSEL	_st_update
+003d38   6f8e     movwf	0x8e, 0x1          	MOVWF	_st_update, B
                                            _00202_DS_:
-003d36   010a     movlb	0xa                	BANKSEL	_LCDi
-                                           ;	.line	430; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
-003d38   2b8b     incf	0x8b, 0x1, 0x1      	INCF	_LCDi, F, B
                                            ;	.line	432; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 003d3a   0e01     movlw	0x1                	MOVLW	0x01
 003d3c   010a     movlb	0xa                	BANKSEL	_LCDWaiting
@@ -19814,25 +19832,25 @@ Address  Value    Disassembly              Source
 00363e   e1eb     bnz	0x3616               	BNZ	_00146_DS_
                                            ;	.line	241; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 0;
 003640   9090     bcf	0x90, 0, 0           	BCF	_LATHbits, 0
-                                           ;	.line	243; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 3u)
-003642   ca8b     movff	0xa8b, 0           	MOVFF	_LCDi, r0x00
-003644   f000
-003646   6a01     clrf	0x1, 0              	CLRF	r0x01
-003648   0e00     movlw	0                  	MOVLW	0x00
-00364a   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
-00364c   e102     bnz	0x3652               	BNZ	_00170_DS_
-00364e   0e03     movlw	0x3                	MOVLW	0x03
-003650   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
+003642   010a     movlb	0xa                	BANKSEL	_LCDi
+                                           ;	.line	243; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+003644   2b8b     incf	0x8b, 0x1, 0x1      	INCF	_LCDi, F, B
+                                           ;	.line	244; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 3u)
+003646   ca8b     movff	0xa8b, 0           	MOVFF	_LCDi, r0x00
+003648   f000
+00364a   6a01     clrf	0x1, 0              	CLRF	r0x01
+00364c   0e00     movlw	0                  	MOVLW	0x00
+00364e   5c01     subwf	0x1, 0, 0          	SUBWF	r0x01, W
+003650   e102     bnz	0x3656               	BNZ	_00170_DS_
+003652   0e03     movlw	0x3                	MOVLW	0x03
+003654   5c00     subwf	0, 0, 0            	SUBWF	r0x00, W
                                            _00170_DS_:
-003652   e303     bnc	0x365a               	BNC	_00153_DS_
-                                           ;	.line	244; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC2;
-003654   0e03     movlw	0x3                	MOVLW	0x03
-003656   010a     movlb	0xa                	BANKSEL	_st_init
-003658   6f8d     movwf	0x8d, 0x1          	MOVWF	_st_init, B
+003656   e303     bnc	0x365e               	BNC	_00153_DS_
+                                           ;	.line	245; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC2;
+003658   0e03     movlw	0x3                	MOVLW	0x03
+00365a   010a     movlb	0xa                	BANKSEL	_st_init
+00365c   6f8d     movwf	0x8d, 0x1          	MOVWF	_st_init, B
                                            _00153_DS_:
-00365a   010a     movlb	0xa                	BANKSEL	_LCDi
-                                           ;	.line	245; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
-00365c   2b8b     incf	0x8b, 0x1, 0x1      	INCF	_LCDi, F, B
                                            ;	.line	247; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 00365e   0e01     movlw	0x1                	MOVLW	0x01
 003660   010a     movlb	0xa                	BANKSEL	_LCDWaiting
@@ -20056,8 +20074,8 @@ Address  Value    Disassembly              Source
                                            
                                            
                                            ; Statistics:
-                                           ; code size:	 1716 (0x06b4) bytes ( 1.31%)
-                                           ;           	  858 (0x035a) words
+                                           ; code size:	 1752 (0x06d8) bytes ( 1.34%)
+                                           ;           	  876 (0x036c) words
                                            ; udata size:	   74 (0x004a) bytes ( 1.93%)
                                            ; access size:	   10 (0x000a) bytes
                                            
@@ -20587,14 +20605,14 @@ Address  Value    Disassembly              Source
                                            S_StackTsk__StackApplications	code
                                            _StackApplications:
                                            ;	.line	378; TCPIP_Stack/StackTsk.c	void StackApplications(void)
-0080a0   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-0080a2   ffe5
-0080a4   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-0080a6   ffd9
+0080c4   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+0080c6   ffe5
+0080c8   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+0080ca   ffd9
                                            ;	.line	435; TCPIP_Stack/StackTsk.c	}
-0080a8   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-0080aa   ffd9
-0080ac   0012     return	0                 	RETURN	
+0080cc   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+0080ce   ffd9
+0080d0   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_StackTsk__StackTask	code
@@ -20637,7 +20655,7 @@ Address  Value    Disassembly              Source
 001c0c   ad2c     btfss	0x2c, 0x6, 0x1     	BTFSS	(_AppConfig + 44), 6, B
 001c0e   d047     bra	0x1c9e               	BRA	_00119_DS_
                                            ;	.line	234; TCPIP_Stack/StackTsk.c	bCurrentLinkState = MACIsLinked();
-001c10   ecba     call	0x7b74, 0           	CALL	_MACIsLinked
+001c10   ecdf     call	0x7bbe, 0           	CALL	_MACIsLinked
 001c12   f03d
 001c14   6e00     movwf	0, 0               	MOVWF	r0x00
                                            ;	.line	235; TCPIP_Stack/StackTsk.c	if(bCurrentLinkState != bLastLinkState)
@@ -20711,7 +20729,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	253; TCPIP_Stack/StackTsk.c	if(DHCPIsBound(0))
 001c8a   0e00     movlw	0                  	MOVLW	0x00
 001c8c   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-001c8e   ec9c     call	0x7f38, 0           	CALL	_DHCPIsBound
+001c8e   ecae     call	0x7f5c, 0           	CALL	_DHCPIsBound
 001c90   f03f
 001c92   6e00     movwf	0, 0               	MOVWF	r0x00
 001c94   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
@@ -20722,11 +20740,11 @@ Address  Value    Disassembly              Source
 001c9c   9f2c     bcf	0x2c, 0x7, 0x1       	BCF	(_AppConfig + 44), 7, B
                                            _00119_DS_:
                                            ;	.line	270; TCPIP_Stack/StackTsk.c	UDPTask();
-001c9e   ec34     call	0x8068, 0           	CALL	_UDPTask
+001c9e   ec46     call	0x808c, 0           	CALL	_UDPTask
 001ca0   f040
                                            _00138_DS_:
                                            ;	.line	285; TCPIP_Stack/StackTsk.c	UDPDiscard();
-001ca2   ec09     call	0x7e12, 0           	CALL	_UDPDiscard
+001ca2   ec2e     call	0x7e5c, 0           	CALL	_UDPDiscard
 001ca4   f03f
                                            ;	.line	290; TCPIP_Stack/StackTsk.c	if(!MACGetHeader(&remoteNode.MACAddr, &cFrameType))
 001ca6   0e08     movlw	0x8                	MOVLW	HIGH(_remoteNode + 4)
@@ -21094,7 +21112,7 @@ Address  Value    Disassembly              Source
 0070de   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
 0070e0   5000     movf	0, 0, 0             	MOVF	r0x00, W
 0070e2   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-0070e4   ec57     call	0x7eae, 0           	CALL	_srand
+0070e4   ec69     call	0x7ed2, 0           	CALL	_srand
 0070e6   f03f
 0070e8   0e04     movlw	0x4                	MOVLW	0x04
 0070ea   26e1     addwf	0xe1, 0x1, 0       	ADDWF	FSR1L, F
@@ -21102,7 +21120,7 @@ Address  Value    Disassembly              Source
 0070ec   ec67     call	0x58ce, 0           	CALL	_MACInit
 0070ee   f02c
                                            ;	.line	139; TCPIP_Stack/StackTsk.c	ARPInit();
-0070f0   ec97     call	0x7d2e, 0           	CALL	_ARPInit
+0070f0   ecbc     call	0x7d78, 0           	CALL	_ARPInit
 0070f2   f03e
                                            ;	.line	142; TCPIP_Stack/StackTsk.c	UDPInit();
 0070f4   ec4f     call	0x7a9e, 0           	CALL	_UDPInit
@@ -22097,34 +22115,34 @@ Address  Value    Disassembly              Source
                                            S_Tick__TickUpdate	code
                                            _TickUpdate:
                                            ;	.line	356; TCPIP_Stack/Tick.c	void TickUpdate(void)
-007de8   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007dea   ffe5
-007dec   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007dee   ffd9
+007e32   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007e34   ffe5
+007e36   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007e38   ffd9
                                            ;	.line	358; TCPIP_Stack/Tick.c	if(INTCONbits.TMR0IF)
-007df0   a4f2     btfss	0xf2, 0x2, 0       	BTFSS	_INTCONbits, 2
-007df2   d00c     bra	0x7e0c               	BRA	_00143_DS_
-007df4   0108     movlb	0x8                	BANKSEL	_dwInternalTicks
+007e3a   a4f2     btfss	0xf2, 0x2, 0       	BTFSS	_INTCONbits, 2
+007e3c   d00c     bra	0x7e56               	BRA	_00143_DS_
+007e3e   0108     movlb	0x8                	BANKSEL	_dwInternalTicks
                                            ;	.line	361; TCPIP_Stack/Tick.c	dwInternalTicks++;
-007df6   2b62     incf	0x62, 0x1, 0x1      	INCF	_dwInternalTicks, F, B
-007df8   e302     bnc	0x7dfe               	BNC	_10141_DS_
-007dfa   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 1)
-007dfc   2b63     incf	0x63, 0x1, 0x1      	INCF	(_dwInternalTicks + 1), F, B
+007e40   2b62     incf	0x62, 0x1, 0x1      	INCF	_dwInternalTicks, F, B
+007e42   e302     bnc	0x7e48               	BNC	_10141_DS_
+007e44   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 1)
+007e46   2b63     incf	0x63, 0x1, 0x1      	INCF	(_dwInternalTicks + 1), F, B
                                            _10141_DS_:
-007dfe   e302     bnc	0x7e04               	BNC	_20142_DS_
-007e00   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 2)
-007e02   2b64     incf	0x64, 0x1, 0x1      	INCF	(_dwInternalTicks + 2), F, B
+007e48   e302     bnc	0x7e4e               	BNC	_20142_DS_
+007e4a   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 2)
+007e4c   2b64     incf	0x64, 0x1, 0x1      	INCF	(_dwInternalTicks + 2), F, B
                                            _20142_DS_:
-007e04   e302     bnc	0x7e0a               	BNC	_30143_DS_
-007e06   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 3)
-007e08   2b65     incf	0x65, 0x1, 0x1      	INCF	(_dwInternalTicks + 3), F, B
+007e4e   e302     bnc	0x7e54               	BNC	_30143_DS_
+007e50   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 3)
+007e52   2b65     incf	0x65, 0x1, 0x1      	INCF	(_dwInternalTicks + 3), F, B
                                            _30143_DS_:
                                            ;	.line	364; TCPIP_Stack/Tick.c	INTCONbits.TMR0IF = 0;
-007e0a   94f2     bcf	0xf2, 0x2, 0         	BCF	_INTCONbits, 2
+007e54   94f2     bcf	0xf2, 0x2, 0         	BCF	_INTCONbits, 2
                                            _00143_DS_:
-007e0c   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007e0e   ffd9
-007e10   0012     return	0                 	RETURN	
+007e56   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007e58   ffd9
+007e5a   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_Tick__TickConvertToMilliseconds	code
@@ -22213,186 +22231,186 @@ Address  Value    Disassembly              Source
                                            S_Tick__TickGetDiv64K	code
                                            _TickGetDiv64K:
                                            ;	.line	292; TCPIP_Stack/Tick.c	DWORD TickGetDiv64K(void)
-007bb8   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007bba   ffe5
-007bbc   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007bbe   ffd9
+007c02   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007c04   ffe5
+007c06   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007c08   ffd9
                                            ;	.line	296; TCPIP_Stack/Tick.c	GetTickCopy();
-007bc0   ec75     call	0x7aea, 0           	CALL	_GetTickCopy
-007bc2   f03d
-007bc4   0108     movlb	0x8                	BANKSEL	(_vTickReading + 2)
+007c0a   ec9a     call	0x7b34, 0           	CALL	_GetTickCopy
+007c0c   f03d
+007c0e   0108     movlb	0x8                	BANKSEL	(_vTickReading + 2)
                                            ;	.line	297; TCPIP_Stack/Tick.c	ret.v[0] = vTickReading[2];	// Note: This copy must be done one 
-007bc6   51f5     movf	0xf5, 0, 0x1        	MOVF	(_vTickReading + 2), W, B
-007bc8   010a     movlb	0xa                	BANKSEL	_TickGetDiv64K_ret_1_1
-007bca   6f28     movwf	0x28, 0x1          	MOVWF	_TickGetDiv64K_ret_1_1, B
-007bcc   0108     movlb	0x8                	BANKSEL	(_vTickReading + 3)
+007c10   51f5     movf	0xf5, 0, 0x1        	MOVF	(_vTickReading + 2), W, B
+007c12   010a     movlb	0xa                	BANKSEL	_TickGetDiv64K_ret_1_1
+007c14   6f28     movwf	0x28, 0x1          	MOVWF	_TickGetDiv64K_ret_1_1, B
+007c16   0108     movlb	0x8                	BANKSEL	(_vTickReading + 3)
                                            ;	.line	298; TCPIP_Stack/Tick.c	ret.v[1] = vTickReading[3];	// byte at a time to prevent misaligned 
-007bce   51f6     movf	0xf6, 0, 0x1        	MOVF	(_vTickReading + 3), W, B
-007bd0   010a     movlb	0xa                	BANKSEL	(_TickGetDiv64K_ret_1_1 + 1)
-007bd2   6f29     movwf	0x29, 0x1          	MOVWF	(_TickGetDiv64K_ret_1_1 + 1), B
-007bd4   0108     movlb	0x8                	BANKSEL	(_vTickReading + 4)
+007c18   51f6     movf	0xf6, 0, 0x1        	MOVF	(_vTickReading + 3), W, B
+007c1a   010a     movlb	0xa                	BANKSEL	(_TickGetDiv64K_ret_1_1 + 1)
+007c1c   6f29     movwf	0x29, 0x1          	MOVWF	(_TickGetDiv64K_ret_1_1 + 1), B
+007c1e   0108     movlb	0x8                	BANKSEL	(_vTickReading + 4)
                                            ;	.line	299; TCPIP_Stack/Tick.c	ret.v[2] = vTickReading[4];	// memory reads, which will reset the PIC.
-007bd6   51f7     movf	0xf7, 0, 0x1        	MOVF	(_vTickReading + 4), W, B
-007bd8   010a     movlb	0xa                	BANKSEL	(_TickGetDiv64K_ret_1_1 + 2)
-007bda   6f2a     movwf	0x2a, 0x1          	MOVWF	(_TickGetDiv64K_ret_1_1 + 2), B
-007bdc   0108     movlb	0x8                	BANKSEL	(_vTickReading + 5)
+007c20   51f7     movf	0xf7, 0, 0x1        	MOVF	(_vTickReading + 4), W, B
+007c22   010a     movlb	0xa                	BANKSEL	(_TickGetDiv64K_ret_1_1 + 2)
+007c24   6f2a     movwf	0x2a, 0x1          	MOVWF	(_TickGetDiv64K_ret_1_1 + 2), B
+007c26   0108     movlb	0x8                	BANKSEL	(_vTickReading + 5)
                                            ;	.line	300; TCPIP_Stack/Tick.c	ret.v[3] = vTickReading[5];
-007bde   51f8     movf	0xf8, 0, 0x1        	MOVF	(_vTickReading + 5), W, B
-007be0   010a     movlb	0xa                	BANKSEL	(_TickGetDiv64K_ret_1_1 + 3)
-007be2   6f2b     movwf	0x2b, 0x1          	MOVWF	(_TickGetDiv64K_ret_1_1 + 3), B
+007c28   51f8     movf	0xf8, 0, 0x1        	MOVF	(_vTickReading + 5), W, B
+007c2a   010a     movlb	0xa                	BANKSEL	(_TickGetDiv64K_ret_1_1 + 3)
+007c2c   6f2b     movwf	0x2b, 0x1          	MOVWF	(_TickGetDiv64K_ret_1_1 + 3), B
                                            ;	.line	302; TCPIP_Stack/Tick.c	return ret.Val;
-007be4   ca2b     movff	0xa2b, 0xfe9       	MOVFF	(_TickGetDiv64K_ret_1_1 + 3), FSR0L
-007be6   ffe9
-007be8   ca2a     movff	0xa2a, 0xff4       	MOVFF	(_TickGetDiv64K_ret_1_1 + 2), PRODH
-007bea   fff4
-007bec   ca29     movff	0xa29, 0xff3       	MOVFF	(_TickGetDiv64K_ret_1_1 + 1), PRODL
-007bee   fff3
-007bf0   010a     movlb	0xa                	BANKSEL	_TickGetDiv64K_ret_1_1
-007bf2   5128     movf	0x28, 0, 0x1        	MOVF	_TickGetDiv64K_ret_1_1, W, B
-007bf4   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007bf6   ffd9
-007bf8   0012     return	0                 	RETURN	
+007c2e   ca2b     movff	0xa2b, 0xfe9       	MOVFF	(_TickGetDiv64K_ret_1_1 + 3), FSR0L
+007c30   ffe9
+007c32   ca2a     movff	0xa2a, 0xff4       	MOVFF	(_TickGetDiv64K_ret_1_1 + 2), PRODH
+007c34   fff4
+007c36   ca29     movff	0xa29, 0xff3       	MOVFF	(_TickGetDiv64K_ret_1_1 + 1), PRODL
+007c38   fff3
+007c3a   010a     movlb	0xa                	BANKSEL	_TickGetDiv64K_ret_1_1
+007c3c   5128     movf	0x28, 0, 0x1        	MOVF	_TickGetDiv64K_ret_1_1, W, B
+007c3e   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007c40   ffd9
+007c42   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_Tick__TickGetDiv256	code
                                            _TickGetDiv256:
                                            ;	.line	255; TCPIP_Stack/Tick.c	DWORD TickGetDiv256(void)
-007bfa   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007bfc   ffe5
-007bfe   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007c00   ffd9
+007c44   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007c46   ffe5
+007c48   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007c4a   ffd9
                                            ;	.line	259; TCPIP_Stack/Tick.c	GetTickCopy();
-007c02   ec75     call	0x7aea, 0           	CALL	_GetTickCopy
-007c04   f03d
-007c06   0108     movlb	0x8                	BANKSEL	(_vTickReading + 1)
+007c4c   ec9a     call	0x7b34, 0           	CALL	_GetTickCopy
+007c4e   f03d
+007c50   0108     movlb	0x8                	BANKSEL	(_vTickReading + 1)
                                            ;	.line	260; TCPIP_Stack/Tick.c	ret.v[0] = vTickReading[1];	// Note: This copy must be done one 
-007c08   51f4     movf	0xf4, 0, 0x1        	MOVF	(_vTickReading + 1), W, B
-007c0a   010a     movlb	0xa                	BANKSEL	_TickGetDiv256_ret_1_1
-007c0c   6f24     movwf	0x24, 0x1          	MOVWF	_TickGetDiv256_ret_1_1, B
-007c0e   0108     movlb	0x8                	BANKSEL	(_vTickReading + 2)
+007c52   51f4     movf	0xf4, 0, 0x1        	MOVF	(_vTickReading + 1), W, B
+007c54   010a     movlb	0xa                	BANKSEL	_TickGetDiv256_ret_1_1
+007c56   6f24     movwf	0x24, 0x1          	MOVWF	_TickGetDiv256_ret_1_1, B
+007c58   0108     movlb	0x8                	BANKSEL	(_vTickReading + 2)
                                            ;	.line	261; TCPIP_Stack/Tick.c	ret.v[1] = vTickReading[2];	// byte at a time to prevent misaligned 
-007c10   51f5     movf	0xf5, 0, 0x1        	MOVF	(_vTickReading + 2), W, B
-007c12   010a     movlb	0xa                	BANKSEL	(_TickGetDiv256_ret_1_1 + 1)
-007c14   6f25     movwf	0x25, 0x1          	MOVWF	(_TickGetDiv256_ret_1_1 + 1), B
-007c16   0108     movlb	0x8                	BANKSEL	(_vTickReading + 3)
+007c5a   51f5     movf	0xf5, 0, 0x1        	MOVF	(_vTickReading + 2), W, B
+007c5c   010a     movlb	0xa                	BANKSEL	(_TickGetDiv256_ret_1_1 + 1)
+007c5e   6f25     movwf	0x25, 0x1          	MOVWF	(_TickGetDiv256_ret_1_1 + 1), B
+007c60   0108     movlb	0x8                	BANKSEL	(_vTickReading + 3)
                                            ;	.line	262; TCPIP_Stack/Tick.c	ret.v[2] = vTickReading[3];	// memory reads, which will reset the PIC.
-007c18   51f6     movf	0xf6, 0, 0x1        	MOVF	(_vTickReading + 3), W, B
-007c1a   010a     movlb	0xa                	BANKSEL	(_TickGetDiv256_ret_1_1 + 2)
-007c1c   6f26     movwf	0x26, 0x1          	MOVWF	(_TickGetDiv256_ret_1_1 + 2), B
-007c1e   0108     movlb	0x8                	BANKSEL	(_vTickReading + 4)
+007c62   51f6     movf	0xf6, 0, 0x1        	MOVF	(_vTickReading + 3), W, B
+007c64   010a     movlb	0xa                	BANKSEL	(_TickGetDiv256_ret_1_1 + 2)
+007c66   6f26     movwf	0x26, 0x1          	MOVWF	(_TickGetDiv256_ret_1_1 + 2), B
+007c68   0108     movlb	0x8                	BANKSEL	(_vTickReading + 4)
                                            ;	.line	263; TCPIP_Stack/Tick.c	ret.v[3] = vTickReading[4];
-007c20   51f7     movf	0xf7, 0, 0x1        	MOVF	(_vTickReading + 4), W, B
-007c22   010a     movlb	0xa                	BANKSEL	(_TickGetDiv256_ret_1_1 + 3)
-007c24   6f27     movwf	0x27, 0x1          	MOVWF	(_TickGetDiv256_ret_1_1 + 3), B
+007c6a   51f7     movf	0xf7, 0, 0x1        	MOVF	(_vTickReading + 4), W, B
+007c6c   010a     movlb	0xa                	BANKSEL	(_TickGetDiv256_ret_1_1 + 3)
+007c6e   6f27     movwf	0x27, 0x1          	MOVWF	(_TickGetDiv256_ret_1_1 + 3), B
                                            ;	.line	265; TCPIP_Stack/Tick.c	return ret.Val;
-007c26   ca27     movff	0xa27, 0xfe9       	MOVFF	(_TickGetDiv256_ret_1_1 + 3), FSR0L
-007c28   ffe9
-007c2a   ca26     movff	0xa26, 0xff4       	MOVFF	(_TickGetDiv256_ret_1_1 + 2), PRODH
-007c2c   fff4
-007c2e   ca25     movff	0xa25, 0xff3       	MOVFF	(_TickGetDiv256_ret_1_1 + 1), PRODL
-007c30   fff3
-007c32   010a     movlb	0xa                	BANKSEL	_TickGetDiv256_ret_1_1
-007c34   5124     movf	0x24, 0, 0x1        	MOVF	_TickGetDiv256_ret_1_1, W, B
-007c36   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007c38   ffd9
-007c3a   0012     return	0                 	RETURN	
+007c70   ca27     movff	0xa27, 0xfe9       	MOVFF	(_TickGetDiv256_ret_1_1 + 3), FSR0L
+007c72   ffe9
+007c74   ca26     movff	0xa26, 0xff4       	MOVFF	(_TickGetDiv256_ret_1_1 + 2), PRODH
+007c76   fff4
+007c78   ca25     movff	0xa25, 0xff3       	MOVFF	(_TickGetDiv256_ret_1_1 + 1), PRODL
+007c7a   fff3
+007c7c   010a     movlb	0xa                	BANKSEL	_TickGetDiv256_ret_1_1
+007c7e   5124     movf	0x24, 0, 0x1        	MOVF	_TickGetDiv256_ret_1_1, W, B
+007c80   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007c82   ffd9
+007c84   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_Tick__TickGet	code
                                            _TickGet:
                                            ;	.line	225; TCPIP_Stack/Tick.c	DWORD TickGet(void)
-007ed4   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007ed6   ffe5
-007ed8   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007eda   ffd9
+007ef8   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007efa   ffe5
+007efc   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007efe   ffd9
                                            ;	.line	227; TCPIP_Stack/Tick.c	GetTickCopy();
-007edc   ec75     call	0x7aea, 0           	CALL	_GetTickCopy
-007ede   f03d
+007f00   ec9a     call	0x7b34, 0           	CALL	_GetTickCopy
+007f02   f03d
                                            ;	.line	228; TCPIP_Stack/Tick.c	return *((DWORD*)&vTickReading[0]);
-007ee0   c8f6     movff	0x8f6, 0xfe9       	MOVFF	(_vTickReading + 3), FSR0L
-007ee2   ffe9
-007ee4   c8f5     movff	0x8f5, 0xff4       	MOVFF	(_vTickReading + 2), PRODH
-007ee6   fff4
-007ee8   c8f4     movff	0x8f4, 0xff3       	MOVFF	(_vTickReading + 1), PRODL
-007eea   fff3
-007eec   0108     movlb	0x8                	BANKSEL	_vTickReading
-007eee   51f3     movf	0xf3, 0, 0x1        	MOVF	_vTickReading, W, B
-007ef0   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007ef2   ffd9
-007ef4   0012     return	0                 	RETURN	
+007f04   c8f6     movff	0x8f6, 0xfe9       	MOVFF	(_vTickReading + 3), FSR0L
+007f06   ffe9
+007f08   c8f5     movff	0x8f5, 0xff4       	MOVFF	(_vTickReading + 2), PRODH
+007f0a   fff4
+007f0c   c8f4     movff	0x8f4, 0xff3       	MOVFF	(_vTickReading + 1), PRODL
+007f0e   fff3
+007f10   0108     movlb	0x8                	BANKSEL	_vTickReading
+007f12   51f3     movf	0xf3, 0, 0x1        	MOVF	_vTickReading, W, B
+007f14   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007f16   ffd9
+007f18   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_Tick__GetTickCopy	code
                                            _GetTickCopy:
                                            ;	.line	157; TCPIP_Stack/Tick.c	static void GetTickCopy(void)
-007aea   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007aec   ffe5
-007aee   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007af0   ffd9
+007b34   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007b36   ffe5
+007b38   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007b3a   ffd9
                                            _00113_DS_:
                                            ;	.line	164; TCPIP_Stack/Tick.c	INTCONbits.TMR0IE = 1;		// Enable interrupt
-007af2   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
-007af4   0000     nop                      	nop 
+007b3c   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
+007b3e   0000     nop                      	nop 
                                            ;	.line	166; TCPIP_Stack/Tick.c	INTCONbits.TMR0IE = 0;		// Disable interrupt
-007af6   9af2     bcf	0xf2, 0x5, 0         	BCF	_INTCONbits, 5
+007b40   9af2     bcf	0xf2, 0x5, 0         	BCF	_INTCONbits, 5
                                            ;	.line	167; TCPIP_Stack/Tick.c	vTickReading[0] = TMR0L;
-007af8   50d6     movf	0xd6, 0, 0          	MOVF	_TMR0L, W
-007afa   0108     movlb	0x8                	BANKSEL	_vTickReading
-007afc   6ff3     movwf	0xf3, 0x1          	MOVWF	_vTickReading, B
+007b42   50d6     movf	0xd6, 0, 0          	MOVF	_TMR0L, W
+007b44   0108     movlb	0x8                	BANKSEL	_vTickReading
+007b46   6ff3     movwf	0xf3, 0x1          	MOVWF	_vTickReading, B
                                            ;	.line	168; TCPIP_Stack/Tick.c	vTickReading[1] = TMR0H;
-007afe   50d7     movf	0xd7, 0, 0          	MOVF	_TMR0H, W
-007b00   0108     movlb	0x8                	BANKSEL	(_vTickReading + 1)
-007b02   6ff4     movwf	0xf4, 0x1          	MOVWF	(_vTickReading + 1), B
-007b04   0108     movlb	0x8                	BANKSEL	_dwInternalTicks
+007b48   50d7     movf	0xd7, 0, 0          	MOVF	_TMR0H, W
+007b4a   0108     movlb	0x8                	BANKSEL	(_vTickReading + 1)
+007b4c   6ff4     movwf	0xf4, 0x1          	MOVWF	(_vTickReading + 1), B
+007b4e   0108     movlb	0x8                	BANKSEL	_dwInternalTicks
                                            ;	.line	169; TCPIP_Stack/Tick.c	*((DWORD*)&vTickReading[2]) = dwInternalTicks;
-007b06   5162     movf	0x62, 0, 0x1        	MOVF	_dwInternalTicks, W, B
-007b08   0108     movlb	0x8                	BANKSEL	(_vTickReading + 2)
-007b0a   6ff5     movwf	0xf5, 0x1          	MOVWF	(_vTickReading + 2), B
-007b0c   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 1)
-007b0e   5163     movf	0x63, 0, 0x1        	MOVF	(_dwInternalTicks + 1), W, B
-007b10   0108     movlb	0x8                	BANKSEL	(_vTickReading + 3)
-007b12   6ff6     movwf	0xf6, 0x1          	MOVWF	(_vTickReading + 3), B
-007b14   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 2)
-007b16   5164     movf	0x64, 0, 0x1        	MOVF	(_dwInternalTicks + 2), W, B
-007b18   0108     movlb	0x8                	BANKSEL	(_vTickReading + 4)
-007b1a   6ff7     movwf	0xf7, 0x1          	MOVWF	(_vTickReading + 4), B
-007b1c   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 3)
-007b1e   5165     movf	0x65, 0, 0x1        	MOVF	(_dwInternalTicks + 3), W, B
-007b20   0108     movlb	0x8                	BANKSEL	(_vTickReading + 5)
-007b22   6ff8     movwf	0xf8, 0x1          	MOVWF	(_vTickReading + 5), B
+007b50   5162     movf	0x62, 0, 0x1        	MOVF	_dwInternalTicks, W, B
+007b52   0108     movlb	0x8                	BANKSEL	(_vTickReading + 2)
+007b54   6ff5     movwf	0xf5, 0x1          	MOVWF	(_vTickReading + 2), B
+007b56   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 1)
+007b58   5163     movf	0x63, 0, 0x1        	MOVF	(_dwInternalTicks + 1), W, B
+007b5a   0108     movlb	0x8                	BANKSEL	(_vTickReading + 3)
+007b5c   6ff6     movwf	0xf6, 0x1          	MOVWF	(_vTickReading + 3), B
+007b5e   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 2)
+007b60   5164     movf	0x64, 0, 0x1        	MOVF	(_dwInternalTicks + 2), W, B
+007b62   0108     movlb	0x8                	BANKSEL	(_vTickReading + 4)
+007b64   6ff7     movwf	0xf7, 0x1          	MOVWF	(_vTickReading + 4), B
+007b66   0108     movlb	0x8                	BANKSEL	(_dwInternalTicks + 3)
+007b68   5165     movf	0x65, 0, 0x1        	MOVF	(_dwInternalTicks + 3), W, B
+007b6a   0108     movlb	0x8                	BANKSEL	(_vTickReading + 5)
+007b6c   6ff8     movwf	0xf8, 0x1          	MOVWF	(_vTickReading + 5), B
                                            ;	.line	170; TCPIP_Stack/Tick.c	} while(INTCONbits.TMR0IF);
-007b24   b4f2     btfsc	0xf2, 0x2, 0       	BTFSC	_INTCONbits, 2
-007b26   d7e5     bra	0x7af2               	BRA	_00113_DS_
+007b6e   b4f2     btfsc	0xf2, 0x2, 0       	BTFSC	_INTCONbits, 2
+007b70   d7e5     bra	0x7b3c               	BRA	_00113_DS_
                                            ;	.line	171; TCPIP_Stack/Tick.c	INTCONbits.TMR0IE = 1;			// Enable interrupt
-007b28   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
-007b2a   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007b2c   ffd9
-007b2e   0012     return	0                 	RETURN	
+007b72   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
+007b74   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007b76   ffd9
+007b78   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_Tick__TickInit	code
                                            _TickInit:
                                            ;	.line	97; TCPIP_Stack/Tick.c	void TickInit(void)
-007fee   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007ff0   ffe5
-007ff2   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007ff4   ffd9
+008012   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+008014   ffe5
+008016   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+008018   ffd9
                                            ;	.line	102; TCPIP_Stack/Tick.c	TMR0H = 0;
-007ff6   6ad7     clrf	0xd7, 0             	CLRF	_TMR0H
+00801a   6ad7     clrf	0xd7, 0             	CLRF	_TMR0H
                                            ;	.line	103; TCPIP_Stack/Tick.c	TMR0L = 0;
-007ff8   6ad6     clrf	0xd6, 0             	CLRF	_TMR0L
+00801c   6ad6     clrf	0xd6, 0             	CLRF	_TMR0L
                                            ;	.line	106; TCPIP_Stack/Tick.c	INTCON2bits.TMR0IP = 0;		// Low priority
-007ffa   94f1     bcf	0xf1, 0x2, 0         	BCF	_INTCON2bits, 2
+00801e   94f1     bcf	0xf1, 0x2, 0         	BCF	_INTCON2bits, 2
                                            ;	.line	107; TCPIP_Stack/Tick.c	INTCONbits.TMR0IF = 0;          //reset overflow indicator
-007ffc   94f2     bcf	0xf2, 0x2, 0         	BCF	_INTCONbits, 2
+008020   94f2     bcf	0xf2, 0x2, 0         	BCF	_INTCONbits, 2
                                            ;	.line	108; TCPIP_Stack/Tick.c	INTCONbits.TMR0IE = 1;		// Enable interrupt
-007ffe   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
+008022   8af2     bsf	0xf2, 0x5, 0         	BSF	_INTCONbits, 5
                                            ;	.line	111; TCPIP_Stack/Tick.c	T0CON = 0x87;
-008000   0e87     movlw	0x87               	MOVLW	0x87
-008002   6ed5     movwf	0xd5, 0            	MOVWF	_T0CON
-008004   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-008006   ffd9
-008008   0012     return	0                 	RETURN	
+008024   0e87     movlw	0x87               	MOVLW	0x87
+008026   6ed5     movwf	0xd5, 0            	MOVWF	_T0CON
+008028   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+00802a   ffd9
+00802c   0012     return	0                 	RETURN	
                                            
                                            
                                            
@@ -23101,7 +23119,7 @@ Address  Value    Disassembly              Source
 00126c   c00f     movff	0xf, 0xff3         	MOVFF	r0x0f, PRODL
 00126e   fff3
 001270   5010     movf	0x10, 0, 0          	MOVF	r0x10, W
-001272   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+001272   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 001274   f03e
 001276   6e0e     movwf	0xe, 0             	MOVWF	r0x0e
 001278   cff3     movff	0xff3, 0xf         	MOVFF	PRODL, r0x0f
@@ -23140,7 +23158,7 @@ Address  Value    Disassembly              Source
 0012b4   c015     movff	0x15, 0xff3        	MOVFF	r0x15, PRODL
 0012b6   fff3
 0012b8   5016     movf	0x16, 0, 0          	MOVF	r0x16, W
-0012ba   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+0012ba   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 0012bc   f03e
 0012be   6e14     movwf	0x14, 0            	MOVWF	r0x14
 0012c0   cff3     movff	0xff3, 0x15        	MOVFF	PRODL, r0x15
@@ -23169,7 +23187,7 @@ Address  Value    Disassembly              Source
 0012e8   c015     movff	0x15, 0xff3        	MOVFF	r0x15, PRODL
 0012ea   fff3
 0012ec   5016     movf	0x16, 0, 0          	MOVF	r0x16, W
-0012ee   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+0012ee   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 0012f0   f03e
 0012f2   6e14     movwf	0x14, 0            	MOVWF	r0x14
 0012f4   cff3     movff	0xff3, 0x15        	MOVFF	PRODL, r0x15
@@ -23179,7 +23197,7 @@ Address  Value    Disassembly              Source
 0012fc   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 0012fe   fff3
 001300   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-001302   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+001302   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 001304   f03e
 001306   6e16     movwf	0x16, 0            	MOVWF	r0x16
 001308   cff3     movff	0xff3, 0x17        	MOVFF	PRODL, r0x17
@@ -23199,7 +23217,7 @@ Address  Value    Disassembly              Source
 00131e   c011     movff	0x11, 0xff3        	MOVFF	r0x11, PRODL
 001320   fff3
 001322   5012     movf	0x12, 0, 0          	MOVF	r0x12, W
-001324   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+001324   ec43     call	0x7c86, 0           	CALL	__gptrget4
 001326   f03e
 001328   6e14     movwf	0x14, 0            	MOVWF	r0x14
 00132a   cff3     movff	0xff3, 0x15        	MOVFF	PRODL, r0x15
@@ -23213,7 +23231,7 @@ Address  Value    Disassembly              Source
 00133a   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 00133c   fff3
 00133e   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-001340   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+001340   ec43     call	0x7c86, 0           	CALL	__gptrget4
 001342   f03e
 001344   6e18     movwf	0x18, 0            	MOVWF	r0x18
 001346   cff3     movff	0xff3, 0x19        	MOVFF	PRODL, r0x19
@@ -23242,7 +23260,7 @@ Address  Value    Disassembly              Source
 001370   c007     movff	0x7, 0xff3         	MOVFF	r0x07, PRODL
 001372   fff3
 001374   5008     movf	0x8, 0, 0           	MOVF	r0x08, W
-001376   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+001376   ec43     call	0x7c86, 0           	CALL	__gptrget4
 001378   f03e
 00137a   6e14     movwf	0x14, 0            	MOVWF	r0x14
 00137c   cff3     movff	0xff3, 0x15        	MOVFF	PRODL, r0x15
@@ -23388,7 +23406,7 @@ Address  Value    Disassembly              Source
 00146e   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 001470   fff3
 001472   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-001474   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+001474   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 001476   f03e
 001478   6e00     movwf	0, 0               	MOVWF	r0x00
 00147a   cff3     movff	0xff3, 0x1         	MOVFF	PRODL, r0x01
@@ -23402,7 +23420,7 @@ Address  Value    Disassembly              Source
 00148a   c00b     movff	0xb, 0xff3         	MOVFF	r0x0b, PRODL
 00148c   fff3
 00148e   500c     movf	0xc, 0, 0           	MOVF	r0x0c, W
-001490   ec1e     call	0x803c, 0           	CALL	__gptrput2
+001490   ec30     call	0x8060, 0           	CALL	__gptrput2
 001492   f040
                                            _00305_DS_:
                                            ;	.line	1061; TCPIP_Stack/UDP.c	return partialMatch;
@@ -23627,7 +23645,7 @@ Address  Value    Disassembly              Source
 002662   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 002664   fff3
 002666   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-002668   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+002668   ec43     call	0x7c86, 0           	CALL	__gptrget4
 00266a   f03e
 00266c   6e08     movwf	0x8, 0             	MOVWF	r0x08
 00266e   cff3     movff	0xff3, 0x9         	MOVFF	PRODL, r0x09
@@ -23654,7 +23672,7 @@ Address  Value    Disassembly              Source
 002696   c004     movff	0x4, 0xff3         	MOVFF	r0x04, PRODL
 002698   fff3
 00269a   5005     movf	0x5, 0, 0           	MOVF	r0x05, W
-00269c   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+00269c   ec43     call	0x7c86, 0           	CALL	__gptrget4
 00269e   f03e
 0026a0   6e08     movwf	0x8, 0             	MOVWF	r0x08
 0026a2   cff3     movff	0xff3, 0x9         	MOVFF	PRODL, r0x09
@@ -23884,33 +23902,33 @@ Address  Value    Disassembly              Source
                                            S_UDP__UDPDiscard	code
                                            _UDPDiscard:
                                            ;	.line	886; TCPIP_Stack/UDP.c	void UDPDiscard(void)
-007e12   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-007e14   ffe5
-007e16   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-007e18   ffd9
-007e1a   010a     movlb	0xa                	BANKSEL	_Flags
+007e5c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+007e5e   ffe5
+007e60   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+007e62   ffd9
+007e64   010a     movlb	0xa                	BANKSEL	_Flags
                                            ;	.line	888; TCPIP_Stack/UDP.c	if(!Flags.bWasDiscarded)
-007e1c   b396     btfsc	0x96, 0x1, 0x1     	BTFSC	_Flags, 1, B
-007e1e   d00b     bra	0x7e36               	BRA	_00271_DS_
+007e66   b396     btfsc	0x96, 0x1, 0x1     	BTFSC	_Flags, 1, B
+007e68   d00b     bra	0x7e80               	BRA	_00271_DS_
                                            ;	.line	890; TCPIP_Stack/UDP.c	MACDiscardRx();
-007e20   ec30     call	0x6e60, 0           	CALL	_MACDiscardRx
-007e22   f037
-007e24   010a     movlb	0xa                	BANKSEL	_UDPRxCount
+007e6a   ec30     call	0x6e60, 0           	CALL	_MACDiscardRx
+007e6c   f037
+007e6e   010a     movlb	0xa                	BANKSEL	_UDPRxCount
                                            ;	.line	891; TCPIP_Stack/UDP.c	UDPRxCount = 0;
-007e26   6b7c     clrf	0x7c, 0x1           	CLRF	_UDPRxCount, B
-007e28   010a     movlb	0xa                	BANKSEL	(_UDPRxCount + 1)
-007e2a   6b7d     clrf	0x7d, 0x1           	CLRF	(_UDPRxCount + 1), B
+007e70   6b7c     clrf	0x7c, 0x1           	CLRF	_UDPRxCount, B
+007e72   010a     movlb	0xa                	BANKSEL	(_UDPRxCount + 1)
+007e74   6b7d     clrf	0x7d, 0x1           	CLRF	(_UDPRxCount + 1), B
                                            ;	.line	892; TCPIP_Stack/UDP.c	SocketWithRxData = INVALID_UDP_SOCKET;
-007e2c   0eff     movlw	0xff               	MOVLW	0xff
-007e2e   0108     movlb	0x8                	BANKSEL	_SocketWithRxData
-007e30   6f67     movwf	0x67, 0x1          	MOVWF	_SocketWithRxData, B
-007e32   010a     movlb	0xa                	BANKSEL	_Flags
+007e76   0eff     movlw	0xff               	MOVLW	0xff
+007e78   0108     movlb	0x8                	BANKSEL	_SocketWithRxData
+007e7a   6f67     movwf	0x67, 0x1          	MOVWF	_SocketWithRxData, B
+007e7c   010a     movlb	0xa                	BANKSEL	_Flags
                                            ;	.line	893; TCPIP_Stack/UDP.c	Flags.bWasDiscarded = 1;
-007e34   8396     bsf	0x96, 0x1, 0x1       	BSF	_Flags, 1, B
+007e7e   8396     bsf	0x96, 0x1, 0x1       	BSF	_Flags, 1, B
                                            _00271_DS_:
-007e36   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-007e38   ffd9
-007e3a   0012     return	0                 	RETURN	
+007e80   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+007e82   ffd9
+007e84   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_UDP__UDPGetArray	code
@@ -24092,7 +24110,7 @@ Address  Value    Disassembly              Source
 007172   d012     bra	0x7198               	BRA	_00242_DS_
                                            _00240_DS_:
                                            ;	.line	811; TCPIP_Stack/UDP.c	*v = MACGet();
-007174   ec48     call	0x8090, 0           	CALL	_MACGet
+007174   ec5a     call	0x80b4, 0           	CALL	_MACGet
 007176   f040
 007178   6e03     movwf	0x3, 0             	MOVWF	r0x03
 00717a   c003     movff	0x3, 0xfe5         	MOVFF	r0x03, POSTDEC1
@@ -24102,7 +24120,7 @@ Address  Value    Disassembly              Source
 007182   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 007184   fff3
 007186   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-007188   ec3e     call	0x807c, 0           	CALL	__gptrput1
+007188   ec50     call	0x80a0, 0           	CALL	__gptrput1
 00718a   f040
 00718c   010a     movlb	0xa                	BANKSEL	_wGetOffset
                                            ;	.line	812; TCPIP_Stack/UDP.c	wGetOffset++;
@@ -24263,7 +24281,7 @@ Address  Value    Disassembly              Source
 00289c   c006     movff	0x6, 0xff3         	MOVFF	r0x06, PRODL
 00289e   fff3
 0028a0   5007     movf	0x7, 0, 0           	MOVF	r0x07, W
-0028a2   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+0028a2   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 0028a4   f03e
 0028a6   6e05     movwf	0x5, 0             	MOVWF	r0x05
 0028a8   cff3     movff	0xff3, 0x6         	MOVFF	PRODL, r0x06
@@ -24300,7 +24318,7 @@ Address  Value    Disassembly              Source
 0028e4   c006     movff	0x6, 0xff3         	MOVFF	r0x06, PRODL
 0028e6   fff3
 0028e8   5007     movf	0x7, 0, 0           	MOVF	r0x07, W
-0028ea   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+0028ea   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 0028ec   f03e
 0028ee   6e05     movwf	0x5, 0             	MOVWF	r0x05
 0028f0   cff3     movff	0xff3, 0x6         	MOVFF	PRODL, r0x06
@@ -24368,7 +24386,7 @@ Address  Value    Disassembly              Source
 002964   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 002966   fff3
 002968   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-00296a   ec1e     call	0x7c3c, 0           	CALL	__gptrget4
+00296a   ec43     call	0x7c86, 0           	CALL	__gptrget4
 00296c   f03e
 00296e   6e05     movwf	0x5, 0             	MOVWF	r0x05
 002970   cff3     movff	0xff3, 0x6         	MOVFF	PRODL, r0x06
@@ -24865,7 +24883,7 @@ Address  Value    Disassembly              Source
                                            ;	.line	481; TCPIP_Stack/UDP.c	MACPut(v);
 006e14   5000     movf	0, 0, 0             	MOVF	r0x00, W
 006e16   6ee5     movwf	0xe5, 0            	MOVWF	POSTDEC1
-006e18   ec2a     call	0x8054, 0           	CALL	_MACPut
+006e18   ec3c     call	0x8078, 0           	CALL	_MACPut
 006e1a   f040
 006e1c   2ae1     incf	0xe1, 0x1, 0        	INCF	FSR1L, F
 006e1e   010a     movlb	0xa                	BANKSEL	_wPutOffset
@@ -25317,7 +25335,7 @@ Address  Value    Disassembly              Source
 00313a   c010     movff	0x10, 0xff3        	MOVFF	r0x10, PRODL
 00313c   fff3
 00313e   5011     movf	0x11, 0, 0          	MOVF	r0x11, W
-003140   ecc9     call	0x7d92, 0           	CALL	__gptrget2
+003140   ecee     call	0x7ddc, 0           	CALL	__gptrget2
 003142   f03e
 003144   6e12     movwf	0x12, 0            	MOVWF	r0x12
 003146   cff3     movff	0xff3, 0x13        	MOVFF	PRODL, r0x13
@@ -25336,7 +25354,7 @@ Address  Value    Disassembly              Source
 00315e   c010     movff	0x10, 0xff3        	MOVFF	r0x10, PRODL
 003160   fff3
 003162   5011     movf	0x11, 0, 0          	MOVF	r0x11, W
-003164   ec1e     call	0x803c, 0           	CALL	__gptrput2
+003164   ec30     call	0x8060, 0           	CALL	__gptrput2
 003166   f040
                                            ;	.line	276; TCPIP_Stack/UDP.c	if(this_localPort == 0x0000u) //select any free port
 003168   5000     movf	0, 0, 0             	MOVF	r0x00, W
@@ -25399,7 +25417,7 @@ Address  Value    Disassembly              Source
 0031c8   c010     movff	0x10, 0xff3        	MOVFF	r0x10, PRODL
 0031ca   fff3
 0031cc   5011     movf	0x11, 0, 0          	MOVF	r0x11, W
-0031ce   ec1e     call	0x803c, 0           	CALL	__gptrput2
+0031ce   ec30     call	0x8060, 0           	CALL	__gptrput2
 0031d0   f040
                                            _00128_DS_:
                                            ;	.line	286; TCPIP_Stack/UDP.c	if(this_remoteNode)
@@ -25471,7 +25489,7 @@ Address  Value    Disassembly              Source
 00324a   c010     movff	0x10, 0xff3        	MOVFF	r0x10, PRODL
 00324c   fff3
 00324e   5011     movf	0x11, 0, 0          	MOVF	r0x11, W
-003250   ec1e     call	0x803c, 0           	CALL	__gptrput2
+003250   ec30     call	0x8060, 0           	CALL	__gptrput2
 003252   f040
                                            ;	.line	302; TCPIP_Stack/UDP.c	activeUDPSocket = s;
 003254   c00a     movff	0xa, 0xa97         	MOVFF	r0x0a, _activeUDPSocket
@@ -25550,17 +25568,17 @@ Address  Value    Disassembly              Source
                                            S_UDP__UDPTask	code
                                            _UDPTask:
                                            ;	.line	215; TCPIP_Stack/UDP.c	void UDPTask(void)
-008068   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
-00806a   ffe5
-00806c   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
-00806e   ffd9
+00808c   cfd9     movff	0xfd9, 0xfe5       	MOVFF	FSR2L, POSTDEC1
+00808e   ffe5
+008090   cfe1     movff	0xfe1, 0xfd9       	MOVFF	FSR1L, FSR2L
+008092   ffd9
                                            ;	.line	217; TCPIP_Stack/UDP.c	LastPutSocket = INVALID_UDP_SOCKET;
-008070   0eff     movlw	0xff               	MOVLW	0xff
-008072   0108     movlb	0x8                	BANKSEL	_LastPutSocket
-008074   6f66     movwf	0x66, 0x1          	MOVWF	_LastPutSocket, B
-008076   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
-008078   ffd9
-00807a   0012     return	0                 	RETURN	
+008094   0eff     movlw	0xff               	MOVLW	0xff
+008096   0108     movlb	0x8                	BANKSEL	_LastPutSocket
+008098   6f66     movwf	0x66, 0x1          	MOVWF	_LastPutSocket, B
+00809a   cfe4     movff	0xfe4, 0xfd9       	MOVFF	PREINC1, FSR2L
+00809c   ffd9
+00809e   0012     return	0                 	RETURN	
                                            
                                            ; ; Starting pCode block
                                            S_UDP__UDPInit	code
@@ -26236,7 +26254,7 @@ Address  Value    Disassembly              Source
 003e44   c011     movff	0x11, 0xff3        	MOVFF	r0x11, PRODL
 003e46   fff3
 003e48   5012     movf	0x12, 0, 0          	MOVF	r0x12, W
-003e4a   ec7b     call	0x7ef6, 0           	CALL	__gptrget1
+003e4a   ec8d     call	0x7f1a, 0           	CALL	__gptrget1
 003e4c   f03f
 003e4e   6e15     movwf	0x15, 0            	MOVWF	r0x15
 003e50   2a10     incf	0x10, 0x1, 0        	INCF	r0x10, F
@@ -26251,7 +26269,7 @@ Address  Value    Disassembly              Source
 003e62   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 003e64   fff3
 003e66   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-003e68   ec3e     call	0x807c, 0           	CALL	__gptrput1
+003e68   ec50     call	0x80a0, 0           	CALL	__gptrput1
 003e6a   f040
 003e6c   2a00     incf	0, 0x1, 0           	INCF	r0x00, F
 003e6e   b0d8     btfsc	0xd8, 0, 0         	BTFSC	STATUS, 0
@@ -26295,7 +26313,7 @@ Address  Value    Disassembly              Source
 003eae   c009     movff	0x9, 0xff3         	MOVFF	r0x09, PRODL
 003eb0   fff3
 003eb2   500a     movf	0xa, 0, 0           	MOVF	r0x0a, W
-003eb4   ec3e     call	0x807c, 0           	CALL	__gptrput1
+003eb4   ec50     call	0x80a0, 0           	CALL	__gptrput1
 003eb6   f040
                                            _00125_DS_:
                                            ;	.line	64; TCPIP_Stack/strlcpy.c	while (*s++)
@@ -26311,7 +26329,7 @@ Address  Value    Disassembly              Source
 003ec8   c001     movff	0x1, 0xff3         	MOVFF	r0x01, PRODL
 003eca   fff3
 003ecc   5002     movf	0x2, 0, 0           	MOVF	r0x02, W
-003ece   ec7b     call	0x7ef6, 0           	CALL	__gptrget1
+003ece   ec8d     call	0x7f1a, 0           	CALL	__gptrget1
 003ed0   f03f
 003ed2   6e06     movwf	0x6, 0             	MOVWF	r0x06
 003ed4   2a00     incf	0, 0x1, 0           	INCF	r0x00, F

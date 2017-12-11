@@ -240,9 +240,9 @@ static void LCDInitExec(void)
 			Delay10us(1);			// Wait E Pulse width time (min 230ns)
 			LCD_E_IO = 0;
 			// Cyclic access
+			LCDi++;
 			if (LCDi >= 3u)
 				st_init = LCD_DEFAULTFUNC2;
-			LCDi++;
 			// Waiting time: 2 ms
 			LCDWaiting = 1;
 			TMR1L			=	(0x10000 - 66)	& 0xff;
@@ -391,9 +391,9 @@ static void LCDUpdateExec(void)
 			}
 			LCDWrite(1, LCDCurrentText[LCDi]);
 			// Cyclic access
+			LCDi++;
 			if (LCDi >= 16u)
 				st_update = LCD_GOTOSECONDLINE;
-			LCDi++;
 			// Waiting time: 61 us
 			LCDWaiting = 1;
 			TMR1L			=	(0x10000 - 2)	& 0xff;
@@ -425,9 +425,9 @@ static void LCDUpdateExec(void)
 			}
 			LCDWrite(1, LCDCurrentText[LCDi]);
 			// Cyclic access
+			LCDi++;
 			if (LCDi >= 32u)
 				st_update = LCD_ENDUPDATE;
-			LCDi++;
 			// Waiting time: 61 us
 			LCDWaiting = 1;
 			TMR1L			=	(0x10000 - 2)	& 0xff;

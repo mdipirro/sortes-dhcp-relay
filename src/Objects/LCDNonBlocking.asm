@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Sun Dec 10 20:48:42 2017
+; This file was generated Mon Dec 11 01:24:42 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -523,18 +523,30 @@ _LCDUpdate:
 ;	.line	588; TCPIP_Stack/LCDNonBlocking.c	void LCDUpdate(void)
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
-;	.line	590; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(3, "");
-	MOVLW	UPPER(__str_0)
+	MOVFF	r0x00, POSTDEC1
+	MOVFF	r0x01, POSTDEC1
+	MOVFF	r0x02, POSTDEC1
+;	.line	590; TCPIP_Stack/LCDNonBlocking.c	LCDListPush(3, LCDText);
+	MOVLW	HIGH(_LCDText)
+	MOVWF	r0x01
+	MOVLW	LOW(_LCDText)
+	MOVWF	r0x00
+	MOVLW	0x80
+	MOVWF	r0x02
+	MOVF	r0x02, W
 	MOVWF	POSTDEC1
-	MOVLW	HIGH(__str_0)
+	MOVF	r0x01, W
 	MOVWF	POSTDEC1
-	MOVLW	LOW(__str_0)
+	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	MOVLW	0x03
 	MOVWF	POSTDEC1
 	CALL	_LCDListPush
 	MOVLW	0x04
 	ADDWF	FSR1L, F
+	MOVFF	PREINC1, r0x02
+	MOVFF	PREINC1, r0x01
+	MOVFF	PREINC1, r0x00
 	MOVFF	PREINC1, FSR2L
 	RETURN	
 
@@ -843,13 +855,13 @@ _00191_DS_:
 ;	.line	380; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00214_DS_
 _00192_DS_:
-;	.line	385; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
-	MOVLW	LOW(_LCDText)
+;	.line	385; TCPIP_Stack/LCDNonBlocking.c	if(LCDCurrentText[LCDi] == 0u)
+	MOVLW	LOW(_LCDCurrentText)
 	BANKSEL	_LCDi
 	ADDWF	_LCDi, W, B
 	MOVWF	r0x00
 	CLRF	r0x01
-	MOVLW	HIGH(_LCDText)
+	MOVLW	HIGH(_LCDCurrentText)
 	ADDWFC	r0x01, F
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, FSR0H
@@ -868,13 +880,13 @@ _00206_DS_:
 	SUBWF	r0x01, W
 _00227_DS_:
 	BC	_00194_DS_
-;	.line	389; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
-	MOVLW	LOW(_LCDText)
+;	.line	389; TCPIP_Stack/LCDNonBlocking.c	LCDCurrentText[LCDj] = ' ';
+	MOVLW	LOW(_LCDCurrentText)
 	BANKSEL	_LCDj
 	ADDWF	_LCDj, W, B
 	MOVWF	r0x01
 	CLRF	r0x02
-	MOVLW	HIGH(_LCDText)
+	MOVLW	HIGH(_LCDCurrentText)
 	ADDWFC	r0x02, F
 	MOVFF	r0x01, FSR0L
 	MOVFF	r0x02, FSR0H
@@ -885,7 +897,7 @@ _00227_DS_:
 	INCF	_LCDj, F, B
 	BRA	_00206_DS_
 _00194_DS_:
-;	.line	392; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
+;	.line	392; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDCurrentText[LCDi]);
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	MOVLW	0x01
@@ -893,7 +905,10 @@ _00194_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	394; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 16u)
+	BANKSEL	_LCDi
+;	.line	394; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+	INCF	_LCDi, F, B
+;	.line	395; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 16u)
 	MOVFF	_LCDi, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
@@ -903,14 +918,11 @@ _00194_DS_:
 	SUBWF	r0x00, W
 _00228_DS_:
 	BNC	_00196_DS_
-;	.line	395; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOSECONDLINE;
+;	.line	396; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_GOTOSECONDLINE;
 	MOVLW	0x02
 	BANKSEL	_st_update
 	MOVWF	_st_update, B
 _00196_DS_:
-	BANKSEL	_LCDi
-;	.line	396; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
-	INCF	_LCDi, F, B
 ;	.line	398; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
@@ -957,13 +969,13 @@ _00197_DS_:
 ;	.line	414; TCPIP_Stack/LCDNonBlocking.c	break;
 	BRA	_00214_DS_
 _00198_DS_:
-;	.line	419; TCPIP_Stack/LCDNonBlocking.c	if(LCDText[LCDi] == 0u)
-	MOVLW	LOW(_LCDText)
+;	.line	419; TCPIP_Stack/LCDNonBlocking.c	if(LCDCurrentText[LCDi] == 0u)
+	MOVLW	LOW(_LCDCurrentText)
 	BANKSEL	_LCDi
 	ADDWF	_LCDi, W, B
 	MOVWF	r0x00
 	CLRF	r0x01
-	MOVLW	HIGH(_LCDText)
+	MOVLW	HIGH(_LCDCurrentText)
 	ADDWFC	r0x01, F
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, FSR0H
@@ -982,13 +994,13 @@ _00210_DS_:
 	SUBWF	r0x01, W
 _00229_DS_:
 	BC	_00200_DS_
-;	.line	423; TCPIP_Stack/LCDNonBlocking.c	LCDText[LCDj] = ' ';
-	MOVLW	LOW(_LCDText)
+;	.line	423; TCPIP_Stack/LCDNonBlocking.c	LCDCurrentText[LCDj] = ' ';
+	MOVLW	LOW(_LCDCurrentText)
 	BANKSEL	_LCDj
 	ADDWF	_LCDj, W, B
 	MOVWF	r0x01
 	CLRF	r0x02
-	MOVLW	HIGH(_LCDText)
+	MOVLW	HIGH(_LCDCurrentText)
 	ADDWFC	r0x02, F
 	MOVFF	r0x01, FSR0L
 	MOVFF	r0x02, FSR0H
@@ -999,7 +1011,7 @@ _00229_DS_:
 	INCF	_LCDj, F, B
 	BRA	_00210_DS_
 _00200_DS_:
-;	.line	426; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDText[LCDi]);
+;	.line	426; TCPIP_Stack/LCDNonBlocking.c	LCDWrite(1, LCDCurrentText[LCDi]);
 	MOVF	r0x00, W
 	MOVWF	POSTDEC1
 	MOVLW	0x01
@@ -1007,7 +1019,10 @@ _00200_DS_:
 	CALL	_LCDWrite
 	MOVLW	0x02
 	ADDWF	FSR1L, F
-;	.line	428; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 32u)
+	BANKSEL	_LCDi
+;	.line	428; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+	INCF	_LCDi, F, B
+;	.line	429; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 32u)
 	MOVFF	_LCDi, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
@@ -1017,14 +1032,11 @@ _00200_DS_:
 	SUBWF	r0x00, W
 _00230_DS_:
 	BNC	_00202_DS_
-;	.line	429; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_ENDUPDATE;
+;	.line	430; TCPIP_Stack/LCDNonBlocking.c	st_update = LCD_ENDUPDATE;
 	MOVLW	0x04
 	BANKSEL	_st_update
 	MOVWF	_st_update, B
 _00202_DS_:
-	BANKSEL	_LCDi
-;	.line	430; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
-	INCF	_LCDi, F, B
 ;	.line	432; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
@@ -1270,7 +1282,10 @@ _00146_DS_:
 	BNZ	_00146_DS_
 ;	.line	241; TCPIP_Stack/LCDNonBlocking.c	LCD_E_IO = 0;
 	BCF	_LATHbits, 0
-;	.line	243; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 3u)
+	BANKSEL	_LCDi
+;	.line	243; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
+	INCF	_LCDi, F, B
+;	.line	244; TCPIP_Stack/LCDNonBlocking.c	if (LCDi >= 3u)
 	MOVFF	_LCDi, r0x00
 	CLRF	r0x01
 	MOVLW	0x00
@@ -1280,14 +1295,11 @@ _00146_DS_:
 	SUBWF	r0x00, W
 _00170_DS_:
 	BNC	_00153_DS_
-;	.line	244; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC2;
+;	.line	245; TCPIP_Stack/LCDNonBlocking.c	st_init = LCD_DEFAULTFUNC2;
 	MOVLW	0x03
 	BANKSEL	_st_init
 	MOVWF	_st_init, B
 _00153_DS_:
-	BANKSEL	_LCDi
-;	.line	245; TCPIP_Stack/LCDNonBlocking.c	LCDi++;
-	INCF	_LCDi, F, B
 ;	.line	247; TCPIP_Stack/LCDNonBlocking.c	LCDWaiting = 1;
 	MOVLW	0x01
 	BANKSEL	_LCDWaiting
@@ -1488,8 +1500,8 @@ __str_0:
 
 
 ; Statistics:
-; code size:	 1716 (0x06b4) bytes ( 1.31%)
-;           	  858 (0x035a) words
+; code size:	 1752 (0x06d8) bytes ( 1.34%)
+;           	  876 (0x036c) words
 ; udata size:	   74 (0x004a) bytes ( 1.93%)
 ; access size:	   10 (0x000a) bytes
 
