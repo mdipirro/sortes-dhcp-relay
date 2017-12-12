@@ -44,4 +44,15 @@ void UARTPuts(char *udata)
 	} while( *udata++ );
 }
 
+void UARTPutblk(char *udata, size_t size, int sz)
+{
+	size_t i;
+	for (i=0; i<size; i++)
+    {
+		if (sz && udata[i] == '\0')
+			UARTPuts("\\0");
+		else
+			UARTPutc(udata[i]);
+	}
+}
 #endif

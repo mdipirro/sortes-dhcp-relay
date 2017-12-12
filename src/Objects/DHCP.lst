@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  1
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Mon Dec 11 22:42:08 2017
+               00004 ; This file was generated Tue Dec 12 01:06:03 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _ECCP3DELbits
                00053         extern _ECCP3ASbits
                00054         extern _RCSTA2bits
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  2
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR1bits
                00107         extern _PIE2bits
                00108         extern _PIR2bits
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  3
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR6
                00161         extern _MAADR3
                00162         extern _MAADR4
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  4
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMCSL
                00215         extern _EPMCSH
                00216         extern _EPMO
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  5
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _ECCP3DEL
                00269         extern _ECCP3AS
                00270         extern _RCSTA2
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  6
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _TRISC
                00323         extern _DDRD
                00324         extern _TRISD
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  7
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _ECCP1CON
                00377         extern _CCPR1
                00378         extern _CCPR1L
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  8
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _POSTDEC0
                00431         extern _POSTINC0
                00432         extern _INDF0
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE  9
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484 
                00485 
                00486         idata
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 10
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 C000 FFE5 00538         MOVFF   r0x06, POSTDEC1
 0024 C000 FFE5 00539         MOVFF   r0x07, POSTDEC1
 0028 C000 FFE5 00540         MOVFF   r0x08, POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 11
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -658,7 +658,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0094 6EE5      00592         MOVWF   POSTDEC1
 0096 EC00 F000 00593         CALL    _UDPPut
 009A 2AE1      00594         INCF    FSR1L, F
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 12
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -718,7 +718,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00F8 6EE5      00646         MOVWF   POSTDEC1
 00FA EC00 F000 00647         CALL    _UDPPutArray
 00FE 0E05      00648         MOVLW   0x05
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 13
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -778,7 +778,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 015E 6EE5      00700         MOVWF   POSTDEC1
 0160 EC00 F000 00701         CALL    _UDPPutArray
 0164 0E05      00702         MOVLW   0x05
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 14
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -838,7 +838,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01C8 5000      00754         MOVF    r0x03, W
 01CA E100      00755         BNZ     _00511_DS_
 01CC 2A00      00756         INCF    r0x00, F
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 15
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -898,7 +898,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 022A 2AE1      00808         INCF    FSR1L, F
                00809 ;       .line   1120; TCPIP_Stack/DHCP.c        UDPPut(DHCP_PARAM_REQUEST_LIST_LEN);
 022C 0E04      00810         MOVLW   0x04
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 16
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -958,7 +958,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 028A EC00 F000 00862         CALL    _UDPPut
 028E 2AE1      00863         INCF    FSR1L, F
                00864 ;       .line   1133; TCPIP_Stack/DHCP.c        UDPPutArray((BYTE*)&DHCPClient.tempIPAddress, 
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 17
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1018,7 +1018,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02EC 6F00      00916         MOVWF   (__DHCPSend_MyIP_1_1 + 1), B
 02EE 0000      00917         BANKSEL (_AppConfig + 2)
 02F0 5100      00918         MOVF    (_AppConfig + 2), W, B
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 18
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1078,7 +1078,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000 00970 __DHCPReceive:
                00971 ;       .line   720; TCPIP_Stack/DHCP.c static BYTE _DHCPReceive(void)
 0000 CFD9 FFE5 00972         MOVFF   FSR2L, POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 19
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1138,7 +1138,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0070 5000      01024         MOVF    r0x01, W
 0072 6EE5      01025         MOVWF   POSTDEC1
 0074 EC00 F000 01026         CALL    _UDPGet
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 20
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1198,7 +1198,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4 EC00 F000 01078         CALL    _UDPGetArray
 00D8 0E05      01079         MOVLW   0x05
 00DA 26E1      01080         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 21
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1258,7 +1258,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0136 EC00 F000 01132         CALL    _UDPGet
 013A 0E03      01133         MOVLW   0x03
 013C 26E1      01134         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 22
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1318,7 +1318,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 019C 6E00      01186         MOVWF   r0x04
 019E 5000      01187         MOVF    r0x04, W
 01A0 6EE5      01188         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 23
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0202 5000      01240         MOVF    r0x03, W
 0204 E100      01241         BNZ     _00440_DS_
 0206 D000      01242         BRA     _00328_DS_
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 24
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1438,7 +1438,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0268 C000 F000 01294         MOVFF   __DHCPReceive_type_1_1, r0x02
 026C 6A00      01295         CLRF    r0x03
 026E 5000      01296         MOVF    r0x02, W
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 25
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1498,7 +1498,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02CA 6EE5      01348         MOVWF   POSTDEC1
 02CC 5000      01349         MOVF    r0x03, W
 02CE 6EE5      01350         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 26
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1558,7 +1558,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0330 26E1      01402         ADDWF   FSR1L, F
                01403 ;       .line   863; TCPIP_Stack/DHCP.c if ( j >= 4u )
 0332 C000 F000 01404         MOVFF   __DHCPReceive_j_1_1, r0x02
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 27
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1618,7 +1618,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0390 5000      01456         MOVF    r0x03, W
 0392 6EE5      01457         MOVWF   POSTDEC1
 0394 5000      01458         MOVF    r0x02, W
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 28
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1678,7 +1678,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 03F8 EC00 F000 01510         CALL    _UDPGet
 03FC 0E03      01511         MOVLW   0x03
 03FE 26E1      01512         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 29
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1738,7 +1738,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0460 6EE5      01564         MOVWF   POSTDEC1
 0462 5000      01565         MOVF    r0x04, W
 0464 6EE5      01566         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 30
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1798,7 +1798,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04C6 5000      01618         MOVF    r0x04, W
 04C8 E000      01619         BZ      _00451_DS_
 04CA 01620 _00450_DS_:
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 31
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1858,7 +1858,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0526 6E00      01672         MOVWF   r0x04
 0528 5000      01673         MOVF    r0x04, W
 052A 6EE5      01674         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 32
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1918,7 +1918,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0592 3200      01726         RRCF    r0x00, F
 0594 0000      01727         BANKSEL (_DHCPClient + 9)
 0596 5100      01728         MOVF    (_DHCPClient + 9), W, B
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 33
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1978,7 +1978,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 05FA 0E80      01780         MOVLW   0x80
 05FC 6E00      01781         MOVWF   r0x04
 05FE 5000      01782         MOVF    r0x04, W
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 34
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2038,7 +2038,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0660 0A02      01834         XORLW   0x02
 0662 E100      01835         BNZ     _00349_DS_
 0664 5000      01836         MOVF    r0x01, W
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 35
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2098,7 +2098,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 06BC 01888 _00350_DS_:
                01889 ;       .line   1010; TCPIP_Stack/DHCP.c        UDPDiscard();  // We are done with this packet
 06BC EC00 F000 01890         CALL    _UDPDiscard
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 36
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2158,7 +2158,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004A 0E0D      01942         MOVLW   0x0d
 004C 5C00      01943         SUBWF   r0x01, W
 004E B0D8      01944         BTFSC   STATUS, 0
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 37
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2218,7 +2218,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D2 0E00      01996         MOVLW   0x00
 00D4 6EE5      01997         MOVWF   POSTDEC1
 00D6 0E00      01998         MOVLW   0x00
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 38
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2278,7 +2278,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02050 ;       .line   522; TCPIP_Stack/DHCP.c if(UDPIsPutReady(DHCPClient.hDHCPSocket) < 300u) break;
 0136 5100      02051         MOVF    _DHCPClient, W, B
 0138 6EE5      02052         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 39
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 39
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2338,7 +2338,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 019A 5000      02104         MOVF    r0x01, W
 019C 6EE5      02105         MOVWF   POSTDEC1
 019E EC00 F000 02106         CALL    _memset
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 40
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 40
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2398,7 +2398,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0208 EC00 F000 02158         CALL    _TickGet
 020C 6E00      02159         MOVWF   r0x01
 020E CFF3 F000 02160         MOVFF   PRODL, r0x02
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 41
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 41
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2458,7 +2458,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0272 0E04      02212         MOVLW   0x04
 0274 0000      02213         BANKSEL (_DHCPClient + 1)
 0276 6F00      02214         MOVWF   (_DHCPClient + 1), B
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 42
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2518,7 +2518,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02D8 26E1      02266         ADDWF   FSR1L, F
                02267 ;       .line   579; TCPIP_Stack/DHCP.c DHCPClient.dwTimer = TickGet();
 02DA EC00 F000 02268         CALL    _TickGet
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 43
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2578,7 +2578,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 034C 5100      02320         MOVF    (_DHCPClient + 5), W, B
 034E 5A00      02321         SUBWFB  r0x03, F
 0350 0000      02322         BANKSEL (_DHCPClient + 6)
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 44
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2638,7 +2638,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02374 ;       .line   600; TCPIP_Stack/DHCP.c DHCPClient.dwTimer = TickGet();
 03A8 EC00 F000 02375         CALL    _TickGet
 03AC 6E00      02376         MOVWF   r0x01
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 45
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 45
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2698,7 +2698,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 040C 0000      02428         BANKSEL (_DHCPClient + 23)
                02429 ;       .line   608; TCPIP_Stack/DHCP.c AppConfig.MyMask.Val = DHCPClient.tempMask.Val;
 040E 5100      02430         MOVF    (_DHCPClient + 23), W, B
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 46
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 46
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2758,7 +2758,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 046A CFE9 F000 02482         MOVFF   FSR0L, r0x04
 046E C000 F000 02483         MOVFF   (_DHCPClient + 3), r0x05
 0472 C000 F000 02484         MOVFF   (_DHCPClient + 4), r0x06
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 47
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 47
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2818,7 +2818,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 04E0 5000      02536         MOVF    r0x05, W
 04E2 0000      02537         BANKSEL (_DHCPClient + 3)
 04E4 6F00      02538         MOVWF   (_DHCPClient + 3), B
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 48
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 48
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2878,7 +2878,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0546 26E1      02590         ADDWF   FSR1L, F
 0548 5000      02591         MOVF    r0x01, W
 054A 0000      02592         BANKSEL _DHCPClient
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 49
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 49
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2938,7 +2938,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 05B0 6F00      02644         MOVWF   (_DHCPClient + 3), B
 05B2 5000      02645         MOVF    r0x02, W
 05B4 0000      02646         BANKSEL (_DHCPClient + 4)
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 50
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 50
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2998,7 +2998,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 061E E100      02698         BNZ     _00283_DS_
 0620 0E01      02699         MOVLW   0x01
 0622 5C00      02700         SUBWF   r0x03, W
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 51
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 51
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3058,7 +3058,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 067A 0000      02752         BANKSEL _DHCPClient
                02753 ;       .line   687; TCPIP_Stack/DHCP.c DHCPClient.hDHCPSocket = INVALID_UDP_SOCKET;
 067C 6900      02754         SETF    _DHCPClient, B
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 52
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 52
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3118,7 +3118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000 02806 _DHCPIsServerDetected:
                02807 ;       .line   457; TCPIP_Stack/DHCP.c BOOL DHCPIsServerDetected(BYTE vInterface)
 0000 CFD9 FFE5 02808         MOVFF   FSR2L, POSTDEC1
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 53
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 53
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3178,7 +3178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02860 
                02861 ; ; Starting pCode block
                02862 S_DHCP__DHCPIsEnabled   code
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 54
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 54
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3238,7 +3238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000C C000 FFE5 02914         MOVFF   r0x01, POSTDEC1
 0010 C000 FFE5 02915         MOVFF   r0x02, POSTDEC1
                02916 ;       .line   293; TCPIP_Stack/DHCP.c if(DHCPClient.hDHCPSocket != INVALID_UDP_SOCKET)
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 55
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 55
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3298,7 +3298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 002C E100      02968         BNZ     _00119_DS_
 002E 0E01      02969         MOVLW   0x01
 0030 5C00      02970         SUBWF   r0x01, W
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 56
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 56
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3358,7 +3358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                03022 ; code size:     4782 (0x12ae) bytes ( 3.65%)
                03023 ;                2391 (0x0957) words
                03024 ; udata size:      39 (0x0027) bytes ( 1.02%)
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 57
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 57
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3367,7 +3367,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                03025 ; access size:     11 (0x000b) bytes
                03026 
                03027 
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 58
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 58
 
 
 SYMBOL TABLE
@@ -3426,7 +3426,7 @@ _00261_DS_                        0000008A
 _00263_DS_                        00000102
 _00264_DS_                        00000150
 _00266_DS_                        00000206
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 59
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 59
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3486,7 +3486,7 @@ _00425_DS_                        00000058
 _00426_DS_                        0000011C
 _00428_DS_                        00000162
 _00430_DS_                        000001CE
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 60
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 60
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3546,7 +3546,7 @@ _BAUDCON2bits                     00000000
 _BAUDCONbits                      00000000
 _BAUDCTL                          00000000
 _BAUDCTL1                         00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 61
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 61
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3606,7 +3606,7 @@ _DDRJ                             00000000
 _DDRJbits                         00000000
 _DHCPClient                       00000000
 _DHCPClientInitializedOnce        00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 62
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 62
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3666,7 +3666,7 @@ _EECON1                           00000000
 _EECON1bits                       00000000
 _EECON2                           00000000
 _EFLOCON                          00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 63
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 63
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3726,7 +3726,7 @@ _ETXND                            00000000
 _ETXNDH                           00000000
 _ETXNDL                           00000000
 _ETXST                            00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 64
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 64
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3786,7 +3786,7 @@ _MAADR2                           00000000
 _MAADR3                           00000000
 _MAADR4                           00000000
 _MAADR5                           00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 65
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 65
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3846,7 +3846,7 @@ _PIR1                             00000000
 _PIR1bits                         00000000
 _PIR2                             00000000
 _PIR2bits                         00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 66
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 66
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3906,7 +3906,7 @@ _SPBRG                            00000000
 _SPBRG1                           00000000
 _SPBRG2                           00000000
 _SPBRGH                           00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 67
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 67
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3966,7 +3966,7 @@ _TMR3H                            00000000
 _TMR3L                            00000000
 _TMR4                             00000000
 _TOS                              00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 68
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 68
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -4026,7 +4026,7 @@ __DHCPReceive_tempServerID_1_1    00000000
 __DHCPReceive_type_1_1            00000000
 __DHCPReceive_v_1_1               00000000
 __DHCPSend                        00000000
-gpasm-0.13.7 beta               Objects/DHCP.asm12-11-2017  22:42:08         PAGE 69
+gpasm-0.13.7 beta               Objects/DHCP.asm12-12-2017  01:06:03         PAGE 69
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT

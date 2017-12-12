@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  1
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Mon Dec 11 22:42:08 2017
+               00004 ; This file was generated Tue Dec 12 01:06:03 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _ECCP3DELbits
                00053         extern _ECCP3ASbits
                00054         extern _RCSTA2bits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  2
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR1bits
                00107         extern _PIE2bits
                00108         extern _PIR2bits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  3
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR4
                00161         extern _MAADR1
                00162         extern _MAADR2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  4
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMO
                00215         extern _EPMOL
                00216         extern _EPMOH
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  5
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _RCSTA2
                00269         extern _TXSTA2
                00270         extern _TXREG2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  6
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _TRISD
                00323         extern _DDRE
                00324         extern _TRISE
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  7
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _CCPR1L
                00377         extern _CCPR1H
                00378         extern _ADCON2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  8
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INDF0
                00431         extern _INTCON3
                00432         extern _INTCON2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE  9
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484 
                00485         idata
                00486 _main_t_1_1     db      0x00, 0x00, 0x00, 0x00
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 10
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0008 00538 ivec_0x1_HighISR:
 0008 EF00 F000 00539         GOTO    _HighISR
                00540 
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 11
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -658,7 +658,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0060 0E00      00592         MOVLW   0x00
 0062 6EE5      00593         MOVWF   POSTDEC1
 0064 EC00 F000 00594         CALL    _DisplayString
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 12
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -718,7 +718,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D2 0B01      00646         ANDLW   0x01
 00D4 6EF4      00647         MOVWF   PRODH
 00D6 5000      00648         MOVF    _LATJbits, W
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 13
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -778,7 +778,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0146 0E04      00700         MOVLW   0x04
 0148 26E1      00701         ADDWF   FSR1L, F
 014A D000      00702         BRA     _00129_DS_
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 14
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -838,7 +838,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0054 0E3C      00754         MOVLW   0x3c
 0056 0000      00755         BANKSEL (_AppConfig + 3)
 0058 6F00      00756         MOVWF   (_AppConfig + 3), B
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 15
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -898,7 +898,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C8 0000      00808         BANKSEL (_AppConfig + 10)
 00CA 6F00      00809         MOVWF   (_AppConfig + 10), B
 00CC 0E01      00810         MOVLW   0x01
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 16
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -958,7 +958,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00862 ;       .line   313; MainDemo.c LED_PUT(0x00);  //turn off LED0 - LED2
 0016 0EF8      00863         MOVLW   0xf8
 0018 1600      00864         ANDWF   _LATJ, F
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 17
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1018,7 +1018,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004E CFDB F000 00916         MOVFF   PLUSW2, r0x02
 0052 0E05      00917         MOVLW   0x05
 0054 CFDB F000 00918         MOVFF   PLUSW2, r0x03
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 18
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1078,7 +1078,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00B4 6EE5      00970         MOVWF   POSTDEC1
 00B6 EC00 F000 00971         CALL    _uitoa
 00BA 0E05      00972         MOVLW   0x05
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 19
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1138,7 +1138,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0128 CFEF F000 01024         MOVFF   INDF0, r0x0c
 012C C000 FFE9 01025         MOVFF   r0x0a, FSR0L
 0130 C000 FFEA 01026         MOVFF   r0x0b, FSR0H
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 20
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1198,7 +1198,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01078 ;       .line   274; MainDemo.c LCDUpdate();
 0194 EC00 F000 01079         CALL    _LCDUpdate
 0198 CFE4 F000 01080         MOVFF   PREINC1, r0x0d
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 21
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1258,7 +1258,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01132 ;       .line   229; MainDemo.c BYTE max= 32-pos;
 005C 5000      01133         MOVF    r0x00, W
 005E 0820      01134         SUBLW   0x20
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 22
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1318,7 +1318,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01186 ; ; Starting pCode block
                01187 S_MainDemo__DisplayWORD code
 0000 01188 _DisplayWORD:
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 23
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0078 6E00      01240         MOVWF   r0x02
 007A CFF3 F000 01241         MOVFF   PRODL, r0x03
 007E 0E03      01242         MOVLW   0x03
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 24
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1438,7 +1438,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00EA 2600      01294         ADDWF   r0x00, F
 00EC 0E00      01295         MOVLW   HIGH(_LCDText)
 00EE 2200      01296         ADDWFC  r0x01, F
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 25
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1498,7 +1498,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 000C CFF3 FFE5 01348         MOVFF   PRODL, POSTDEC1
 0010 CFF4 FFE5 01349         MOVFF   PRODH, POSTDEC1
 0014 CFE9 FFE5 01350         MOVFF   FSR0L, POSTDEC1
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 26
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1536,7 +1536,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01379 ; access size:     14 (0x000e) bytes
                01380 
                01381 
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 27
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 27
 
 
 SYMBOL TABLE
@@ -1595,7 +1595,7 @@ _AppConfig                        00000000
 _BAUDCON                          00000000
 _BAUDCON1                         00000000
 _BAUDCON1bits                     00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 28
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1655,7 +1655,7 @@ _DDRFbits                         00000000
 _DDRG                             00000000
 _DDRGbits                         00000000
 _DDRH                             00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 29
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1715,7 +1715,7 @@ _EECON1                           00000000
 _EECON1bits                       00000000
 _EECON2                           00000000
 _EFLOCON                          00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 30
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1775,7 +1775,7 @@ _ETXND                            00000000
 _ETXNDH                           00000000
 _ETXNDL                           00000000
 _ETXST                            00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 31
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1835,7 +1835,7 @@ _LATJbits                         00000000
 _LCDInit                          00000000
 _LCDTask                          00000000
 _LCDTaskInit                      00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 32
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1895,7 +1895,7 @@ _PCLATU                           00000000
 _PIE1                             00000000
 _PIE1bits                         00000000
 _PIE2                             00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 33
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1955,7 +1955,7 @@ _RCREG2                           00000000
 _RCSTA                            00000000
 _RCSTA1                           00000000
 _RCSTA1bits                       00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 34
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2015,7 +2015,7 @@ _TBLPTR                           00000000
 _TBLPTRH                          00000000
 _TBLPTRL                          00000000
 _TBLPTRU                          00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 35
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2075,7 +2075,7 @@ __str_0                           0000005A
 _activeUDPSocket                  00000000
 _main                             00000000
 _main_dwLastIP_1_1                00000004
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-11-2017  22:42:08         PAGE 36
+gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  01:06:03         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
