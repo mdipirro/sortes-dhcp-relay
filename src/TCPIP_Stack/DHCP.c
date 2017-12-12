@@ -86,7 +86,7 @@
 #include "../Include/HardwareProfile.h"
 
 #include "../Include/TCPIPConfig.h"
-#include "../Include/MainDemo.h"
+#include "../Include/DHCPRelay.h"
 
 
 #if defined(STACK_USE_DHCP_CLIENT)

@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  1
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Tue Dec 12 12:40:43 2017
+               00004 ; This file was generated Tue Dec 12 15:19:39 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _ECCP3DELbits
                00053         extern _ECCP3ASbits
                00054         extern _RCSTA2bits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  2
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _IPR1bits
                00107         extern _PIE2bits
                00108         extern _PIR2bits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  3
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _MAADR4
                00161         extern _MAADR1
                00162         extern _MAADR2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  4
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EPMO
                00215         extern _EPMOL
                00216         extern _EPMOH
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  5
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _RCSTA2
                00269         extern _TXSTA2
                00270         extern _TXREG2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  6
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _TRISD
                00323         extern _DDRE
                00324         extern _TRISE
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  7
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _CCPR1L
                00377         extern _CCPR1H
                00378         extern _ADCON2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  8
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _INDF0
                00431         extern _INTCON3
                00432         extern _INTCON2
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE  9
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00484         idata
                00485 _main_t_1_1     db      0x00, 0x00, 0x00, 0x00
                00486 _main_dwLastIP_1_1      db      0x00, 0x00, 0x00, 0x00
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 10
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -563,19 +563,19 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00503 r0x0c   res     1
                00504 r0x0d   res     1
                00505 
-               00506 udata_MainDemo_0        udata
+               00506 udata_DHCPRelay_0       udata
                00507 _AN0String      res     8
                00508 
-               00509 udata_MainDemo_1        udata
+               00509 udata_DHCPRelay_1       udata
                00510 _message        res     3
                00511 
-               00512 udata_MainDemo_2        udata
+               00512 udata_DHCPRelay_2       udata
                00513 _AppConfig      res     51
                00514 
-               00515 udata_MainDemo_3        udata
+               00515 udata_DHCPRelay_3       udata
                00516 _DisplayWORD_WDigit_1_1 res     6
                00517 
-               00518 udata_MainDemo_4        udata
+               00518 udata_DHCPRelay_4       udata
                00519 _DisplayIPValue_IPDigit_1_1     res     4
                00520 
                00521 ;--------------------------------------------------------
@@ -587,39 +587,39 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00527 ;--------------------------------------------------------
                00528 ; ; Starting pCode block for absolute section
                00529 ; ;-----------------------------------------
-               00530 S_MainDemo_ivec_0x2_LowISR      code    0X000018
+               00530 S_DHCPRelay_ivec_0x2_LowISR     code    0X000018
 0018 00531 ivec_0x2_LowISR:
 0018 EF00 F000 00532         GOTO    _LowISR
                00533 
                00534 ; ; Starting pCode block for absolute section
                00535 ; ;-----------------------------------------
-               00536 S_MainDemo_ivec_0x1_HighISR     code    0X000008
+               00536 S_DHCPRelay_ivec_0x1_HighISR    code    0X000008
 0008 00537 ivec_0x1_HighISR:
 0008 EF00 F000 00538         GOTO    _HighISR
                00539 
                00540 ; I code from now on!
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 11
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
                00541 ; ; Starting pCode block
-               00542 S_MainDemo__main        code
+               00542 S_DHCPRelay__main       code
 0000 00543 _main:
-               00544 ;       .line   112; MainDemo.c InitializeBoard();
+               00544 ;       .line   112; DHCPRelay.c        InitializeBoard();
 0000 EC00 F000 00545         CALL    _InitializeBoard
-               00546 ;       .line   115; MainDemo.c TickInit();
+               00546 ;       .line   115; DHCPRelay.c        TickInit();
 0004 EC00 F000 00547         CALL    _TickInit
-               00548 ;       .line   118; MainDemo.c InitAppConfig();
+               00548 ;       .line   118; DHCPRelay.c        InitAppConfig();
 0008 EC00 F000 00549         CALL    _InitAppConfig
-               00550 ;       .line   122; MainDemo.c StackInit();
+               00550 ;       .line   122; DHCPRelay.c        StackInit();
 000C EC00 F000 00551         CALL    _StackInit
-               00552 ;       .line   129; MainDemo.c LCDTaskInit();
+               00552 ;       .line   129; DHCPRelay.c        LCDTaskInit();
 0010 EC00 F000 00553         CALL    _LCDTaskInit
-               00554 ;       .line   133; MainDemo.c LCDInit();
+               00554 ;       .line   133; DHCPRelay.c        LCDInit();
 0014 EC00 F000 00555         CALL    _LCDInit
-               00556 ;       .line   134; MainDemo.c DelayMs(100);
+               00556 ;       .line   134; DHCPRelay.c        DelayMs(100);
 0018 0E10      00557         MOVLW   0x10
 001A 6E00      00558         MOVWF   r0x00
 001C 0E98      00559         MOVLW   0x98
@@ -645,7 +645,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004A 1000      00579         IORWF   r0x06, W
 004C 1000      00580         IORWF   r0x07, W
 004E E100      00581         BNZ     _00115_DS_
-               00582 ;       .line   135; MainDemo.c DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
+               00582 ;       .line   135; DHCPRelay.c        DisplayString (0,"Olimex"); //first arg is start position on 32 pos LCD
 0050 0E00      00583         MOVLW   UPPER(__str_0)
 0052 6EE5      00584         MOVWF   POSTDEC1
 0054 0E00      00585         MOVLW   HIGH(__str_0)
@@ -658,20 +658,20 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0064 0E04      00592         MOVLW   0x04
 0066 26E1      00593         ADDWF   FSR1L, F
 0068 00594 _00129_DS_:
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 12
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00595 ;       .line   155; MainDemo.c nt =  TickGetDiv256();
+               00595 ;       .line   155; DHCPRelay.c        nt =  TickGetDiv256();
 0068 EC00 F000 00596         CALL    _TickGetDiv256
 006C 6E00      00597         MOVWF   r0x00
 006E CFF3 F000 00598         MOVFF   PRODL, r0x01
 0072 CFF4 F000 00599         MOVFF   PRODH, r0x02
 0076 CFE9 F000 00600         MOVFF   FSR0L, r0x03
 007A 0000      00601         BANKSEL _main_t_1_1
-               00602 ;       .line   156; MainDemo.c if((nt - t) >= (DWORD)(TICK_SECOND/1024ul))
+               00602 ;       .line   156; DHCPRelay.c        if((nt - t) >= (DWORD)(TICK_SECOND/1024ul))
 007C 5100      00603         MOVF    _main_t_1_1, W, B
 007E 5C00      00604         SUBWF   r0x00, W
 0080 6E00      00605         MOVWF   r0x04
@@ -700,12 +700,12 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00AE 5C00      00628         SUBWF   r0x04, W
 00B0 00629 _00139_DS_:
 00B0 E300      00630         BNC     _00125_DS_
-               00631 ;       .line   158; MainDemo.c t = nt;
+               00631 ;       .line   158; DHCPRelay.c        t = nt;
 00B2 C000 F000 00632         MOVFF   r0x00, _main_t_1_1
 00B6 C000 F000 00633         MOVFF   r0x01, (_main_t_1_1 + 1)
 00BA C000 F000 00634         MOVFF   r0x02, (_main_t_1_1 + 2)
 00BE C000 F000 00635         MOVFF   r0x03, (_main_t_1_1 + 3)
-               00636 ;       .line   159; MainDemo.c LED0_IO ^= 1;
+               00636 ;       .line   159; DHCPRelay.c        LED0_IO ^= 1;
 00C2 6A00      00637         CLRF    r0x00
 00C4 B000      00638         BTFSC   _LATJbits, 0
 00C6 2A00      00639         INCF    r0x00, F
@@ -718,7 +718,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4 0BFE      00646         ANDLW   0xfe
 00D6 10F4      00647         IORWF   PRODH, W
 00D8 6E00      00648         MOVWF   _LATJbits
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 13
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -726,11 +726,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 00DA 0004      00649         clrwdt 
 00DC 00650 _00125_DS_:
-               00651 ;       .line   166; MainDemo.c StackTask();
+               00651 ;       .line   166; DHCPRelay.c        StackTask();
 00DC EC00 F000 00652         CALL    _StackTask
-               00653 ;       .line   173; MainDemo.c LCDTask();
+               00653 ;       .line   173; DHCPRelay.c        LCDTask();
 00E0 EC00 F000 00654         CALL    _LCDTask
-               00655 ;       .line   181; MainDemo.c if(dwLastIP != AppConfig.MyIPAddr.Val)
+               00655 ;       .line   181; DHCPRelay.c        if(dwLastIP != AppConfig.MyIPAddr.Val)
 00E4 C000 F000 00656         MOVFF   _AppConfig, r0x00
 00E8 C000 F000 00657         MOVFF   (_AppConfig + 1), r0x01
 00EC C000 F000 00658         MOVFF   (_AppConfig + 2), r0x02
@@ -753,13 +753,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0112 E100      00675         BNZ     _00142_DS_
 0114 D000      00676         BRA     _00129_DS_
 0116 00677 _00142_DS_:
-               00678 ;       .line   183; MainDemo.c dwLastIP = AppConfig.MyIPAddr.Val;
+               00678 ;       .line   183; DHCPRelay.c        dwLastIP = AppConfig.MyIPAddr.Val;
 0116 C000 F000 00679         MOVFF   r0x00, _main_dwLastIP_1_1
 011A C000 F000 00680         MOVFF   r0x01, (_main_dwLastIP_1_1 + 1)
 011E C000 F000 00681         MOVFF   r0x02, (_main_dwLastIP_1_1 + 2)
 0122 C000 F000 00682         MOVFF   r0x03, (_main_dwLastIP_1_1 + 3)
 0126 0000      00683         BANKSEL (_main_dwLastIP_1_1 + 3)
-               00684 ;       .line   185; MainDemo.c DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
+               00684 ;       .line   185; DHCPRelay.c        DisplayIPValue(dwLastIP); // must be a WORD: sdcc does not
 0128 5100      00685         MOVF    (_main_dwLastIP_1_1 + 3), W, B
 012A 6EE5      00686         MOVWF   POSTDEC1
 012C 0000      00687         BANKSEL (_main_dwLastIP_1_1 + 2)
@@ -778,15 +778,15 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0148 0012      00700         RETURN  
                00701 
                00702 ; ; Starting pCode block
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 14
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00703 S_MainDemo__InitAppConfig       code
+               00703 S_DHCPRelay__InitAppConfig      code
 0000 00704 _InitAppConfig:
-               00705 ;       .line   353; MainDemo.c static void InitAppConfig(void)
+               00705 ;       .line   353; DHCPRelay.c        static void InitAppConfig(void)
 0000 CFD9 FFE5 00706         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00707         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00708         MOVFF   r0x00, POSTDEC1
@@ -794,35 +794,35 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0010 C000 FFE5 00710         MOVFF   r0x02, POSTDEC1
 0014 C000 FFE5 00711         MOVFF   r0x03, POSTDEC1
 0018 0000      00712         BANKSEL (_AppConfig + 44)
-               00713 ;       .line   355; MainDemo.c AppConfig.Flags.bIsDHCPEnabled = TRUE;
+               00713 ;       .line   355; DHCPRelay.c        AppConfig.Flags.bIsDHCPEnabled = TRUE;
 001A 8D00      00714         BSF     (_AppConfig + 44), 6, B
 001C 0000      00715         BANKSEL (_AppConfig + 44)
-               00716 ;       .line   356; MainDemo.c AppConfig.Flags.bInConfigMode = TRUE;
+               00716 ;       .line   356; DHCPRelay.c        AppConfig.Flags.bInConfigMode = TRUE;
 001E 8F00      00717         BSF     (_AppConfig + 44), 7, B
 0020 0000      00718         BANKSEL (_AppConfig + 45)
-               00719 ;       .line   360; MainDemo.c AppConfig.MyMACAddr.v[0] = 0;
+               00719 ;       .line   360; DHCPRelay.c        AppConfig.MyMACAddr.v[0] = 0;
 0022 6B00      00720         CLRF    (_AppConfig + 45), B
-               00721 ;       .line   361; MainDemo.c AppConfig.MyMACAddr.v[1] = 0x04;
+               00721 ;       .line   361; DHCPRelay.c        AppConfig.MyMACAddr.v[1] = 0x04;
 0024 0E04      00722         MOVLW   0x04
 0026 0000      00723         BANKSEL (_AppConfig + 46)
 0028 6F00      00724         MOVWF   (_AppConfig + 46), B
-               00725 ;       .line   362; MainDemo.c AppConfig.MyMACAddr.v[2] = 0xA3;
+               00725 ;       .line   362; DHCPRelay.c        AppConfig.MyMACAddr.v[2] = 0xA3;
 002A 0EA3      00726         MOVLW   0xa3
 002C 0000      00727         BANKSEL (_AppConfig + 47)
 002E 6F00      00728         MOVWF   (_AppConfig + 47), B
-               00729 ;       .line   363; MainDemo.c AppConfig.MyMACAddr.v[3] = 0x01;
+               00729 ;       .line   363; DHCPRelay.c        AppConfig.MyMACAddr.v[3] = 0x01;
 0030 0E01      00730         MOVLW   0x01
 0032 0000      00731         BANKSEL (_AppConfig + 48)
 0034 6F00      00732         MOVWF   (_AppConfig + 48), B
-               00733 ;       .line   364; MainDemo.c AppConfig.MyMACAddr.v[4] = 0x02;
+               00733 ;       .line   364; DHCPRelay.c        AppConfig.MyMACAddr.v[4] = 0x02;
 0036 0E02      00734         MOVLW   0x02
 0038 0000      00735         BANKSEL (_AppConfig + 49)
 003A 6F00      00736         MOVWF   (_AppConfig + 49), B
-               00737 ;       .line   365; MainDemo.c AppConfig.MyMACAddr.v[5] = 0x03;
+               00737 ;       .line   365; DHCPRelay.c        AppConfig.MyMACAddr.v[5] = 0x03;
 003C 0E03      00738         MOVLW   0x03
 003E 0000      00739         BANKSEL (_AppConfig + 50)
 0040 6F00      00740         MOVWF   (_AppConfig + 50), B
-               00741 ;       .line   368; MainDemo.c AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
+               00741 ;       .line   368; DHCPRelay.c        AppConfig.MyIPAddr.Val = MY_DEFAULT_IP_ADDR_BYTE1 | 
 0042 0EC0      00742         MOVLW   0xc0
 0044 0000      00743         BANKSEL _AppConfig
 0046 6F00      00744         MOVWF   _AppConfig, B
@@ -835,10 +835,10 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0054 0E3C      00751         MOVLW   0x3c
 0056 0000      00752         BANKSEL (_AppConfig + 3)
 0058 6F00      00753         MOVWF   (_AppConfig + 3), B
-               00754 ;       .line   371; MainDemo.c AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
+               00754 ;       .line   371; DHCPRelay.c        AppConfig.DefaultIPAddr.Val = AppConfig.MyIPAddr.Val;
 005A C000 F000 00755         MOVFF   _AppConfig, r0x00
 005E C000 F000 00756         MOVFF   (_AppConfig + 1), r0x01
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 15
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -859,7 +859,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 007E 0000      00769         BANKSEL (_AppConfig + 23)
 0080 6F00      00770         MOVWF   (_AppConfig + 23), B
 0082 0000      00771         BANKSEL (_AppConfig + 4)
-               00772 ;       .line   372; MainDemo.c AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
+               00772 ;       .line   372; DHCPRelay.c        AppConfig.MyMask.Val = MY_DEFAULT_MASK_BYTE1 | 
 0084 6900      00773         SETF    (_AppConfig + 4), B
 0086 0000      00774         BANKSEL (_AppConfig + 5)
 0088 6900      00775         SETF    (_AppConfig + 5), B
@@ -867,7 +867,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 008C 6900      00777         SETF    (_AppConfig + 6), B
 008E 0000      00778         BANKSEL (_AppConfig + 7)
 0090 6B00      00779         CLRF    (_AppConfig + 7), B
-               00780 ;       .line   375; MainDemo.c AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
+               00780 ;       .line   375; DHCPRelay.c        AppConfig.DefaultMask.Val = AppConfig.MyMask.Val;
 0092 C000 F000 00781         MOVFF   (_AppConfig + 4), r0x00
 0096 C000 F000 00782         MOVFF   (_AppConfig + 5), r0x01
 009A C000 F000 00783         MOVFF   (_AppConfig + 6), r0x02
@@ -884,7 +884,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00B4 5000      00794         MOVF    r0x03, W
 00B6 0000      00795         BANKSEL (_AppConfig + 27)
 00B8 6F00      00796         MOVWF   (_AppConfig + 27), B
-               00797 ;       .line   376; MainDemo.c AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
+               00797 ;       .line   376; DHCPRelay.c        AppConfig.MyGateway.Val = MY_DEFAULT_GATE_BYTE1 | 
 00BA 0EC0      00798         MOVLW   0xc0
 00BC 0000      00799         BANKSEL (_AppConfig + 8)
 00BE 6F00      00800         MOVWF   (_AppConfig + 8), B
@@ -897,8 +897,8 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00CC 0E01      00807         MOVLW   0x01
 00CE 0000      00808         BANKSEL (_AppConfig + 11)
 00D0 6F00      00809         MOVWF   (_AppConfig + 11), B
-               00810 ;       .line   379; MainDemo.c AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 16
+               00810 ;       .line   379; DHCPRelay.c        AppConfig.PrimaryDNSServer.Val = MY_DEFAULT_PRIMARY_DNS_BYTE1 | 
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -917,7 +917,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00E6 0000      00821         BANKSEL (_AppConfig + 15)
 00E8 6F00      00822         MOVWF   (_AppConfig + 15), B
 00EA 0000      00823         BANKSEL (_AppConfig + 16)
-               00824 ;       .line   383; MainDemo.c AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
+               00824 ;       .line   383; DHCPRelay.c        AppConfig.SecondaryDNSServer.Val = MY_DEFAULT_SECONDARY_DNS_BYTE1 | 
 00EC 6B00      00825         CLRF    (_AppConfig + 16), B
 00EE 0000      00826         BANKSEL (_AppConfig + 17)
 00F0 6B00      00827         CLRF    (_AppConfig + 17), B
@@ -933,64 +933,64 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 010E 0012      00837         RETURN  
                00838 
                00839 ; ; Starting pCode block
-               00840 S_MainDemo__InitializeBoard     code
+               00840 S_DHCPRelay__InitializeBoard    code
 0000 00841 _InitializeBoard:
-               00842 ;       .line   299; MainDemo.c static void InitializeBoard(void)
+               00842 ;       .line   299; DHCPRelay.c        static void InitializeBoard(void)
 0000 CFD9 FFE5 00843         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00844         MOVFF   FSR1L, FSR2L
-               00845 ;       .line   302; MainDemo.c LED0_TRIS = 0;  //LED0
+               00845 ;       .line   302; DHCPRelay.c        LED0_TRIS = 0;  //LED0
 0008 9000      00846         BCF     _TRISJbits, 0
-               00847 ;       .line   303; MainDemo.c LED1_TRIS = 0;  //LED1
+               00847 ;       .line   303; DHCPRelay.c        LED1_TRIS = 0;  //LED1
 000A 9200      00848         BCF     _TRISJbits, 1
-               00849 ;       .line   304; MainDemo.c LED2_TRIS = 0;  //LED2
+               00849 ;       .line   304; DHCPRelay.c        LED2_TRIS = 0;  //LED2
 000C 9400      00850         BCF     _TRISJbits, 2
-               00851 ;       .line   305; MainDemo.c LED3_TRIS = 0;  //LED_LCD1
+               00851 ;       .line   305; DHCPRelay.c        LED3_TRIS = 0;  //LED_LCD1
 000E 9A00      00852         BCF     _TRISGbits, 5
-               00853 ;       .line   306; MainDemo.c LED4_TRIS = 0;  //LED_LCD2
+               00853 ;       .line   306; DHCPRelay.c        LED4_TRIS = 0;  //LED_LCD2
 0010 9A00      00854         BCF     _TRISGbits, 5
-               00855 ;       .line   307; MainDemo.c LED5_TRIS = 0;  //LED5=RELAY1
+               00855 ;       .line   307; DHCPRelay.c        LED5_TRIS = 0;  //LED5=RELAY1
 0012 9E00      00856         BCF     _TRISGbits, 7
-               00857 ;       .line   308; MainDemo.c LED6_TRIS = 0;  //LED7=RELAY2
+               00857 ;       .line   308; DHCPRelay.c        LED6_TRIS = 0;  //LED7=RELAY2
 0014 9C00      00858         BCF     _TRISGbits, 6
-               00859 ;       .line   313; MainDemo.c LED_PUT(0x00);  //turn off LED0 - LED2
+               00859 ;       .line   313; DHCPRelay.c        LED_PUT(0x00);  //turn off LED0 - LED2
 0016 0EF8      00860         MOVLW   0xf8
 0018 1600      00861         ANDWF   _LATJ, F
-               00862 ;       .line   314; MainDemo.c RELAY_PUT(0x00); //turn relays off to save power
+               00862 ;       .line   314; DHCPRelay.c        RELAY_PUT(0x00); //turn relays off to save power
 001A 0E3F      00863         MOVLW   0x3f
 001C 1600      00864         ANDWF   _LATG, F
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 17
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00865 ;       .line   318; MainDemo.c OSCTUNE = 0x00;
+               00865 ;       .line   318; DHCPRelay.c        OSCTUNE = 0x00;
 001E 6A00      00866         CLRF    _OSCTUNE
-               00867 ;       .line   325; MainDemo.c if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
+               00867 ;       .line   325; DHCPRelay.c        if(OSCCONbits.IDLEN) //IDLEN = 0x80; 0x02 selects the primary clock
 0020 AE00      00868         BTFSS   _OSCCONbits, 7
 0022 D000      00869         BRA     _00212_DS_
-               00870 ;       .line   326; MainDemo.c OSCCON = 0x82;
+               00870 ;       .line   326; DHCPRelay.c        OSCCON = 0x82;
 0024 0E82      00871         MOVLW   0x82
 0026 6E00      00872         MOVWF   _OSCCON
 0028 D000      00873         BRA     _00213_DS_
 002A 00874 _00212_DS_:
-               00875 ;       .line   328; MainDemo.c OSCCON = 0x02;
+               00875 ;       .line   328; DHCPRelay.c        OSCCON = 0x02;
 002A 0E02      00876         MOVLW   0x02
 002C 6E00      00877         MOVWF   _OSCCON
 002E 00878 _00213_DS_:
-               00879 ;       .line   331; MainDemo.c RCONbits.IPEN = 1;              // Enable interrupt priorities
+               00879 ;       .line   331; DHCPRelay.c        RCONbits.IPEN = 1;              // Enable interrupt priorities
 002E 8E00      00880         BSF     _RCONbits, 7
-               00881 ;       .line   332; MainDemo.c INTCONbits.GIEH = 1;
+               00881 ;       .line   332; DHCPRelay.c        INTCONbits.GIEH = 1;
 0030 8E00      00882         BSF     _INTCONbits, 7
-               00883 ;       .line   333; MainDemo.c INTCONbits.GIEL = 1;
+               00883 ;       .line   333; DHCPRelay.c        INTCONbits.GIEL = 1;
 0032 8C00      00884         BSF     _INTCONbits, 6
 0034 CFE4 FFD9 00885         MOVFF   PREINC1, FSR2L
 0038 0012      00886         RETURN  
                00887 
                00888 ; ; Starting pCode block
-               00889 S_MainDemo__DisplayIPValue      code
+               00889 S_DHCPRelay__DisplayIPValue     code
 0000 00890 _DisplayIPValue:
-               00891 ;       .line   241; MainDemo.c void DisplayIPValue(DWORD IPdw) // 32 bits
+               00891 ;       .line   241; DHCPRelay.c        void DisplayIPValue(DWORD IPdw) // 32 bits
 0000 CFD9 FFE5 00892         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 00893         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 00894         MOVFF   r0x00, POSTDEC1
@@ -1015,16 +1015,16 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004E CFDB F000 00913         MOVFF   PLUSW2, r0x02
 0052 0E05      00914         MOVLW   0x05
 0054 CFDB F000 00915         MOVFF   PLUSW2, r0x03
-               00916 ;       .line   249; MainDemo.c BYTE LCDPos=16;  //write on second line of LCD
+               00916 ;       .line   249; DHCPRelay.c        BYTE LCDPos=16;  //write on second line of LCD
 0058 0E10      00917         MOVLW   0x10
 005A 6E00      00918         MOVWF   r0x04
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 18
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00919 ;       .line   254; MainDemo.c for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+               00919 ;       .line   254; DHCPRelay.c        for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 005C 6A00      00920         CLRF    r0x05
 005E 6A00      00921         CLRF    r0x06
 0060 6A00      00922         CLRF    r0x07
@@ -1033,7 +1033,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0064 5C00      00925         SUBWF   r0x05, W
 0066 B0D8      00926         BTFSC   STATUS, 0
 0068 D000      00927         BRA     _00180_DS_
-               00928 ;       .line   257; MainDemo.c IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
+               00928 ;       .line   257; DHCPRelay.c        IP_field =(WORD)(IPdw>>(i*8))&0xff;      //ML
 006A C000 F000 00929         MOVFF   r0x00, r0x08
 006E C000 F000 00930         MOVFF   r0x01, r0x09
 0072 C000 F000 00931         MOVFF   r0x02, r0x0a
@@ -1062,7 +1062,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 009E E300      00954         BNC     _00200_DS_
 00A0 00955 _00198_DS_:
 00A0 6A00      00956         CLRF    r0x09
-               00957 ;       .line   258; MainDemo.c uitoa(IP_field, IPDigit, radix);      //ML
+               00957 ;       .line   258; DHCPRelay.c        uitoa(IP_field, IPDigit, radix);      //ML
 00A2 0E0A      00958         MOVLW   0x0a
 00A4 6EE5      00959         MOVWF   POSTDEC1
 00A6 0E00      00960         MOVLW   HIGH(_DisplayIPValue_IPDigit_1_1)
@@ -1076,9 +1076,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00B6 EC00 F000 00968         CALL    _uitoa
 00BA 0E05      00969         MOVLW   0x05
 00BC 26E1      00970         ADDWF   FSR1L, F
-               00971 ;       .line   263; MainDemo.c for(j = 0; j < strlen((char*)IPDigit); j++)
+               00971 ;       .line   263; DHCPRelay.c        for(j = 0; j < strlen((char*)IPDigit); j++)
 00BE C000 F000 00972         MOVFF   r0x04, r0x08
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 19
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1116,7 +1116,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0100 5C00      01002         SUBWF   r0x0c, W
 0102 01003 _00203_DS_:
 0102 E200      01004         BC      _00195_DS_
-               01005 ;       .line   265; MainDemo.c LCDText[LCDPos++] = IPDigit[j];
+               01005 ;       .line   265; DHCPRelay.c        LCDText[LCDPos++] = IPDigit[j];
 0104 C000 F000 01006         MOVFF   r0x08, r0x0a
 0108 2A00      01007         INCF    r0x08, F
 010A 6A00      01008         CLRF    r0x0b
@@ -1136,9 +1136,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 012C C000 FFE9 01022         MOVFF   r0x0a, FSR0L
 0130 C000 FFEA 01023         MOVFF   r0x0b, FSR0H
 0134 C000 FFEF 01024         MOVFF   r0x0c, INDF0
-               01025 ;       .line   263; MainDemo.c for(j = 0; j < strlen((char*)IPDigit); j++)
+               01025 ;       .line   263; DHCPRelay.c        for(j = 0; j < strlen((char*)IPDigit); j++)
 0138 2A00      01026         INCF    r0x09, F
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 20
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1147,11 +1147,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 013A D000      01027         BRA     _00183_DS_
 013C 01028 _00195_DS_:
 013C C000 F000 01029         MOVFF   r0x08, r0x04
-               01030 ;       .line   267; MainDemo.c if(i == sizeof(IP_ADDR)-1)
+               01030 ;       .line   267; DHCPRelay.c        if(i == sizeof(IP_ADDR)-1)
 0140 5000      01031         MOVF    r0x05, W
 0142 0A03      01032         XORLW   0x03
 0144 E000      01033         BZ      _00180_DS_
-               01034 ;       .line   269; MainDemo.c LCDText[LCDPos++] = '.';
+               01034 ;       .line   269; DHCPRelay.c        LCDText[LCDPos++] = '.';
 0146 2800      01035         INCF    r0x08, W
 0148 6E00      01036         MOVWF   r0x04
 014A 6A00      01037         CLRF    r0x09
@@ -1163,7 +1163,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0158 C000 FFEA 01043         MOVFF   r0x09, FSR0H
 015C 0E2E      01044         MOVLW   0x2e
 015E 6EEF      01045         MOVWF   INDF0
-               01046 ;       .line   254; MainDemo.c for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
+               01046 ;       .line   254; DHCPRelay.c        for(i = 0; i < sizeof(IP_ADDR); i++) //sizeof(IP_ADDR) is 4
 0160 0E08      01047         MOVLW   0x08
 0162 2600      01048         ADDWF   r0x06, F
 0164 B0D8      01049         BTFSC   STATUS, 0
@@ -1171,7 +1171,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0168 2A00      01051         INCF    r0x05, F
 016A D000      01052         BRA     _00177_DS_
 016C 01053 _00180_DS_:
-               01054 ;       .line   272; MainDemo.c if(LCDPos < 32u)
+               01054 ;       .line   272; DHCPRelay.c        if(LCDPos < 32u)
 016C C000 F000 01055         MOVFF   r0x04, r0x00
 0170 6A00      01056         CLRF    r0x01
 0172 0E00      01057         MOVLW   0x00
@@ -1181,7 +1181,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 017A 5C00      01061         SUBWF   r0x00, W
 017C 01062 _00206_DS_:
 017C E200      01063         BC      _00182_DS_
-               01064 ;       .line   273; MainDemo.c LCDText[LCDPos] = 0;
+               01064 ;       .line   273; DHCPRelay.c        LCDText[LCDPos] = 0;
 017E 6A00      01065         CLRF    r0x00
 0180 0E00      01066         MOVLW   LOW(_LCDText)
 0182 2600      01067         ADDWF   r0x04, F
@@ -1192,13 +1192,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0190 0E00      01072         MOVLW   0x00
 0192 6EEF      01073         MOVWF   INDF0
 0194 01074 _00182_DS_:
-               01075 ;       .line   274; MainDemo.c LCDUpdate();
+               01075 ;       .line   274; DHCPRelay.c        LCDUpdate();
 0194 EC00 F000 01076         CALL    _LCDUpdate
 0198 CFE4 F000 01077         MOVFF   PREINC1, r0x0d
 019C CFE4 F000 01078         MOVFF   PREINC1, r0x0c
 01A0 CFE4 F000 01079         MOVFF   PREINC1, r0x0b
 01A4 CFE4 F000 01080         MOVFF   PREINC1, r0x0a
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 21
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1218,9 +1218,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01D4 0012      01092         RETURN  
                01093 
                01094 ; ; Starting pCode block
-               01095 S_MainDemo__DisplayString       code
+               01095 S_DHCPRelay__DisplayString      code
 0000 01096 _DisplayString:
-               01097 ;       .line   226; MainDemo.c void DisplayString(BYTE pos, char* text)
+               01097 ;       .line   226; DHCPRelay.c        void DisplayString(BYTE pos, char* text)
 0000 CFD9 FFE5 01098         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01099         MOVFF   FSR1L, FSR2L
 0008 C000 FFE5 01100         MOVFF   r0x00, POSTDEC1
@@ -1239,7 +1239,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0036 CFDB F000 01113         MOVFF   PLUSW2, r0x02
 003A 0E05      01114         MOVLW   0x05
 003C CFDB F000 01115         MOVFF   PLUSW2, r0x03
-               01116 ;       .line   228; MainDemo.c BYTE l= strlen(text)+1;
+               01116 ;       .line   228; DHCPRelay.c        BYTE l= strlen(text)+1;
 0040 5000      01117         MOVF    r0x03, W
 0042 6EE5      01118         MOVWF   POSTDEC1
 0044 5000      01119         MOVF    r0x02, W
@@ -1252,13 +1252,13 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0056 0E03      01126         MOVLW   0x03
 0058 26E1      01127         ADDWF   FSR1L, F
 005A 2A00      01128         INCF    r0x04, F
-               01129 ;       .line   229; MainDemo.c BYTE max= 32-pos;
+               01129 ;       .line   229; DHCPRelay.c        BYTE max= 32-pos;
 005C 5000      01130         MOVF    r0x00, W
 005E 0820      01131         SUBLW   0x20
 0060 6E00      01132         MOVWF   r0x05
-               01133 ;       .line   230; MainDemo.c strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
+               01133 ;       .line   230; DHCPRelay.c        strlcpy((char*)&LCDText[pos], text,(l<max)?l:max );
 0062 6A00      01134         CLRF    r0x06
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 22
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1299,7 +1299,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00A4 EC00 F000 01167         CALL    _strlcpy
 00A8 0E08      01168         MOVLW   0x08
 00AA 26E1      01169         ADDWF   FSR1L, F
-               01170 ;       .line   231; MainDemo.c LCDUpdate();
+               01170 ;       .line   231; DHCPRelay.c        LCDUpdate();
 00AC EC00 F000 01171         CALL    _LCDUpdate
 00B0 CFE4 F000 01172         MOVFF   PREINC1, r0x07
 00B4 CFE4 F000 01173         MOVFF   PREINC1, r0x06
@@ -1313,12 +1313,12 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D4 0012      01181         RETURN  
                01182 
                01183 ; ; Starting pCode block
-               01184 S_MainDemo__DisplayWORD code
+               01184 S_DHCPRelay__DisplayWORD        code
 0000 01185 _DisplayWORD:
-               01186 ;       .line   204; MainDemo.c void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
+               01186 ;       .line   204; DHCPRelay.c        void DisplayWORD(BYTE pos, WORD w) //WORD is a 16 bits unsigned
 0000 CFD9 FFE5 01187         MOVFF   FSR2L, POSTDEC1
 0004 CFE1 FFD9 01188         MOVFF   FSR1L, FSR2L
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 23
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1336,7 +1336,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0028 CFDB F000 01198         MOVFF   PLUSW2, r0x01
 002C 0E04      01199         MOVLW   0x04
 002E CFDB F000 01200         MOVFF   PLUSW2, r0x02
-               01201 ;       .line   212; MainDemo.c ultoa(w, WDigit, radix);      
+               01201 ;       .line   212; DHCPRelay.c        ultoa(w, WDigit, radix);      
 0032 6A00      01202         CLRF    r0x03
 0034 6A00      01203         CLRF    r0x04
 0036 0E0A      01204         MOVLW   0x0a
@@ -1356,7 +1356,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0052 EC00 F000 01218         CALL    _ultoa
 0056 0E07      01219         MOVLW   0x07
 0058 26E1      01220         ADDWF   FSR1L, F
-               01221 ;       .line   213; MainDemo.c for(j = 0; j < strlen((char*)WDigit); j++)
+               01221 ;       .line   213; DHCPRelay.c        for(j = 0; j < strlen((char*)WDigit); j++)
 005A 6A00      01222         CLRF    r0x01
 005C 01223 _00149_DS_:
 005C 0E00      01224         MOVLW   HIGH(_DisplayWORD_WDigit_1_1)
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0080 26E1      01240         ADDWF   FSR1L, F
 0082 C000 F000 01241         MOVFF   r0x01, r0x04
 0086 6A00      01242         CLRF    r0x05
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 24
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1395,7 +1395,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0098 5C00      01251         SUBWF   r0x04, W
 009A 01252 _00159_DS_:
 009A E200      01253         BC      _00152_DS_
-               01254 ;       .line   215; MainDemo.c LCDText[LCDPos++] = WDigit[j];
+               01254 ;       .line   215; DHCPRelay.c        LCDText[LCDPos++] = WDigit[j];
 009C C000 F000 01255         MOVFF   r0x00, r0x02
 00A0 2A00      01256         INCF    r0x00, F
 00A2 6A00      01257         CLRF    r0x03
@@ -1415,11 +1415,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C4 C000 FFE9 01271         MOVFF   r0x02, FSR0L
 00C8 C000 FFEA 01272         MOVFF   r0x03, FSR0H
 00CC C000 FFEF 01273         MOVFF   r0x04, INDF0
-               01274 ;       .line   213; MainDemo.c for(j = 0; j < strlen((char*)WDigit); j++)
+               01274 ;       .line   213; DHCPRelay.c        for(j = 0; j < strlen((char*)WDigit); j++)
 00D0 2A00      01275         INCF    r0x01, F
 00D2 D000      01276         BRA     _00149_DS_
 00D4 01277 _00152_DS_:
-               01278 ;       .line   217; MainDemo.c if(LCDPos < 32u)
+               01278 ;       .line   217; DHCPRelay.c        if(LCDPos < 32u)
 00D4 C000 F000 01279         MOVFF   r0x00, r0x01
 00D8 6A00      01280         CLRF    r0x02
 00DA 0E00      01281         MOVLW   0x00
@@ -1429,7 +1429,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00E2 5C00      01285         SUBWF   r0x01, W
 00E4 01286 _00160_DS_:
 00E4 E200      01287         BC      _00148_DS_
-               01288 ;       .line   218; MainDemo.c LCDText[LCDPos] = 0;
+               01288 ;       .line   218; DHCPRelay.c        LCDText[LCDPos] = 0;
 00E6 6A00      01289         CLRF    r0x01
 00E8 0E00      01290         MOVLW   LOW(_LCDText)
 00EA 2600      01291         ADDWF   r0x00, F
@@ -1438,7 +1438,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00F0 C000 FFE9 01294         MOVFF   r0x00, FSR0L
 00F4 C000 FFEA 01295         MOVFF   r0x01, FSR0H
 00F8 0E00      01296         MOVLW   0x00
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 25
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1446,7 +1446,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 00FA 6EEF      01297         MOVWF   INDF0
 00FC 01298 _00148_DS_:
-               01299 ;       .line   219; MainDemo.c LCDUpdate();
+               01299 ;       .line   219; DHCPRelay.c        LCDUpdate();
 00FC EC00 F000 01300         CALL    _LCDUpdate
 0100 CFE4 F000 01301         MOVFF   PREINC1, r0x05
 0104 CFE4 F000 01302         MOVFF   PREINC1, r0x04
@@ -1458,9 +1458,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 011C 0012      01308         RETURN  
                01309 
                01310 ; ; Starting pCode block
-               01311 S_MainDemo__HighISR     code
+               01311 S_DHCPRelay__HighISR    code
 0000 01312 _HighISR:
-               01313 ;       .line   74; MainDemo.c  void HighISR(void) __interrupt(1) //ML for sdcc        
+               01313 ;       .line   74; DHCPRelay.c void HighISR(void) __interrupt(1) //ML for sdcc        
 0000 CFE8 FFE5 01314         MOVFF   WREG, POSTDEC1
 0004 CFD8 FFE5 01315         MOVFF   STATUS, POSTDEC1
 0008 CFE0 FFE5 01316         MOVFF   BSR, POSTDEC1
@@ -1472,7 +1472,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0020 CFFB FFE5 01322         MOVFF   PCLATU, POSTDEC1
 0024 CFD9 FFE5 01323         MOVFF   FSR2L, POSTDEC1
 0028 CFE1 FFD9 01324         MOVFF   FSR1L, FSR2L
-               01325 ;       .line   81; MainDemo.c  }
+               01325 ;       .line   81; DHCPRelay.c }
 002C CFE4 FFD9 01326         MOVFF   PREINC1, FSR2L
 0030 CFE4 FFFB 01327         MOVFF   PREINC1, PCLATU
 0034 CFE4 FFFA 01328         MOVFF   PREINC1, PCLATH
@@ -1486,9 +1486,9 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0054 0010      01336         RETFIE  
                01337 
                01338 ; ; Starting pCode block
-               01339 S_MainDemo__LowISR      code
+               01339 S_DHCPRelay__LowISR     code
 0000 01340 _LowISR:
-               01341 ;       .line   54; MainDemo.c  void LowISR(void) __interrupt (2) //ML for sdcc
+               01341 ;       .line   54; DHCPRelay.c void LowISR(void) __interrupt (2) //ML for sdcc
 0000 CFE8 FFE5 01342         MOVFF   WREG, POSTDEC1
 0004 CFD8 FFE5 01343         MOVFF   STATUS, POSTDEC1
 0008 CFE0 FFE5 01344         MOVFF   BSR, POSTDEC1
@@ -1498,7 +1498,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0018 CFEA FFE5 01348         MOVFF   FSR0H, POSTDEC1
 001C CFFA FFE5 01349         MOVFF   PCLATH, POSTDEC1
 0020 CFFB FFE5 01350         MOVFF   PCLATU, POSTDEC1
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 26
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1506,7 +1506,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
  
 0024 CFD9 FFE5 01351         MOVFF   FSR2L, POSTDEC1
 0028 CFE1 FFD9 01352         MOVFF   FSR1L, FSR2L
-               01353 ;       .line   60; MainDemo.c  TickUpdate();
+               01353 ;       .line   60; DHCPRelay.c TickUpdate();
 002C EC00 F000 01354         CALL    _TickUpdate
 0030 CFE4 FFD9 01355         MOVFF   PREINC1, FSR2L
 0034 CFE4 FFFB 01356         MOVFF   PREINC1, PCLATU
@@ -1533,7 +1533,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01376 ; access size:     14 (0x000e) bytes
                01377 
                01378 
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 27
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 27
 
 
 SYMBOL TABLE
@@ -1592,7 +1592,7 @@ _AppConfig                        00000000
 _BAUDCON                          00000000
 _BAUDCON1                         00000000
 _BAUDCON1bits                     00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 28
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1652,7 +1652,7 @@ _DDRFbits                         00000000
 _DDRG                             00000000
 _DDRGbits                         00000000
 _DDRH                             00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 29
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1712,7 +1712,7 @@ _EECON1                           00000000
 _EECON1bits                       00000000
 _EECON2                           00000000
 _EFLOCON                          00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 30
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1772,7 +1772,7 @@ _ETXND                            00000000
 _ETXNDH                           00000000
 _ETXNDL                           00000000
 _ETXST                            00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 31
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1832,7 +1832,7 @@ _LATJbits                         00000000
 _LCDInit                          00000000
 _LCDTask                          00000000
 _LCDTaskInit                      00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 32
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1892,7 +1892,7 @@ _PCLATU                           00000000
 _PIE1                             00000000
 _PIE1bits                         00000000
 _PIE2                             00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 33
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1952,7 +1952,7 @@ _RCREG2                           00000000
 _RCSTA                            00000000
 _RCSTA1                           00000000
 _RCSTA1bits                       00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 34
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2012,7 +2012,7 @@ _TBLPTR                           00000000
 _TBLPTRH                          00000000
 _TBLPTRL                          00000000
 _TBLPTRU                          00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 35
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2072,7 +2072,7 @@ _activeUDPSocket                  00000000
 _main                             00000000
 _main_dwLastIP_1_1                00000004
 _main_t_1_1                       00000000
-gpasm-0.13.7 beta               Objects/MainDemo.asm12-12-2017  12:40:43         PAGE 36
+gpasm-0.13.7 beta               Objects/DHCPRelay.asm12-12-2017  15:19:39         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT

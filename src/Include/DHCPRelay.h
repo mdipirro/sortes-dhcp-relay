@@ -1,9 +1,5 @@
 /*********************************************************************
- *
- *                  Headers for TCPIP Demo App
- *
- *********************************************************************
- * FileName:        MainDemo.h
+ * FileName:        DHCPRelay.h
  * Dependencies:    Compiler.h
  * Processor:       PIC18, PIC24F, PIC24H, dsPIC30F, dsPIC33F, PIC32
  * Compiler:        Microchip C32 v1.05 or higher
@@ -42,11 +38,6 @@
  * THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER
  * SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
  * (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE.
- *
- *
- * Author               Date    Comment
- *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * E. Wood				4/26/08 Copied from MainDemo.c
  ********************************************************************/
 #ifndef _MAINDEMO_H
 #define _MAINDEMO_H

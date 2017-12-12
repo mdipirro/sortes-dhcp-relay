@@ -27,7 +27,7 @@
 // Include all headers for any enabled TCPIP Stack functions
 #include "Include/TCPIP_Stack/TCPIP.h"
 // Include functions specific to this stack application
-#include "Include/MainDemo.h"
+#include "Include/DHCPRelay.h"
 
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
