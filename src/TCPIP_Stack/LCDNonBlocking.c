@@ -57,6 +57,7 @@ static char LCDOpInProgress;
 static char LCDCurrentOrder;
 static char LCDCurrentText[ROWCHARS*2+1];
 
+static char tmpBuf[33];
 
 /******************************************************************************
  * Function:        static void LCDWrite(BYTE RS, BYTE Data)
@@ -175,8 +176,9 @@ static void LCDInitExec(void)
 	switch (st_init)
 	{
 		case LCD_RESET:
-			memset(LCDText, ' ', sizeof(LCDText)-1);
-			LCDText[sizeof(LCDText)-1] = 0;
+			// ----- Part moved to LCDTaskInit -----
+			//memset(LCDText, ' ', sizeof(LCDText)-1);
+			//LCDText[sizeof(LCDText)-1] = 0;
 			// Setup the I/O pins
 			LCD_E_IO = 0;
 			LCD_RD_WR_IO = 0;
@@ -348,8 +350,9 @@ static void LCDEraseExec(void)
 		break;
 
     	case LCD_CLEARLOCAL:
+			// ----- Do not execute: done at invoke time -----
 			// Clear local copy
-			memset(LCDText, ' ', 32);
+			// memset(LCDText, ' ', 32);
 			// End of operation
 			LCDOpInProgress = 0;
 			// Next state
@@ -368,6 +371,9 @@ static void LCDUpdateExec(void)
 	switch(st_update)
 	{
 		case LCD_GOTOFIRSTLINE:
+			DEBUGMSG("->   SENT TEXT: ");
+			DEBUGBLOCK(LCDCurrentText, 33, 1);
+			DEBUGMSG("\r\n");
 			// Go home
 			LCDWrite(0, 0x02);
 			// Waiting time: 2 ms
@@ -384,12 +390,13 @@ static void LCDUpdateExec(void)
 			// encountered (good for printing strings directly)
 			if(LCDCurrentText[LCDi] == 0u)
 			{
+				LCDWrite(1, ' ');
 				for(LCDj=LCDi; LCDj < 16u; LCDj++)
 				{
 					LCDCurrentText[LCDj] = ' ';
 				}
-			}
-			LCDWrite(1, LCDCurrentText[LCDi]);
+			} else
+				LCDWrite(1, LCDCurrentText[LCDi]);
 			// Cyclic access
 			LCDi++;
 			if (LCDi >= 16u)
@@ -418,12 +425,13 @@ static void LCDUpdateExec(void)
 			// encountered (good for printing strings directly)
 			if(LCDCurrentText[LCDi] == 0u)
 			{
+				LCDWrite(1, ' ');
 				for(LCDj=LCDi; LCDj < 32u; LCDj++)
 				{
 					LCDCurrentText[LCDj] = ' ';
 				}
-			}
-			LCDWrite(1, LCDCurrentText[LCDi]);
+			} else
+				LCDWrite(1, LCDCurrentText[LCDi]);
 			// Cyclic access
 			LCDi++;
 			if (LCDi >= 32u)
@@ -436,6 +444,9 @@ static void LCDUpdateExec(void)
 		break;
 
     	case LCD_ENDUPDATE:
+			DEBUGMSG("-> PARSED TEXT: ");
+			DEBUGBLOCK(LCDCurrentText, 33, 1);
+			DEBUGMSG("\r\n");
 			LCDOpInProgress = 0;
 			st_update = LCD_GOTOFIRSTLINE;
 		break;
@@ -483,6 +494,9 @@ void LCDTaskInit(void)
 	T1CONbits.T1OSCEN	=	1;		// timer1 oscillator enable
 	T1CONbits.TMR1CS	=	1;		// external clock selected
 	PIR1bits.TMR1IF		=	0;		// clear timer1 overflow bit
+	// Clear LCDText
+	memset(LCDText, ' ', sizeof(LCDText)-1);
+	LCDText[sizeof(LCDText)-1] = 0;
 }
 
 
@@ -500,6 +514,10 @@ void LCDTask(void)
 		{
 			LCDListPop(&LCDCurrentOrder, LCDCurrentText);			// Retrieve the operation to execute
 			LCDOpInProgress = 1;		// Set the execution flag
+			DEBUGMSG("POPPED: ");
+			ultoa(LCDCurrentOrder, tmpBuf,10);
+			DEBUGMSG(tmpBuf);
+			DEBUGMSG("\r\n");
 		}
     }
 	if (!LCDWaiting && LCDOpInProgress)				// Not waiting for timers
@@ -545,6 +563,7 @@ void LCDTask(void)
 void LCDInit(void)
 {
 	LCDListPush(1, "");
+	DEBUGMSG("PUSHED: 1\r\n");
 }
 
 /******************************************************************************
@@ -565,6 +584,8 @@ void LCDInit(void)
 void LCDErase(void)
 {
 	LCDListPush(2, "");
+	DEBUGMSG("PUSHED: 2\r\n");
+	memset(LCDText, ' ', 32);
 }
 
 /******************************************************************************
@@ -588,6 +609,7 @@ void LCDErase(void)
 void LCDUpdate(void)
 {
 	LCDListPush(3, LCDText);
+	DEBUGMSG("PUSHED: 3\r\n");
 }
 
 #endif	//#ifdef USE_LCD

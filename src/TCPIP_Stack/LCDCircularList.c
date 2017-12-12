@@ -33,7 +33,7 @@ static char LCDListReady = 0;
 
 char LCDListInit()
 {
-	int i;
+	size_t i;
 	listLCD.head = 0;
 	listLCD.tail = 0;
 	// Set initial values
@@ -65,6 +65,7 @@ char LCDListIsFull(void)
 
 char LCDListPush(char order, char text[])
 {
+	size_t i;
 	// Check for wrong usage
 	if (!LCDListReady)
 		return -1;
@@ -72,7 +73,9 @@ char LCDListPush(char order, char text[])
 		return -2;
 	// Update the list with the new value
 	listLCD.op[listLCD.head].order = order;
-	strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2+1);
+	//strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2+1);
+	for (i=0; i<ROWCHARS*2+1; i++)
+		listLCD.op[listLCD.head].text[i] = text[i];
 	// Increment the head pointer
 	listLCD.head = (listLCD.head + 1) % OP_LIST_SIZE;
 	return 0;
@@ -80,6 +83,7 @@ char LCDListPush(char order, char text[])
 
 char LCDListPop(char *order, char text[])
 {
+	size_t i;
 	// Check for wrong usage
 	if (!LCDListReady)
 		return -1;
@@ -87,7 +91,9 @@ char LCDListPop(char *order, char text[])
 		return -2;
 	// Copy values into the passed variables
 	*order = listLCD.op[listLCD.tail].order;
-	strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2+1);
+	//strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2+1);
+	for (i=0; i<ROWCHARS*2+1; i++)
+		text[i] = listLCD.op[listLCD.tail].text[i];
 	// Reset fields to default values
  	listLCD.op[listLCD.tail].order = 0;
 	listLCD.op[listLCD.tail].text[0] = '\0';

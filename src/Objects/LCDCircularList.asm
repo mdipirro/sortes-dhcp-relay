@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Tue Dec 12 01:06:04 2017
+; This file was generated Tue Dec 12 02:14:58 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -21,6 +21,7 @@
 ;--------------------------------------------------------
 ; extern variables in this module
 ;--------------------------------------------------------
+	extern __gptrget1
 	extern __gptrput1
 	extern _EBSTCONbits
 	extern _MISTATbits
@@ -447,7 +448,6 @@
 	extern _TOSL
 	extern _TOSH
 	extern _TOSU
-	extern _strlcpy
 	extern __moduint
 	extern __mulint
 ;--------------------------------------------------------
@@ -482,6 +482,12 @@ r0x06	res	1
 r0x07	res	1
 r0x08	res	1
 r0x09	res	1
+r0x0a	res	1
+r0x0b	res	1
+r0x0c	res	1
+r0x0d	res	1
+r0x0e	res	1
+r0x0f	res	1
 
 
 lcd_scn	udata
@@ -494,7 +500,7 @@ _listLCD	res	378
 ; ; Starting pCode block
 S_LCDCircularList__LCDListPop	code
 _LCDListPop:
-;	.line	81; TCPIP_Stack/LCDCircularList.c	char LCDListPop(char *order, char text[])
+;	.line	84; TCPIP_Stack/LCDCircularList.c	char LCDListPop(char *order, char text[])
 	MOVFF	FSR2L, POSTDEC1
 	MOVFF	FSR1L, FSR2L
 	MOVFF	r0x00, POSTDEC1
@@ -507,6 +513,12 @@ _LCDListPop:
 	MOVFF	r0x07, POSTDEC1
 	MOVFF	r0x08, POSTDEC1
 	MOVFF	r0x09, POSTDEC1
+	MOVFF	r0x0a, POSTDEC1
+	MOVFF	r0x0b, POSTDEC1
+	MOVFF	r0x0c, POSTDEC1
+	MOVFF	r0x0d, POSTDEC1
+	MOVFF	r0x0e, POSTDEC1
+	MOVFF	r0x0f, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
 	MOVLW	0x03
@@ -520,134 +532,136 @@ _LCDListPop:
 	MOVLW	0x07
 	MOVFF	PLUSW2, r0x05
 	BANKSEL	_LCDListReady
-;	.line	84; TCPIP_Stack/LCDCircularList.c	if (!LCDListReady)
+;	.line	88; TCPIP_Stack/LCDCircularList.c	if (!LCDListReady)
 	MOVF	_LCDListReady, W, B
-	BNZ	_00151_DS_
-;	.line	85; TCPIP_Stack/LCDCircularList.c	return -1;
+	BNZ	_00162_DS_
+;	.line	89; TCPIP_Stack/LCDCircularList.c	return -1;
 	SETF	WREG
-	BRA	_00154_DS_
-_00151_DS_:
-;	.line	86; TCPIP_Stack/LCDCircularList.c	if (LCDListIsEmpty())
+	BRA	_00169_DS_
+_00162_DS_:
+;	.line	90; TCPIP_Stack/LCDCircularList.c	if (LCDListIsEmpty())
 	CALL	_LCDListIsEmpty
 	MOVWF	r0x06
 	MOVF	r0x06, W
-	BZ	_00153_DS_
-;	.line	87; TCPIP_Stack/LCDCircularList.c	return -2;
+	BZ	_00164_DS_
+;	.line	91; TCPIP_Stack/LCDCircularList.c	return -2;
 	MOVLW	0xfe
-	BRA	_00154_DS_
-_00153_DS_:
-	BANKSEL	(_listLCD + 377)
-;	.line	89; TCPIP_Stack/LCDCircularList.c	*order = listLCD.op[listLCD.tail].order;
-	MOVF	(_listLCD + 377), W, B
+	BRA	_00169_DS_
+_00164_DS_:
+;	.line	93; TCPIP_Stack/LCDCircularList.c	*order = listLCD.op[listLCD.tail].order;
+	MOVFF	(_listLCD + 376), r0x06
+	MOVFF	(_listLCD + 377), r0x07
+	MOVF	r0x07, W
 	MOVWF	POSTDEC1
-	BANKSEL	(_listLCD + 376)
-	MOVF	(_listLCD + 376), W, B
+	MOVF	r0x06, W
 	MOVWF	POSTDEC1
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x22
 	MOVWF	POSTDEC1
 	CALL	__mulint
-	MOVWF	r0x06
-	MOVFF	PRODL, r0x07
+	MOVWF	r0x08
+	MOVFF	PRODL, r0x09
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVLW	LOW(_listLCD)
-	ADDWF	r0x06, W
-	MOVWF	r0x08
+	ADDWF	r0x08, W
+	MOVWF	r0x0a
 	MOVLW	HIGH(_listLCD)
-	ADDWFC	r0x07, W
-	MOVWF	r0x09
-	MOVFF	r0x08, FSR0L
-	MOVFF	r0x09, FSR0H
-	MOVFF	INDF0, r0x08
-	MOVFF	r0x08, POSTDEC1
+	ADDWFC	r0x09, W
+	MOVWF	r0x0b
+	MOVFF	r0x0a, FSR0L
+	MOVFF	r0x0b, FSR0H
+	MOVFF	INDF0, r0x0a
+	MOVFF	r0x0a, POSTDEC1
 	MOVFF	r0x00, FSR0L
 	MOVFF	r0x01, PRODL
 	MOVF	r0x02, W
 	CALL	__gptrput1
-;	.line	90; TCPIP_Stack/LCDCircularList.c	strlcpy(text, listLCD.op[listLCD.tail].text, ROWCHARS*2+1);
+;	.line	95; TCPIP_Stack/LCDCircularList.c	for (i=0; i<ROWCHARS*2+1; i++)
 	MOVLW	LOW(_listLCD)
-	ADDWF	r0x06, F
-	MOVLW	HIGH(_listLCD)
-	ADDWFC	r0x07, F
-	INCF	r0x06, F
-	BTFSC	STATUS, 0
-	INCF	r0x07, F
-	MOVF	r0x07, W
-	MOVWF	r0x07
-	MOVF	r0x06, W
-	MOVWF	r0x06
-	MOVLW	0x80
+	ADDWF	r0x08, W
 	MOVWF	r0x00
-	MOVLW	0x00
-	MOVWF	POSTDEC1
-	MOVLW	0x21
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	MOVF	r0x07, W
-	MOVWF	POSTDEC1
-	MOVF	r0x06, W
-	MOVWF	POSTDEC1
-	MOVF	r0x05, W
-	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	CALL	_strlcpy
-	MOVLW	0x08
-	ADDWF	FSR1L, F
-;	.line	92; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.tail].order = 0;
-	MOVFF	(_listLCD + 376), r0x00
-	MOVFF	(_listLCD + 377), r0x01
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	MOVLW	0x00
-	MOVWF	POSTDEC1
-	MOVLW	0x22
-	MOVWF	POSTDEC1
-	CALL	__mulint
-	MOVWF	r0x02
-	MOVFF	PRODL, r0x03
-	MOVLW	0x04
-	ADDWF	FSR1L, F
-	MOVLW	LOW(_listLCD)
-	ADDWF	r0x02, W
-	MOVWF	r0x04
 	MOVLW	HIGH(_listLCD)
-	ADDWFC	r0x03, W
-	MOVWF	r0x05
-	MOVFF	r0x04, FSR0L
-	MOVFF	r0x05, FSR0H
-	MOVLW	0x00
-	MOVWF	INDF0
-;	.line	93; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.tail].text[0] = '\0';
-	MOVLW	LOW(_listLCD)
-	ADDWF	r0x02, F
-	MOVLW	HIGH(_listLCD)
-	ADDWFC	r0x03, F
-	INCF	r0x02, F
-	BTFSC	STATUS, 0
-	INCF	r0x03, F
-	MOVFF	r0x02, FSR0L
-	MOVFF	r0x03, FSR0H
-	MOVLW	0x00
-	MOVWF	INDF0
-;	.line	95; TCPIP_Stack/LCDCircularList.c	listLCD.tail = (listLCD.tail + 1) % OP_LIST_SIZE;
+	ADDWFC	r0x09, W
+	MOVWF	r0x01
 	INCF	r0x00, F
 	BTFSC	STATUS, 0
 	INCF	r0x01, F
+	CLRF	r0x02
+	CLRF	r0x0a
+_00165_DS_:
+	MOVLW	0x00
+	SUBWF	r0x0a, W
+	BNZ	_00176_DS_
+	MOVLW	0x21
+	SUBWF	r0x02, W
+_00176_DS_:
+	BC	_00168_DS_
+;	.line	96; TCPIP_Stack/LCDCircularList.c	text[i] = listLCD.op[listLCD.tail].text[i];
+	MOVF	r0x02, W
+	ADDWF	r0x03, W
+	MOVWF	r0x0b
+	MOVF	r0x0a, W
+	ADDWFC	r0x04, W
+	MOVWF	r0x0c
+	CLRF	WREG
+	ADDWFC	r0x05, W
+	MOVWF	r0x0d
+	MOVF	r0x02, W
+	ADDWF	r0x00, W
+	MOVWF	r0x0e
+	MOVF	r0x0a, W
+	ADDWFC	r0x01, W
+	MOVWF	r0x0f
+	MOVFF	r0x0e, FSR0L
+	MOVFF	r0x0f, FSR0H
+	MOVFF	INDF0, r0x0e
+	MOVFF	r0x0e, POSTDEC1
+	MOVFF	r0x0b, FSR0L
+	MOVFF	r0x0c, PRODL
+	MOVF	r0x0d, W
+	CALL	__gptrput1
+;	.line	95; TCPIP_Stack/LCDCircularList.c	for (i=0; i<ROWCHARS*2+1; i++)
+	INCF	r0x02, F
+	BTFSC	STATUS, 0
+	INCF	r0x0a, F
+	BRA	_00165_DS_
+_00168_DS_:
+;	.line	98; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.tail].order = 0;
+	MOVLW	LOW(_listLCD)
+	ADDWF	r0x08, W
+	MOVWF	r0x00
+	MOVLW	HIGH(_listLCD)
+	ADDWFC	r0x09, W
+	MOVWF	r0x01
+	MOVFF	r0x00, FSR0L
+	MOVFF	r0x01, FSR0H
+	MOVLW	0x00
+	MOVWF	INDF0
+;	.line	99; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.tail].text[0] = '\0';
+	MOVLW	LOW(_listLCD)
+	ADDWF	r0x08, F
+	MOVLW	HIGH(_listLCD)
+	ADDWFC	r0x09, F
+	INCF	r0x08, F
+	BTFSC	STATUS, 0
+	INCF	r0x09, F
+	MOVFF	r0x08, FSR0L
+	MOVFF	r0x09, FSR0H
+	MOVLW	0x00
+	MOVWF	INDF0
+;	.line	101; TCPIP_Stack/LCDCircularList.c	listLCD.tail = (listLCD.tail + 1) % OP_LIST_SIZE;
+	INCF	r0x06, F
+	BTFSC	STATUS, 0
+	INCF	r0x07, F
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x0b
 	MOVWF	POSTDEC1
-	MOVF	r0x01, W
+	MOVF	r0x07, W
 	MOVWF	POSTDEC1
-	MOVF	r0x00, W
+	MOVF	r0x06, W
 	MOVWF	POSTDEC1
 	CALL	__moduint
 	MOVWF	r0x00
@@ -660,9 +674,15 @@ _00153_DS_:
 	MOVF	r0x01, W
 	BANKSEL	(_listLCD + 377)
 	MOVWF	(_listLCD + 377), B
-;	.line	96; TCPIP_Stack/LCDCircularList.c	return 0;
+;	.line	102; TCPIP_Stack/LCDCircularList.c	return 0;
 	CLRF	WREG
-_00154_DS_:
+_00169_DS_:
+	MOVFF	PREINC1, r0x0f
+	MOVFF	PREINC1, r0x0e
+	MOVFF	PREINC1, r0x0d
+	MOVFF	PREINC1, r0x0c
+	MOVFF	PREINC1, r0x0b
+	MOVFF	PREINC1, r0x0a
 	MOVFF	PREINC1, r0x09
 	MOVFF	PREINC1, r0x08
 	MOVFF	PREINC1, r0x07
@@ -690,6 +710,12 @@ _LCDListPush:
 	MOVFF	r0x05, POSTDEC1
 	MOVFF	r0x06, POSTDEC1
 	MOVFF	r0x07, POSTDEC1
+	MOVFF	r0x08, POSTDEC1
+	MOVFF	r0x09, POSTDEC1
+	MOVFF	r0x0a, POSTDEC1
+	MOVFF	r0x0b, POSTDEC1
+	MOVFF	r0x0c, POSTDEC1
+	MOVFF	r0x0d, POSTDEC1
 	MOVLW	0x02
 	MOVFF	PLUSW2, r0x00
 	MOVLW	0x03
@@ -699,96 +725,109 @@ _LCDListPush:
 	MOVLW	0x05
 	MOVFF	PLUSW2, r0x03
 	BANKSEL	_LCDListReady
-;	.line	69; TCPIP_Stack/LCDCircularList.c	if (!LCDListReady)
+;	.line	70; TCPIP_Stack/LCDCircularList.c	if (!LCDListReady)
 	MOVF	_LCDListReady, W, B
 	BNZ	_00142_DS_
-;	.line	70; TCPIP_Stack/LCDCircularList.c	return -1;
+;	.line	71; TCPIP_Stack/LCDCircularList.c	return -1;
 	SETF	WREG
-	BRA	_00145_DS_
+	BRA	_00149_DS_
 _00142_DS_:
-;	.line	71; TCPIP_Stack/LCDCircularList.c	if (LCDListIsFull())
+;	.line	72; TCPIP_Stack/LCDCircularList.c	if (LCDListIsFull())
 	CALL	_LCDListIsFull
 	MOVWF	r0x04
 	MOVF	r0x04, W
 	BZ	_00144_DS_
-;	.line	72; TCPIP_Stack/LCDCircularList.c	return -2;
+;	.line	73; TCPIP_Stack/LCDCircularList.c	return -2;
 	MOVLW	0xfe
-	BRA	_00145_DS_
+	BRA	_00149_DS_
 _00144_DS_:
-	BANKSEL	(_listLCD + 375)
-;	.line	74; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.head].order = order;
-	MOVF	(_listLCD + 375), W, B
+;	.line	75; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.head].order = order;
+	MOVFF	(_listLCD + 374), r0x04
+	MOVFF	(_listLCD + 375), r0x05
+	MOVF	r0x05, W
 	MOVWF	POSTDEC1
-	BANKSEL	(_listLCD + 374)
-	MOVF	(_listLCD + 374), W, B
+	MOVF	r0x04, W
 	MOVWF	POSTDEC1
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x22
 	MOVWF	POSTDEC1
 	CALL	__mulint
-	MOVWF	r0x04
-	MOVFF	PRODL, r0x05
+	MOVWF	r0x06
+	MOVFF	PRODL, r0x07
 	MOVLW	0x04
 	ADDWF	FSR1L, F
 	MOVLW	LOW(_listLCD)
-	ADDWF	r0x04, W
-	MOVWF	r0x06
+	ADDWF	r0x06, W
+	MOVWF	r0x08
 	MOVLW	HIGH(_listLCD)
-	ADDWFC	r0x05, W
-	MOVWF	r0x07
-	MOVFF	r0x06, FSR0L
-	MOVFF	r0x07, FSR0H
+	ADDWFC	r0x07, W
+	MOVWF	r0x09
+	MOVFF	r0x08, FSR0L
+	MOVFF	r0x09, FSR0H
 	MOVFF	r0x00, INDF0
-;	.line	75; TCPIP_Stack/LCDCircularList.c	strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2+1);
+;	.line	77; TCPIP_Stack/LCDCircularList.c	for (i=0; i<ROWCHARS*2+1; i++)
 	MOVLW	LOW(_listLCD)
-	ADDWF	r0x04, F
+	ADDWF	r0x06, F
 	MOVLW	HIGH(_listLCD)
-	ADDWFC	r0x05, F
+	ADDWFC	r0x07, F
+	MOVF	r0x06, W
+	ADDLW	0x01
+	MOVWF	r0x06
+	MOVLW	0x00
+	ADDWFC	r0x07, W
+	MOVWF	r0x00
+	CLRF	r0x07
+	CLRF	r0x08
+_00145_DS_:
+	MOVLW	0x00
+	SUBWF	r0x08, W
+	BNZ	_00156_DS_
+	MOVLW	0x21
+	SUBWF	r0x07, W
+_00156_DS_:
+	BC	_00148_DS_
+;	.line	78; TCPIP_Stack/LCDCircularList.c	listLCD.op[listLCD.head].text[i] = text[i];
+	MOVF	r0x07, W
+	ADDWF	r0x06, W
+	MOVWF	r0x09
+	MOVF	r0x08, W
+	ADDWFC	r0x00, W
+	MOVWF	r0x0a
+	MOVF	r0x07, W
+	ADDWF	r0x01, W
+	MOVWF	r0x0b
+	MOVF	r0x08, W
+	ADDWFC	r0x02, W
+	MOVWF	r0x0c
+	CLRF	WREG
+	ADDWFC	r0x03, W
+	MOVWF	r0x0d
+	MOVFF	r0x0b, FSR0L
+	MOVFF	r0x0c, PRODL
+	MOVF	r0x0d, W
+	CALL	__gptrget1
+	MOVWF	r0x0b
+	MOVFF	r0x09, FSR0L
+	MOVFF	r0x0a, FSR0H
+	MOVFF	r0x0b, INDF0
+;	.line	77; TCPIP_Stack/LCDCircularList.c	for (i=0; i<ROWCHARS*2+1; i++)
+	INCF	r0x07, F
+	BTFSC	STATUS, 0
+	INCF	r0x08, F
+	BRA	_00145_DS_
+_00148_DS_:
+;	.line	80; TCPIP_Stack/LCDCircularList.c	listLCD.head = (listLCD.head + 1) % OP_LIST_SIZE;
 	INCF	r0x04, F
 	BTFSC	STATUS, 0
 	INCF	r0x05, F
-	MOVF	r0x05, W
-	MOVWF	r0x05
-	MOVF	r0x04, W
-	MOVWF	r0x04
-	MOVLW	0x80
-	MOVWF	r0x00
-	MOVLW	0x00
-	MOVWF	POSTDEC1
-	MOVLW	0x21
-	MOVWF	POSTDEC1
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	MOVF	r0x02, W
-	MOVWF	POSTDEC1
-	MOVF	r0x01, W
-	MOVWF	POSTDEC1
-	MOVF	r0x00, W
-	MOVWF	POSTDEC1
-	MOVF	r0x05, W
-	MOVWF	POSTDEC1
-	MOVF	r0x04, W
-	MOVWF	POSTDEC1
-	CALL	_strlcpy
-	MOVLW	0x08
-	ADDWF	FSR1L, F
-	BANKSEL	(_listLCD + 374)
-;	.line	77; TCPIP_Stack/LCDCircularList.c	listLCD.head = (listLCD.head + 1) % OP_LIST_SIZE;
-	MOVF	(_listLCD + 374), W, B
-	ADDLW	0x01
-	MOVWF	r0x00
-	MOVLW	0x00
-	BANKSEL	(_listLCD + 375)
-	ADDWFC	(_listLCD + 375), W, B
-	MOVWF	r0x01
 	MOVLW	0x00
 	MOVWF	POSTDEC1
 	MOVLW	0x0b
 	MOVWF	POSTDEC1
-	MOVF	r0x01, W
+	MOVF	r0x05, W
 	MOVWF	POSTDEC1
-	MOVF	r0x00, W
+	MOVF	r0x04, W
 	MOVWF	POSTDEC1
 	CALL	__moduint
 	MOVWF	r0x00
@@ -801,9 +840,15 @@ _00144_DS_:
 	MOVF	r0x01, W
 	BANKSEL	(_listLCD + 375)
 	MOVWF	(_listLCD + 375), B
-;	.line	78; TCPIP_Stack/LCDCircularList.c	return 0;
+;	.line	81; TCPIP_Stack/LCDCircularList.c	return 0;
 	CLRF	WREG
-_00145_DS_:
+_00149_DS_:
+	MOVFF	PREINC1, r0x0d
+	MOVFF	PREINC1, r0x0c
+	MOVFF	PREINC1, r0x0b
+	MOVFF	PREINC1, r0x0a
+	MOVFF	PREINC1, r0x09
+	MOVFF	PREINC1, r0x08
 	MOVFF	PREINC1, r0x07
 	MOVFF	PREINC1, r0x06
 	MOVFF	PREINC1, r0x05
@@ -941,9 +986,8 @@ _LCDListInit:
 	CLRF	r0x02
 	CLRF	r0x03
 _00105_DS_:
-	MOVF	r0x01, W
-	ADDLW	0x80
-	ADDLW	0x80
+	MOVLW	0x00
+	SUBWF	r0x01, W
 	BNZ	_00114_DS_
 	MOVLW	0x0b
 	SUBWF	r0x00, W
@@ -1002,10 +1046,10 @@ _00108_DS_:
 
 
 ; Statistics:
-; code size:	 1112 (0x0458) bytes ( 0.85%)
-;           	  556 (0x022c) words
+; code size:	 1238 (0x04d6) bytes ( 0.94%)
+;           	  619 (0x026b) words
 ; udata size:	  378 (0x017a) bytes ( 9.84%)
-; access size:	   10 (0x000a) bytes
+; access size:	   16 (0x0010) bytes
 
 
 	end

@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Tue Dec 12 01:06:04 2017
+; This file was generated Tue Dec 12 02:14:58 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -12,15 +12,10 @@
 ;--------------------------------------------------------
 ; public variables in this module
 ;--------------------------------------------------------
-	global _UARTConfig
-	global _UARTPutc
-	global _UARTPuts
-	global _UARTPutblk
 
 ;--------------------------------------------------------
 ; extern variables in this module
 ;--------------------------------------------------------
-	extern __gptrget1
 	extern _EBSTCONbits
 	extern _MISTATbits
 	extern _EFLOCONbits
@@ -446,265 +441,18 @@
 	extern _TOSL
 	extern _TOSH
 	extern _TOSU
-;--------------------------------------------------------
-;	Equates to used internal registers
-;--------------------------------------------------------
-STATUS	equ	0xfd8
-WREG	equ	0xfe8
-FSR0L	equ	0xfe9
-FSR1L	equ	0xfe1
-FSR2L	equ	0xfd9
-POSTDEC1	equ	0xfe5
-PREINC1	equ	0xfe4
-PLUSW2	equ	0xfdb
-PRODL	equ	0xff3
-
-
-; Internal registers
-.registers	udata_ovr	0x0000
-r0x00	res	1
-r0x01	res	1
-r0x02	res	1
-r0x03	res	1
-r0x04	res	1
-r0x05	res	1
-r0x06	res	1
-r0x07	res	1
-r0x08	res	1
-r0x09	res	1
-r0x0a	res	1
-r0x0b	res	1
 
 ;--------------------------------------------------------
 ; global & static initialisations
 ;--------------------------------------------------------
 ; I code from now on!
-; ; Starting pCode block
-S_myUART__UARTPutblk	code
-_UARTPutblk:
-;	.line	47; TCPIP_Stack/myUART.c	void UARTPutblk(char *udata, size_t size, int sz)
-	MOVFF	FSR2L, POSTDEC1
-	MOVFF	FSR1L, FSR2L
-	MOVFF	r0x00, POSTDEC1
-	MOVFF	r0x01, POSTDEC1
-	MOVFF	r0x02, POSTDEC1
-	MOVFF	r0x03, POSTDEC1
-	MOVFF	r0x04, POSTDEC1
-	MOVFF	r0x05, POSTDEC1
-	MOVFF	r0x06, POSTDEC1
-	MOVFF	r0x07, POSTDEC1
-	MOVFF	r0x08, POSTDEC1
-	MOVFF	r0x09, POSTDEC1
-	MOVFF	r0x0a, POSTDEC1
-	MOVFF	r0x0b, POSTDEC1
-	MOVLW	0x02
-	MOVFF	PLUSW2, r0x00
-	MOVLW	0x03
-	MOVFF	PLUSW2, r0x01
-	MOVLW	0x04
-	MOVFF	PLUSW2, r0x02
-	MOVLW	0x05
-	MOVFF	PLUSW2, r0x03
-	MOVLW	0x06
-	MOVFF	PLUSW2, r0x04
-	MOVLW	0x07
-	MOVFF	PLUSW2, r0x05
-	MOVLW	0x08
-	MOVFF	PLUSW2, r0x06
-;	.line	50; TCPIP_Stack/myUART.c	for (i=0; i<size; i++)
-	CLRF	r0x07
-	CLRF	r0x08
-_00130_DS_:
-	MOVF	r0x04, W
-	SUBWF	r0x08, W
-	BNZ	_00141_DS_
-	MOVF	r0x03, W
-	SUBWF	r0x07, W
-_00141_DS_:
-	BC	_00134_DS_
-;	.line	52; TCPIP_Stack/myUART.c	if (sz && udata[i] == '\0')
-	MOVF	r0x05, W
-	IORWF	r0x06, W
-	BZ	_00127_DS_
-	MOVF	r0x07, W
-	ADDWF	r0x00, W
-	MOVWF	r0x09
-	MOVF	r0x08, W
-	ADDWFC	r0x01, W
-	MOVWF	r0x0a
-	CLRF	WREG
-	ADDWFC	r0x02, W
-	MOVWF	r0x0b
-	MOVFF	r0x09, FSR0L
-	MOVFF	r0x0a, PRODL
-	MOVF	r0x0b, W
-	CALL	__gptrget1
-	MOVWF	r0x09
-	MOVF	r0x09, W
-	BNZ	_00127_DS_
-;	.line	53; TCPIP_Stack/myUART.c	UARTPuts("\\0");
-	MOVLW	UPPER(__str_0)
-	MOVWF	POSTDEC1
-	MOVLW	HIGH(__str_0)
-	MOVWF	POSTDEC1
-	MOVLW	LOW(__str_0)
-	MOVWF	POSTDEC1
-	CALL	_UARTPuts
-	MOVLW	0x03
-	ADDWF	FSR1L, F
-	BRA	_00132_DS_
-_00127_DS_:
-;	.line	55; TCPIP_Stack/myUART.c	UARTPutc(udata[i]);
-	MOVF	r0x07, W
-	ADDWF	r0x00, W
-	MOVWF	r0x09
-	MOVF	r0x08, W
-	ADDWFC	r0x01, W
-	MOVWF	r0x0a
-	CLRF	WREG
-	ADDWFC	r0x02, W
-	MOVWF	r0x0b
-	MOVFF	r0x09, FSR0L
-	MOVFF	r0x0a, PRODL
-	MOVF	r0x0b, W
-	CALL	__gptrget1
-	MOVWF	r0x09
-	MOVF	r0x09, W
-	MOVWF	POSTDEC1
-	CALL	_UARTPutc
-	INCF	FSR1L, F
-_00132_DS_:
-;	.line	50; TCPIP_Stack/myUART.c	for (i=0; i<size; i++)
-	INCF	r0x07, F
-	BTFSC	STATUS, 0
-	INCF	r0x08, F
-	BRA	_00130_DS_
-_00134_DS_:
-	MOVFF	PREINC1, r0x0b
-	MOVFF	PREINC1, r0x0a
-	MOVFF	PREINC1, r0x09
-	MOVFF	PREINC1, r0x08
-	MOVFF	PREINC1, r0x07
-	MOVFF	PREINC1, r0x06
-	MOVFF	PREINC1, r0x05
-	MOVFF	PREINC1, r0x04
-	MOVFF	PREINC1, r0x03
-	MOVFF	PREINC1, r0x02
-	MOVFF	PREINC1, r0x01
-	MOVFF	PREINC1, r0x00
-	MOVFF	PREINC1, FSR2L
-	RETURN	
-
-; ; Starting pCode block
-S_myUART__UARTPuts	code
-_UARTPuts:
-;	.line	39; TCPIP_Stack/myUART.c	void UARTPuts(char *udata)
-	MOVFF	FSR2L, POSTDEC1
-	MOVFF	FSR1L, FSR2L
-	MOVFF	r0x00, POSTDEC1
-	MOVFF	r0x01, POSTDEC1
-	MOVFF	r0x02, POSTDEC1
-	MOVFF	r0x03, POSTDEC1
-	MOVLW	0x02
-	MOVFF	PLUSW2, r0x00
-	MOVLW	0x03
-	MOVFF	PLUSW2, r0x01
-	MOVLW	0x04
-	MOVFF	PLUSW2, r0x02
-_00118_DS_:
-;	.line	43; TCPIP_Stack/myUART.c	UARTPutc(*udata);
-	MOVFF	r0x00, FSR0L
-	MOVFF	r0x01, PRODL
-	MOVF	r0x02, W
-	CALL	__gptrget1
-	MOVWF	r0x03
-	MOVF	r0x03, W
-	MOVWF	POSTDEC1
-	CALL	_UARTPutc
-	INCF	FSR1L, F
-;	.line	44; TCPIP_Stack/myUART.c	} while( *udata++ );
-	MOVFF	r0x00, FSR0L
-	MOVFF	r0x01, PRODL
-	MOVF	r0x02, W
-	CALL	__gptrget1
-	MOVWF	r0x03
-	INCF	r0x00, F
-	BTFSC	STATUS, 0
-	INCF	r0x01, F
-	BTFSC	STATUS, 0
-	INCF	r0x02, F
-	MOVF	r0x03, W
-	BNZ	_00118_DS_
-	MOVFF	PREINC1, r0x03
-	MOVFF	PREINC1, r0x02
-	MOVFF	PREINC1, r0x01
-	MOVFF	PREINC1, r0x00
-	MOVFF	PREINC1, FSR2L
-	RETURN	
-
-; ; Starting pCode block
-S_myUART__UARTPutc	code
-_UARTPutc:
-;	.line	31; TCPIP_Stack/myUART.c	void UARTPutc(char c)
-	MOVFF	FSR2L, POSTDEC1
-	MOVFF	FSR1L, FSR2L
-	MOVFF	r0x00, POSTDEC1
-	MOVLW	0x02
-	MOVFF	PLUSW2, r0x00
-_00110_DS_:
-;	.line	34; TCPIP_Stack/myUART.c	while (TXSTA1bits.TRMT == 0) {};
-	BTFSS	_TXSTA1bits, 1
-	BRA	_00110_DS_
-;	.line	35; TCPIP_Stack/myUART.c	TXREG1 = c; // send the new byte
-	MOVFF	r0x00, _TXREG1
-	MOVFF	PREINC1, r0x00
-	MOVFF	PREINC1, FSR2L
-	RETURN	
-
-; ; Starting pCode block
-S_myUART__UARTConfig	code
-_UARTConfig:
-;	.line	11; TCPIP_Stack/myUART.c	void UARTConfig(void)
-	MOVFF	FSR2L, POSTDEC1
-	MOVFF	FSR1L, FSR2L
-;	.line	13; TCPIP_Stack/myUART.c	TRISCbits.TRISC7 = 1;
-	BSF	_TRISCbits, 7
-;	.line	14; TCPIP_Stack/myUART.c	TRISCbits.TRISC6 = 0;
-	BCF	_TRISCbits, 6
-;	.line	16; TCPIP_Stack/myUART.c	BAUDCON1bits.BRG16 = 0; // Divisor at 8 bit
-	BCF	_BAUDCON1bits, 3
-;	.line	17; TCPIP_Stack/myUART.c	BAUDCON1bits.TXCKP = 1; // Inverted polarity
-	BSF	_BAUDCON1bits, 4
-;	.line	18; TCPIP_Stack/myUART.c	TXSTA1bits.BRGH = 0; // No high-speed baudrate
-	BCF	_TXSTA1bits, 2
-;	.line	19; TCPIP_Stack/myUART.c	SPBRG1 = 40;	// Divisor for baud rate 9600 at 25 Mhz
-	MOVLW	0x28
-	MOVWF	_SPBRG1
-;	.line	21; TCPIP_Stack/myUART.c	TXSTA1bits.SYNC = 0; // Async operation
-	BCF	_TXSTA1bits, 4
-;	.line	22; TCPIP_Stack/myUART.c	TXSTA1bits.TX9 = 0; // No tx of 9th bit
-	BCF	_TXSTA1bits, 6
-;	.line	23; TCPIP_Stack/myUART.c	TXSTA1bits.TXEN = 1; // Enable transmitter
-	BSF	_TXSTA1bits, 5
-;	.line	25; TCPIP_Stack/myUART.c	RCSTA1bits.RX9 = 0; // No rx of 9th bit
-	BCF	_RCSTA1bits, 6
-;	.line	26; TCPIP_Stack/myUART.c	RCSTA1bits.CREN = 1; // Enable receiver
-	BSF	_RCSTA1bits, 4
-;	.line	27; TCPIP_Stack/myUART.c	RCSTA1bits.SPEN = 1; // Enable serial port
-	BSF	_RCSTA1bits, 7
-	MOVFF	PREINC1, FSR2L
-	RETURN	
-
-; ; Starting pCode block
-__str_0:
-	DB	0x5c, 0x30, 0x00
 
 
 ; Statistics:
-; code size:	  484 (0x01e4) bytes ( 0.37%)
-;           	  242 (0x00f2) words
+; code size:	   -1 (0xffffffffffffffff) bytes (14073748835532800.00%)
+;           	9223372036854775807 (0x7fffffffffffffff) words
 ; udata size:	    0 (0x0000) bytes ( 0.00%)
-; access size:	   12 (0x000c) bytes
+; access size:	    0 (0x0000) bytes
 
 
 	end

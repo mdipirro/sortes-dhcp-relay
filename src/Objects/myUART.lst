@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  1
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Tue Dec 12 01:06:04 2017
+               00004 ; This file was generated Tue Dec 12 02:14:58 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -18,801 +18,503 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00012 ;--------------------------------------------------------
                00013 ; public variables in this module
                00014 ;--------------------------------------------------------
-               00015         global _UARTConfig
-               00016         global _UARTPutc
-               00017         global _UARTPuts
-               00018         global _UARTPutblk
-               00019 
-               00020 ;--------------------------------------------------------
-               00021 ; extern variables in this module
-               00022 ;--------------------------------------------------------
-               00023         extern __gptrget1
-               00024         extern _EBSTCONbits
-               00025         extern _MISTATbits
-               00026         extern _EFLOCONbits
-               00027         extern _MACON1bits
-               00028         extern _MACON2bits
-               00029         extern _MACON3bits
-               00030         extern _MACON4bits
-               00031         extern _MACLCON1bits
-               00032         extern _MACLCON2bits
-               00033         extern _MICONbits
-               00034         extern _MICMDbits
-               00035         extern _EWOLIEbits
-               00036         extern _EWOLIRbits
-               00037         extern _ERXFCONbits
-               00038         extern _EIEbits
-               00039         extern _ESTATbits
-               00040         extern _ECON2bits
-               00041         extern _EIRbits
-               00042         extern _EDATAbits
-               00043         extern _SSP2CON2bits
-               00044         extern _SSP2CON1bits
-               00045         extern _SSP2STATbits
-               00046         extern _ECCP2DELbits
-               00047         extern _ECCP2ASbits
-               00048         extern _ECCP3DELbits
-               00049         extern _ECCP3ASbits
-               00050         extern _RCSTA2bits
-               00051         extern _TXSTA2bits
-               00052         extern _CCP5CONbits
-               00053         extern _CCP4CONbits
-               00054         extern _T4CONbits
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  2
+               00015 
+               00016 ;--------------------------------------------------------
+               00017 ; extern variables in this module
+               00018 ;--------------------------------------------------------
+               00019         extern _EBSTCONbits
+               00020         extern _MISTATbits
+               00021         extern _EFLOCONbits
+               00022         extern _MACON1bits
+               00023         extern _MACON2bits
+               00024         extern _MACON3bits
+               00025         extern _MACON4bits
+               00026         extern _MACLCON1bits
+               00027         extern _MACLCON2bits
+               00028         extern _MICONbits
+               00029         extern _MICMDbits
+               00030         extern _EWOLIEbits
+               00031         extern _EWOLIRbits
+               00032         extern _ERXFCONbits
+               00033         extern _EIEbits
+               00034         extern _ESTATbits
+               00035         extern _ECON2bits
+               00036         extern _EIRbits
+               00037         extern _EDATAbits
+               00038         extern _SSP2CON2bits
+               00039         extern _SSP2CON1bits
+               00040         extern _SSP2STATbits
+               00041         extern _ECCP2DELbits
+               00042         extern _ECCP2ASbits
+               00043         extern _ECCP3DELbits
+               00044         extern _ECCP3ASbits
+               00045         extern _RCSTA2bits
+               00046         extern _TXSTA2bits
+               00047         extern _CCP5CONbits
+               00048         extern _CCP4CONbits
+               00049         extern _T4CONbits
+               00050         extern _ECCP1DELbits
+               00051         extern _BAUDCON2bits
+               00052         extern _BAUDCTL2bits
+               00053         extern _BAUDCONbits
+               00054         extern _BAUDCON1bits
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00055         extern _ECCP1DELbits
-               00056         extern _BAUDCON2bits
-               00057         extern _BAUDCTL2bits
-               00058         extern _BAUDCONbits
-               00059         extern _BAUDCON1bits
-               00060         extern _BAUDCTLbits
-               00061         extern _BAUDCTL1bits
-               00062         extern _PORTAbits
-               00063         extern _PORTBbits
-               00064         extern _PORTCbits
-               00065         extern _PORTDbits
-               00066         extern _PORTEbits
-               00067         extern _PORTFbits
-               00068         extern _PORTGbits
-               00069         extern _PORTHbits
-               00070         extern _PORTJbits
-               00071         extern _LATAbits
-               00072         extern _LATBbits
-               00073         extern _LATCbits
-               00074         extern _LATDbits
-               00075         extern _LATEbits
-               00076         extern _LATFbits
-               00077         extern _LATGbits
-               00078         extern _LATHbits
-               00079         extern _LATJbits
-               00080         extern _DDRAbits
-               00081         extern _TRISAbits
-               00082         extern _DDRBbits
-               00083         extern _TRISBbits
-               00084         extern _DDRCbits
-               00085         extern _TRISCbits
-               00086         extern _DDRDbits
-               00087         extern _TRISDbits
-               00088         extern _DDREbits
-               00089         extern _TRISEbits
-               00090         extern _DDRFbits
-               00091         extern _TRISFbits
-               00092         extern _DDRGbits
-               00093         extern _TRISGbits
-               00094         extern _DDRHbits
-               00095         extern _TRISHbits
-               00096         extern _DDRJbits
-               00097         extern _TRISJbits
-               00098         extern _OSCTUNEbits
-               00099         extern _MEMCONbits
-               00100         extern _PIE1bits
-               00101         extern _PIR1bits
-               00102         extern _IPR1bits
-               00103         extern _PIE2bits
-               00104         extern _PIR2bits
-               00105         extern _IPR2bits
-               00106         extern _PIE3bits
-               00107         extern _PIR3bits
-               00108         extern _IPR3bits
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  3
+               00055         extern _BAUDCTLbits
+               00056         extern _BAUDCTL1bits
+               00057         extern _PORTAbits
+               00058         extern _PORTBbits
+               00059         extern _PORTCbits
+               00060         extern _PORTDbits
+               00061         extern _PORTEbits
+               00062         extern _PORTFbits
+               00063         extern _PORTGbits
+               00064         extern _PORTHbits
+               00065         extern _PORTJbits
+               00066         extern _LATAbits
+               00067         extern _LATBbits
+               00068         extern _LATCbits
+               00069         extern _LATDbits
+               00070         extern _LATEbits
+               00071         extern _LATFbits
+               00072         extern _LATGbits
+               00073         extern _LATHbits
+               00074         extern _LATJbits
+               00075         extern _DDRAbits
+               00076         extern _TRISAbits
+               00077         extern _DDRBbits
+               00078         extern _TRISBbits
+               00079         extern _DDRCbits
+               00080         extern _TRISCbits
+               00081         extern _DDRDbits
+               00082         extern _TRISDbits
+               00083         extern _DDREbits
+               00084         extern _TRISEbits
+               00085         extern _DDRFbits
+               00086         extern _TRISFbits
+               00087         extern _DDRGbits
+               00088         extern _TRISGbits
+               00089         extern _DDRHbits
+               00090         extern _TRISHbits
+               00091         extern _DDRJbits
+               00092         extern _TRISJbits
+               00093         extern _OSCTUNEbits
+               00094         extern _MEMCONbits
+               00095         extern _PIE1bits
+               00096         extern _PIR1bits
+               00097         extern _IPR1bits
+               00098         extern _PIE2bits
+               00099         extern _PIR2bits
+               00100         extern _IPR2bits
+               00101         extern _PIE3bits
+               00102         extern _PIR3bits
+               00103         extern _IPR3bits
+               00104         extern _EECON1bits
+               00105         extern _RCSTAbits
+               00106         extern _RCSTA1bits
+               00107         extern _TXSTAbits
+               00108         extern _TXSTA1bits
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00109         extern _EECON1bits
-               00110         extern _RCSTAbits
-               00111         extern _RCSTA1bits
-               00112         extern _TXSTAbits
-               00113         extern _TXSTA1bits
-               00114         extern _PSPCONbits
-               00115         extern _T3CONbits
-               00116         extern _CMCONbits
-               00117         extern _CVRCONbits
-               00118         extern _ECCP1ASbits
-               00119         extern _CCP3CONbits
-               00120         extern _ECCP3CONbits
-               00121         extern _CCP2CONbits
-               00122         extern _ECCP2CONbits
-               00123         extern _CCP1CONbits
-               00124         extern _ECCP1CONbits
-               00125         extern _ADCON2bits
-               00126         extern _ADCON1bits
-               00127         extern _ADCON0bits
-               00128         extern _SSP1CON2bits
-               00129         extern _SSPCON2bits
-               00130         extern _SSP1CON1bits
-               00131         extern _SSPCON1bits
-               00132         extern _SSP1STATbits
-               00133         extern _SSPSTATbits
-               00134         extern _T2CONbits
-               00135         extern _T1CONbits
-               00136         extern _RCONbits
-               00137         extern _WDTCONbits
-               00138         extern _ECON1bits
-               00139         extern _OSCCONbits
-               00140         extern _T0CONbits
-               00141         extern _STATUSbits
-               00142         extern _INTCON3bits
-               00143         extern _INTCON2bits
-               00144         extern _INTCONbits
-               00145         extern _STKPTRbits
-               00146         extern _stdin
-               00147         extern _stdout
-               00148         extern _AN0String
-               00149         extern _AppConfig
-               00150         extern _activeUDPSocket
-               00151         extern _UDPSocketInfo
-               00152         extern _UDPTxCount
-               00153         extern _UDPRxCount
-               00154         extern _LCDText
-               00155         extern _MAADR5
-               00156         extern _MAADR6
-               00157         extern _MAADR3
-               00158         extern _MAADR4
-               00159         extern _MAADR1
-               00160         extern _MAADR2
-               00161         extern _EBSTSD
-               00162         extern _EBSTCON
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  4
+               00109         extern _PSPCONbits
+               00110         extern _T3CONbits
+               00111         extern _CMCONbits
+               00112         extern _CVRCONbits
+               00113         extern _ECCP1ASbits
+               00114         extern _CCP3CONbits
+               00115         extern _ECCP3CONbits
+               00116         extern _CCP2CONbits
+               00117         extern _ECCP2CONbits
+               00118         extern _CCP1CONbits
+               00119         extern _ECCP1CONbits
+               00120         extern _ADCON2bits
+               00121         extern _ADCON1bits
+               00122         extern _ADCON0bits
+               00123         extern _SSP1CON2bits
+               00124         extern _SSPCON2bits
+               00125         extern _SSP1CON1bits
+               00126         extern _SSPCON1bits
+               00127         extern _SSP1STATbits
+               00128         extern _SSPSTATbits
+               00129         extern _T2CONbits
+               00130         extern _T1CONbits
+               00131         extern _RCONbits
+               00132         extern _WDTCONbits
+               00133         extern _ECON1bits
+               00134         extern _OSCCONbits
+               00135         extern _T0CONbits
+               00136         extern _STATUSbits
+               00137         extern _INTCON3bits
+               00138         extern _INTCON2bits
+               00139         extern _INTCONbits
+               00140         extern _STKPTRbits
+               00141         extern _stdin
+               00142         extern _stdout
+               00143         extern _AN0String
+               00144         extern _AppConfig
+               00145         extern _activeUDPSocket
+               00146         extern _UDPSocketInfo
+               00147         extern _UDPTxCount
+               00148         extern _UDPRxCount
+               00149         extern _LCDText
+               00150         extern _MAADR5
+               00151         extern _MAADR6
+               00152         extern _MAADR3
+               00153         extern _MAADR4
+               00154         extern _MAADR1
+               00155         extern _MAADR2
+               00156         extern _EBSTSD
+               00157         extern _EBSTCON
+               00158         extern _EBSTCS
+               00159         extern _EBSTCSL
+               00160         extern _EBSTCSH
+               00161         extern _MISTAT
+               00162         extern _EFLOCON
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00163         extern _EBSTCS
-               00164         extern _EBSTCSL
-               00165         extern _EBSTCSH
-               00166         extern _MISTAT
-               00167         extern _EFLOCON
-               00168         extern _EPAUS
-               00169         extern _EPAUSL
-               00170         extern _EPAUSH
-               00171         extern _MACON1
-               00172         extern _MACON2
-               00173         extern _MACON3
-               00174         extern _MACON4
-               00175         extern _MABBIPG
-               00176         extern _MAIPG
-               00177         extern _MAIPGL
-               00178         extern _MAIPGH
-               00179         extern _MACLCON1
-               00180         extern _MACLCON2
-               00181         extern _MAMXFL
-               00182         extern _MAMXFLL
-               00183         extern _MAMXFLH
-               00184         extern _MICON
-               00185         extern _MICMD
-               00186         extern _MIREGADR
-               00187         extern _MIWR
-               00188         extern _MIWRL
-               00189         extern _MIWRH
-               00190         extern _MIRD
-               00191         extern _MIRDL
-               00192         extern _MIRDH
-               00193         extern _EHT0
-               00194         extern _EHT1
-               00195         extern _EHT2
-               00196         extern _EHT3
-               00197         extern _EHT4
-               00198         extern _EHT5
-               00199         extern _EHT6
-               00200         extern _EHT7
-               00201         extern _EPMM0
-               00202         extern _EPMM1
-               00203         extern _EPMM2
-               00204         extern _EPMM3
-               00205         extern _EPMM4
-               00206         extern _EPMM5
-               00207         extern _EPMM6
-               00208         extern _EPMM7
-               00209         extern _EPMCS
-               00210         extern _EPMCSL
-               00211         extern _EPMCSH
-               00212         extern _EPMO
-               00213         extern _EPMOL
-               00214         extern _EPMOH
-               00215         extern _EWOLIE
-               00216         extern _EWOLIR
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  5
+               00163         extern _EPAUS
+               00164         extern _EPAUSL
+               00165         extern _EPAUSH
+               00166         extern _MACON1
+               00167         extern _MACON2
+               00168         extern _MACON3
+               00169         extern _MACON4
+               00170         extern _MABBIPG
+               00171         extern _MAIPG
+               00172         extern _MAIPGL
+               00173         extern _MAIPGH
+               00174         extern _MACLCON1
+               00175         extern _MACLCON2
+               00176         extern _MAMXFL
+               00177         extern _MAMXFLL
+               00178         extern _MAMXFLH
+               00179         extern _MICON
+               00180         extern _MICMD
+               00181         extern _MIREGADR
+               00182         extern _MIWR
+               00183         extern _MIWRL
+               00184         extern _MIWRH
+               00185         extern _MIRD
+               00186         extern _MIRDL
+               00187         extern _MIRDH
+               00188         extern _EHT0
+               00189         extern _EHT1
+               00190         extern _EHT2
+               00191         extern _EHT3
+               00192         extern _EHT4
+               00193         extern _EHT5
+               00194         extern _EHT6
+               00195         extern _EHT7
+               00196         extern _EPMM0
+               00197         extern _EPMM1
+               00198         extern _EPMM2
+               00199         extern _EPMM3
+               00200         extern _EPMM4
+               00201         extern _EPMM5
+               00202         extern _EPMM6
+               00203         extern _EPMM7
+               00204         extern _EPMCS
+               00205         extern _EPMCSL
+               00206         extern _EPMCSH
+               00207         extern _EPMO
+               00208         extern _EPMOL
+               00209         extern _EPMOH
+               00210         extern _EWOLIE
+               00211         extern _EWOLIR
+               00212         extern _ERXFCON
+               00213         extern _EPKTCNT
+               00214         extern _EWRPT
+               00215         extern _EWRPTL
+               00216         extern _EWRPTH
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00217         extern _ERXFCON
-               00218         extern _EPKTCNT
-               00219         extern _EWRPT
-               00220         extern _EWRPTL
-               00221         extern _EWRPTH
-               00222         extern _ETXST
-               00223         extern _ETXSTL
-               00224         extern _ETXSTH
-               00225         extern _ETXND
-               00226         extern _ETXNDL
-               00227         extern _ETXNDH
-               00228         extern _ERXST
-               00229         extern _ERXSTL
-               00230         extern _ERXSTH
-               00231         extern _ERXND
-               00232         extern _ERXNDL
-               00233         extern _ERXNDH
-               00234         extern _ERXRDPT
-               00235         extern _ERXRDPTL
-               00236         extern _ERXRDPTH
-               00237         extern _ERXWRPT
-               00238         extern _ERXWRPTL
-               00239         extern _ERXWRPTH
-               00240         extern _EDMAST
-               00241         extern _EDMASTL
-               00242         extern _EDMASTH
-               00243         extern _EDMAND
-               00244         extern _EDMANDL
-               00245         extern _EDMANDH
-               00246         extern _EDMADST
-               00247         extern _EDMADSTL
-               00248         extern _EDMADSTH
-               00249         extern _EDMACS
-               00250         extern _EDMACSL
-               00251         extern _EDMACSH
-               00252         extern _EIE
-               00253         extern _ESTAT
-               00254         extern _ECON2
-               00255         extern _EIR
-               00256         extern _EDATA
-               00257         extern _SSP2CON2
-               00258         extern _SSP2CON1
-               00259         extern _SSP2STAT
-               00260         extern _SSP2ADD
-               00261         extern _SSP2BUF
-               00262         extern _ECCP2DEL
-               00263         extern _ECCP2AS
-               00264         extern _ECCP3DEL
-               00265         extern _ECCP3AS
-               00266         extern _RCSTA2
-               00267         extern _TXSTA2
-               00268         extern _TXREG2
-               00269         extern _RCREG2
-               00270         extern _SPBRG2
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  6
+               00217         extern _ETXST
+               00218         extern _ETXSTL
+               00219         extern _ETXSTH
+               00220         extern _ETXND
+               00221         extern _ETXNDL
+               00222         extern _ETXNDH
+               00223         extern _ERXST
+               00224         extern _ERXSTL
+               00225         extern _ERXSTH
+               00226         extern _ERXND
+               00227         extern _ERXNDL
+               00228         extern _ERXNDH
+               00229         extern _ERXRDPT
+               00230         extern _ERXRDPTL
+               00231         extern _ERXRDPTH
+               00232         extern _ERXWRPT
+               00233         extern _ERXWRPTL
+               00234         extern _ERXWRPTH
+               00235         extern _EDMAST
+               00236         extern _EDMASTL
+               00237         extern _EDMASTH
+               00238         extern _EDMAND
+               00239         extern _EDMANDL
+               00240         extern _EDMANDH
+               00241         extern _EDMADST
+               00242         extern _EDMADSTL
+               00243         extern _EDMADSTH
+               00244         extern _EDMACS
+               00245         extern _EDMACSL
+               00246         extern _EDMACSH
+               00247         extern _EIE
+               00248         extern _ESTAT
+               00249         extern _ECON2
+               00250         extern _EIR
+               00251         extern _EDATA
+               00252         extern _SSP2CON2
+               00253         extern _SSP2CON1
+               00254         extern _SSP2STAT
+               00255         extern _SSP2ADD
+               00256         extern _SSP2BUF
+               00257         extern _ECCP2DEL
+               00258         extern _ECCP2AS
+               00259         extern _ECCP3DEL
+               00260         extern _ECCP3AS
+               00261         extern _RCSTA2
+               00262         extern _TXSTA2
+               00263         extern _TXREG2
+               00264         extern _RCREG2
+               00265         extern _SPBRG2
+               00266         extern _CCP5CON
+               00267         extern _CCPR5
+               00268         extern _CCPR5L
+               00269         extern _CCPR5H
+               00270         extern _CCP4CON
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00271         extern _CCP5CON
-               00272         extern _CCPR5
-               00273         extern _CCPR5L
-               00274         extern _CCPR5H
-               00275         extern _CCP4CON
-               00276         extern _CCPR4
-               00277         extern _CCPR4L
-               00278         extern _CCPR4H
-               00279         extern _T4CON
-               00280         extern _PR4
-               00281         extern _TMR4
-               00282         extern _ECCP1DEL
-               00283         extern _ERDPT
-               00284         extern _ERDPTL
-               00285         extern _ERDPTH
-               00286         extern _BAUDCON2
-               00287         extern _BAUDCTL2
-               00288         extern _SPBRGH2
-               00289         extern _BAUDCON
-               00290         extern _BAUDCON1
-               00291         extern _BAUDCTL
-               00292         extern _BAUDCTL1
-               00293         extern _SPBRGH
-               00294         extern _SPBRGH1
-               00295         extern _PORTA
-               00296         extern _PORTB
-               00297         extern _PORTC
-               00298         extern _PORTD
-               00299         extern _PORTE
-               00300         extern _PORTF
-               00301         extern _PORTG
-               00302         extern _PORTH
-               00303         extern _PORTJ
-               00304         extern _LATA
-               00305         extern _LATB
-               00306         extern _LATC
-               00307         extern _LATD
-               00308         extern _LATE
-               00309         extern _LATF
-               00310         extern _LATG
-               00311         extern _LATH
-               00312         extern _LATJ
-               00313         extern _DDRA
-               00314         extern _TRISA
-               00315         extern _DDRB
-               00316         extern _TRISB
-               00317         extern _DDRC
-               00318         extern _TRISC
-               00319         extern _DDRD
-               00320         extern _TRISD
-               00321         extern _DDRE
-               00322         extern _TRISE
-               00323         extern _DDRF
-               00324         extern _TRISF
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  7
+               00271         extern _CCPR4
+               00272         extern _CCPR4L
+               00273         extern _CCPR4H
+               00274         extern _T4CON
+               00275         extern _PR4
+               00276         extern _TMR4
+               00277         extern _ECCP1DEL
+               00278         extern _ERDPT
+               00279         extern _ERDPTL
+               00280         extern _ERDPTH
+               00281         extern _BAUDCON2
+               00282         extern _BAUDCTL2
+               00283         extern _SPBRGH2
+               00284         extern _BAUDCON
+               00285         extern _BAUDCON1
+               00286         extern _BAUDCTL
+               00287         extern _BAUDCTL1
+               00288         extern _SPBRGH
+               00289         extern _SPBRGH1
+               00290         extern _PORTA
+               00291         extern _PORTB
+               00292         extern _PORTC
+               00293         extern _PORTD
+               00294         extern _PORTE
+               00295         extern _PORTF
+               00296         extern _PORTG
+               00297         extern _PORTH
+               00298         extern _PORTJ
+               00299         extern _LATA
+               00300         extern _LATB
+               00301         extern _LATC
+               00302         extern _LATD
+               00303         extern _LATE
+               00304         extern _LATF
+               00305         extern _LATG
+               00306         extern _LATH
+               00307         extern _LATJ
+               00308         extern _DDRA
+               00309         extern _TRISA
+               00310         extern _DDRB
+               00311         extern _TRISB
+               00312         extern _DDRC
+               00313         extern _TRISC
+               00314         extern _DDRD
+               00315         extern _TRISD
+               00316         extern _DDRE
+               00317         extern _TRISE
+               00318         extern _DDRF
+               00319         extern _TRISF
+               00320         extern _DDRG
+               00321         extern _TRISG
+               00322         extern _DDRH
+               00323         extern _TRISH
+               00324         extern _DDRJ
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00325         extern _DDRG
-               00326         extern _TRISG
-               00327         extern _DDRH
-               00328         extern _TRISH
-               00329         extern _DDRJ
-               00330         extern _TRISJ
-               00331         extern _OSCTUNE
-               00332         extern _MEMCON
-               00333         extern _PIE1
-               00334         extern _PIR1
-               00335         extern _IPR1
-               00336         extern _PIE2
-               00337         extern _PIR2
-               00338         extern _IPR2
-               00339         extern _PIE3
-               00340         extern _PIR3
-               00341         extern _IPR3
-               00342         extern _EECON1
-               00343         extern _EECON2
-               00344         extern _RCSTA
-               00345         extern _RCSTA1
-               00346         extern _TXSTA
-               00347         extern _TXSTA1
-               00348         extern _TXREG
-               00349         extern _TXREG1
-               00350         extern _RCREG
-               00351         extern _RCREG1
-               00352         extern _SPBRG
-               00353         extern _SPBRG1
-               00354         extern _PSPCON
-               00355         extern _T3CON
-               00356         extern _TMR3L
-               00357         extern _TMR3H
-               00358         extern _CMCON
-               00359         extern _CVRCON
-               00360         extern _ECCP1AS
-               00361         extern _CCP3CON
-               00362         extern _ECCP3CON
-               00363         extern _CCPR3
-               00364         extern _CCPR3L
-               00365         extern _CCPR3H
-               00366         extern _CCP2CON
-               00367         extern _ECCP2CON
-               00368         extern _CCPR2
-               00369         extern _CCPR2L
-               00370         extern _CCPR2H
-               00371         extern _CCP1CON
-               00372         extern _ECCP1CON
-               00373         extern _CCPR1
-               00374         extern _CCPR1L
-               00375         extern _CCPR1H
-               00376         extern _ADCON2
-               00377         extern _ADCON1
-               00378         extern _ADCON0
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  8
+               00325         extern _TRISJ
+               00326         extern _OSCTUNE
+               00327         extern _MEMCON
+               00328         extern _PIE1
+               00329         extern _PIR1
+               00330         extern _IPR1
+               00331         extern _PIE2
+               00332         extern _PIR2
+               00333         extern _IPR2
+               00334         extern _PIE3
+               00335         extern _PIR3
+               00336         extern _IPR3
+               00337         extern _EECON1
+               00338         extern _EECON2
+               00339         extern _RCSTA
+               00340         extern _RCSTA1
+               00341         extern _TXSTA
+               00342         extern _TXSTA1
+               00343         extern _TXREG
+               00344         extern _TXREG1
+               00345         extern _RCREG
+               00346         extern _RCREG1
+               00347         extern _SPBRG
+               00348         extern _SPBRG1
+               00349         extern _PSPCON
+               00350         extern _T3CON
+               00351         extern _TMR3L
+               00352         extern _TMR3H
+               00353         extern _CMCON
+               00354         extern _CVRCON
+               00355         extern _ECCP1AS
+               00356         extern _CCP3CON
+               00357         extern _ECCP3CON
+               00358         extern _CCPR3
+               00359         extern _CCPR3L
+               00360         extern _CCPR3H
+               00361         extern _CCP2CON
+               00362         extern _ECCP2CON
+               00363         extern _CCPR2
+               00364         extern _CCPR2L
+               00365         extern _CCPR2H
+               00366         extern _CCP1CON
+               00367         extern _ECCP1CON
+               00368         extern _CCPR1
+               00369         extern _CCPR1L
+               00370         extern _CCPR1H
+               00371         extern _ADCON2
+               00372         extern _ADCON1
+               00373         extern _ADCON0
+               00374         extern _ADRES
+               00375         extern _ADRESL
+               00376         extern _ADRESH
+               00377         extern _SSP1CON2
+               00378         extern _SSPCON2
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00379         extern _ADRES
-               00380         extern _ADRESL
-               00381         extern _ADRESH
-               00382         extern _SSP1CON2
-               00383         extern _SSPCON2
-               00384         extern _SSP1CON1
-               00385         extern _SSPCON1
-               00386         extern _SSP1STAT
-               00387         extern _SSPSTAT
-               00388         extern _SSP1ADD
-               00389         extern _SSPADD
-               00390         extern _SSP1BUF
-               00391         extern _SSPBUF
-               00392         extern _T2CON
-               00393         extern _PR2
-               00394         extern _TMR2
-               00395         extern _T1CON
-               00396         extern _TMR1L
-               00397         extern _TMR1H
-               00398         extern _RCON
-               00399         extern _WDTCON
-               00400         extern _ECON1
-               00401         extern _OSCCON
-               00402         extern _T0CON
-               00403         extern _TMR0L
-               00404         extern _TMR0H
-               00405         extern _STATUS
-               00406         extern _FSR2L
-               00407         extern _FSR2H
-               00408         extern _PLUSW2
-               00409         extern _PREINC2
-               00410         extern _POSTDEC2
-               00411         extern _POSTINC2
-               00412         extern _INDF2
-               00413         extern _BSR
-               00414         extern _FSR1L
-               00415         extern _FSR1H
-               00416         extern _PLUSW1
-               00417         extern _PREINC1
-               00418         extern _POSTDEC1
-               00419         extern _POSTINC1
-               00420         extern _INDF1
-               00421         extern _WREG
-               00422         extern _FSR0L
-               00423         extern _FSR0H
-               00424         extern _PLUSW0
-               00425         extern _PREINC0
-               00426         extern _POSTDEC0
-               00427         extern _POSTINC0
-               00428         extern _INDF0
-               00429         extern _INTCON3
-               00430         extern _INTCON2
-               00431         extern _INTCON
-               00432         extern _PROD
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE  9
+               00379         extern _SSP1CON1
+               00380         extern _SSPCON1
+               00381         extern _SSP1STAT
+               00382         extern _SSPSTAT
+               00383         extern _SSP1ADD
+               00384         extern _SSPADD
+               00385         extern _SSP1BUF
+               00386         extern _SSPBUF
+               00387         extern _T2CON
+               00388         extern _PR2
+               00389         extern _TMR2
+               00390         extern _T1CON
+               00391         extern _TMR1L
+               00392         extern _TMR1H
+               00393         extern _RCON
+               00394         extern _WDTCON
+               00395         extern _ECON1
+               00396         extern _OSCCON
+               00397         extern _T0CON
+               00398         extern _TMR0L
+               00399         extern _TMR0H
+               00400         extern _STATUS
+               00401         extern _FSR2L
+               00402         extern _FSR2H
+               00403         extern _PLUSW2
+               00404         extern _PREINC2
+               00405         extern _POSTDEC2
+               00406         extern _POSTINC2
+               00407         extern _INDF2
+               00408         extern _BSR
+               00409         extern _FSR1L
+               00410         extern _FSR1H
+               00411         extern _PLUSW1
+               00412         extern _PREINC1
+               00413         extern _POSTDEC1
+               00414         extern _POSTINC1
+               00415         extern _INDF1
+               00416         extern _WREG
+               00417         extern _FSR0L
+               00418         extern _FSR0H
+               00419         extern _PLUSW0
+               00420         extern _PREINC0
+               00421         extern _POSTDEC0
+               00422         extern _POSTINC0
+               00423         extern _INDF0
+               00424         extern _INTCON3
+               00425         extern _INTCON2
+               00426         extern _INTCON
+               00427         extern _PROD
+               00428         extern _PRODL
+               00429         extern _PRODH
+               00430         extern _TABLAT
+               00431         extern _TBLPTR
+               00432         extern _TBLPTRL
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
  
-               00433         extern _PRODL
-               00434         extern _PRODH
-               00435         extern _TABLAT
-               00436         extern _TBLPTR
-               00437         extern _TBLPTRL
-               00438         extern _TBLPTRH
-               00439         extern _TBLPTRU
-               00440         extern _PC
-               00441         extern _PCL
-               00442         extern _PCLATH
-               00443         extern _PCLATU
-               00444         extern _STKPTR
-               00445         extern _TOS
-               00446         extern _TOSL
-               00447         extern _TOSH
-               00448         extern _TOSU
-               00449 ;--------------------------------------------------------
-               00450 ;       Equates to used internal registers
-               00451 ;--------------------------------------------------------
-  00000FD8     00452 STATUS  equ     0xfd8
-  00000FE8     00453 WREG    equ     0xfe8
-  00000FE9     00454 FSR0L   equ     0xfe9
-  00000FE1     00455 FSR1L   equ     0xfe1
-  00000FD9     00456 FSR2L   equ     0xfd9
-  00000FE5     00457 POSTDEC1        equ     0xfe5
-  00000FE4     00458 PREINC1 equ     0xfe4
-  00000FDB     00459 PLUSW2  equ     0xfdb
-  00000FF3     00460 PRODL   equ     0xff3
-               00461 
-               00462 
-               00463 ; Internal registers
-               00464 .registers      udata_ovr       0x0000
-               00465 r0x00   res     1
-               00466 r0x01   res     1
-               00467 r0x02   res     1
-               00468 r0x03   res     1
-               00469 r0x04   res     1
-               00470 r0x05   res     1
-               00471 r0x06   res     1
-               00472 r0x07   res     1
-               00473 r0x08   res     1
-               00474 r0x09   res     1
-               00475 r0x0a   res     1
-               00476 r0x0b   res     1
-               00477 
-               00478 ;--------------------------------------------------------
-               00479 ; global & static initialisations
-               00480 ;--------------------------------------------------------
-               00481 ; I code from now on!
-               00482 ; ; Starting pCode block
-               00483 S_myUART__UARTPutblk    code
-0000 00484 _UARTPutblk:
-               00485 ;       .line   47; TCPIP_Stack/myUART.c        void UARTPutblk(char *udata, size_t size, int sz)
-0000 CFD9 FFE5 00486         MOVFF   FSR2L, POSTDEC1
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 10
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-0004 CFE1 FFD9 00487         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00488         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00489         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00490         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00491         MOVFF   r0x03, POSTDEC1
-0018 C000 FFE5 00492         MOVFF   r0x04, POSTDEC1
-001C C000 FFE5 00493         MOVFF   r0x05, POSTDEC1
-0020 C000 FFE5 00494         MOVFF   r0x06, POSTDEC1
-0024 C000 FFE5 00495         MOVFF   r0x07, POSTDEC1
-0028 C000 FFE5 00496         MOVFF   r0x08, POSTDEC1
-002C C000 FFE5 00497         MOVFF   r0x09, POSTDEC1
-0030 C000 FFE5 00498         MOVFF   r0x0a, POSTDEC1
-0034 C000 FFE5 00499         MOVFF   r0x0b, POSTDEC1
-0038 0E02      00500         MOVLW   0x02
-003A CFDB F000 00501         MOVFF   PLUSW2, r0x00
-003E 0E03      00502         MOVLW   0x03
-0040 CFDB F000 00503         MOVFF   PLUSW2, r0x01
-0044 0E04      00504         MOVLW   0x04
-0046 CFDB F000 00505         MOVFF   PLUSW2, r0x02
-004A 0E05      00506         MOVLW   0x05
-004C CFDB F000 00507         MOVFF   PLUSW2, r0x03
-0050 0E06      00508         MOVLW   0x06
-0052 CFDB F000 00509         MOVFF   PLUSW2, r0x04
-0056 0E07      00510         MOVLW   0x07
-0058 CFDB F000 00511         MOVFF   PLUSW2, r0x05
-005C 0E08      00512         MOVLW   0x08
-005E CFDB F000 00513         MOVFF   PLUSW2, r0x06
-               00514 ;       .line   50; TCPIP_Stack/myUART.c        for (i=0; i<size; i++)
-0062 6A00      00515         CLRF    r0x07
-0064 6A00      00516         CLRF    r0x08
-0066 00517 _00130_DS_:
-0066 5000      00518         MOVF    r0x04, W
-0068 5C00      00519         SUBWF   r0x08, W
-006A E100      00520         BNZ     _00141_DS_
-006C 5000      00521         MOVF    r0x03, W
-006E 5C00      00522         SUBWF   r0x07, W
-0070 00523 _00141_DS_:
-0070 E200      00524         BC      _00134_DS_
-               00525 ;       .line   52; TCPIP_Stack/myUART.c        if (sz && udata[i] == '\0')
-0072 5000      00526         MOVF    r0x05, W
-0074 1000      00527         IORWF   r0x06, W
-0076 E000      00528         BZ      _00127_DS_
-0078 5000      00529         MOVF    r0x07, W
-007A 2400      00530         ADDWF   r0x00, W
-007C 6E00      00531         MOVWF   r0x09
-007E 5000      00532         MOVF    r0x08, W
-0080 2000      00533         ADDWFC  r0x01, W
-0082 6E00      00534         MOVWF   r0x0a
-0084 6AE8      00535         CLRF    WREG
-0086 2000      00536         ADDWFC  r0x02, W
-0088 6E00      00537         MOVWF   r0x0b
-008A C000 FFE9 00538         MOVFF   r0x09, FSR0L
-008E C000 FFF3 00539         MOVFF   r0x0a, PRODL
-0092 5000      00540         MOVF    r0x0b, W
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 11
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-0094 EC00 F000 00541         CALL    __gptrget1
-0098 6E00      00542         MOVWF   r0x09
-009A 5000      00543         MOVF    r0x09, W
-009C E100      00544         BNZ     _00127_DS_
-               00545 ;       .line   53; TCPIP_Stack/myUART.c        UARTPuts("\\0");
-009E 0E00      00546         MOVLW   UPPER(__str_0)
-00A0 6EE5      00547         MOVWF   POSTDEC1
-00A2 0E00      00548         MOVLW   HIGH(__str_0)
-00A4 6EE5      00549         MOVWF   POSTDEC1
-00A6 0E00      00550         MOVLW   LOW(__str_0)
-00A8 6EE5      00551         MOVWF   POSTDEC1
-00AA EC00 F000 00552         CALL    _UARTPuts
-00AE 0E03      00553         MOVLW   0x03
-00B0 26E1      00554         ADDWF   FSR1L, F
-00B2 D000      00555         BRA     _00132_DS_
-00B4 00556 _00127_DS_:
-               00557 ;       .line   55; TCPIP_Stack/myUART.c        UARTPutc(udata[i]);
-00B4 5000      00558         MOVF    r0x07, W
-00B6 2400      00559         ADDWF   r0x00, W
-00B8 6E00      00560         MOVWF   r0x09
-00BA 5000      00561         MOVF    r0x08, W
-00BC 2000      00562         ADDWFC  r0x01, W
-00BE 6E00      00563         MOVWF   r0x0a
-00C0 6AE8      00564         CLRF    WREG
-00C2 2000      00565         ADDWFC  r0x02, W
-00C4 6E00      00566         MOVWF   r0x0b
-00C6 C000 FFE9 00567         MOVFF   r0x09, FSR0L
-00CA C000 FFF3 00568         MOVFF   r0x0a, PRODL
-00CE 5000      00569         MOVF    r0x0b, W
-00D0 EC00 F000 00570         CALL    __gptrget1
-00D4 6E00      00571         MOVWF   r0x09
-00D6 5000      00572         MOVF    r0x09, W
-00D8 6EE5      00573         MOVWF   POSTDEC1
-00DA EC00 F000 00574         CALL    _UARTPutc
-00DE 2AE1      00575         INCF    FSR1L, F
-00E0 00576 _00132_DS_:
-               00577 ;       .line   50; TCPIP_Stack/myUART.c        for (i=0; i<size; i++)
-00E0 2A00      00578         INCF    r0x07, F
-00E2 B0D8      00579         BTFSC   STATUS, 0
-00E4 2A00      00580         INCF    r0x08, F
-00E6 D000      00581         BRA     _00130_DS_
-00E8 00582 _00134_DS_:
-00E8 CFE4 F000 00583         MOVFF   PREINC1, r0x0b
-00EC CFE4 F000 00584         MOVFF   PREINC1, r0x0a
-00F0 CFE4 F000 00585         MOVFF   PREINC1, r0x09
-00F4 CFE4 F000 00586         MOVFF   PREINC1, r0x08
-00F8 CFE4 F000 00587         MOVFF   PREINC1, r0x07
-00FC CFE4 F000 00588         MOVFF   PREINC1, r0x06
-0100 CFE4 F000 00589         MOVFF   PREINC1, r0x05
-0104 CFE4 F000 00590         MOVFF   PREINC1, r0x04
-0108 CFE4 F000 00591         MOVFF   PREINC1, r0x03
-010C CFE4 F000 00592         MOVFF   PREINC1, r0x02
-0110 CFE4 F000 00593         MOVFF   PREINC1, r0x01
-0114 CFE4 F000 00594         MOVFF   PREINC1, r0x00
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 12
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-0118 CFE4 FFD9 00595         MOVFF   PREINC1, FSR2L
-011C 0012      00596         RETURN  
-               00597 
-               00598 ; ; Starting pCode block
-               00599 S_myUART__UARTPuts      code
-0000 00600 _UARTPuts:
-               00601 ;       .line   39; TCPIP_Stack/myUART.c        void UARTPuts(char *udata)
-0000 CFD9 FFE5 00602         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00603         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00604         MOVFF   r0x00, POSTDEC1
-000C C000 FFE5 00605         MOVFF   r0x01, POSTDEC1
-0010 C000 FFE5 00606         MOVFF   r0x02, POSTDEC1
-0014 C000 FFE5 00607         MOVFF   r0x03, POSTDEC1
-0018 0E02      00608         MOVLW   0x02
-001A CFDB F000 00609         MOVFF   PLUSW2, r0x00
-001E 0E03      00610         MOVLW   0x03
-0020 CFDB F000 00611         MOVFF   PLUSW2, r0x01
-0024 0E04      00612         MOVLW   0x04
-0026 CFDB F000 00613         MOVFF   PLUSW2, r0x02
-002A 00614 _00118_DS_:
-               00615 ;       .line   43; TCPIP_Stack/myUART.c        UARTPutc(*udata);
-002A C000 FFE9 00616         MOVFF   r0x00, FSR0L
-002E C000 FFF3 00617         MOVFF   r0x01, PRODL
-0032 5000      00618         MOVF    r0x02, W
-0034 EC00 F000 00619         CALL    __gptrget1
-0038 6E00      00620         MOVWF   r0x03
-003A 5000      00621         MOVF    r0x03, W
-003C 6EE5      00622         MOVWF   POSTDEC1
-003E EC00 F000 00623         CALL    _UARTPutc
-0042 2AE1      00624         INCF    FSR1L, F
-               00625 ;       .line   44; TCPIP_Stack/myUART.c        } while( *udata++ );
-0044 C000 FFE9 00626         MOVFF   r0x00, FSR0L
-0048 C000 FFF3 00627         MOVFF   r0x01, PRODL
-004C 5000      00628         MOVF    r0x02, W
-004E EC00 F000 00629         CALL    __gptrget1
-0052 6E00      00630         MOVWF   r0x03
-0054 2A00      00631         INCF    r0x00, F
-0056 B0D8      00632         BTFSC   STATUS, 0
-0058 2A00      00633         INCF    r0x01, F
-005A B0D8      00634         BTFSC   STATUS, 0
-005C 2A00      00635         INCF    r0x02, F
-005E 5000      00636         MOVF    r0x03, W
-0060 E100      00637         BNZ     _00118_DS_
-0062 CFE4 F000 00638         MOVFF   PREINC1, r0x03
-0066 CFE4 F000 00639         MOVFF   PREINC1, r0x02
-006A CFE4 F000 00640         MOVFF   PREINC1, r0x01
-006E CFE4 F000 00641         MOVFF   PREINC1, r0x00
-0072 CFE4 FFD9 00642         MOVFF   PREINC1, FSR2L
-0076 0012      00643         RETURN  
-               00644 
-               00645 ; ; Starting pCode block
-               00646 S_myUART__UARTPutc      code
-0000 00647 _UARTPutc:
-               00648 ;       .line   31; TCPIP_Stack/myUART.c        void UARTPutc(char c)
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 13
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-0000 CFD9 FFE5 00649         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00650         MOVFF   FSR1L, FSR2L
-0008 C000 FFE5 00651         MOVFF   r0x00, POSTDEC1
-000C 0E02      00652         MOVLW   0x02
-000E CFDB F000 00653         MOVFF   PLUSW2, r0x00
-0012 00654 _00110_DS_:
-               00655 ;       .line   34; TCPIP_Stack/myUART.c        while (TXSTA1bits.TRMT == 0) {};
-0012 A200      00656         BTFSS   _TXSTA1bits, 1
-0014 D000      00657         BRA     _00110_DS_
-               00658 ;       .line   35; TCPIP_Stack/myUART.c        TXREG1 = c; // send the new byte
-0016 C000 F000 00659         MOVFF   r0x00, _TXREG1
-001A CFE4 F000 00660         MOVFF   PREINC1, r0x00
-001E CFE4 FFD9 00661         MOVFF   PREINC1, FSR2L
-0022 0012      00662         RETURN  
-               00663 
-               00664 ; ; Starting pCode block
-               00665 S_myUART__UARTConfig    code
-0000 00666 _UARTConfig:
-               00667 ;       .line   11; TCPIP_Stack/myUART.c        void UARTConfig(void)
-0000 CFD9 FFE5 00668         MOVFF   FSR2L, POSTDEC1
-0004 CFE1 FFD9 00669         MOVFF   FSR1L, FSR2L
-               00670 ;       .line   13; TCPIP_Stack/myUART.c        TRISCbits.TRISC7 = 1;
-0008 8E00      00671         BSF     _TRISCbits, 7
-               00672 ;       .line   14; TCPIP_Stack/myUART.c        TRISCbits.TRISC6 = 0;
-000A 9C00      00673         BCF     _TRISCbits, 6
-               00674 ;       .line   16; TCPIP_Stack/myUART.c        BAUDCON1bits.BRG16 = 0; // Divisor at 8 bit
-000C 9600      00675         BCF     _BAUDCON1bits, 3
-               00676 ;       .line   17; TCPIP_Stack/myUART.c        BAUDCON1bits.TXCKP = 1; // Inverted polarity
-000E 8800      00677         BSF     _BAUDCON1bits, 4
-               00678 ;       .line   18; TCPIP_Stack/myUART.c        TXSTA1bits.BRGH = 0; // No high-speed baudrate
-0010 9400      00679         BCF     _TXSTA1bits, 2
-               00680 ;       .line   19; TCPIP_Stack/myUART.c        SPBRG1 = 40;    // Divisor for baud rate 9600 at 25 Mhz
-0012 0E28      00681         MOVLW   0x28
-0014 6E00      00682         MOVWF   _SPBRG1
-               00683 ;       .line   21; TCPIP_Stack/myUART.c        TXSTA1bits.SYNC = 0; // Async operation
-0016 9800      00684         BCF     _TXSTA1bits, 4
-               00685 ;       .line   22; TCPIP_Stack/myUART.c        TXSTA1bits.TX9 = 0; // No tx of 9th bit
-0018 9C00      00686         BCF     _TXSTA1bits, 6
-               00687 ;       .line   23; TCPIP_Stack/myUART.c        TXSTA1bits.TXEN = 1; // Enable transmitter
-001A 8A00      00688         BSF     _TXSTA1bits, 5
-               00689 ;       .line   25; TCPIP_Stack/myUART.c        RCSTA1bits.RX9 = 0; // No rx of 9th bit
-001C 9C00      00690         BCF     _RCSTA1bits, 6
-               00691 ;       .line   26; TCPIP_Stack/myUART.c        RCSTA1bits.CREN = 1; // Enable receiver
-001E 8800      00692         BSF     _RCSTA1bits, 4
-               00693 ;       .line   27; TCPIP_Stack/myUART.c        RCSTA1bits.SPEN = 1; // Enable serial port
-0020 8E00      00694         BSF     _RCSTA1bits, 7
-0022 CFE4 FFD9 00695         MOVFF   PREINC1, FSR2L
-0026 0012      00696         RETURN  
-               00697 
-               00698 ; ; Starting pCode block
-0028 00699 __str_0:
-0028 305C 0000 00700         DB      0x5c, 0x30, 0x00
-               00701 
-               00702 
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 14
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
-               00703 ; Statistics:
-               00704 ; code size:      484 (0x01e4) bytes ( 0.37%)
-               00705 ;                 242 (0x00f2) words
-               00706 ; udata size:       0 (0x0000) bytes ( 0.00%)
-               00707 ; access size:     12 (0x000c) bytes
-               00708 
-               00709 
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 15
+               00433         extern _TBLPTRH
+               00434         extern _TBLPTRU
+               00435         extern _PC
+               00436         extern _PCL
+               00437         extern _PCLATH
+               00438         extern _PCLATU
+               00439         extern _STKPTR
+               00440         extern _TOS
+               00441         extern _TOSL
+               00442         extern _TOSH
+               00443         extern _TOSU
+               00444 
+               00445 ;--------------------------------------------------------
+               00446 ; global & static initialisations
+               00447 ;--------------------------------------------------------
+               00448 ; I code from now on!
+               00449 
+               00450 
+               00451 ; Statistics:
+               00452 ; code size:       -1 (0xffffffffffffffff) bytes (14073748835532800.00%)
+               00453 ;               9223372036854775807 (0x7fffffffffffffff) words
+               00454 ; udata size:       0 (0x0000) bytes ( 0.00%)
+               00455 ; access size:      0 (0x0000) bytes
+               00456 
+               00457 
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 10
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-FSR0L                             00000FE9
-FSR1L                             00000FE1
-FSR2L                             00000FD9
-PLUSW2                            00000FDB
-POSTDEC1                          00000FE5
-PREINC1                           00000FE4
-PRODL                             00000FF3
-STATUS                            00000FD8
-WREG                              00000FE8
-_00110_DS_                        00000012
-_00118_DS_                        0000002A
-_00127_DS_                        000000B4
-_00130_DS_                        00000066
-_00132_DS_                        000000E0
-_00134_DS_                        000000E8
-_00141_DS_                        00000070
 _ADCON0                           00000000
 _ADCON0bits                       00000000
 _ADCON1                           00000000
@@ -850,12 +552,6 @@ _CCP5CONbits                      00000000
 _CCPR1                            00000000
 _CCPR1H                           00000000
 _CCPR1L                           00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 16
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _CCPR2                            00000000
 _CCPR2H                           00000000
 _CCPR2L                           00000000
@@ -872,6 +568,12 @@ _CMCON                            00000000
 _CMCONbits                        00000000
 _CVRCON                           00000000
 _CVRCONbits                       00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _DDRA                             00000000
 _DDRAbits                         00000000
 _DDRB                             00000000
@@ -910,12 +612,6 @@ _ECCP2DEL                         00000000
 _ECCP2DELbits                     00000000
 _ECCP3AS                          00000000
 _ECCP3ASbits                      00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 17
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _ECCP3CON                         00000000
 _ECCP3CONbits                     00000000
 _ECCP3DEL                         00000000
@@ -932,6 +628,12 @@ _EDMACSL                          00000000
 _EDMADST                          00000000
 _EDMADSTH                         00000000
 _EDMADSTL                         00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _EDMAND                           00000000
 _EDMANDH                          00000000
 _EDMANDL                          00000000
@@ -970,12 +672,6 @@ _EPMM4                            00000000
 _EPMM5                            00000000
 _EPMM6                            00000000
 _EPMM7                            00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 18
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _EPMO                             00000000
 _EPMOH                            00000000
 _EPMOL                            00000000
@@ -992,6 +688,12 @@ _ERXRDPTH                         00000000
 _ERXRDPTL                         00000000
 _ERXST                            00000000
 _ERXSTH                           00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _ERXSTL                           00000000
 _ERXWRPT                          00000000
 _ERXWRPTH                         00000000
@@ -1030,12 +732,6 @@ _IPR1                             00000000
 _IPR1bits                         00000000
 _IPR2                             00000000
 _IPR2bits                         00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 19
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _IPR3                             00000000
 _IPR3bits                         00000000
 _LATA                             00000000
@@ -1052,6 +748,12 @@ _LATF                             00000000
 _LATFbits                         00000000
 _LATG                             00000000
 _LATGbits                         00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _LATH                             00000000
 _LATHbits                         00000000
 _LATJ                             00000000
@@ -1090,12 +792,6 @@ _MICON                            00000000
 _MICONbits                        00000000
 _MIRD                             00000000
 _MIRDH                            00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 20
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _MIRDL                            00000000
 _MIREGADR                         00000000
 _MISTAT                           00000000
@@ -1112,6 +808,12 @@ _PCL                              00000000
 _PCLATH                           00000000
 _PCLATU                           00000000
 _PIE1                             00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _PIE1bits                         00000000
 _PIE2                             00000000
 _PIE2bits                         00000000
@@ -1150,12 +852,6 @@ _POSTDEC2                         00000000
 _POSTINC0                         00000000
 _POSTINC1                         00000000
 _POSTINC2                         00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 21
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _PR2                              00000000
 _PR4                              00000000
 _PREINC0                          00000000
@@ -1172,6 +868,12 @@ _RCREG                            00000000
 _RCREG1                           00000000
 _RCREG2                           00000000
 _RCSTA                            00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _RCSTA1                           00000000
 _RCSTA1bits                       00000000
 _RCSTA2                           00000000
@@ -1210,12 +912,6 @@ _SSPSTATbits                      00000000
 _STATUS                           00000000
 _STATUSbits                       00000000
 _STKPTR                           00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 22
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _STKPTRbits                       00000000
 _T0CON                            00000000
 _T0CONbits                        00000000
@@ -1232,6 +928,12 @@ _TBLPTR                           00000000
 _TBLPTRH                          00000000
 _TBLPTRL                          00000000
 _TBLPTRU                          00000000
+gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  02:14:58         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+ 
 _TMR0H                            00000000
 _TMR0L                            00000000
 _TMR1H                            00000000
@@ -1270,17 +972,7 @@ _TXSTA1                           00000000
 _TXSTA1bits                       00000000
 _TXSTA2                           00000000
 _TXSTA2bits                       00000000
-gpasm-0.13.7 beta               Objects/myUART.asm12-12-2017  01:06:04         PAGE 23
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
- 
 _TXSTAbits                        00000000
-_UARTConfig                       00000000
-_UARTPutblk                       00000000
-_UARTPutc                         00000000
-_UARTPuts                         00000000
 _UDPRxCount                       00000000
 _UDPSocketInfo                    00000000
 _UDPTxCount                       00000000
@@ -1288,23 +980,9 @@ _WDTCON                           00000000
 _WDTCONbits                       00000000
 _WREG                             00000000
 __18F97J60                        00000001
-__gptrget1                        00000000
-__str_0                           00000028
 _activeUDPSocket                  00000000
 _stdin                            00000000
 _stdout                           00000000
-r0x00                             00000000
-r0x01                             00000001
-r0x02                             00000002
-r0x03                             00000003
-r0x04                             00000004
-r0x05                             00000005
-r0x06                             00000006
-r0x07                             00000007
-r0x08                             00000008
-r0x09                             00000009
-r0x0a                             0000000A
-r0x0b                             0000000B
 
 
 Errors   :       0

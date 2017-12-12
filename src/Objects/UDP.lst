@@ -1,4 +1,4 @@
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  1
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -7,7 +7,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00001 ;--------------------------------------------------------
                00002 ; File Created by SDCC : free open source ANSI-C Compiler
                00003 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-               00004 ; This file was generated Tue Dec 12 01:06:04 2017
+               00004 ; This file was generated Tue Dec 12 02:14:58 2017
                00005 ;--------------------------------------------------------
                00006 ; PIC16 port for the Microchip 16-bit core micros
                00007 ;--------------------------------------------------------
@@ -58,7 +58,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00052         extern _MICONbits
                00053         extern _MICMDbits
                00054         extern _EWOLIEbits
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  2
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -118,7 +118,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00106         extern _TRISDbits
                00107         extern _DDREbits
                00108         extern _TRISEbits
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  3
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -178,7 +178,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00160         extern _STATUSbits
                00161         extern _INTCON3bits
                00162         extern _INTCON2bits
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  4
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -238,7 +238,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00214         extern _EHT6
                00215         extern _EHT7
                00216         extern _EPMM0
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  5
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -298,7 +298,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00268         extern _ESTAT
                00269         extern _ECON2
                00270         extern _EIR
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  6
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -358,7 +358,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00322         extern _LATD
                00323         extern _LATE
                00324         extern _LATF
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  7
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -418,7 +418,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00376         extern _CCP3CON
                00377         extern _ECCP3CON
                00378         extern _CCPR3
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  8
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -478,7 +478,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00430         extern _FSR1H
                00431         extern _PLUSW1
                00432         extern _PREINC1
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE  9
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -538,7 +538,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   00000FD8     00484 STATUS  equ     0xfd8
   00000FE8     00485 WREG    equ     0xfe8
   00000FE9     00486 FSR0L   equ     0xfe9
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 10
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -598,7 +598,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00538 udata_UDP_1     udata
                00539 _wGetOffset     res     2
                00540 
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 11
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -658,7 +658,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 001C C000 FFE5 00592         MOVFF   r0x05, POSTDEC1
 0020 C000 FFE5 00593         MOVFF   r0x06, POSTDEC1
 0024 C000 FFE5 00594         MOVFF   r0x07, POSTDEC1
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 12
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -718,7 +718,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C2 0F02      00646         ADDLW   0x02
 00C4 6E00      00647         MOVWF   r0x0e
 00C6 0E00      00648         MOVLW   0x00
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 13
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -778,7 +778,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                00700 ;       .line   1037; TCPIP_Stack/UDP.c if(p->remotePort == h->SourcePort)
 013C 5000      00701         MOVF    r0x10, W
 013E 0F0A      00702         ADDLW   0x0a
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 14
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -838,7 +838,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01C8 5000      00754         MOVF    r0x16, W
 01CA 1800      00755         XORWF   r0x1a, W
 01CC E100      00756         BNZ     _00325_DS_
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 15
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -898,7 +898,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0238 1200      00808         IORWF   r0x1b, F
 023A 5000      00809         MOVF    r0x14, W
 023C 1800      00810         XORWF   r0x18, W
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 16
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -958,7 +958,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 028E 2600      00862         ADDWF   r0x06, F
 0290 0E00      00863         MOVLW   HIGH(_UDPSocketInfo)
 0292 2200      00864         ADDWFC  r0x07, F
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 17
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1018,7 +1018,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0308 CFE4 F000 00916         MOVFF   PREINC1, r0x19
 030C CFE4 F000 00917         MOVFF   PREINC1, r0x18
 0310 CFE4 F000 00918         MOVFF   PREINC1, r0x17
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 18
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1078,7 +1078,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004C CFDB F000 00970         MOVFF   PLUSW2, r0x03
 0050 0E06      00971         MOVLW   0x06
 0052 CFDB F000 00972         MOVFF   PLUSW2, r0x04
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 19
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1138,7 +1138,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00C0 5100      01024         MOVF    (_UDPProcess_h_1_1 + 3), W, B
 00C2 6EE5      01025         MOVWF   POSTDEC1
 00C4 0000      01026         BANKSEL (_UDPProcess_h_1_1 + 2)
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 20
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1198,7 +1198,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 013A 5000      01078         MOVF    r0x08, W
 013C 0000      01079         BANKSEL _UDPProcess_pseudoHeader_1_1
 013E 6F00      01080         MOVWF   _UDPProcess_pseudoHeader_1_1, B
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 21
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 21
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1258,7 +1258,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01AA CFF3 F000 01132         MOVFF   PRODL, r0x09
 01AE 0E02      01133         MOVLW   0x02
 01B0 26E1      01134         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 22
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 22
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1318,7 +1318,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0218 6E00      01186         MOVWF   r0x06
 021A CFF3 F000 01187         MOVFF   PRODL, r0x07
 021E 0E02      01188         MOVLW   0x02
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 23
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 23
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1378,7 +1378,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 027E 6E00      01240         MOVWF   r0x00
 0280 0E09      01241         MOVLW   0x09
 0282 26E1      01242         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 24
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 24
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1438,7 +1438,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0004 CFE1 FFD9 01294         MOVFF   FSR1L, FSR2L
 0008 0000      01295         BANKSEL _Flags
                01296 ;       .line   888; TCPIP_Stack/UDP.c  if(!Flags.bWasDiscarded)
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 25
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 25
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1498,7 +1498,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0050 0000      01348         BANKSEL _wGetOffset
 0052 5D00      01349         SUBWF   _wGetOffset, W, B
 0054 01350 _00261_DS_:
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 26
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 26
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1558,7 +1558,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00B0 5000      01402         MOVF    r0x03, W
 00B2 0000      01403         BANKSEL _wGetOffset
 00B4 2700      01404         ADDWF   _wGetOffset, F, B
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 27
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 27
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1618,7 +1618,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                01456 ;       .line   809; TCPIP_Stack/UDP.c  return FALSE;
 0048 6AE8      01457         CLRF    WREG
 004A D000      01458         BRA     _00242_DS_
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 28
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 28
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1678,7 +1678,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 002E 0000      01510         BANKSEL _Flags
                01511 ;       .line   775; TCPIP_Stack/UDP.c  Flags.bFirstRead = 0;
 0030 9100      01512         BCF     _Flags, 0, B
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 29
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 29
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1738,7 +1738,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0036 6A00      01564         CLRF    r0x01
 0038 0E00      01565         MOVLW   LOW(_UDPSocketInfo)
 003A 2600      01566         ADDWF   r0x00, F
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 30
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 30
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1798,7 +1798,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00A8 6E00      01618         MOVWF   r0x05
 00AA 0E00      01619         MOVLW   0x00
 00AC 2000      01620         ADDWFC  r0x01, W
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 31
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 31
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1858,7 +1858,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 011E 0000      01672         BANKSEL (_AppConfig + 1)
 0120 5100      01673         MOVF    (_AppConfig + 1), W, B
 0122 0000      01674         BANKSEL (_UDPFlush_pseudoHeader_2_2 + 1)
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 32
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 32
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1918,7 +1918,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 018E CFF3 F000 01726         MOVFF   PRODL, r0x06
 0192 0E02      01727         MOVLW   0x02
 0194 26E1      01728         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 33
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 33
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1978,7 +1978,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01FA 6EE5      01780         MOVWF   POSTDEC1
 01FC 5000      01781         MOVF    r0x02, W
 01FE 6EE5      01782         MOVWF   POSTDEC1
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 34
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 34
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2038,7 +2038,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 026A 5000      01834         MOVF    r0x00, W
 026C 6EE5      01835         MOVWF   POSTDEC1
 026E EC00 F000 01836         CALL    _MACSetReadPtr
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 35
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 35
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2098,7 +2098,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 02E8 0012      01888         RETURN  
                01889 
                01890 ; ; Starting pCode block
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 36
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 36
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2158,7 +2158,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 007E 5000      01942         MOVF    r0x00, W
 0080 CFE4 F000 01943         MOVFF   PREINC1, r0x04
 0084 CFE4 F000 01944         MOVFF   PREINC1, r0x03
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 37
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 37
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2218,7 +2218,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0072 01996 _00209_DS_:
 0072 E200      01997         BC      _00202_DS_
 0074 C000 F000 01998         MOVFF   r0x05, r0x03
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 38
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 38
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2278,7 +2278,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00EE 0012      02050         RETURN  
                02051 
                02052 ; ; Starting pCode block
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 39
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 39
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2338,7 +2338,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0066 E100      02104         BNZ     _00196_DS_
 0068 0000      02105         BANKSEL _wPutOffset
 006A 5100      02106         MOVF    _wPutOffset, W, B
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 40
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 40
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2398,7 +2398,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 003E 0000      02158         BANKSEL (_UDPTxCount + 1)
 0040 6B00      02159         CLRF    (_UDPTxCount + 1), B
                02160 ;       .line   443; TCPIP_Stack/UDP.c  UDPSetTxBuffer(0);
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 41
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 41
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2458,7 +2458,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0028 6E00      02212         MOVWF   r0x02
 002A 0E00      02213         MOVLW   0x00
 002C 2000      02214         ADDWFC  r0x01, W
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 42
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 42
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2518,7 +2518,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0050 EC00 F000 02266         CALL    _MACSetWritePtr
 0054 0E02      02267         MOVLW   0x02
 0056 26E1      02268         ADDWF   FSR1L, F
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 43
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 43
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2578,7 +2578,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 004C 6E00      02320         MOVWF   r0x03
 004E C000 FFE9 02321         MOVFF   r0x02, FSR0L
 0052 C000 FFEA 02322         MOVFF   r0x03, FSR0H
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 44
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 44
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2638,7 +2638,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 005E 0E03      02374         MOVLW   0x03
 0060 CFDB F000 02375         MOVFF   PLUSW2, r0x01
 0064 0E04      02376         MOVLW   0x04
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 45
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 45
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2698,7 +2698,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00DC A4D8      02428         BTFSS   STATUS, 2
 00DE D000      02429         BRA     _00133_DS_
                02430 ;       .line   274; TCPIP_Stack/UDP.c  p->localPort = this_localPort;  
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 46
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 46
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2758,7 +2758,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0142 2B00      02482         INCF    _UDPOpen_NextPort_1_1, F, B
 0144 E300      02483         BNC     _30298_DS_
 0146 0000      02484         BANKSEL (_UDPOpen_NextPort_1_1 + 1)
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 47
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 47
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2818,7 +2818,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01B6 0E05      02536         MOVLW   0x05
 01B8 26E1      02537         ADDWF   FSR1L, F
 01BA 02538 _00131_DS_:
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 48
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 48
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2878,7 +2878,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0238 CFE4 F000 02590         MOVFF   PREINC1, r0x08
 023C CFE4 F000 02591         MOVFF   PREINC1, r0x07
 0240 CFE4 F000 02592         MOVFF   PREINC1, r0x06
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 49
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 49
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2938,7 +2938,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0036 02644 _00108_DS_:
 0036 0000      02645         BANKSEL _Flags
                02646 ;       .line   186; TCPIP_Stack/UDP.c  Flags.bWasDiscarded = 1;
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 50
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 50
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -2960,7 +2960,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                02660 ; access size:     28 (0x001c) bytes
                02661 
                02662 
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 51
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 51
 
 
 SYMBOL TABLE
@@ -3019,7 +3019,7 @@ _00252_DS_                        00000060
 _00253_DS_                        00000066
 _00256_DS_                        0000008E
 _00257_DS_                        000000C2
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 52
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 52
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3079,7 +3079,7 @@ _BAUDCTLbits                      00000000
 _BSR                              00000000
 _CCP1CON                          00000000
 _CCP1CONbits                      00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 53
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 53
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3139,7 +3139,7 @@ _EBSTCSH                          00000000
 _EBSTCSL                          00000000
 _EBSTSD                           00000000
 _ECCP1AS                          00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 54
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 54
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3199,7 +3199,7 @@ _EIR                              00000000
 _EIRbits                          00000000
 _EPAUS                            00000000
 _EPAUSH                           00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 55
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 55
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3259,7 +3259,7 @@ _FSR1H                            00000000
 _FSR1L                            00000000
 _FSR2H                            00000000
 _FSR2L                            00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 56
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 56
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3319,7 +3319,7 @@ _MACIsTxReady                     00000000
 _MACLCON1                         00000000
 _MACLCON1bits                     00000000
 _MACLCON2                         00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 57
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 57
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3379,7 +3379,7 @@ _PIR2                             00000000
 _PIR2bits                         00000000
 _PIR3                             00000000
 _PIR3bits                         00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 58
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 58
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3439,7 +3439,7 @@ _SPBRG2                           00000000
 _SPBRGH                           00000000
 _SPBRGH1                          00000000
 _SPBRGH2                          00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 59
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 59
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3499,7 +3499,7 @@ _TMR3L                            00000000
 _TMR4                             00000000
 _TOS                              00000000
 _TOSH                             00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 60
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 60
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -3559,7 +3559,7 @@ _UDPSetRxBuffer                   00000000
 _UDPSetTxBuffer                   00000000
 _UDPSocketInfo                    00000000
 _UDPTask                          00000000
-gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  01:06:04         PAGE 61
+gpasm-0.13.7 beta               Objects/UDP.asm12-12-2017  02:14:58         PAGE 61
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT

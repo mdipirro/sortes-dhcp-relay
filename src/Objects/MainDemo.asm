@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 2.9.4 #5595 (Nov 15 2017) (UNIX)
-; This file was generated Tue Dec 12 01:06:03 2017
+; This file was generated Tue Dec 12 02:14:57 2017
 ;--------------------------------------------------------
 ; PIC16 port for the Microchip 16-bit core micros
 ;--------------------------------------------------------
@@ -461,7 +461,6 @@
 	extern _LCDTask
 	extern _LCDInit
 	extern _LCDUpdate
-	extern _UARTConfig
 ;--------------------------------------------------------
 ;	Equates to used internal registers
 ;--------------------------------------------------------
@@ -550,8 +549,6 @@ _main:
 	CALL	_InitAppConfig
 ;	.line	122; MainDemo.c	StackInit();
 	CALL	_StackInit
-;	.line	125; MainDemo.c	UARTConfig();
-	CALL	_UARTConfig
 ;	.line	129; MainDemo.c	LCDTaskInit();
 	CALL	_LCDTaskInit
 ;	.line	133; MainDemo.c	LCDInit();
@@ -1373,8 +1370,8 @@ __str_0:
 
 
 ; Statistics:
-; code size:	 1816 (0x0718) bytes ( 1.39%)
-;           	  908 (0x038c) words
+; code size:	 1812 (0x0714) bytes ( 1.38%)
+;           	  906 (0x038a) words
 ; udata size:	   72 (0x0048) bytes ( 1.88%)
 ; access size:	   14 (0x000e) bytes
 
