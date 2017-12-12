@@ -69,8 +69,9 @@ char LCDListPush(char order, char text[])
 	// Check for wrong usage
 	if (!LCDListReady)
 		return -1;
+	// Discard the oldest element if the list is full
 	if (LCDListIsFull())
-		return -2;
+		listLCD.tail = (listLCD.tail + 1) % OP_LIST_SIZE;
 	// Update the list with the new value
 	listLCD.op[listLCD.head].order = order;
 	//strlcpy(listLCD.op[listLCD.head].text, text, ROWCHARS*2+1);
