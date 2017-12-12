@@ -39,8 +39,8 @@
  * SIMILAR COSTS, WHETHER ASSERTED ON THE BASIS OF CONTRACT, TORT
  * (INCLUDING NEGLIGENCE), BREACH OF WARRANTY, OR OTHERWISE.
  ********************************************************************/
-#ifndef _MAINDEMO_H
-#define _MAINDEMO_H
+#ifndef _DHCPRELAY_H
+#define _DHCPRELAY_H
 #include "GenericTypeDefs.h"
 
 //#define BAUD_RATE       (19200)		// bps
