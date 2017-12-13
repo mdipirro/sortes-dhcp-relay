@@ -29,9 +29,67 @@
 // Include functions specific to this stack application
 #include "Include/DHCPRelay.h"
 
+//#ifdef __PACKETCIRCULARLIST_C
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
 BYTE AN0String[8];
+
+UDP_SOCKET serverToClient;
+UDP_SOCKET clientToServer;
+
+typedef enum {
+    COMP1,
+    COMP2,
+    COMP3,
+    COMP4
+} CURRENT_COMPONENT;
+
+typedef enum {
+    WAITING_SERVER_MESSAGE,
+    WAITING_SERVER_MESSAGE_T,
+    SERVER_MSG_PROC,
+    SERVER_MSG_PROC_T,
+    CLIENT_QUEUE_PUSH,
+    CLIENT_QUEUE_PUSH_T
+} COMPONENT1;
+
+typedef enum {
+    CLIENT_QUEUE_WAITING,
+    CLIENT_QUEUE_WAITING_T,
+    TX_TO_CLIENT,
+    TX_TO_CLIENT_T
+} COMPONENT2;
+
+typedef enum {
+    WAITING_CLIENT_MESSAGE,
+    WAITING_CLIENT_MESSAGE_T,
+    CLIENT_MSG_PROC,
+    CLIENT_MSG_PROC_T,
+    SERVER_QUEUE_PUSH,
+    SERVER_QUEUE_PUSH_T
+} COMPONENT3;
+
+typedef enum {
+    SERVER_QUEUE_WAITING,
+    SERVER_QUEUE_WAITING_T,
+    TX_TO_SERVER,
+    TX_TO_SERVER_T
+} COMPONENT4;
+
+CURRENT_COMPONENT currentComponent;
+COMPONENT1 comp1;
+COMPONENT2 comp2;
+COMPONENT3 comp3;
+COMPONENT4 comp4;
+
+PacketList ServerMessages;
+PacketList ClientMessages;
+
+BOOTP_HEADER serverMessage;
+BOOTP_HEADER clientMessage;
+
+BOOL stopGettingFromServer;
+BOOL stopGettingFromClient;
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -90,6 +148,143 @@ void DisplayWORD(BYTE pos, WORD w); //write WORDs on LCD for debugging
 
 const char* message;  //pointer to message to display on LCD
 
+void DHCPRelayInit() {
+    currentComponent    = COMP1;
+
+    comp1                   = WAITING_SERVER_MESSAGE;
+    comp2                   = CLIENT_QUEUE_WAITING;
+    comp3                   = WAITING_CLIENT_MESSAGE;
+    comp4                  = SERVER_QUEUE_WAITING;
+
+    serverToClient          = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
+    clientToServer          = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
+
+    PacketListInit(&ServerMessages);
+    PacketListInit(&ClientMessages);
+
+    stopGettingFromServer   = FALSE;
+    stopGettingFromClient   = FALSE;
+}
+
+void DHCPRelaytask() {
+    switch(currentComponent) {
+        case COMP1:
+            Component1();
+            currentComponent = COMP2;
+            break;
+        case COMP2:
+            Component2();
+            currentComponent = COMP3;
+            break;
+        case COMP3:
+            Component3();
+            currentComponent = COMP4;
+            break;
+        case COMP4:
+            Component4();
+            currentComponent = COMP1;
+            break;
+    }
+}
+
+void Component1() {
+    switch(comp1) {
+        case WAITING_SERVER_MESSAGE:
+            // a packet is ready in the server's socket and there is at least a free spot in the queue
+            if (stopGettingFromServer == FALSE && UDPIsGetReady(serverToClient) > 250u) {
+                comp1 = WAITING_SERVER_MESSAGE_T;
+            }
+        case WAITING_SERVER_MESSAGE_T:
+            comp1 = SERVER_MSG_PROC;
+            break;
+        case SERVER_MSG_PROC:
+            // TODO get message and manipulate fields
+            comp1 = SERVER_MSG_PROC_T;
+        case SERVER_MSG_PROC_T:
+            comp1 = CLIENT_QUEUE_PUSH;
+            break;
+        case CLIENT_QUEUE_PUSH:
+            if (PacketListPush(&ClientMessages, &clientMessage) == 0) {
+                // cross the transiction iff the push succeeded
+                comp1 = CLIENT_QUEUE_PUSH_T;
+            } else {
+                // otherwise wait until there is a free spot in the queue
+                stopGettingFromServer = TRUE; 
+            }
+        case CLIENT_QUEUE_PUSH_T:
+            comp1 = WAITING_SERVER_MESSAGE;
+            break;
+    }
+}
+
+void Component2() {
+    switch (comp2) {
+        case CLIENT_QUEUE_WAITING:
+            if (!PacketListIsEmpty(&ClientMessages)) {
+                comp2 = CLIENT_QUEUE_WAITING_T;
+            }
+        case CLIENT_QUEUE_WAITING_T:
+            comp2 = TX_TO_CLIENT;
+            break;
+        case TX_TO_CLIENT:
+            // TODO get packet from the queue and transmit to the client
+            stopGettingFromServer = FALSE;
+            comp2 = TX_TO_CLIENT_T;
+        case TX_TO_CLIENT_T:
+            comp2 = CLIENT_QUEUE_WAITING;
+            break;
+    }
+}
+
+void Component3() {
+    switch(comp3) {
+        case WAITING_CLIENT_MESSAGE:
+            // a packet is ready in the client's socket and there is at least a free spot in the queue
+            if (stopGettingFromClient == FALSE && UDPIsGetReady(clientToServer) > 250u) {
+                comp3 = WAITING_CLIENT_MESSAGE_T;
+            }
+        case WAITING_CLIENT_MESSAGE_T:
+            comp3 = CLIENT_MSG_PROC;
+            break;
+        case CLIENT_MSG_PROC:
+            // TODO get message and manipulate fields
+            comp3 = CLIENT_MSG_PROC_T;
+        case CLIENT_MSG_PROC_T:
+            comp3 = SERVER_QUEUE_PUSH;
+            break;
+        case SERVER_QUEUE_PUSH:
+            if (PacketListPush(&ServerMessages, &serverMessage) == 0) {
+                // cross the transiction iff the push succeeded
+                comp3 = SERVER_QUEUE_PUSH_T;
+            } else {
+                // otherwise wait until there is a free spot in the queue
+                stopGettingFromClient = TRUE; 
+            }
+        case SERVER_QUEUE_PUSH_T:
+            comp3 = WAITING_CLIENT_MESSAGE;
+            break;
+    }
+}
+
+void Component4() {
+    switch (comp4) {
+        case SERVER_QUEUE_WAITING:
+            if (!PacketListIsEmpty(&ServerMessages)) {
+                comp4 = SERVER_QUEUE_WAITING_T;
+            }
+        case SERVER_QUEUE_WAITING_T:
+            comp4 = TX_TO_SERVER;
+            break;
+        case TX_TO_SERVER:
+            // TODO get packet from the queue and transmit to the server
+            stopGettingFromClient = FALSE;
+            comp4 = TX_TO_SERVER_T;
+        case TX_TO_SERVER_T:
+            comp4 = SERVER_QUEUE_WAITING;
+            break;
+    }
+}
+
 //
 // Main application entry point.
 //
@@ -127,6 +322,10 @@ static DWORD dwLastIP = 0;
 
     #ifdef USE_LCD
         LCDTaskInit();
+    #endif
+
+    #ifdef STACK_USE_DHCP_RELAY
+        DHCPRelayInit();
     #endif
 
     // Initialize and display message on the LCD
@@ -174,6 +373,9 @@ static DWORD dwLastIP = 0;
         #endif
 
         // Process application specific tasks here.
+        #ifdef STACK_USE_DHCP_RELAY
+            DHCPRelaytask();
+        #endif
         
         // If the local IP address has changed (ex: due to DHCP lease change)
         // write the new IP address to the LCD display, UART, and Announce 

@@ -221,6 +221,7 @@
 	// depends on it
 	#if defined(STACK_USE_DHCP_CLIENT) || \
 		defined(STACK_USE_DHCP_SERVER) || \
+		defined(STACK_USE_DHCP_RELAY) || \
 		defined(STACK_USE_DNS) || \
 		defined(STACK_USE_NBNS) || \
 		defined(STACK_USE_SNMP_SERVER) || \
@@ -340,8 +341,12 @@
 	#include "myUART.h"
 #endif
 
-#if defined(STACK_USE_DHCP_CLIENT) || defined(STACK_USE_DHCP_SERVER)
+#if defined(STACK_USE_DHCP_CLIENT) || defined(STACK_USE_DHCP_SERVER) || defined(STACK_USE_DHCP_RELAY)
 	#include "DHCP.h"
+#endif
+
+#if defined(STACK_USE_DHCP_RELAY)
+	#include "PacketCircularList.h"
 #endif
 
 #if defined(STACK_USE_DNS)
