@@ -18,7 +18,7 @@ OBJECTS=Objects/DHCPRelay.o  Objects/Announce.o Objects/ARP.o Objects/Delay.o \
    Objects/Hashes.o Objects/Helpers.o Objects/ICMP.o Objects/IP.o \
    Objects/LCDCircularList.o Objects/LCDNonBlocking.o Objects/StackTsk.o \
    Objects/UDPPerformanceTest.o Objects/Tick.o Objects/UDP.o Objects/strlcpy.o \
-   Objects/myUART.o
+   Objects/myUART.o Objects/PacketCircularList.o
 
 SDCC_HEADERS=/usr/local/share/sdcc/include/string.h \
    /usr/local/share/sdcc/include/stdlib.h \
@@ -56,6 +56,7 @@ TCPIP_HEADERS=Include/TCPIP_Stack/Helpers.h \
    Include/TCPIP_Stack/ETH97J60.h \
    Include/TCPIP_Stack/SPIFlash.h \
    Include/TCPIP_Stack/SPIRAM.h \
+   Include/TCPIP_Stack/PacketCircularList.h \
    Include/TCPIP_Stack/LCDCircularList.h \
    Include/TCPIP_Stack/LCDNonBlocking.h \
    Include/TCPIP_Stack/UART2TCPBridge.h \
@@ -166,6 +167,10 @@ Objects/ICMP.o : TCPIP_Stack/ICMP.c $(SDCC_HEADERS)  \
 Objects/IP.o : TCPIP_Stack/IP.c  $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
 	$(CC) $(CFLAGS)  TCPIP_Stack/IP.c
+
+Objects/PacketCircularList.o : TCPIP_Stack/PacketCircularList.c $(SDCC_HEADERS)  \
+   $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
+	$(CC) $(CFLAGS)  TCPIP_Stack/PacketCircularList.c
 	
 Objects/LCDCircularList.o : TCPIP_Stack/LCDCircularList.c $(SDCC_HEADERS)  \
    $(SDCC_PIC16_HEADERS) $(APP_HEADERS) $(TCPIP_HEADERS)
