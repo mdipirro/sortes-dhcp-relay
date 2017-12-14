@@ -36,12 +36,10 @@ void PingDemo(void);
 //void BerkeleyUDPClientDemo(void);
 
 #ifdef STACK_USE_DHCP_RELAY
-    void DHCPRelayInit();
-    void DHCPRelaytask();
-    void Component1();
-    void Component2();
-    void Component3();
-    void Component4();
+    static void DHCPRelayInit();
+    static void DHCPRelaytask();
+    static void GetServerPacket();
+    static void GetClientPacket();
 #endif
 
 // An actual function defined in DHCPRelay.c for displaying the current IP 

@@ -32,27 +32,27 @@ int PacketListIsFull(PacketList* list)
 	return (list -> tail == ((list -> head + 1) % PACKET_LIST_SIZE));
 }
 
-int PacketListPush(PacketList* list, BOOTP_HEADER* header)
+int PacketListPush(PacketList* list, PACKET_DATA* packet)
 {
 	// Check for wrong usage
 	if (!list -> ready)
 		return -1;
 	if (PacketListIsFull(list))
 		return -2;
-	memcpy(&(list -> op[list -> head]), header, sizeof(BOOTP_HEADER));
+	memcpy(&(list -> op[list -> head]), packet, sizeof(BOOTP_HEADER));
 	// Increment the head pointer
 	list -> head = (list -> head + 1) % PACKET_LIST_SIZE;
 	return 0;
 }
 
-int PacketListPop(BOOTP_HEADER* header, PacketList* list)
+int PacketListPop(PACKET_DATA* packet, PacketList* list)
 {
 	// Check for wrong usage
 	if (!list -> ready)
 		return -1;
 	if (PacketListIsEmpty(list))
 		return -2;
-	memcpy(header, &(list -> op[list -> head]), sizeof(BOOTP_HEADER));
+	memcpy(packet, &(list -> op[list -> head]), sizeof(PACKET_DATA));
 	// Increment the tail pointer
 	list -> tail = (list -> tail + 1) % PACKET_LIST_SIZE;
 	return 0;

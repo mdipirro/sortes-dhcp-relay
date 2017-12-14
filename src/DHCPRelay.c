@@ -40,56 +40,51 @@ UDP_SOCKET clientToServer;
 typedef enum {
     COMP1,
     COMP2,
-    COMP3,
-    COMP4
+    COMP3
 } CURRENT_COMPONENT;
 
 typedef enum {
-    WAITING_SERVER_MESSAGE,
-    WAITING_SERVER_MESSAGE_T,
-    SERVER_MSG_PROC,
-    SERVER_MSG_PROC_T,
-    CLIENT_QUEUE_PUSH,
-    CLIENT_QUEUE_PUSH_T
+    WAITING_FOR_MESSAGE,
+    SERVER_MESSAGE_T,
+    CLIENT_MESSAGE_T,
+    FROM_SERVER,
+    FROM_SERVER_T,
+    PUSH_SERVER_QUEUE,
+    PUSH_SERVER_QUEUE_T,
+    FROM_CLIENT,
+    FROM_CLIENT_T,
+    PUSH_CLIENT_QUEUE,
+    PUSH_CLIENT_QUEUE_T,
 } COMPONENT1;
-
-typedef enum {
-    CLIENT_QUEUE_WAITING,
-    CLIENT_QUEUE_WAITING_T,
-    TX_TO_CLIENT,
-    TX_TO_CLIENT_T
-} COMPONENT2;
-
-typedef enum {
-    WAITING_CLIENT_MESSAGE,
-    WAITING_CLIENT_MESSAGE_T,
-    CLIENT_MSG_PROC,
-    CLIENT_MSG_PROC_T,
-    SERVER_QUEUE_PUSH,
-    SERVER_QUEUE_PUSH_T
-} COMPONENT3;
 
 typedef enum {
     SERVER_QUEUE_WAITING,
     SERVER_QUEUE_WAITING_T,
     TX_TO_SERVER,
     TX_TO_SERVER_T
-} COMPONENT4;
+} COMPONENT2;
+
+typedef enum {
+    CLIENT_QUEUE_WAITING,
+    CLIENT_QUEUE_WAITING_T,
+    TX_TO_CLIENT,
+    TX_TO_CLIENT_T
+} COMPONENT3;
 
 CURRENT_COMPONENT currentComponent;
 COMPONENT1 comp1;
 COMPONENT2 comp2;
 COMPONENT3 comp3;
-COMPONENT4 comp4;
 
 PacketList ServerMessages;
 PacketList ClientMessages;
 
-BOOTP_HEADER serverMessage;
-BOOTP_HEADER clientMessage;
+PACKET_DATA serverPacket;
+PACKET_DATA clientPacket;
 
 BOOL stopGettingFromServer;
 BOOL stopGettingFromClient;
+BOOL serverTurn; // used to alternate server and client listening
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -151,10 +146,9 @@ const char* message;  //pointer to message to display on LCD
 void DHCPRelayInit() {
     currentComponent    = COMP1;
 
-    comp1                   = WAITING_SERVER_MESSAGE;
-    comp2                   = CLIENT_QUEUE_WAITING;
-    comp3                   = WAITING_CLIENT_MESSAGE;
-    comp4                  = SERVER_QUEUE_WAITING;
+    comp1                   = WAITING_FOR_MESSAGE;
+    comp2                   = SERVER_QUEUE_WAITING;
+    comp3                   = CLIENT_QUEUE_WAITING;
 
     serverToClient          = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
     clientToServer          = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
@@ -164,9 +158,184 @@ void DHCPRelayInit() {
 
     stopGettingFromServer   = FALSE;
     stopGettingFromClient   = FALSE;
+
+    serverTurn              = FALSE;
 }
 
-void DHCPRelaytask() {
+static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
+    if (pkt != NULL && socket != NULL) {
+        BYTE            toBeDiscarded; // used to throw away unused fields
+        DWORD           magicCookie;
+        BOOTP_HEADER    Header;
+        BYTE            Type;
+        BYTE            Option;
+        BYTE            Len;
+
+        UDPIsGetReady(*socket); // set the current socket
+        UDPGetArray((BYTE*)&Header, sizeof(BOOTP_HEADER)); // get the header
+
+        if (Header.MessageType == BOOT_REPLY) { // be sure it is actually a reply
+            // validate hardware interface and message type
+            if (    Header.HardwareType == 1u && 
+                    Header.HardwareLen == 6u &&
+                    (Header.MessageType == 1u || Header.MessageType == 2u)) {
+                /* 
+                * read and discard the following unused fields:
+                * - client hardware address
+                * - server host name
+                * - boot filename
+                */ 
+                BYTE i;
+                for(i = 0; i < 64+128+(16-sizeof(MAC_ADDR)); i++) {
+                    UDPGet(&toBeDiscarded);
+                }
+                
+                // obtain magic cookie
+                UDPGetArray((BYTE*)&magicCookie, sizeof(DWORD));
+                // get and validate the Option
+                if (UDPGet(&Option) && Option != DHCP_END_OPTION) {
+                    UDPGet(&Len); // get the length
+                    switch (Option) {
+                        case DHCP_MESSAGE_TYPE:
+                            UDPGet(&Type); // get the message type
+                            switch (Type) {
+                                case DHCP_DISCOVER_MESSAGE:
+                                    DisplayString(0, "DHCP Discovery");
+                                    break;
+                                case DHCP_REQUEST_MESSAGE:
+                                    DisplayString(0, "DHCP Request");
+                                    break;
+                                case DHCP_OFFER_MESSAGE:
+                                    DisplayString(0, "DHCP Offer");
+                                    break;
+                                case DHCP_ACK_MESSAGE:
+                                    DisplayString(0, "DHCP ACK");
+                                    break;
+                            }
+                    }
+                    // discard any unprocessed byte
+                    while(Len--) {
+                        UDPGet(&toBeDiscarded);
+                    }
+                    UDPDiscard();
+
+                    memcpy(&(pkt -> Header), &Header, sizeof(BOOTP_HEADER));
+                    pkt -> MessageType = Type;
+                }
+            }
+        }
+    }
+}
+
+static void GetServerPacket() {
+    GetPacket(&serverPacket, &serverToClient);
+}
+
+static void GetClientPacket() {
+    GetPacket(&clientPacket, &clientToServer);
+}
+
+static void Component1() {
+    switch(comp1) {
+        // root
+        case WAITING_FOR_MESSAGE:
+            // a packet is ready in the server's socket and there is at least a free spot in the queue
+            if (    serverTurn == TRUE &&
+                    stopGettingFromServer == FALSE &&
+                    UDPIsGetReady(clientToServer) > 240u) {
+                comp1 = SERVER_MESSAGE_T;
+                serverTurn = FALSE;
+            } else if ( serverTurn == FALSE &&
+                        stopGettingFromClient == FALSE &&
+                        UDPIsGetReady(serverToClient) > 240u) {
+                comp1 = CLIENT_MESSAGE_T;
+                serverTurn = TRUE;
+            }
+        // different transitions
+        case SERVER_MESSAGE_T:
+            comp1 = FROM_SERVER;
+            break;
+        case CLIENT_MESSAGE_T:
+            comp1 = FROM_CLIENT;
+            break;
+        // server branch
+        case FROM_SERVER:
+            GetServerPacket();
+            comp1 = FROM_SERVER_T;
+        case FROM_SERVER_T:
+            comp1 = PUSH_CLIENT_QUEUE;
+            break;
+        case PUSH_CLIENT_QUEUE:
+            if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
+                // cross the transiction iff the push succeeded
+                comp1 = PUSH_CLIENT_QUEUE_T;
+            } else {
+                // otherwise wait until there is a free spot in the queue
+                stopGettingFromServer = TRUE; 
+            }
+        case PUSH_CLIENT_QUEUE_T:
+            comp1 = WAITING_FOR_MESSAGE;
+            break;
+        // client branch
+        case FROM_CLIENT:
+            GetClientPacket();
+            comp1 = FROM_CLIENT_T;
+        case FROM_CLIENT_T:
+            comp1 = PUSH_SERVER_QUEUE;
+            break;
+        case PUSH_SERVER_QUEUE:
+            if (PacketListPush(&ServerMessages, &clientPacket) == 0) {
+                // cross the transiction iff the push succeeded
+                comp1 = PUSH_SERVER_QUEUE_T;
+            } else {
+                // otherwise wait until there is a free spot in the queue
+                stopGettingFromClient = TRUE; 
+            }
+        case PUSH_SERVER_QUEUE_T:
+            comp1 = WAITING_FOR_MESSAGE;
+            break;
+    }
+}
+
+static void Component2() {
+    switch (comp2) {
+        case SERVER_QUEUE_WAITING:
+            if (!PacketListIsEmpty(&ServerMessages)) {
+                comp2 = SERVER_QUEUE_WAITING_T;
+            }
+        case SERVER_QUEUE_WAITING_T:
+            comp2 = TX_TO_SERVER;
+            break;
+        case TX_TO_SERVER:
+            // TODO get packet from the queue and transmit to the server
+            stopGettingFromClient = FALSE;
+            comp2 = TX_TO_SERVER_T;
+        case TX_TO_SERVER_T:
+            comp2 = SERVER_QUEUE_WAITING;
+            break;
+    }
+}
+
+static void Component3() {
+    switch (comp3) {
+        case CLIENT_QUEUE_WAITING:
+            if (!PacketListIsEmpty(&ClientMessages)) {
+                comp3 = CLIENT_QUEUE_WAITING_T;
+            }
+        case CLIENT_QUEUE_WAITING_T:
+            comp3 = TX_TO_CLIENT;
+            break;
+        case TX_TO_CLIENT:
+            // TODO get packet from the queue and transmit to the client
+            stopGettingFromServer = FALSE;
+            comp3 = TX_TO_CLIENT_T;
+        case TX_TO_CLIENT_T:
+            comp3 = CLIENT_QUEUE_WAITING;
+            break;
+    }
+}
+
+static void DHCPRelaytask() {
     switch(currentComponent) {
         case COMP1:
             Component1();
@@ -178,109 +347,7 @@ void DHCPRelaytask() {
             break;
         case COMP3:
             Component3();
-            currentComponent = COMP4;
-            break;
-        case COMP4:
-            Component4();
             currentComponent = COMP1;
-            break;
-    }
-}
-
-void Component1() {
-    switch(comp1) {
-        case WAITING_SERVER_MESSAGE:
-            // a packet is ready in the server's socket and there is at least a free spot in the queue
-            if (stopGettingFromServer == FALSE && UDPIsGetReady(serverToClient) > 250u) {
-                comp1 = WAITING_SERVER_MESSAGE_T;
-            }
-        case WAITING_SERVER_MESSAGE_T:
-            comp1 = SERVER_MSG_PROC;
-            break;
-        case SERVER_MSG_PROC:
-            // TODO get message and manipulate fields
-            comp1 = SERVER_MSG_PROC_T;
-        case SERVER_MSG_PROC_T:
-            comp1 = CLIENT_QUEUE_PUSH;
-            break;
-        case CLIENT_QUEUE_PUSH:
-            if (PacketListPush(&ClientMessages, &clientMessage) == 0) {
-                // cross the transiction iff the push succeeded
-                comp1 = CLIENT_QUEUE_PUSH_T;
-            } else {
-                // otherwise wait until there is a free spot in the queue
-                stopGettingFromServer = TRUE; 
-            }
-        case CLIENT_QUEUE_PUSH_T:
-            comp1 = WAITING_SERVER_MESSAGE;
-            break;
-    }
-}
-
-void Component2() {
-    switch (comp2) {
-        case CLIENT_QUEUE_WAITING:
-            if (!PacketListIsEmpty(&ClientMessages)) {
-                comp2 = CLIENT_QUEUE_WAITING_T;
-            }
-        case CLIENT_QUEUE_WAITING_T:
-            comp2 = TX_TO_CLIENT;
-            break;
-        case TX_TO_CLIENT:
-            // TODO get packet from the queue and transmit to the client
-            stopGettingFromServer = FALSE;
-            comp2 = TX_TO_CLIENT_T;
-        case TX_TO_CLIENT_T:
-            comp2 = CLIENT_QUEUE_WAITING;
-            break;
-    }
-}
-
-void Component3() {
-    switch(comp3) {
-        case WAITING_CLIENT_MESSAGE:
-            // a packet is ready in the client's socket and there is at least a free spot in the queue
-            if (stopGettingFromClient == FALSE && UDPIsGetReady(clientToServer) > 250u) {
-                comp3 = WAITING_CLIENT_MESSAGE_T;
-            }
-        case WAITING_CLIENT_MESSAGE_T:
-            comp3 = CLIENT_MSG_PROC;
-            break;
-        case CLIENT_MSG_PROC:
-            // TODO get message and manipulate fields
-            comp3 = CLIENT_MSG_PROC_T;
-        case CLIENT_MSG_PROC_T:
-            comp3 = SERVER_QUEUE_PUSH;
-            break;
-        case SERVER_QUEUE_PUSH:
-            if (PacketListPush(&ServerMessages, &serverMessage) == 0) {
-                // cross the transiction iff the push succeeded
-                comp3 = SERVER_QUEUE_PUSH_T;
-            } else {
-                // otherwise wait until there is a free spot in the queue
-                stopGettingFromClient = TRUE; 
-            }
-        case SERVER_QUEUE_PUSH_T:
-            comp3 = WAITING_CLIENT_MESSAGE;
-            break;
-    }
-}
-
-void Component4() {
-    switch (comp4) {
-        case SERVER_QUEUE_WAITING:
-            if (!PacketListIsEmpty(&ServerMessages)) {
-                comp4 = SERVER_QUEUE_WAITING_T;
-            }
-        case SERVER_QUEUE_WAITING_T:
-            comp4 = TX_TO_SERVER;
-            break;
-        case TX_TO_SERVER:
-            // TODO get packet from the queue and transmit to the server
-            stopGettingFromClient = FALSE;
-            comp4 = TX_TO_SERVER_T;
-        case TX_TO_SERVER_T:
-            comp4 = SERVER_QUEUE_WAITING;
             break;
     }
 }
