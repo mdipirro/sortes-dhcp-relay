@@ -83,7 +83,7 @@
 //#define STACK_USE_SSL_CLIENT		// SSL client socket support (Requires 
                                         // SW300052)
 #define STACK_USE_DHCP_RELAY
-#define STACK_USE_DHCP_CLIENT		// Dynamic Host Configuration Protocol 
+//#define STACK_USE_DHCP_CLIENT		// Dynamic Host Configuration Protocol 
                                         // client for obtaining IP address and 
                                         // other parameters
 //#define STACK_USE_DHCP_SERVER		// Single host DHCP server

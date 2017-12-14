@@ -84,9 +84,12 @@ PacketList ClientMessages;
 PACKET_DATA serverPacket;
 PACKET_DATA clientPacket;
 
+IP_ADDR RequiredAddress;
+
 BOOL stopGettingFromServer;
 BOOL stopGettingFromClient;
 BOOL serverTurn; // used to alternate server and client listening
+BOOL IPAddressNotNull;
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -162,6 +165,8 @@ void DHCPRelayInit() {
     stopGettingFromClient   = FALSE;
 
     serverTurn              = FALSE;
+
+    IPAddressNotNull        = FALSE;
 }
 
 static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
@@ -194,36 +199,43 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
                 
                 // obtain magic cookie
                 UDPGetArray((BYTE*)&magicCookie, sizeof(DWORD));
-                // get and validate the Option
-                if (UDPGet(&Option) && Option != DHCP_END_OPTION) {
-                    UDPGet(&Len); // get the length
-                    switch (Option) {
-                        case DHCP_MESSAGE_TYPE:
-                            UDPGet(&Type); // get the message type
-                            switch (Type) {
-                                case DHCP_DISCOVER_MESSAGE:
-                                    DisplayString(0, "DHCP Discovery");
-                                    break;
-                                case DHCP_REQUEST_MESSAGE:
-                                    DisplayString(0, "DHCP Request");
-                                    break;
-                                case DHCP_OFFER_MESSAGE:
-                                    DisplayString(0, "DHCP Offer");
-                                    break;
-                                case DHCP_ACK_MESSAGE:
-                                    DisplayString(0, "DHCP ACK");
-                                    break;
-                            }
+                // process options
+                while (UDPIsGetReady(*socket)) {
+                    if (UDPGet(&Option) && Option != DHCP_END_OPTION) {
+                        UDPGet(&Len); // get the length
+                        switch (Option) {
+                            case DHCP_MESSAGE_TYPE:
+                                UDPGet(&Type); // get the message type
+                                switch (Type) {
+                                    case DHCP_DISCOVER_MESSAGE:
+                                        DisplayString(0, "DHCP Discovery");
+                                        break;
+                                    case DHCP_REQUEST_MESSAGE:
+                                        DisplayString(0, "DHCP Request");
+                                        break;
+                                    case DHCP_OFFER_MESSAGE:
+                                        DisplayString(0, "DHCP Offer");
+                                        break;
+                                    case DHCP_ACK_MESSAGE:
+                                        DisplayString(0, "DHCP ACK");
+                                        break;
+                                }
+                                break;
+                            case DHCP_PARAM_REQUEST_IP_ADDRESS:
+                                if (Len == 4u) {
+                                    UDPGetArray((BYTE*)&RequiredAddress, Len);
+			                        IPAddressNotNull = TRUE;
+                                }
+                        }
                     }
-                    // discard any unprocessed byte
-                    while(Len--) {
-                        UDPGet(&toBeDiscarded);
-                    }
-                    UDPDiscard();
+                } 
+                UDPDiscard();
 
-                    memcpy(&(pkt -> Header), &Header, sizeof(BOOTP_HEADER));
-                    pkt -> MessageType = Type;
-                }
+                // prepare the packet to be pushed
+                memcpy(&(pkt -> Header), &Header, sizeof(BOOTP_HEADER));
+                memcpy(&(pkt -> RequiredAddress), &RequiredAddress, sizeof(IP_ADDR));
+                pkt -> MessageType      = Type;
+                pkt -> IPAddressNotNull = IPAddressNotNull;
             }
         }
     }
@@ -238,11 +250,73 @@ static void GetClientPacket() {
 }
 
 static void SendToServer() {
-    
+    // TODO ARP
+    if (UDPIsPutReady(clientToServer) >= 300u) {
+        BYTE                i;
+        UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
+        PACKET_DATA         pkt;
+        PacketListPop(&pkt, &ServerMessages);
+
+        // set socket info
+        /*socket -> remoteNode.IPAddr.Val = 
+        for(i = 0; i < 6; i++) {
+            socket -> remoteNode.MACAddr.v[i] = 
+        }*/
+
+        // copy header DHCP
+        UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
+        UDPPutArray((BYTE*)&(pkt.Header.HardwareType), sizeof(pkt.Header.HardwareType));
+        UDPPutArray((BYTE*)&(pkt.Header.HardwareLen), sizeof(pkt.Header.HardwareLen));
+        UDPPutArray((BYTE*)&(pkt.Header.Hops), sizeof(pkt.Header.Hops));
+        UDPPutArray((BYTE*)&(pkt.Header.TransactionID), sizeof(pkt.Header.TransactionID));
+        UDPPutArray((BYTE*)&(pkt.Header.SecondsElapsed), sizeof(pkt.Header.SecondsElapsed));
+        UDPPutArray((BYTE*)&(pkt.Header.BootpFlags), sizeof(pkt.Header.BootpFlags));
+        UDPPutArray((BYTE*)&(pkt.Header.ClientIP), sizeof(pkt.Header.ClientIP));
+        UDPPutArray((BYTE*)&(pkt.Header.YourIP), sizeof(pkt.Header.YourIP));
+        UDPPutArray((BYTE*)&(pkt.Header.NextServerIP), sizeof(pkt.Header.NextServerIP));
+        UDPPutArray((BYTE*)&(AppConfig.MyIPAddr), sizeof(AppConfig.MyIPAddr)); // giaddr
+        UDPPutArray((BYTE*)&(pkt.Header.ClientMAC), sizeof(pkt.Header.ClientMAC));
+
+        // the other fields are set to zero
+        for (i = 0; i < 202u; i++) {
+            UDPPut(0);
+        }
+
+        // put magic cookie as per RFC 1533.
+        UDPPut(99);
+        UDPPut(130);
+        UDPPut(83);
+        UDPPut(99);
+
+        // put message type
+        UDPPut(DHCP_MESSAGE_TYPE);
+	    UDPPut(DHCP_MESSAGE_TYPE_LEN);
+	    UDPPut(pkt.MessageType);
+
+        // TODO other options?
+
+        // if there is an IP address, add it
+        if (pkt.IPAddressNotNull == TRUE) {
+            UDPPut(DHCP_PARAM_REQUEST_IP_ADDRESS);
+            UDPPut(DHCP_PARAM_REQUEST_IP_ADDRESS_LEN);
+            UDPPutArray((BYTE*)&pkt.RequiredAddress, sizeof(IP_ADDR));
+            IPAddressNotNull = FALSE; // reset the global variable used as a flag
+        }
+
+        UDPPut(DHCP_END_OPTION); // end the packet
+
+        // add zero padding to ensure compatibility with old BOOTP relays that discard
+        // packets smaller that 300 octets
+        while(UDPTxCount < 300u) {
+            UDPPut(0);
+        }
+
+        UDPFlush(); // transmit
+    }
 }
 
 static void SendToClient() {
-    if (UDPIsPutReady(serverToClient) > 300u) {
+    if (UDPIsPutReady(serverToClient) >= 300u) {
         BYTE                i;
         UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
         PACKET_DATA         pkt;
@@ -266,7 +340,7 @@ static void SendToClient() {
         UDPPutArray((BYTE*)&(pkt.Header.ClientIP), sizeof(pkt.Header.ClientIP));
         UDPPutArray((BYTE*)&(pkt.Header.YourIP), sizeof(pkt.Header.YourIP));
         UDPPutArray((BYTE*)&(pkt.Header.NextServerIP), sizeof(pkt.Header.NextServerIP));
-        UDPPutArray((BYTE*)&(AppConfig.MyIPAddr), sizeof(AppConfig.MyIPAddr));
+        UDPPutArray((BYTE*)&(AppConfig.MyIPAddr), sizeof(AppConfig.MyIPAddr)); // giaddr
         UDPPutArray((BYTE*)&(pkt.Header.ClientMAC), sizeof(pkt.Header.ClientMAC));
 
         // the other fields are set to zero
@@ -284,6 +358,8 @@ static void SendToClient() {
         UDPPut(DHCP_MESSAGE_TYPE);
 	    UDPPut(DHCP_MESSAGE_TYPE_LEN);
 	    UDPPut(pkt.MessageType);
+
+        // TODO Other options?
 
         UDPPut(DHCP_END_OPTION); // end packet
 
