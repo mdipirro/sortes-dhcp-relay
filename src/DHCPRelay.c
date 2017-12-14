@@ -29,6 +29,8 @@
 // Include functions specific to this stack application
 #include "Include/DHCPRelay.h"
 
+#define BROADCAST 0xFFFFFFFF
+
 //#ifdef __PACKETCIRCULARLIST_C
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
@@ -235,6 +237,66 @@ static void GetClientPacket() {
     GetPacket(&clientPacket, &clientToServer);
 }
 
+static void SendToServer() {
+    
+}
+
+static void SendToClient() {
+    if (UDPIsPutReady(serverToClient) > 300u) {
+        BYTE                i;
+        UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
+        PACKET_DATA         pkt;
+        PacketListPop(&pkt, &ClientMessages);
+
+        // set socket info
+        socket -> remoteNode.IPAddr.Val = BROADCAST;
+        socket -> remotePort = DHCP_CLIENT_PORT;
+        for(i = 0; i < 6u; i++){ // copy client's MAC address (and take it from CHADDR)
+            socket -> remoteNode.MACAddr.v[i] = pkt.Header.ClientMAC.v[i];
+        }
+
+        // copy header DHCP
+        UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
+        UDPPutArray((BYTE*)&(pkt.Header.HardwareType), sizeof(pkt.Header.HardwareType));
+        UDPPutArray((BYTE*)&(pkt.Header.HardwareLen), sizeof(pkt.Header.HardwareLen));
+        UDPPutArray((BYTE*)&(pkt.Header.Hops), sizeof(pkt.Header.Hops));
+        UDPPutArray((BYTE*)&(pkt.Header.TransactionID), sizeof(pkt.Header.TransactionID));
+        UDPPutArray((BYTE*)&(pkt.Header.SecondsElapsed), sizeof(pkt.Header.SecondsElapsed));
+        UDPPutArray((BYTE*)&(pkt.Header.BootpFlags), sizeof(pkt.Header.BootpFlags));
+        UDPPutArray((BYTE*)&(pkt.Header.ClientIP), sizeof(pkt.Header.ClientIP));
+        UDPPutArray((BYTE*)&(pkt.Header.YourIP), sizeof(pkt.Header.YourIP));
+        UDPPutArray((BYTE*)&(pkt.Header.NextServerIP), sizeof(pkt.Header.NextServerIP));
+        UDPPutArray((BYTE*)&(AppConfig.MyIPAddr), sizeof(AppConfig.MyIPAddr));
+        UDPPutArray((BYTE*)&(pkt.Header.ClientMAC), sizeof(pkt.Header.ClientMAC));
+
+        // the other fields are set to zero
+        for (i = 0; i < 202u; i++) {
+            UDPPut(0);
+        }
+
+        // put magic cookie 0x63538263, little endian
+        UDPPut(0x63);
+	    UDPPut(0x82);
+	    UDPPut(0x53);
+	    UDPPut(0x63);
+
+        // put message type
+        UDPPut(DHCP_MESSAGE_TYPE);
+	    UDPPut(DHCP_MESSAGE_TYPE_LEN);
+	    UDPPut(pkt.MessageType);
+
+        UDPPut(DHCP_END_OPTION); // end packet
+
+        // add zero padding to ensure compatibility with old BOOTP relays that discard
+        // packets smaller that 300 octets
+        while (UDPTxCount < 300u) {
+            UDPPut(0);
+        }
+
+        UDPFlush(); // transmit
+    }
+}
+
 static void Component1() {
     switch(comp1) {
         // root
@@ -307,7 +369,7 @@ static void Component2() {
             comp2 = TX_TO_SERVER;
             break;
         case TX_TO_SERVER:
-            // TODO get packet from the queue and transmit to the server
+            SendToServer();
             stopGettingFromClient = FALSE;
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
@@ -326,7 +388,7 @@ static void Component3() {
             comp3 = TX_TO_CLIENT;
             break;
         case TX_TO_CLIENT:
-            // TODO get packet from the queue and transmit to the client
+            SendToClient();
             stopGettingFromServer = FALSE;
             comp3 = TX_TO_CLIENT_T;
         case TX_TO_CLIENT_T:

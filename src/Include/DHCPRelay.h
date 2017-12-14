@@ -40,6 +40,8 @@ void PingDemo(void);
     static void DHCPRelaytask();
     static void GetServerPacket();
     static void GetClientPacket();
+    static void SendToServer();
+    static void SendToClient();
 #endif
 
 // An actual function defined in DHCPRelay.c for displaying the current IP 
