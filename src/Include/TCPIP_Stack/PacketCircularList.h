@@ -10,6 +10,8 @@
 typedef struct {
 	BOOTP_HEADER 	Header;
 	BYTE 			MessageType;
+	BOOL 			IPAddressNotNull;
+	IP_ADDR			RequiredAddress;
 } PACKET_DATA;
 
 typedef struct
