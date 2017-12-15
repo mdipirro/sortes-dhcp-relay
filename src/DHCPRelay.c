@@ -86,8 +86,6 @@ PACKET_DATA clientPacket;
 
 IP_ADDR RequiredAddress;
 
-BOOL stopGettingFromServer;
-BOOL stopGettingFromClient;
 BOOL serverTurn; // used to alternate server and client listening
 BOOL IPAddressNotNull;
 BOOL N; // network resource
@@ -161,9 +159,6 @@ void DHCPRelayInit() {
 
     PacketListInit(&ServerMessages);
     PacketListInit(&ClientMessages);
-
-    stopGettingFromServer   = FALSE;
-    stopGettingFromClient   = FALSE;
 
     serverTurn              = FALSE;
 
@@ -380,15 +375,16 @@ static void Component1() {
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            // a packet is ready in the server's socket and there is at least a free spot in the queue
+            // a packet is ready in the server's socket and 
+            // there is at least a free spot in the client's queue
             if (    serverTurn == TRUE &&
-                    stopGettingFromServer == FALSE &&
-                    UDPIsGetReady(clientToServer) > 240u) {
+                    !PacketListIsFull(&ClientMessages) &&
+                    UDPIsGetReady(serverToClient) > 240u) {
                 comp1 = SERVER_MESSAGE_T;
                 serverTurn = FALSE;
             } else if ( serverTurn == FALSE &&
-                        stopGettingFromClient == FALSE &&
-                        UDPIsGetReady(serverToClient) > 240u) {
+                        !PacketListIsFull(&ServerMessages) &&
+                        UDPIsGetReady(clientToServer) > 240u) {
                 comp1 = CLIENT_MESSAGE_T;
                 serverTurn = TRUE;
             }
@@ -417,9 +413,6 @@ static void Component1() {
             if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_CLIENT_QUEUE_T;
-            } else {
-                // otherwise wait until there is a free spot in the queue
-                stopGettingFromServer = TRUE; 
             }
         case PUSH_CLIENT_QUEUE_T:
             comp1 = WAITING_FOR_MESSAGE;
@@ -436,9 +429,6 @@ static void Component1() {
             if (PacketListPush(&ServerMessages, &clientPacket) == 0) {
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_SERVER_QUEUE_T;
-            } else {
-                // otherwise wait until there is a free spot in the queue
-                stopGettingFromClient = TRUE; 
             }
         case PUSH_SERVER_QUEUE_T:
             comp1 = WAITING_FOR_MESSAGE;
@@ -460,7 +450,6 @@ static void Component2() {
             break;
         case TX_TO_SERVER:
             SendToServer();
-            stopGettingFromClient = FALSE;
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
             N = FALSE;
@@ -483,7 +472,6 @@ static void Component3() {
             break;
         case TX_TO_CLIENT:
             SendToClient();
-            stopGettingFromServer = FALSE;
             comp3 = TX_TO_CLIENT_T;
         case TX_TO_CLIENT_T:
             N = FALSE;
