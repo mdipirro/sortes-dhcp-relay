@@ -90,6 +90,7 @@ BOOL stopGettingFromServer;
 BOOL stopGettingFromClient;
 BOOL serverTurn; // used to alternate server and client listening
 BOOL IPAddressNotNull;
+BOOL N; // network resource
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -167,6 +168,8 @@ void DHCPRelayInit() {
     serverTurn              = FALSE;
 
     IPAddressNotNull        = FALSE;
+
+    N                       = FALSE;
 }
 
 static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
@@ -391,16 +394,23 @@ static void Component1() {
             }
         // different transitions
         case SERVER_MESSAGE_T:
-            comp1 = FROM_SERVER;
+            if (N == FALSE) {
+                comp1 = FROM_SERVER;
+                N = TRUE;
+            }
             break;
         case CLIENT_MESSAGE_T:
-            comp1 = FROM_CLIENT;
+            if (N == FALSE) {
+                comp1 = FROM_CLIENT;
+                N = TRUE;
+            }
             break;
         // server branch
         case FROM_SERVER:
             GetServerPacket();
             comp1 = FROM_SERVER_T;
         case FROM_SERVER_T:
+            N = FALSE;
             comp1 = PUSH_CLIENT_QUEUE;
             break;
         case PUSH_CLIENT_QUEUE:
@@ -419,6 +429,7 @@ static void Component1() {
             GetClientPacket();
             comp1 = FROM_CLIENT_T;
         case FROM_CLIENT_T:
+            N = FALSE;
             comp1 = PUSH_SERVER_QUEUE;
             break;
         case PUSH_SERVER_QUEUE:
@@ -442,13 +453,17 @@ static void Component2() {
                 comp2 = SERVER_QUEUE_WAITING_T;
             }
         case SERVER_QUEUE_WAITING_T:
-            comp2 = TX_TO_SERVER;
+            if (N == FALSE) {
+                comp2 = TX_TO_SERVER;
+                N = TRUE;
+            }
             break;
         case TX_TO_SERVER:
             SendToServer();
             stopGettingFromClient = FALSE;
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
+            N = FALSE;
             comp2 = SERVER_QUEUE_WAITING;
             break;
     }
@@ -461,13 +476,17 @@ static void Component3() {
                 comp3 = CLIENT_QUEUE_WAITING_T;
             }
         case CLIENT_QUEUE_WAITING_T:
-            comp3 = TX_TO_CLIENT;
+            if (N == FALSE) {
+                comp3 = TX_TO_CLIENT;
+                N = TRUE;   
+            }
             break;
         case TX_TO_CLIENT:
             SendToClient();
             stopGettingFromServer = FALSE;
             comp3 = TX_TO_CLIENT_T;
         case TX_TO_CLIENT_T:
+            N = FALSE;
             comp3 = CLIENT_QUEUE_WAITING;
             break;
     }
