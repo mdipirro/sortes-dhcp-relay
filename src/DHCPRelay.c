@@ -62,6 +62,8 @@ typedef enum {
 typedef enum {
     SERVER_QUEUE_WAITING,
     SERVER_QUEUE_WAITING_T,
+    GET_SERVER_IP_ADDRESS,
+    GET_SERVER_IP_ADDRESS_T,
     TX_TO_SERVER,
     TX_TO_SERVER_T
 } COMPONENT2;
@@ -73,10 +75,23 @@ typedef enum {
     TX_TO_CLIENT_T
 } COMPONENT3;
 
+typedef enum {
+    SEND_ARP_REQUEST,
+    SEND_ARP_REQUEST_T,
+    PROCESS_ARP_ANSWER,
+    PROCESS_ARP_ANSWER_T
+} GET_SERVER_IP_ADDRESS_COMP;
+
+typedef struct {
+    IP_ADDR     ServerIPAddress;
+    MAC_ADDR    ServerMACAddress;
+} SERVER_INFO;
+
 CURRENT_COMPONENT currentComponent;
 COMPONENT1 comp1;
 COMPONENT2 comp2;
 COMPONENT3 comp3;
+GET_SERVER_IP_ADDRESS_COMP comp2_2;
 
 PacketList ServerMessages;
 PacketList ClientMessages;
@@ -89,6 +104,8 @@ IP_ADDR RequiredAddress;
 BOOL serverTurn; // used to alternate server and client listening
 BOOL IPAddressNotNull;
 BOOL N; // network resource
+
+SERVER_INFO ServerInfo;
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -150,21 +167,24 @@ const char* message;  //pointer to message to display on LCD
 void DHCPRelayInit() {
     currentComponent    = COMP1;
 
-    comp1                   = WAITING_FOR_MESSAGE;
-    comp2                   = SERVER_QUEUE_WAITING;
-    comp3                   = CLIENT_QUEUE_WAITING;
+    comp1                       = WAITING_FOR_MESSAGE;
+    comp2                       = SERVER_QUEUE_WAITING;
+    comp3                      = CLIENT_QUEUE_WAITING;
+    comp2_2                     = SEND_ARP_REQUEST;
 
-    serverToClient          = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
-    clientToServer          = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
+    serverToClient            = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
+    clientToServer              = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
 
     PacketListInit(&ServerMessages);
     PacketListInit(&ClientMessages);
 
-    serverTurn              = FALSE;
+    serverTurn                  = FALSE;
 
-    IPAddressNotNull        = FALSE;
+    IPAddressNotNull            = FALSE;
 
-    N                       = FALSE;
+    N                           = FALSE;
+
+    //TODO ServerInfo.ServerIPAddress = ;
 }
 
 static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
@@ -248,7 +268,6 @@ static void GetClientPacket() {
 }
 
 static void SendToServer() {
-    // TODO ARP
     if (UDPIsPutReady(clientToServer) >= 300u) {
         BYTE                i;
         UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
@@ -256,10 +275,10 @@ static void SendToServer() {
         PacketListPop(&pkt, &ServerMessages);
 
         // set socket info
-        /*socket -> remoteNode.IPAddr.Val = 
+        socket -> remoteNode.IPAddr.Val = ServerInfo.ServerIPAddress.Val;
         for(i = 0; i < 6; i++) {
-            socket -> remoteNode.MACAddr.v[i] = 
-        }*/
+            socket -> remoteNode.MACAddr.v[i] = ServerInfo.ServerMACAddress.v[i];
+        }
 
         // copy header DHCP
         UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
@@ -444,10 +463,32 @@ static void Component2() {
             }
         case SERVER_QUEUE_WAITING_T:
             if (N == FALSE) {
-                comp2 = TX_TO_SERVER;
+                comp2 = GET_SERVER_IP_ADDRESS;
                 N = TRUE;
             }
             break;
+        case GET_SERVER_IP_ADDRESS:
+            // TODO After the first time server's MAC is known: is it necessary to ARP again?
+            // If not, how can we represent it using ASG?
+            switch (comp2_2) {
+                case SEND_ARP_REQUEST:
+                    ARPResolve(&ServerInfo.ServerIPAddress);
+                    comp2_2 = SEND_ARP_REQUEST_T;
+                case SEND_ARP_REQUEST_T:
+                    comp2_2 = PROCESS_ARP_ANSWER;
+                    N = FALSE;
+                    break;
+                case PROCESS_ARP_ANSWER:
+                    if (ARPIsResolved(&ServerInfo.ServerIPAddress, &ServerInfo.ServerMACAddress)) {
+                        comp2_2 = PROCESS_ARP_ANSWER_T;
+                    }
+                case PROCESS_ARP_ANSWER_T:
+                    if (N == FALSE) {
+                        comp2_2 = SEND_ARP_REQUEST;
+                        comp2 = TX_TO_SERVER;
+                    }
+                    break;
+            }
         case TX_TO_SERVER:
             SendToServer();
             comp2 = TX_TO_SERVER_T;
