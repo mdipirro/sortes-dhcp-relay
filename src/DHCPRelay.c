@@ -32,10 +32,9 @@
 #define BROADCAST               0xFFFFFFFF
 #define SERVER_IP_ADDR_BYTE1    (192ul)
 #define SERVER_IP_ADDR_BYTE2    (168ul)
-#define SERVER_IP_ADDR_BYTE3    (97ul)
+#define SERVER_IP_ADDR_BYTE3    (98ul)
 #define SERVER_IP_ADDR_BYTE4    (1ul)
 
-//#ifdef __PACKETCIRCULARLIST_C
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
 BYTE AN0String[8];
@@ -180,6 +179,15 @@ void DHCPRelayInit() {
     serverToClient              = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
     clientToServer              = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
 
+    if (serverToClient == INVALID_UDP_SOCKET) {
+        DisplayString(0, "Invalid Server");
+        DEBUGMSG("INVALID SERVER SOCKET\r\n");
+    } 
+    if (clientToServer == INVALID_UDP_SOCKET) {
+        DisplayString(16, "Invalid Client");
+        DEBUGMSG("INVALID CLIENT SOCKET\r\n");
+    }
+
     PacketListInit(&ServerMessages);
     PacketListInit(&ClientMessages);
 
@@ -211,7 +219,7 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
         UDPGetArray((BYTE*)&Header, sizeof(BOOTP_HEADER)); // get the header
 
 
-        // validate hardware interface and message type
+        // validate hardware interface and message type FIXME
         if (1/*    Header.HardwareType == 1u && 
                 Header.HardwareLen == 6u &&
         (Header.MessageType == 1u || Header.MessageType == 2u)*/) {
@@ -270,10 +278,12 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
 }
 
 static void GetServerPacket() {
+    DEBUGMSG("GET SERVER\r\n");
     GetPacket(&serverPacket, &serverToClient);
 }
 
 static void GetClientPacket() {
+    DEBUGMSG("GET CLIENT\r\n");
     GetPacket(&clientPacket, &clientToServer);
 }
 
@@ -427,8 +437,7 @@ static void Component1() {
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            // a packet is ready in the server's socket and 
-            // there is at least a free spot in the client's queue
+            // a packet is ready in a socket
             if (serverTurn == TRUE && UDPIsGetReady(serverToClient) > 240u) {
                 comp1 = SERVER_MESSAGE_T;
                 serverTurn = FALSE;
@@ -463,7 +472,6 @@ static void Component1() {
             break;
         case PUSH_CLIENT_QUEUE:
             if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
-                //DisplayString(0, "PUSH CQ");
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_CLIENT_QUEUE_T;
             } else {
@@ -474,7 +482,6 @@ static void Component1() {
             break;
         // client branch
         case FROM_CLIENT:
-            //DisplayString(0, "CLIENT REC");
             GetClientPacket();
             comp1 = FROM_CLIENT_T;
         case FROM_CLIENT_T:
@@ -548,7 +555,6 @@ static void Component2() {
 static void Component3() {
     switch (comp3) {
         case CLIENT_QUEUE_WAITING:
-            //DisplayString(0, "WAITING CLIENT");
             if (!PacketListIsEmpty(&ClientMessages)) {
                 comp3 = CLIENT_QUEUE_WAITING_T;
             } else {
@@ -561,11 +567,9 @@ static void Component3() {
             }
             break;
         case TX_TO_CLIENT:
-            //DisplayString(0, "CLIENT TX");
             SendToClient();
             comp3 = TX_TO_CLIENT_T;
         case TX_TO_CLIENT_T:
-            //DisplayString(0, "CLIENT TX T");
             N = FALSE;
             comp3 = CLIENT_QUEUE_WAITING;
             break;
@@ -628,14 +632,14 @@ static DWORD dwLastIP = 0;
         LCDTaskInit();
     #endif
 
-    #ifdef STACK_USE_DHCP_RELAY
-        DHCPRelayInit();
-    #endif
-
     // Initialize and display message on the LCD
     LCDInit();
     DelayMs(100);
     DisplayString (0,"Olimex1"); //first arg is start position on 32 pos LCD
+
+    #ifdef STACK_USE_DHCP_RELAY
+        DHCPRelayInit();
+    #endif
 
     // Now that all items are initialized, begin the co-operative
     // multitasking loop.  This infinite loop will continuously 
