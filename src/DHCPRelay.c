@@ -532,19 +532,21 @@ static void Component3() {
 }
 
 static void DHCPRelaytask() {
-    switch(currentComponent) {
-        case COMP1:
-            Component1();
-            currentComponent = COMP2;
-            break;
-        case COMP2:
-            Component2();
-            currentComponent = COMP3;
-            break;
-        case COMP3:
-            Component3();
-            currentComponent = COMP1;
-            break;
+    if (AppConfig.Flags.bIsDHCPEnabled) {
+        switch(currentComponent) {
+            case COMP1:
+                Component1();
+                currentComponent = COMP2;
+                break;
+            case COMP2:
+                Component2();
+                currentComponent = COMP3;
+                break;
+            case COMP3:
+                Component3();
+                currentComponent = COMP1;
+                break;
+        }
     }
 }
 
