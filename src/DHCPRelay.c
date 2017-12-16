@@ -26,6 +26,7 @@
 #include "Include/HardwareProfile.h"
 // Include all headers for any enabled TCPIP Stack functions
 #include "Include/TCPIP_Stack/TCPIP.h"
+
 // Include functions specific to this stack application
 #include "Include/DHCPRelay.h"
 
@@ -41,54 +42,6 @@ BYTE AN0String[8];
 
 UDP_SOCKET serverToClient;
 UDP_SOCKET clientToServer;
-
-typedef enum {
-    COMP1,
-    COMP2,
-    COMP3
-} CURRENT_COMPONENT;
-
-typedef enum {
-    WAITING_FOR_MESSAGE,
-    SERVER_MESSAGE_T,
-    CLIENT_MESSAGE_T,
-    FROM_SERVER,
-    FROM_SERVER_T,
-    PUSH_SERVER_QUEUE,
-    PUSH_SERVER_QUEUE_T,
-    FROM_CLIENT,
-    FROM_CLIENT_T,
-    PUSH_CLIENT_QUEUE,
-    PUSH_CLIENT_QUEUE_T,
-} COMPONENT1;
-
-typedef enum {
-    SERVER_QUEUE_WAITING,
-    SERVER_QUEUE_WAITING_T,
-    GET_SERVER_IP_ADDRESS,
-    GET_SERVER_IP_ADDRESS_T,
-    TX_TO_SERVER,
-    TX_TO_SERVER_T
-} COMPONENT2;
-
-typedef enum {
-    CLIENT_QUEUE_WAITING,
-    CLIENT_QUEUE_WAITING_T,
-    TX_TO_CLIENT,
-    TX_TO_CLIENT_T
-} COMPONENT3;
-
-typedef enum {
-    SEND_ARP_REQUEST,
-    SEND_ARP_REQUEST_T,
-    PROCESS_ARP_ANSWER,
-    PROCESS_ARP_ANSWER_T
-} GET_SERVER_IP_ADDRESS_COMP;
-
-typedef struct {
-    IP_ADDR     ServerIPAddress;
-    MAC_ADDR    ServerMACAddress;
-} SERVER_INFO;
 
 CURRENT_COMPONENT currentComponent;
 COMPONENT1 comp1;
@@ -109,7 +62,7 @@ BOOL IPAddressNotNull;
 BOOL N; // network resource
 BOOL serverKnown;
 
-SERVER_INFO ServerInfo;
+NODE_INFO ServerInfo;
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -199,14 +152,14 @@ void DHCPRelayInit() {
 
     serverKnown                 = FALSE;
 
-    ServerInfo.ServerIPAddress.Val = SERVER_IP_ADDR_BYTE1 | 
+    ServerInfo.IPAddr.Val = SERVER_IP_ADDR_BYTE1 | 
             SERVER_IP_ADDR_BYTE2<<8ul | SERVER_IP_ADDR_BYTE3<<16ul | 
             SERVER_IP_ADDR_BYTE4<<24ul;
 
     DEBUGMSG("Init\r\n");
 }
 
-static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
+static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
     if (pkt != NULL && socket != NULL) {
         BYTE            toBeDiscarded; // used to throw away unused fields
         DWORD           magicCookie;
@@ -215,7 +168,7 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
         BYTE            Option;
         BYTE            Len;
 
-        UDPIsGetReady(*socket); // set the current socket
+        UDPIsGetReady(socket); // set the current socket
         UDPGetArray((BYTE*)&Header, sizeof(BOOTP_HEADER)); // get the header
 
 
@@ -237,7 +190,7 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
             // obtain magic cookie
             UDPGetArray((BYTE*)&magicCookie, sizeof(DWORD));
             // process options
-            while (UDPIsGetReady(*socket)) {
+            while (UDPIsGetReady(socket)) {
                 if (UDPGet(&Option) && Option != DHCP_END_OPTION) {
                     UDPGet(&Len); // get the length
                     switch (Option) {
@@ -263,10 +216,18 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
                                 UDPGetArray((BYTE*)&RequiredAddress, Len);
                                 IPAddressNotNull = TRUE;
                             }
+                            break;
+                        case DHCP_END_OPTION:
+                            UDPDiscard();
+                            break;
+                    }
+                    // remove any unprocessed bytes
+                    while(Len) {
+                        UDPGet(&i);
+                        Len--;
                     }
                 }
             } 
-            UDPDiscard();
 
             // prepare the packet to be pushed
             memcpy(&(pkt -> Header), &Header, sizeof(BOOTP_HEADER));
@@ -279,12 +240,12 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
 
 static void GetServerPacket() {
     DEBUGMSG("GET SERVER\r\n");
-    GetPacket(&serverPacket, &serverToClient);
+    GetPacket(&serverPacket, serverToClient);
 }
 
 static void GetClientPacket() {
     DEBUGMSG("GET CLIENT\r\n");
-    GetPacket(&clientPacket, &clientToServer);
+    GetPacket(&clientPacket, clientToServer);
 }
 
 static void SendToServer() {
@@ -295,9 +256,9 @@ static void SendToServer() {
         PacketListPop(&pkt, &ServerMessages);
 
         // set socket info
-        socket -> remoteNode.IPAddr.Val = ServerInfo.ServerIPAddress.Val;
+        socket -> remoteNode.IPAddr.Val = ServerInfo.IPAddr.Val;
         for(i = 0; i < 6; i++) {
-            socket -> remoteNode.MACAddr.v[i] = ServerInfo.ServerMACAddress.v[i];
+            socket -> remoteNode.MACAddr.v[i] = ServerInfo.MACAddr.v[i];
         }
 
         DEBUGMSG("Send Server\r\n");
@@ -337,23 +298,15 @@ static void SendToServer() {
 	    UDPPut(sizeof(IP_ADDR));
 	    UDPPutArray((BYTE*)&AppConfig.MyMask, sizeof(IP_ADDR));
 
-        /*// Option: Lease duration
-        UDPPut(DHCP_IP_LEASE_TIME);
-        UDPPut(4);
-        UDPPut((DHCP_LEASE_DURATION>>24) & 0xFF);
-        UDPPut((DHCP_LEASE_DURATION>>16) & 0xFF);
-        UDPPut((DHCP_LEASE_DURATION>>8) & 0xFF);
-        UDPPut((DHCP_LEASE_DURATION) & 0xFF);*/
-
         // Option: Server identifier
         UDPPut(DHCP_SERVER_IDENTIFIER);	
         UDPPut(sizeof(IP_ADDR));
-        UDPPutArray((BYTE*)&ServerInfo.ServerIPAddress.Val, sizeof(IP_ADDR));
+        UDPPutArray((BYTE*)&ServerInfo.IPAddr.Val, sizeof(IP_ADDR));
 
         // Option: Router/Gateway address
         UDPPut(DHCP_ROUTER);		
         UDPPut(sizeof(IP_ADDR));
-        UDPPutArray((BYTE*)&ServerInfo.ServerIPAddress.Val, sizeof(IP_ADDR));
+        UDPPutArray((BYTE*)&ServerInfo.IPAddr.Val, sizeof(IP_ADDR));
 
         // if there is an IP address, add it
         if (pkt.IPAddressNotNull == TRUE) {
@@ -372,6 +325,7 @@ static void SendToServer() {
         }
 
         UDPFlush(); // transmit
+        DisplayString(0, "CL to SERV");
     }
 }
 
@@ -430,6 +384,7 @@ static void SendToClient() {
         }
 
         UDPFlush(); // transmit
+        DisplayString(0, "SERV to CL");
     }
 }
 
@@ -522,14 +477,14 @@ static void Component2() {
         case GET_SERVER_IP_ADDRESS:
             switch (comp2_2) {
                 case SEND_ARP_REQUEST:
-                    ARPResolve(&ServerInfo.ServerIPAddress);
+                    ARPResolve(&ServerInfo.IPAddr);
                     comp2_2 = SEND_ARP_REQUEST_T;
                 case SEND_ARP_REQUEST_T:
                     comp2_2 = PROCESS_ARP_ANSWER;
                     N = FALSE;
                     break;
                 case PROCESS_ARP_ANSWER:
-                    if (ARPIsResolved(&ServerInfo.ServerIPAddress, &ServerInfo.ServerMACAddress)) {
+                    if (ARPIsResolved(&ServerInfo.IPAddr, &ServerInfo.MACAddr)) {
                         serverKnown = TRUE;
                         comp2_2 = PROCESS_ARP_ANSWER_T;
                     } else {
