@@ -9,3 +9,13 @@
 %	\item \texttt{put timer.hex}.
 %\end{itemize}
 %Please notice that the last command has to be run only when the board is ready to receive the program. This happens during the three seconds after its reboot.
+
+\subsection{Debug mode}
+If something is not working properly a special mode can be activated which allows to view information messages during critical phases of the program execution. The \textbf{UART interface} is used to transmit the debug messages to an external terminal (typically a PC); the receiver must be connected to the RS232 port of the Olimex board and it must be set with these parameters:
+\begin{itemize}
+	\item Baud rate: 9600
+	\item Data bits: 8
+	\item Stop bits: 1
+	\item Parity: Odd
+\end{itemize}
+The debug mode is \textbf{disabled by default}; it can be activated adding the option \texttt{-DUART\_DEBUG\_ON} to the CFLAGS in the Makefile and recompiling the code. Some predefined macros are used to print single characters (\texttt{DEBUGCHAR}), blocks of characters of any lenght (\texttt{DEBUGBLOCK}) and strings (\texttt{DEBUGMSG}) throughout the code; these macros are only effective in debug mode.

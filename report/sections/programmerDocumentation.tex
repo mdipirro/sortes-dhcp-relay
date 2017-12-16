@@ -1,8 +1,9 @@
+\newpage
 \section{Documentation for programmers}
 \subsection{Specification}
 The program implements a DHCP relay. Figure~\ref{fig:dhcp} depicts how it works.
 \begin{figure}[h]
-	\centering\includegraphics[scale=0.56]{images/dhcp}
+	\centering\includegraphics[scale=0.58]{images/dhcp}
 	\caption{Example of DHCP protocol communication\protect\footnotemark}
 	\label{fig:dhcp}
 \end{figure}
@@ -80,7 +81,7 @@ In order to do this, a \textbf{circular list} (actually, a circular array of str
 The circular list static allocation required the availability of more than 256 bytes in memory, that is the maximum dimension allowed by default due to internal division of databanks in the PIC18. To overcome this limitation, the linker script was modified to create a single databank of twice the size and a \texttt{\#pragma} directive was introduced to memorize the list in that exact memory location; the solution was fully tested and does not introduce any kind of issue.\\
 
 
-The delay handling is entrusted to \textbf{Timer 1} (external 32.768 kHz oscillator) because it is not used by any other part of the system; the timer is in a bounded configuration and the initial value of the register is calculated according to the necessary minimum delay for each stage. If such a waiting condition is active, LDC task checks for an overflow of the timer register before proceeding to the execution.\\
+The delay handling is entrusted to \textbf{Timer 1} (external 32.768 kHz oscillator) because it is not used by any other part of the system; the timer is in a bounded configuration and the initial value of the register is calculated according to the necessary minimum delay for each stage. If such a waiting condition is active, the LDC task checks for an overflow of the timer register before proceeding to the execution.\\
 
 The instruction flow of the LCD task is represented in the next page; it is a simple diagram which is not meant to explain the detailed content of each block but the general behavior of the module. For in-depth analysis it is possible to read the code.
 
