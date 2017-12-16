@@ -170,8 +170,6 @@ void DisplayWORD(BYTE pos, WORD w); //write WORDs on LCD for debugging
 const char* message;  //pointer to message to display on LCD
 
 void DHCPRelayInit() {
-    //DisplayString(0, "DHCP Init");
-    //DEBUGMSG("DHCPInit\n");
     currentComponent    = COMP1;
 
     comp1                       = WAITING_FOR_MESSAGE;
@@ -196,6 +194,8 @@ void DHCPRelayInit() {
     ServerInfo.ServerIPAddress.Val = SERVER_IP_ADDR_BYTE1 | 
             SERVER_IP_ADDR_BYTE2<<8ul | SERVER_IP_ADDR_BYTE3<<16ul | 
             SERVER_IP_ADDR_BYTE4<<24ul;
+
+    DEBUGMSG("Init\r\n");
 }
 
 static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
@@ -210,7 +210,6 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
         UDPIsGetReady(*socket); // set the current socket
         UDPGetArray((BYTE*)&Header, sizeof(BOOTP_HEADER)); // get the header
 
-        DEBUGMSG("BEFORE IF\r\n");
 
         // validate hardware interface and message type
         if (1/*    Header.HardwareType == 1u && 
@@ -235,25 +234,23 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
                     UDPGet(&Len); // get the length
                     switch (Option) {
                         case DHCP_MESSAGE_TYPE:
-                            DEBUGMSG("MESSAGE TYPE\r\n");
                             UDPGet(&Type); // get the message type
                             switch (Type) {
                                 case DHCP_DISCOVER_MESSAGE:
-                                    DisplayString(0, "DHCP Discovery");
+                                    DEBUGMSG("DHCP Discovery");
                                     break;
                                 case DHCP_REQUEST_MESSAGE:
-                                    DisplayString(0, "DHCP Request");
+                                    DEBUGMSG("DHCP Request");
                                     break;
                                 case DHCP_OFFER_MESSAGE:
-                                    DisplayString(0, "DHCP Offer");
+                                    DEBUGMSG("DHCP Offer");
                                     break;
                                 case DHCP_ACK_MESSAGE:
-                                    DisplayString(0, "DHCP ACK");
+                                    DEBUGMSG("DHCP ACK");
                                     break;
                             }
                             break;
                         case DHCP_PARAM_REQUEST_IP_ADDRESS:
-                            DEBUGMSG("IP\r\n");
                             if (Len == 4u) {
                                 UDPGetArray((BYTE*)&RequiredAddress, Len);
                                 IPAddressNotNull = TRUE;
@@ -261,7 +258,6 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET* socket) {
                     }
                 }
             } 
-            DEBUGMSG("BEFORE DISCARD\r\n");
             UDPDiscard();
 
             // prepare the packet to be pushed
@@ -294,6 +290,8 @@ static void SendToServer() {
             socket -> remoteNode.MACAddr.v[i] = ServerInfo.ServerMACAddress.v[i];
         }
 
+        DEBUGMSG("Send Server\r\n");
+       
         // copy header DHCP
         UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
         UDPPutArray((BYTE*)&(pkt.Header.HardwareType), sizeof(pkt.Header.HardwareType));
@@ -381,6 +379,8 @@ static void SendToClient() {
             socket -> remoteNode.MACAddr.v[i] = pkt.Header.ClientMAC.v[i];
         }
 
+        DEBUGMSG("Send Client\r\n");
+
         // copy header DHCP
         UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
         UDPPutArray((BYTE*)&(pkt.Header.HardwareType), sizeof(pkt.Header.HardwareType));
@@ -424,23 +424,21 @@ static void SendToClient() {
 }
 
 static void Component1() {
-    //DEBUGMSG("C1\n");
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            //DisplayString(0, "WAITING Comp1");
             // a packet is ready in the server's socket and 
             // there is at least a free spot in the client's queue
-            if (    serverTurn == TRUE &&
-                    //!PacketListIsFull(&ClientMessages) &&
-                    UDPIsGetReady(serverToClient) > 240u) {
+            if (serverTurn == TRUE && UDPIsGetReady(serverToClient) > 240u) {
                 comp1 = SERVER_MESSAGE_T;
                 serverTurn = FALSE;
-            } else if ( serverTurn == FALSE &&
-                        //!PacketListIsFull(&ServerMessages) &&
-                        UDPIsGetReady(clientToServer) > 240u) {
+                DEBUGMSG("FROM SERVER\r\n");
+            } else if (serverTurn == FALSE && UDPIsGetReady(clientToServer) > 240u) {
                 comp1 = CLIENT_MESSAGE_T;
                 serverTurn = TRUE;
+                DEBUGMSG("FROM CLIENT\r\n");
+            } else {
+                break;
             }
         // different transitions
         case SERVER_MESSAGE_T:
@@ -450,7 +448,6 @@ static void Component1() {
             }
             break;
         case CLIENT_MESSAGE_T:
-            DisplayString(0, "CLIENT MSG");
             if (N == FALSE) {
                 comp1 = FROM_CLIENT;
                 N = TRUE;
@@ -469,6 +466,8 @@ static void Component1() {
                 //DisplayString(0, "PUSH CQ");
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_CLIENT_QUEUE_T;
+            } else {
+                break;
             }
         case PUSH_CLIENT_QUEUE_T:
             comp1 = WAITING_FOR_MESSAGE;
@@ -484,9 +483,10 @@ static void Component1() {
             break;
         case PUSH_SERVER_QUEUE:
             if (PacketListPush(&ServerMessages, &clientPacket) == 0) {
-                //DisplayString(0, "PUSH SQ");
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_SERVER_QUEUE_T;
+            } else {
+                break;
             }
         case PUSH_SERVER_QUEUE_T:
             comp1 = WAITING_FOR_MESSAGE;
@@ -495,12 +495,12 @@ static void Component1() {
 }
 
 static void Component2() {
-    //DEBUGMSG("C2\n");
     switch (comp2) {
         case SERVER_QUEUE_WAITING:
-            //DisplayString(0, "WAITING SERVER");
             if (!PacketListIsEmpty(&ServerMessages)) {
                 comp2 = SERVER_QUEUE_WAITING_T;
+            } else {
+                break;
             }
         case SERVER_QUEUE_WAITING_T:
             if (N == FALSE) {
@@ -525,6 +525,8 @@ static void Component2() {
                     if (ARPIsResolved(&ServerInfo.ServerIPAddress, &ServerInfo.ServerMACAddress)) {
                         serverKnown = TRUE;
                         comp2_2 = PROCESS_ARP_ANSWER_T;
+                    } else {
+                        break;
                     }
                 case PROCESS_ARP_ANSWER_T:
                     if (N == FALSE) {
@@ -534,11 +536,9 @@ static void Component2() {
                     break;
             }
         case TX_TO_SERVER:
-            //DisplayString(0, "SERVER TX");
             SendToServer();
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
-            //DisplayString(0, "SERVER TX T");
             N = FALSE;
             comp2 = SERVER_QUEUE_WAITING;
             break;
@@ -546,12 +546,13 @@ static void Component2() {
 }
 
 static void Component3() {
-    //DEBUGMSG("C3\n");
     switch (comp3) {
         case CLIENT_QUEUE_WAITING:
             //DisplayString(0, "WAITING CLIENT");
             if (!PacketListIsEmpty(&ClientMessages)) {
                 comp3 = CLIENT_QUEUE_WAITING_T;
+            } else {
+                break;
             }
         case CLIENT_QUEUE_WAITING_T:
             if (N == FALSE) {
@@ -635,7 +636,6 @@ static DWORD dwLastIP = 0;
     LCDInit();
     DelayMs(100);
     DisplayString (0,"Olimex1"); //first arg is start position on 32 pos LCD
-    //DEBUGMSG("Olimex\n");
 
     // Now that all items are initialized, begin the co-operative
     // multitasking loop.  This infinite loop will continuously 
@@ -676,13 +676,8 @@ static DWORD dwLastIP = 0;
             LCDTask();
         #endif
 
-        //DisplayString(0, "AAA");
-        //DEBUGMSG("AAA\n");
-
         // Process application specific tasks here.
         #ifdef STACK_USE_DHCP_RELAY
-            //DisplayString(0, "BBB");
-            //DEBUGMSG("BBB\n");
             DHCPRelaytask();
         #endif
         
