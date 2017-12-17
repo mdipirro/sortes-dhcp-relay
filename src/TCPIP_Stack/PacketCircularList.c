@@ -39,7 +39,7 @@ int PacketListPush(PacketList* list, PACKET_DATA* packet)
 		return -1;
 	if (PacketListIsFull(list))
 		return -2;
-	memcpy(&(list -> op[list -> head]), packet, sizeof(BOOTP_HEADER));
+	memcpy(&(list -> op[list -> head]), packet, sizeof(PACKET_DATA));
 	// Increment the head pointer
 	list -> head = (list -> head + 1) % PACKET_LIST_SIZE;
 	return 0;

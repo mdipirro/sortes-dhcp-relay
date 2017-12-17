@@ -37,10 +37,12 @@ void PingDemo(void);
 //void BerkeleyUDPClientDemo(void);
 
 #ifdef STACK_USE_DHCP_RELAY
+    // enum representing the current relay component on the processor
     typedef enum {
-        COMP1,
-        COMP2,
-        COMP3
+        INIT, 
+        COMP1,  // listening for packets
+        COMP2,  // sending to server
+        COMP3   // sending to client
     } CURRENT_COMPONENT;
 
     typedef enum {
@@ -81,9 +83,9 @@ void PingDemo(void);
     } GET_SERVER_IP_ADDRESS_COMP;
 
     static void DHCPRelayInit();
-    static void DHCPRelaytask();
-    static void GetServerPacket();
-    static void GetClientPacket();
+    static void DHCPRelayTask();
+    static int GetServerPacket();
+    static int GetClientPacket();
     static void SendToServer();
     static void SendToClient();
     static void Component1();

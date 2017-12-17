@@ -133,8 +133,8 @@ void DHCPRelayInit() {
     comp3                       = CLIENT_QUEUE_WAITING;
     comp2_2                     = SEND_ARP_REQUEST;
 
-    serverToClient              = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
-    clientToServer              = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
+    clientToServer              = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
+    serverToClient              = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
 
     if (serverToClient == INVALID_UDP_SOCKET) {
         DisplayString(0, "Invalid Server");
@@ -163,23 +163,34 @@ void DHCPRelayInit() {
     DEBUGMSG("Init\r\n");
 }
 
-static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
-    if (pkt != NULL && socket != NULL) {
+static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
+    if(UDPIsGetReady(socket) < 241u) {
+        //DisplayString(16, "NO");
+        return 0;
+    }
+    if (pkt != NULL && socket != INVALID_UDP_SOCKET) {
         BYTE            toBeDiscarded; // used to throw away unused fields
         DWORD           magicCookie;
         BOOTP_HEADER    Header;
-        BYTE            Type;
+        BYTE            Type = 0u;
         BYTE            Option;
         BYTE            Len;
+        BOOL            over = FALSE;
 
-        UDPIsGetReady(socket); // set the current socket
-        UDPGetArray((BYTE*)&Header, sizeof(BOOTP_HEADER)); // get the header
+        DisplayString(0, "IN IF");
 
+        //UDPIsGetReady(socket); // set the current socket
+        UDPGetArray((BYTE*)&Header, sizeof(Header)); // get the header
 
         // validate hardware interface and message type FIXME
-        if (1/*    Header.HardwareType == 1u && 
-                Header.HardwareLen == 6u &&
-        (Header.MessageType == 1u || Header.MessageType == 2u)*/) {
+        if(Header.HardwareType != 1u)
+            return 0;
+        if(Header.HardwareLen != 6u)
+            return 0;
+
+        if (1/*Header.HardwareType == 1u && 
+            Header.HardwareLen == 6u &&
+            (Header.MessageType == 1u || Header.MessageType == 2u)*/) {
             /* 
             * read and discard the following unused fields:
             * - client hardware address
@@ -187,6 +198,7 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
             * - boot filename
             */ 
             BYTE i;
+            DisplayString(0, "AFTER CHECK");
             for(i = 0; i < 64+128+(16-sizeof(MAC_ADDR)); i++) {
                 UDPGet(&toBeDiscarded);
             }
@@ -194,74 +206,84 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
             // obtain magic cookie
             UDPGetArray((BYTE*)&magicCookie, sizeof(DWORD));
             // process options
-            while (UDPIsGetReady(socket)) {
-                if (UDPGet(&Option) && Option != DHCP_END_OPTION) {
-                    UDPGet(&Len); // get the length
-                    switch (Option) {
-                        case DHCP_MESSAGE_TYPE:
-                            UDPGet(&Type); // get the message type
-                            switch (Type) {
-                                case DHCP_DISCOVER_MESSAGE:
-                                    DisplayString(0, "DHCP Discovery  ");
-                                    DisplayIPValue(Header.ClientIP.Val);
-                                    DEBUGMSG("DHCP Discovery\r\n");
-                                    break;
-                                case DHCP_REQUEST_MESSAGE:
-                                    DisplayString(0, "DHCP Request   ");
-                                    DisplayIPValue(Header.ClientIP.Val);
-                                    DEBUGMSG("DHCP Request\r\n");
-                                    break;
-                                case DHCP_OFFER_MESSAGE:
-                                    DisplayString(0, "DHCP Offer      ");
-                                    DisplayIPValue(ServerInfo.IPAddr.Val);
-                                    DEBUGMSG("DHCP Offer\r\n");
-                                    break;
-                                case DHCP_ACK_MESSAGE:
-                                    DisplayString(0, "DHCP ACK       ");
-                                    DisplayIPValue(ServerInfo.IPAddr.Val);
-                                    DEBUGMSG("DHCP ACK\r\n");
-                                    break;
-                            }
-                            break;
-                        case DHCP_PARAM_REQUEST_IP_ADDRESS:
-                            if (Len == 4u) {
-                                UDPGetArray((BYTE*)&RequiredAddress, Len);
-                                IPAddressNotNull = TRUE;
-                                DisplayIPValue(RequiredAddress.Val);
-                            }
-                            break;
-                        case DHCP_END_OPTION:
-                            UDPDiscard();
-                            break;
-                    }
-                    // remove any unprocessed bytes
-                    while(Len) {
-                        UDPGet(&i);
-                        Len--;
-                    }
+            while (1) {
+                DisplayString(0, "While");
+                if(!UDPGet(&Option)) {
+                    break;
                 }
-            } 
+                if(Option == DHCP_END_OPTION) {
+                    UDPDiscard();
+                    break;
+                }
+                UDPGet(&Len); // get the length
+                switch (Option) {
+                    case DHCP_MESSAGE_TYPE:
+                        UDPGet(&Type); // get the message type
+                        switch (Type) {
+                            case DHCP_DISCOVER_MESSAGE:
+                                DisplayString(16, "DHCP Discover   ");
+                                DEBUGMSG("DHCP Discover\r\n");
+                                break;
+                            case DHCP_REQUEST_MESSAGE:
+                                DisplayString(16, "DHCP Request   ");
+                                //DisplayIPValue(Header.ClientIP.Val);
+                                DEBUGMSG("DHCP Request\r\n");
+                                break;
+                            case DHCP_OFFER_MESSAGE:
+                                DisplayString(16, "DHCP Offer      ");
+                                //DisplayIPValue(ServerInfo.IPAddr.Val);
+                                DEBUGMSG("DHCP Offer\r\n");
+                                break;
+                            case DHCP_ACK_MESSAGE:
+                                DisplayString(16, "DHCP ACK       ");
+                                //DisplayIPValue(ServerInfo.IPAddr.Val);
+                                DEBUGMSG("DHCP ACK\r\n");
+                                break;
+                        }
+                        break;
+                    case DHCP_PARAM_REQUEST_IP_ADDRESS:
+                        if (Len == 4u) {
+                            UDPGetArray((BYTE*)&RequiredAddress, Len);
+                            IPAddressNotNull = TRUE;
+                            DisplayIPValue(RequiredAddress.Val);
+                        }
+                        break;
+                    /*case DHCP_END_OPTION:
+                        UDPDiscard();
+                        over == TRUE;
+                        break;*/
+                }
+                // remove any unprocessed bytes
+                while(Len) {
+                    UDPGet(&i);
+                    Len--;
+                }
+            }
 
             // prepare the packet to be pushed
             memcpy(&(pkt -> Header), &Header, sizeof(BOOTP_HEADER));
             memcpy(&(pkt -> RequiredAddress), &RequiredAddress, sizeof(IP_ADDR));
-            pkt -> MessageType      = Type;
-            pkt -> IPAddressNotNull = IPAddressNotNull;
+            memcpy(&(pkt -> MessageType), &Type, sizeof(BYTE));
+            memcpy(&(pkt -> IPAddressNotNull), &IPAddressNotNull, sizeof(IP_ADDR));
+            return 1;
         }
+    } else {
+        return 0;
     }
 }
 
-static void GetServerPacket() {
+static int GetServerPacket() {
     DEBUGMSG("GET SERVER\r\n");
-    GetPacket(&serverPacket, serverToClient);
+    return GetPacket(&serverPacket, serverToClient);
 }
 
-static void GetClientPacket() {
+static int GetClientPacket() {
     DEBUGMSG("GET CLIENT\r\n");
-    GetPacket(&clientPacket, clientToServer);
+    return GetPacket(&clientPacket, clientToServer);
 }
 
 static void SendToServer() {
+    DisplayString(16, "SENDSV");
     if (UDPIsPutReady(clientToServer) >= 300u) {
         BYTE                i;
         UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
@@ -343,6 +365,7 @@ static void SendToServer() {
 }
 
 static void SendToClient() {
+    DisplayString(16, "SENDCL");
     if (UDPIsPutReady(serverToClient) >= 300u) {
         BYTE                i;
         UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
@@ -397,42 +420,34 @@ static void SendToClient() {
         }
 
         UDPFlush(); // transmit
-        DisplayString(0, "SERV to CL");
+        //DisplayString(0, "SERV to CL");
     }
 }
 
 static void Component1() {
+    //int res;
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            // a packet is ready in a socket
-            if (serverTurn == TRUE && UDPIsGetReady(serverToClient) > 240u) {
-                comp1 = SERVER_MESSAGE_T;
-                serverTurn = FALSE;
-                DEBUGMSG("FROM SERVER\r\n");
-            } else if (serverTurn == FALSE && UDPIsGetReady(clientToServer) > 240u) {
-                comp1 = CLIENT_MESSAGE_T;
-                serverTurn = TRUE;
-                DEBUGMSG("FROM CLIENT\r\n");
+            if (GetPacket(&serverPacket, serverToClient)) {
+                comp1 = comp1 = SERVER_MESSAGE_T;
+                if (N == FALSE) {
+                    comp1 = FROM_SERVER;
+                    N = TRUE;
+                }
             } else {
-                break;
-            }
-        // different transitions
-        case SERVER_MESSAGE_T:
-            if (N == FALSE) {
-                comp1 = FROM_SERVER;
-                N = TRUE;
-            }
-            break;
-        case CLIENT_MESSAGE_T:
-            if (N == FALSE) {
-                comp1 = FROM_CLIENT;
-                N = TRUE;
+                if (GetPacket(&clientPacket, clientToServer)) {
+                    comp1 = CLIENT_MESSAGE_T;
+                    if (N == FALSE) {
+                        comp1 = FROM_CLIENT;
+                        N = TRUE;
+                    }
+                }
             }
             break;
         // server branch
         case FROM_SERVER:
-            GetServerPacket();
+            //GetServerPacket();
             comp1 = FROM_SERVER_T;
         case FROM_SERVER_T:
             N = FALSE;
@@ -441,6 +456,7 @@ static void Component1() {
         case PUSH_CLIENT_QUEUE:
             if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
                 // cross the transiction iff the push succeeded
+                //DisplayString(16, "PUSH");
                 comp1 = PUSH_CLIENT_QUEUE_T;
             } else {
                 break;
@@ -450,7 +466,8 @@ static void Component1() {
             break;
         // client branch
         case FROM_CLIENT:
-            GetClientPacket();
+            //DisplayString(7, "FC");
+            //GetClientPacket();
             comp1 = FROM_CLIENT_T;
         case FROM_CLIENT_T:
             N = FALSE;
@@ -491,7 +508,7 @@ static void Component2() {
             switch (comp2_2) {
                 case SEND_ARP_REQUEST:
                     ARPResolve(&ServerInfo.IPAddr);
-                    DisplayString(0, "Send ARP Request");
+                    //DisplayString(0, "Send ARP Request");
                     DEBUGMSG("ARP REQ\r\n");
                     comp2_2 = SEND_ARP_REQUEST_T;
                 case SEND_ARP_REQUEST_T:
@@ -550,7 +567,7 @@ static void Component3() {
     }
 }
 
-static void DHCPRelaytask() {
+static void DHCPRelayTask() {
 	/*ARPResolve(&ServerInfo.IPAddr);
 	if (ARPIsResolved(&ServerInfo.IPAddr,&ServerInfo.MACAddr) == TRUE) {
         DisplayString(0, "Nothing");
@@ -560,6 +577,9 @@ static void DHCPRelaytask() {
 }*/
     if (AppConfig.Flags.bIsDHCPEnabled) {
         switch(currentComponent) {
+            case INIT:
+                DHCPRelayInit();
+                break;
             case COMP1:
                 Component1();
                 currentComponent = COMP2;
@@ -573,34 +593,11 @@ static void DHCPRelaytask() {
                 currentComponent = COMP1;
                 break;
         }
-        /*if (serverKnown == FALSE) {
-            switch (comp2_2) {
-                case SEND_ARP_REQUEST:
-                    DisplayIPValue(ServerInfo.IPAddr.Val);
-                    ARPResolve(&ServerInfo.IPAddr);
-                    DEBUGMSG("ARP REQ\r\n");
-                    comp2_2 = SEND_ARP_REQUEST_T;
-                case SEND_ARP_REQUEST_T:
-                    comp2_2 = PROCESS_ARP_ANSWER;
-                    N = FALSE;
-                    break;
-                case PROCESS_ARP_ANSWER:
-                    if (ARPIsResolved(&ServerInfo.IPAddr, &ServerInfo.MACAddr) == TRUE) {
-                        DisplayString(0, "ARP RESOLVED");
-                        serverKnown = TRUE;
-                        comp2_2 = PROCESS_ARP_ANSWER_T;
-                    } else {
-                        comp2_2 = SEND_ARP_REQUEST;
-                        break;
-                    }
-                case PROCESS_ARP_ANSWER_T:
-                    if (N == FALSE) {
-                        comp2_2 = SEND_ARP_REQUEST;
-                        comp2 = TX_TO_SERVER;
-                    }
-                    break;
-            }
-        }*/
+        /*if (currentComponent == INIT) {
+            DHCPRelayInit();
+        }
+        //Component1();
+        GetClientPacket();*/
     } else {
         DEBUGMSG("DHCP NOT ENABLED\r\n");
     }
@@ -650,9 +647,10 @@ static DWORD dwLastIP = 0;
     DelayMs(100);
     DisplayString (0,"Olimex1"); //first arg is start position on 32 pos LCD
 
-    #ifdef STACK_USE_DHCP_RELAY
+    /*#ifdef STACK_USE_DHCP_RELAY
         DHCPRelayInit();
-    #endif
+    #endif*/
+    currentComponent = INIT;
 
     // Now that all items are initialized, begin the co-operative
     // multitasking loop.  This infinite loop will continuously 
@@ -695,7 +693,7 @@ static DWORD dwLastIP = 0;
 
         // Process application specific tasks here.
         #ifdef STACK_USE_DHCP_RELAY
-            DHCPRelaytask();
+            DHCPRelayTask();
         #endif
         
         // If the local IP address has changed (ex: due to DHCP lease change)
