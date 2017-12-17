@@ -429,25 +429,24 @@ static void Component1() {
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            if (GetPacket(&serverPacket, serverToClient)) {
-                comp1 = comp1 = SERVER_MESSAGE_T;
+            if (serverTurn == TRUE && UDPIsGetReady(serverToClient) > 240u) {
                 if (N == FALSE) {
                     comp1 = FROM_SERVER;
                     N = TRUE;
                 }
-            } else {
-                if (GetPacket(&clientPacket, clientToServer)) {
-                    comp1 = CLIENT_MESSAGE_T;
-                    if (N == FALSE) {
-                        comp1 = FROM_CLIENT;
-                        N = TRUE;
-                    }
+            } 
+            if (serverTurn == FALSE && UDPIsGetReady(clientToServer) > 240u) {
+                comp1 = CLIENT_MESSAGE_T;
+                if (N == FALSE) {
+                    comp1 = FROM_CLIENT;
+                    N = TRUE;
                 }
             }
+            serverTurn = (serverTurn == TRUE) ? FALSE : TRUE;
             break;
         // server branch
         case FROM_SERVER:
-            //GetServerPacket();
+            GetPacket(&serverPacket, serverToClient);
             comp1 = FROM_SERVER_T;
         case FROM_SERVER_T:
             N = FALSE;
@@ -466,8 +465,7 @@ static void Component1() {
             break;
         // client branch
         case FROM_CLIENT:
-            //DisplayString(7, "FC");
-            //GetClientPacket();
+            GetPacket(&clientPacket, clientToServer);
             comp1 = FROM_CLIENT_T;
         case FROM_CLIENT_T:
             N = FALSE;
@@ -503,6 +501,7 @@ static void Component2() {
                 }
                 N = TRUE;
             }
+            //comp2 = TX_TO_SERVER;
             break;
         case GET_SERVER_IP_ADDRESS:
             switch (comp2_2) {
