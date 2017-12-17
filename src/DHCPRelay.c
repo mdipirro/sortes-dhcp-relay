@@ -261,10 +261,11 @@ static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
             }
 
             // prepare the packet to be pushed
-            memcpy(&(pkt -> Header), &Header, sizeof(BOOTP_HEADER));
-            memcpy(&(pkt -> RequiredAddress), &RequiredAddress, sizeof(IP_ADDR));
-            memcpy(&(pkt -> MessageType), &Type, sizeof(BYTE));
-            memcpy(&(pkt -> IPAddressNotNull), &IPAddressNotNull, sizeof(IP_ADDR));
+            memcpy(&(pkt -> Header), &Header, sizeof(Header));
+            memcpy(&(pkt -> RequiredAddress), &RequiredAddress, sizeof(pkt -> RequiredAddress));
+            memcpy(&(pkt -> MessageType), &Type, sizeof(Type));
+            memcpy(&(pkt -> IPAddressNotNull), &IPAddressNotNull, sizeof(IPAddressNotNull));
+            DisplayIPValue(pkt -> Header.ClientIP.Val);
             return 1;
         }
     } else {
@@ -283,7 +284,7 @@ static int GetClientPacket() {
 }
 
 static void SendToServer() {
-    DisplayString(16, "SENDSV");
+    //DisplayString(16, "SENDSV");
     if (UDPIsPutReady(clientToServer) >= 300u) {
         BYTE                i;
         UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
@@ -429,13 +430,13 @@ static void Component1() {
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            if (serverTurn == TRUE && UDPIsGetReady(serverToClient) > 240u) {
+            if (serverTurn == TRUE && GetPacket(&serverPacket, serverToClient)) {
                 if (N == FALSE) {
                     comp1 = FROM_SERVER;
                     N = TRUE;
                 }
             } 
-            if (serverTurn == FALSE && UDPIsGetReady(clientToServer) > 240u) {
+            if (serverTurn == FALSE && GetPacket(&clientPacket, clientToServer)) {
                 comp1 = CLIENT_MESSAGE_T;
                 if (N == FALSE) {
                     comp1 = FROM_CLIENT;
@@ -446,7 +447,7 @@ static void Component1() {
             break;
         // server branch
         case FROM_SERVER:
-            GetPacket(&serverPacket, serverToClient);
+            //GetPacket(&serverPacket, serverToClient);
             comp1 = FROM_SERVER_T;
         case FROM_SERVER_T:
             N = FALSE;
@@ -465,7 +466,7 @@ static void Component1() {
             break;
         // client branch
         case FROM_CLIENT:
-            GetPacket(&clientPacket, clientToServer);
+            //GetPacket(&clientPacket, clientToServer);
             comp1 = FROM_CLIENT_T;
         case FROM_CLIENT_T:
             N = FALSE;
@@ -494,11 +495,12 @@ static void Component2() {
             }
         case SERVER_QUEUE_WAITING_T:
             if (N == FALSE) {
-                if (serverKnown == FALSE) {
+                /*if (serverKnown == FALSE) {
                     comp2 = GET_SERVER_IP_ADDRESS;
                 } else {
                     comp2 = TX_TO_SERVER;
-                }
+                }*/
+                comp2 = TX_TO_SERVER;
                 N = TRUE;
             }
             //comp2 = TX_TO_SERVER;
@@ -644,7 +646,7 @@ static DWORD dwLastIP = 0;
     // Initialize and display message on the LCD
     LCDInit();
     DelayMs(100);
-    DisplayString (0,"Olimex1"); //first arg is start position on 32 pos LCD
+    DisplayString (0,"OlimexA"); //first arg is start position on 32 pos LCD
 
     /*#ifdef STACK_USE_DHCP_RELAY
         DHCPRelayInit();
