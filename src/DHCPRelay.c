@@ -30,11 +30,15 @@
 // Include functions specific to this stack application
 #include "Include/DHCPRelay.h"
 
+#if !defined(STACK_CLIENT_MODE)
+    #define STACK_CLIENT_MODE
+#endif
+
 #define BROADCAST               0xFFFFFFFF
 #define SERVER_IP_ADDR_BYTE1    (192ul)
 #define SERVER_IP_ADDR_BYTE2    (168ul)
-#define SERVER_IP_ADDR_BYTE3    (98ul)
-#define SERVER_IP_ADDR_BYTE4    (1ul)
+#define SERVER_IP_ADDR_BYTE3    (97ul)
+#define SERVER_IP_ADDR_BYTE4    (16ul)
 
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
@@ -261,7 +265,7 @@ static void SendToServer() {
             socket -> remoteNode.MACAddr.v[i] = ServerInfo.MACAddr.v[i];
         }
 
-        DEBUGMSG("Send Server\r\n");
+        //DEBUGMSG("Send Server\r\n");
        
         // copy header DHCP
         UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
@@ -325,7 +329,7 @@ static void SendToServer() {
         }
 
         UDPFlush(); // transmit
-        DisplayString(0, "CL to SERV");
+        //DisplayString(0, "CL to SERV");
     }
 }
 
@@ -461,9 +465,9 @@ static void Component2() {
         case SERVER_QUEUE_WAITING:
             if (!PacketListIsEmpty(&ServerMessages)) {
                 comp2 = SERVER_QUEUE_WAITING_T;
-            } else {
+            }/* else {
                 break;
-            }
+            }*/
         case SERVER_QUEUE_WAITING_T:
             if (N == FALSE) {
                 if (serverKnown == FALSE) {
@@ -477,17 +481,21 @@ static void Component2() {
         case GET_SERVER_IP_ADDRESS:
             switch (comp2_2) {
                 case SEND_ARP_REQUEST:
+                    DisplayIPValue(ServerInfo.IPAddr.Val);
                     ARPResolve(&ServerInfo.IPAddr);
+                    DEBUGMSG("ARP REQ\r\n");
                     comp2_2 = SEND_ARP_REQUEST_T;
                 case SEND_ARP_REQUEST_T:
                     comp2_2 = PROCESS_ARP_ANSWER;
                     N = FALSE;
                     break;
                 case PROCESS_ARP_ANSWER:
-                    if (ARPIsResolved(&ServerInfo.IPAddr, &ServerInfo.MACAddr)) {
+                    if (ARPIsResolved(&ServerInfo.IPAddr, &ServerInfo.MACAddr) == TRUE) {
+                        DisplayString(0, "ARP RESOLVED");
                         serverKnown = TRUE;
                         comp2_2 = PROCESS_ARP_ANSWER_T;
                     } else {
+                        comp2_2 = SEND_ARP_REQUEST;
                         break;
                     }
                 case PROCESS_ARP_ANSWER_T:
@@ -497,7 +505,9 @@ static void Component2() {
                     }
                     break;
             }
+            break;
         case TX_TO_SERVER:
+            //DEBUGMSG("IN COMP2\r\n");
             SendToServer();
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
@@ -532,6 +542,13 @@ static void Component3() {
 }
 
 static void DHCPRelaytask() {
+	/*ARPResolve(&ServerInfo.IPAddr);
+	if (ARPIsResolved(&ServerInfo.IPAddr,&ServerInfo.MACAddr) == TRUE) {
+        DisplayString(0, "Nothing");
+    } else {
+        DisplayString(0, "Done");
+    }
+}*/
     if (AppConfig.Flags.bIsDHCPEnabled) {
         switch(currentComponent) {
             case COMP1:
@@ -547,6 +564,36 @@ static void DHCPRelaytask() {
                 currentComponent = COMP1;
                 break;
         }
+        /*if (serverKnown == FALSE) {
+            switch (comp2_2) {
+                case SEND_ARP_REQUEST:
+                    DisplayIPValue(ServerInfo.IPAddr.Val);
+                    ARPResolve(&ServerInfo.IPAddr);
+                    DEBUGMSG("ARP REQ\r\n");
+                    comp2_2 = SEND_ARP_REQUEST_T;
+                case SEND_ARP_REQUEST_T:
+                    comp2_2 = PROCESS_ARP_ANSWER;
+                    N = FALSE;
+                    break;
+                case PROCESS_ARP_ANSWER:
+                    if (ARPIsResolved(&ServerInfo.IPAddr, &ServerInfo.MACAddr) == TRUE) {
+                        DisplayString(0, "ARP RESOLVED");
+                        serverKnown = TRUE;
+                        comp2_2 = PROCESS_ARP_ANSWER_T;
+                    } else {
+                        comp2_2 = SEND_ARP_REQUEST;
+                        break;
+                    }
+                case PROCESS_ARP_ANSWER_T:
+                    if (N == FALSE) {
+                        comp2_2 = SEND_ARP_REQUEST;
+                        comp2 = TX_TO_SERVER;
+                    }
+                    break;
+            }
+        }*/
+    } else {
+        DEBUGMSG("DHCP NOT ENABLED\r\n");
     }
 }
 
