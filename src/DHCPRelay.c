@@ -202,16 +202,24 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
                             UDPGet(&Type); // get the message type
                             switch (Type) {
                                 case DHCP_DISCOVER_MESSAGE:
-                                    DEBUGMSG("DHCP Discovery");
+                                    DisplayString(0, "DHCP Discovery  ");
+                                    DisplayIPValue(Header.ClientIP.Val);
+                                    DEBUGMSG("DHCP Discovery\r\n");
                                     break;
                                 case DHCP_REQUEST_MESSAGE:
-                                    DEBUGMSG("DHCP Request");
+                                    DisplayString(0, "DHCP Request   ");
+                                    DisplayIPValue(Header.ClientIP.Val);
+                                    DEBUGMSG("DHCP Request\r\n");
                                     break;
                                 case DHCP_OFFER_MESSAGE:
-                                    DEBUGMSG("DHCP Offer");
+                                    DisplayString(0, "DHCP Offer      ");
+                                    DisplayIPValue(ServerInfo.IPAddr.Val);
+                                    DEBUGMSG("DHCP Offer\r\n");
                                     break;
                                 case DHCP_ACK_MESSAGE:
-                                    DEBUGMSG("DHCP ACK");
+                                    DisplayString(0, "DHCP ACK       ");
+                                    DisplayIPValue(ServerInfo.IPAddr.Val);
+                                    DEBUGMSG("DHCP ACK\r\n");
                                     break;
                             }
                             break;
@@ -219,6 +227,7 @@ static void GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
                             if (Len == 4u) {
                                 UDPGetArray((BYTE*)&RequiredAddress, Len);
                                 IPAddressNotNull = TRUE;
+                                DisplayIPValue(RequiredAddress.Val);
                             }
                             break;
                         case DHCP_END_OPTION:
@@ -465,9 +474,9 @@ static void Component2() {
         case SERVER_QUEUE_WAITING:
             if (!PacketListIsEmpty(&ServerMessages)) {
                 comp2 = SERVER_QUEUE_WAITING_T;
-            }/* else {
+            } else {
                 break;
-            }*/
+            }
         case SERVER_QUEUE_WAITING_T:
             if (N == FALSE) {
                 if (serverKnown == FALSE) {
@@ -481,8 +490,8 @@ static void Component2() {
         case GET_SERVER_IP_ADDRESS:
             switch (comp2_2) {
                 case SEND_ARP_REQUEST:
-                    DisplayIPValue(ServerInfo.IPAddr.Val);
                     ARPResolve(&ServerInfo.IPAddr);
+                    DisplayString(0, "Send ARP Request");
                     DEBUGMSG("ARP REQ\r\n");
                     comp2_2 = SEND_ARP_REQUEST_T;
                 case SEND_ARP_REQUEST_T:
@@ -491,7 +500,7 @@ static void Component2() {
                     break;
                 case PROCESS_ARP_ANSWER:
                     if (ARPIsResolved(&ServerInfo.IPAddr, &ServerInfo.MACAddr) == TRUE) {
-                        DisplayString(0, "ARP RESOLVED");
+                        DisplayString(0, "MACAddr Resolved");
                         serverKnown = TRUE;
                         comp2_2 = PROCESS_ARP_ANSWER_T;
                     } else {
