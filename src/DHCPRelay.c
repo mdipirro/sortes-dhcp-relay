@@ -1,9 +1,6 @@
 /*********************************************************************
  *
- *  Main Application Entry Point and TCP/IP Stack Demo
- *  Module for Microchip TCP/IP Stack
- *   -Demonstrates how to call and use the Microchip TCP/IP stack
- *	 -Reference: AN833
+ *  Main Application Entry Point for the DHCPRelay.
  *
  *********************************************************************/
 
@@ -34,39 +31,46 @@
     #define STACK_CLIENT_MODE
 #endif
 
-#define BROADCAST               0xFFFFFFFF
+#define BROADCAST               0xFFFFFFFF // broadcast address
+// server's IP address
 #define SERVER_IP_ADDR_BYTE1    (192ul)
 #define SERVER_IP_ADDR_BYTE2    (168ul)
-#define SERVER_IP_ADDR_BYTE3    (97ul)
-#define SERVER_IP_ADDR_BYTE4    (16ul)
+#define SERVER_IP_ADDR_BYTE3    (10ul)
+#define SERVER_IP_ADDR_BYTE4    (10ul)
 
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
 BYTE AN0String[8];
 
+// sockets 
 UDP_SOCKET serverToClient;
 UDP_SOCKET clientToServer;
 
+// components needed for the cooperative scheduling
 CURRENT_COMPONENT currentComponent;
 COMPONENT1 comp1;
 COMPONENT2 comp2;
 COMPONENT3 comp3;
 GET_SERVER_IP_ADDRESS_COMP comp2_2;
 
+// queues to store packets coming from server and clients
 PacketList ServerMessages;
 PacketList ClientMessages;
 
+// temporary variables used to store the packets before pushing
+// them in the corresponding queue
 PACKET_DATA serverPacket;
 PACKET_DATA clientPacket;
 
-IP_ADDR RequiredAddress;
+IP_ADDR RequiredAddress; // IP address accepted by te server
 
 BOOL serverTurn; // used to alternate server and client listening
-BOOL IPAddressNotNull;
+//used to store whether the packet contained an accepted IP address
+BOOL IPAddressNotNull; 
 BOOL N; // network resource
-BOOL serverKnown;
+BOOL serverKnown; // TRUE once the server's MAC address has been resolved
 
-NODE_INFO ServerInfo;
+NODE_INFO ServerInfo; // server's IP and MAC addresses
 
 // Private helper functions.
 // These may or may not be present in all applications.
@@ -125,16 +129,25 @@ void DisplayWORD(BYTE pos, WORD w); //write WORDs on LCD for debugging
 
 const char* message;  //pointer to message to display on LCD
 
+/**
+ * Init the relay. This function opens the sockets to the server and the client and 
+ * initializes the components used for the cooperative scheduling. 
+ * @return 0 if everything succeeded, a negative number otherwise:
+ *         -) -1, if the server socket could not be open
+ *         -) -2, if the client socket could not be open
+ */ 
 int DHCPRelayInit() {
-    currentComponent    = COMP1;
+    // init the components
+    currentComponent    = COMP1; 
 
-    comp1                       = WAITING_FOR_MESSAGE;
-    comp2                       = SERVER_QUEUE_WAITING;
-    comp3                       = CLIENT_QUEUE_WAITING;
-    comp2_2                     = SEND_ARP_REQUEST;
+    comp1                    = WAITING_FOR_MESSAGE;
+    comp2                    = SERVER_QUEUE_WAITING;
+    comp3                    = CLIENT_QUEUE_WAITING;
+    comp2_2                  = SEND_ARP_REQUEST;
 
-    clientToServer              = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
-    serverToClient              = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
+    // open the sockets
+    clientToServer           = UDPOpen(DHCP_SERVER_PORT, NULL, DHCP_CLIENT_PORT);
+    serverToClient           = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
 
     if (serverToClient == INVALID_UDP_SOCKET) {
         DisplayString(0, "Invalid Server");
@@ -142,43 +155,66 @@ int DHCPRelayInit() {
     } 
     if (clientToServer == INVALID_UDP_SOCKET) {
         DisplayString(16, "Invalid Client");
-        return -1;
+        return -2;
     }
 
+    // init the queues
     PacketListInit(&ServerMessages);
     PacketListInit(&ClientMessages);
 
-    serverTurn                  = FALSE;
+    // init some boolean flags needed to organize the work
+    serverTurn              = FALSE;
 
-    IPAddressNotNull            = FALSE;
+    IPAddressNotNull        = FALSE;
 
-    N                           = FALSE;
+    N                       = FALSE;
 
-    serverKnown                 = FALSE;
+    serverKnown             = FALSE;
 
-    ServerInfo.IPAddr.Val = SERVER_IP_ADDR_BYTE1 | 
-            SERVER_IP_ADDR_BYTE2<<8ul | SERVER_IP_ADDR_BYTE3<<16ul | 
+    // set the server's IP address
+    ServerInfo.IPAddr.Val   = 
+            SERVER_IP_ADDR_BYTE1 | 
+            SERVER_IP_ADDR_BYTE2<<8ul |
+            SERVER_IP_ADDR_BYTE3<<16ul | 
             SERVER_IP_ADDR_BYTE4<<24ul;
 
     return 0;
 }
 
+/**
+ * Read a DHCP packet (if any) from a socket, and store it in the `pkt`
+ * parameter. The function reads the DHCP header and store it for future 
+ * use. It performs some basic checks on the hardware type (which must be
+ * ETHERNET (== 1u)) and the hardware length (which must be == 6u). It does
+ * not validate the message type (which may be both 1u (BOOT_REQUEST) and
+ * 2u (BOOT_REPLY)) and the magic cookie.
+ * @param pkt Pointer to a packet storing the packet readfrom the network
+ * @param socket Socket used to read the packet (if any)
+ * @return 0 If everything succeeded, a negative number otherwise:
+ *         -) -1 if no packet is available on the selected socket, meaning
+ *            there are less then 241 bytes in its buffer;
+ *         -) -2, wrong hardware type          
+ *         -) -3, wrong hardware length
+ *         -) -4, pkt is null or the socket is invalid
+ */ 
 static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
+    // has the current socket enough bytes ready to be read?
     if(UDPIsGetReady(socket) < 241u) {
         return -1;
     }
+    // parameters validation check
     if (pkt != NULL && socket != INVALID_UDP_SOCKET) {
         BYTE            toBeDiscarded; // used to throw away unused fields
-        DWORD           magicCookie;
-        BOOTP_HEADER    Header;
-        BYTE            Type = 0u;
-        BYTE            Option;
-        BYTE            Len;
-        BYTE            i;
+        DWORD           magicCookie; 
+        BOOTP_HEADER    Header; // packet header
+        BYTE            Type = 0u; // MessageType
+        BYTE            Option; // used to iterate over the DHCP options
+        BYTE            Len; // length of the current option
+        BYTE            i; // used to add 0 paddings
 
         UDPGetArray((BYTE*)&Header, sizeof(Header)); // get the header
 
-        // validate hardware interface and message type FIXME
+        // validate hardware interface and message type 
         if (Header.HardwareType != 1u) {
             return -2;
         }
@@ -221,6 +257,7 @@ static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
                             break;
                     }
                     break;
+                // get the accepted IP address
                 case DHCP_PARAM_REQUEST_IP_ADDRESS:
                     if (Len == 4u) {
                         UDPGetArray((BYTE*)&RequiredAddress, 4);
@@ -235,6 +272,7 @@ static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
                 Len--;
             }
         }
+        // discard the rest of the buffer (it contains the 0 padding)
         if (Option == DHCP_END_OPTION) {
             UDPDiscard();
         }
@@ -245,37 +283,79 @@ static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
             memcpy(&(pkt -> RequiredAddress), &RequiredAddress, sizeof(IP_ADDR));
             memcpy(&(pkt -> IPAddressNotNull), &IPAddressNotNull, sizeof(BOOL));
         }
-        DisplayIPValue(pkt -> Header.ClientIP.Val);
         IPAddressNotNull = FALSE; // turn off flag
+        DisplayIPValue(pkt -> Header.ClientIP.Val);
         return 0;
     } else {
         return -4;
     }
 }
 
+/**
+ * Read a packet from the server socket, if any, and store it in
+ * `serverPacket`. The function reads the DHCP header and store it for future 
+ * use. It performs some basic checks on the hardware type (which must be
+ * ETHERNET (== 1u)) and the hardware length (which must be == 6u). It does
+ * not validate the message type (which may be both 1u (BOOT_REQUEST) and
+ * 2u (BOOT_REPLY)) and the magic cookie.
+ * @return 0 If everything succeeded, a negative number otherwise:
+ *         -) -1 if no packet is available on the selected socket, meaning
+ *            there are less then 241 bytes in its buffer;
+ *         -) -2, wrong hardware type          
+ *         -) -3, wrong hardware length
+ *         -) -4, pkt is null or the socket is invalid
+ */ 
 static int GetServerPacket() {
     return GetPacket(&serverPacket, serverToClient);
 }
 
+/**
+ * Read a packet from the client socket, if any, and store it in
+ * `clientrPacket`. The function reads the DHCP header and store it for future 
+ * use. It performs some basic checks on the hardware type (which must be
+ * ETHERNET (== 1u)) and the hardware length (which must be == 6u). It does
+ * not validate the message type (which may be both 1u (BOOT_REQUEST) and
+ * 2u (BOOT_REPLY)) and the magic cookie.
+ * @return 0 If everything succeeded, a negative number otherwise:
+ *         -) -1 if no packet is available on the selected socket, meaning
+ *            there are less then 241 bytes in its buffer;
+ *         -) -2, wrong hardware type          
+ *         -) -3, wrong hardware length
+ *         -) -4, pkt is null or the socket is invalid
+ */
 static int GetClientPacket() {
+    /*int res = GetPacket(&clientPacket, clientToServer);
+    if (res == 0) {
+        DisplayString(0, "To Push Server");
+        comp1 = PUSH_SERVER_QUEUE;
+    }
+    return res;*/
     return GetPacket(&clientPacket, clientToServer);
 }
 
+/**
+ * Send a packet to the server, taking it from ServerMessages. This function assumes
+ * that queue to be not empty. The function copies the message in the socket's buffer
+ * iff there are at least 300bytes free. 300 bytes is the minimum size of a sent packet.
+ * @precondition ServerMessages is not empty
+ * @precondition ServerInfo contains both the server's IP and MAC address. If the latter
+ * is not known, an ARP request should be made in order to get it. 
+ */ 
 static void SendToServer() {
-    //DisplayString(16, "SENDSV");
+    // check if the buffer has enough space
     if (UDPIsPutReady(clientToServer) >= 300u) {
-        BYTE                i;
-        UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
-        PACKET_DATA         pkt;
+        BYTE                i; // used to add the 0 padding
+        UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket]; //get the current socket
+        // pop the packet
+        PACKET_DATA         pkt; 
         PacketListPop(&pkt, &ServerMessages);
+        DisplayString(0, "Send to Server");
 
         // set socket info
         socket -> remoteNode.IPAddr.Val = ServerInfo.IPAddr.Val;
         for(i = 0; i < 6; i++) {
             socket -> remoteNode.MACAddr.v[i] = ServerInfo.MACAddr.v[i];
         }
-
-        DisplayIPValue(pkt.Header.ClientIP.Val);
        
         // copy header DHCP
         UDPPutArray((BYTE*)&(pkt.Header.MessageType), sizeof(pkt.Header.MessageType));
@@ -343,13 +423,21 @@ static void SendToServer() {
     }
 }
 
+/**
+ * Send a packet to the client, taking it from ClientMessages. This function assumes
+ * that queue to be not empty. The function copies the message in the socket's buffer
+ * iff there are at least 300bytes free. 300 bytes is the minimum size of a sent packet.
+ * @precondition ClientMessages is not empty
+ */ 
 static void SendToClient() {
-    DisplayString(16, "SENDCL");
+    // check if the buffer has enough space
     if (UDPIsPutReady(serverToClient) >= 300u) {
-        BYTE                i;
-        UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket];
+        BYTE                i; // used to add te 0 padding
+        UDP_SOCKET_INFO     *socket = &UDPSocketInfo[activeUDPSocket]; //get the current socket
+        // pop the packet from the queue
         PACKET_DATA         pkt;
         PacketListPop(&pkt, &ClientMessages);
+        DisplayString(0, "Send to Client");
 
         // set socket info
         socket -> remoteNode.IPAddr.Val = BROADCAST;
@@ -397,27 +485,31 @@ static void SendToClient() {
         }
 
         UDPFlush(); // transmit
-        //DisplayString(0, "SERV to CL");
     }
 }
 
+/** Schedule the first paralel component.
+ * This compoennt is responsible for getting the packets from the network and pushing them
+ * in the right queue (depending if a packet comes from the server or from the client). 
+ */ 
 static void Component1() {
-    //int res;
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            if (serverTurn == TRUE && GetPacket(&serverPacket, serverToClient) == 0) {
+            //GetServerPacket();
+            //GetClientPacket();
+            if (serverTurn == TRUE && GetServerPacket(); == 0) {
                 comp1 = PUSH_CLIENT_QUEUE;
-                comp1 = SERVER_MESSAGE_T;
+                //comp1 = SERVER_MESSAGE_T;
             } else {
-                if (serverTurn == FALSE && GetPacket(&clientPacket, clientToServer) == 0) {
+                if (serverTurn == FALSE && GetClientPacket() == 0) {
                     comp1 = PUSH_SERVER_QUEUE;
                     //comp1 = CLIENT_MESSAGE_T;
                 }
             }
             serverTurn = (serverTurn == TRUE) ? FALSE : TRUE;
             break;
-        case SERVER_MESSAGE_T:
+        /*case SERVER_MESSAGE_T:
             if (N == FALSE && UDPIsGetReady(serverToClient) > 240u) {
                 comp1 = FROM_SERVER;
                 N = TRUE;
@@ -440,11 +532,10 @@ static void Component1() {
         case FROM_SERVER_T:
             N = FALSE;
             comp1 = PUSH_CLIENT_QUEUE;
-            break;
+            break;*/
         case PUSH_CLIENT_QUEUE:
             if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
                 // cross the transiction iff the push succeeded
-                //DisplayString(16, "PUSH");
                 comp1 = PUSH_CLIENT_QUEUE_T;
             } else {
                 break;
@@ -453,7 +544,7 @@ static void Component1() {
             comp1 = WAITING_FOR_MESSAGE;
             break;
         // client branch
-        case FROM_CLIENT:
+        /*case FROM_CLIENT:
             if (GetPacket(&clientPacket, clientToServer) == 0) {
                 comp1 = FROM_CLIENT_T;
             } else {
@@ -464,7 +555,7 @@ static void Component1() {
         case FROM_CLIENT_T:
             N = FALSE;
             comp1 = PUSH_SERVER_QUEUE;
-            break;
+            break;*/
         case PUSH_SERVER_QUEUE:
             if (PacketListPush(&ServerMessages, &clientPacket) == 0) {
                 // cross the transiction iff the push succeeded
@@ -478,22 +569,32 @@ static void Component1() {
     }
 }
 
+/** 
+ * Schedule the second parallel component.
+ * This component is responsible for popping a packet coming from the client,
+ * if any, and sending it to the server. It also makes an ARP request the very
+ * first time a transmission to the server is required. After its MAC address 
+ * has been resolved, it sets the `serverKnown` flag to TRUE and stops sending 
+ * ARP requests.
+ */ 
 static void Component2() {
     switch (comp2) {
         case SERVER_QUEUE_WAITING:
             if (!PacketListIsEmpty(&ServerMessages)) {
+                // cross iff the queue is not empty
                 comp2 = SERVER_QUEUE_WAITING_T;
             } else {
                 break;
             }
         case SERVER_QUEUE_WAITING_T:
             if (N == FALSE) {
-                /*if (serverKnown == FALSE) {
+                // acquire the netowrk and schedule an ARP request,
+                // if necessary
+                if (serverKnown == FALSE) {
                     comp2 = GET_SERVER_IP_ADDRESS;
                 } else {
                     comp2 = TX_TO_SERVER;
-                }*/
-                comp2 = TX_TO_SERVER;
+                }
                 N = TRUE;
             }
             //comp2 = TX_TO_SERVER;
@@ -502,7 +603,7 @@ static void Component2() {
             switch (comp2_2) {
                 case SEND_ARP_REQUEST:
                     ARPResolve(&ServerInfo.IPAddr);
-                    //DisplayString(0, "Send ARP Request");
+                    DisplayString(0, "Send ARP Request");
                     comp2_2 = SEND_ARP_REQUEST_T;
                 case SEND_ARP_REQUEST_T:
                     comp2_2 = PROCESS_ARP_ANSWER;
@@ -514,13 +615,17 @@ static void Component2() {
                         serverKnown = TRUE;
                         comp2_2 = PROCESS_ARP_ANSWER_T;
                     } else {
-                        comp2_2 = SEND_ARP_REQUEST;
+                        if (N == FALSE) {
+                            comp2_2 = SEND_ARP_REQUEST;
+                            N = TRUE;
+                        }
                         break;
                     }
                 case PROCESS_ARP_ANSWER_T:
                     if (N == FALSE) {
                         comp2_2 = SEND_ARP_REQUEST;
                         comp2 = TX_TO_SERVER;
+                        N = TRUE;
                     }
                     break;
             }
@@ -535,6 +640,11 @@ static void Component2() {
     }
 }
 
+/** 
+ * Schedule the third parallel component.
+ * This component is responsible for popping a packet coming from the server,
+ * if any, and sending it to the client.
+ */ 
 static void Component3() {
     switch (comp3) {
         case CLIENT_QUEUE_WAITING:
@@ -559,6 +669,12 @@ static void Component3() {
     }
 }
 
+/**
+ * Handle the scheduling of the DHCP relay, including the transitions
+ * among te different components. The scheduling is done iff the DHCP 
+ * is actually enabled, meaning the flag `AppConfig.Flags.bIsDHCPEnabled`
+ * is not zero.
+ */ 
 static void DHCPRelayTask() {
 	/*ARPResolve(&ServerInfo.IPAddr);
 	if (ARPIsResolved(&ServerInfo.IPAddr,&ServerInfo.MACAddr) == TRUE) {

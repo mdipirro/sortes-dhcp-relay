@@ -39,50 +39,50 @@ void PingDemo(void);
 #ifdef STACK_USE_DHCP_RELAY
     // enum representing the current relay component on the processor
     typedef enum {
-        INIT, 
+        INIT,   // init the DHCP relay parameters
         COMP1,  // listening for packets
         COMP2,  // sending to server
         COMP3   // sending to client
     } CURRENT_COMPONENT;
 
     typedef enum {
-        WAITING_FOR_MESSAGE,
-        SERVER_MESSAGE_T,
+        WAITING_FOR_MESSAGE,    // Polling for packets
+        /*SERVER_MESSAGE_T,
         CLIENT_MESSAGE_T,
         FROM_SERVER,
-        FROM_SERVER_T,
-        PUSH_SERVER_QUEUE,
+        FROM_SERVER_T,*/
+        PUSH_SERVER_QUEUE,      // push in the server queue
         PUSH_SERVER_QUEUE_T,
-        FROM_CLIENT,
-        FROM_CLIENT_T,
-        PUSH_CLIENT_QUEUE,
+        /*FROM_CLIENT,
+        FROM_CLIENT_T,*/
+        PUSH_CLIENT_QUEUE,      // push in the client queue
         PUSH_CLIENT_QUEUE_T,
     } COMPONENT1;
 
     typedef enum {
-        SERVER_QUEUE_WAITING,
+        SERVER_QUEUE_WAITING,   // wait for a packet to be sent
         SERVER_QUEUE_WAITING_T,
-        GET_SERVER_IP_ADDRESS,
+        GET_SERVER_IP_ADDRESS,  // issue an ARP request
         GET_SERVER_IP_ADDRESS_T,
-        TX_TO_SERVER,
+        TX_TO_SERVER,           // actually transmit the packet
         TX_TO_SERVER_T
     } COMPONENT2;
 
     typedef enum {
-        CLIENT_QUEUE_WAITING,
+        CLIENT_QUEUE_WAITING,   //wait for a packet to be sent
         CLIENT_QUEUE_WAITING_T,
-        TX_TO_CLIENT,
+        TX_TO_CLIENT,           // transmit the packet
         TX_TO_CLIENT_T
     } COMPONENT3;
 
     typedef enum {
-        SEND_ARP_REQUEST,
+        SEND_ARP_REQUEST,       // issue the ARP request
         SEND_ARP_REQUEST_T,
-        PROCESS_ARP_ANSWER,
+        PROCESS_ARP_ANSWER,     // get the answer or reissue the request
         PROCESS_ARP_ANSWER_T
     } GET_SERVER_IP_ADDRESS_COMP;
 
-    static void DHCPRelayInit();
+    static int DHCPRelayInit();
     static void DHCPRelayTask();
     static int GetServerPacket();
     static int GetClientPacket();
