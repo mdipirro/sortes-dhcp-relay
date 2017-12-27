@@ -9,34 +9,24 @@ The program implements a DHCP relay. Figure~\ref{fig:dhcp} depicts how it works.
 \end{figure}
 \footnotetext{\url{https://www.netmanias.com/en/?m=view\&id=techdocs\&no=6000}}
 
-Basically, a DHCP relay is a ``man in the middle'' between the client and the DHCP server. It helps the client to contact the server in order to obtain an IP address. It does so receiving the broadcast packets sent by clients and forwarding them in an unicast connection to one (or more) DHCP servers, and vice versa, forwarding the server responses in broadcast to the clients. 
+Basically, a DHCP relay is a ``man in the middle'' between the client and the DHCP server. It helps the client to contact the server in order to obtain an IP address. It does so receiving the broadcast packets sent by clients and forwarding them in an unicast connection to one (or more) DHCP servers, and vice versa, forwarding the server responses in broadcast to the clients.
 
-While modeling its behavior, we refer to the above figure. We suppose to be able to detect when a message comes from a client and when it comes from a server by means of two different interruptions, without looking at the \texttt{OPCode} field (which is 1 for a request and 2 for a response). In other words, two \textit{different events} occur. This is reasonable, since Figure~\ref{fig:dhcp} depicts two different links (\textit{Downlink} and \textit{Uplink}), with two different MAC and IP addresses.\\
-
-Our ASG diagram is depicted in Figure~\ref{fig:asg}.
-
-\begin{figure}[h]
-	\centering\includegraphics[scale=0.5]{images/asg-diagram}
-	\caption{ASG diagram modeling a DHCP relay}
-	\label{fig:asg}
-\end{figure}
-
-The DHCP relay consists of four parallel components following a producer-consumer pattern. Two components, 1 and 3, wait for a packet, either from a client (broadcast) or a server (unicast). They then modify this packet as follows:
+A relay slightly modify each packet. The actual changed fields depend on where the packet is coming from, as follows:
 \begin{itemize}
-	\item \textbf{Component 1} - \texttt{ModifyServerPacket}:
+	\item \textbf{Server $\rightarrow$ Client}:
 	\begin{itemize}
 		\item \textbf{Ethernet Payload}
 		\begin{itemize}
 			\item Destination MAC Address: DHCP Relay Uplink MAC $\to$ Broadcast
 			\item Source MAC Address: DHCP Server MAC $\to$ DHCP Relay MAC Address
 		\end{itemize} 
-			\item \textbf{IP Payload}
+		\item \textbf{IP Payload}
 		\begin{itemize}
 			\item Source IP Address: DHCP Server IP Address $\to$ DHCP Relay Downlink IP
 			\item Destination IP Address: DHCP Relay Downlink IP $\to$ Broadcast
 		\end{itemize}	
 	\end{itemize}
-	\item \textbf{Component 2} - \texttt{ModifyClientPacket}:
+	\item \textbf{Client $\rightarrow$ Server}:
 	\begin{itemize}
 		\item \textbf{Ethernet Payload}
 		\begin{itemize}
@@ -55,11 +45,24 @@ The DHCP relay consists of four parallel components following a producer-consume
 	\end{itemize}
 \end{itemize}
 
-The two components then push the modified packet in a queue (two different queues are present, respectively for server and client) and set a rendez-vous (respectively \textbf{Client New Message} and \textbf{Server New Message}) to awake the corresponding consumer.
+Our ASG diagram is depicted in Figure~\ref{fig:asg}.
+%TODO UPDATE
+%TODO Add priorities to transitions
+\begin{figure}[h]
+	\centering\includegraphics[scale=0.5]{images/asg-diagram}
+	\caption{ASG diagram modeling a DHCP relay}
+	\label{fig:asg}
+\end{figure}
 
-Component 2 and 4 represent the consumers. If they are waiting, they are awoke by a push of the corresponding producer. Once a message is received, they enter the transmission state, and leave it only when the queue is empty. Here they continuously pop an element from the queue and send it in broadcast (Component 2) or in unicast to one (or more) DHCP servers (Component 4).
+The DHCP relay consists of three parallel components following a producer-consumer pattern. Component 1 waits for a packet, either from a client (broadcast) or a server (unicast). Components 2 and 3 then push the modified (note the modification is intended to be a consumer's responsibility, but this is not mandatory) packet in a queue (two different queues are used, respectively for the server and clients). The corresponding consumer polls on its queue in order to detect a new packet. Hence, there is no need for a randez-vous. The polling has not to be confused with active waiting, since components are supposed to be parallel: if the queue is empty the corresponding producer simply releases the processor, allowing other components to be dispatched.
 
-This separation in two producers-consumers allow us to separate two logical different operations: handling the traffic incoming client-side and the one incoming server-side.
+Component1's \texttt{WAITING FOR PACKETS} state has got two outgoing transitions. If both of them may be crossed, the ``server'' one goes first. This means in our design the server has a higher priority than clients. We consider the former to be more important than the latter, since it plays a significant role in the DHCP handshake. The protocol cannot proceed unless at least one server offers an IP address, and clients may retransmit their requests if no answer is received. We assign 2 as a priority to the server transition and 1 to the client one.
+
+Component 2 and 3 are similar in their behavior. The only difference is the ARP request made by Component2 in order to get to know the server MAC address. This is necessary only the first time a client requires an IP address. Afterwards, a boolean flag, \texttt{serverKnown} in the diagram, becomes \texttt{TRUE}, meaning that no ARP requests are needed anymore. Even if this approach only works with one server, it can easily be extended to work with as many servers as needed, just by using a list or an array.
+
+A different approach might be issuing the ARP request(s) at initialization time. In this way, transmitting a packet to the server would not require an ``on the fly'' request. This is a reasonable solution as soon as the DHCP server(s) is(/are) static. It is our belief that DHCP server(s) might change dynamically during the lifetime of the relay. Issuing ARP request during the initialization would require a new initialization if a DHCP server is dynamically added. Our solution, on the other hand, does not require any changes or restarts. Supposing to have a procedure to add a server, it would be enough for that procedure to set to \texttt{FALSE} the corresponding \texttt{serverKnown} flag for that server. A correct ARP request will be therefore issued for that server only, without affecting the relay routine.
+
+One last point worthy to be explained is the resource \texttt{N} (going for \textit{Network}). The board may only transmit in a half duplex manner, and it is therefore necessary to allow only one substate at a time to use the network. This is the meaning of \texttt{N}. Each substate accessing the network must acquire \texttt{N} before being allowed to receive or transmit. 
 
 \newpage
 \subsection{LCD non-blocking module}
@@ -93,3 +96,35 @@ The instruction flow of the LCD task is represented in the next page; it is a si
 \end{figure}
 
 \newpage
+\subsection{Relay}
+The main entry point for the relay is the file \texttt{DHCPRelay.c}, containing the implementation. Function signatures and \texttt{enum} definitions are in its header file, \texttt{DHCPRelay.h}. The definitions here contained implement the cooperative scheduling. \texttt{Relay} is refined in three main parallel components, representing, respectively, the waiting for a message (both form clients and server) and the transmissions. Each \texttt{enum} type corresponds to a component in the ASG diagram. Thus, \texttt{Component1()}, \texttt{Component2()}, and \texttt{Component3()} define the proper actions to be taken when the corresponding component is dispatched. It is not the aim of this document to explain how an ASG diagram should be translated into code, but, in brief, the three function aforementioned should contain a \texttt{switch} checking for the current state and managing actions and transitions accordingly. The C file contains the actual implementations.
+
+Our implementation makes use of two queue in order to store packets incoming both from the server and clients (\texttt{ClientMessages} and \texttt{ServerMessages}). The queue is necessary since we do not know, at design time, how many clients there will be. We implement these queues using a circular list. Seen the limitations in allocating more that 256 bytes and seen the size of the information we store, we decided to set the queues size to 5 (the maximum allowed is 7). An implementation with queues makes the entire managing slightly more difficult. We not only store the DHCP header, but some information used to compose the forwarded message, too. This additional data is the \texttt{MessageType} (i.e. the content of the \texttt{MessageType} option), and the accepted IP address, if any. A boolean flag (\texttt{IPAddressNotNull}) is used to make the distinction. If TRUE, the field \texttt{RequiredAddress} is meaningful. Otherwise, its content is just random bytes.
+
+With static queues we may get in trouble when the two ratios (sending are receiving) are not balanced. We decided to manage our queues with the following policy: if a queue is full when a packet is to be pushed (meaning it has already been received) we discard the oldest packet in the queue. We do not expect this policy to lead to packets loss, since clients usually retransmit their packet is they receive no answer. On the other hand, we do not expect the server queue to be overflowed frequently, since the relay interfaces with only one server. 
+
+Please note that the Mikrotik TCP IP stack allows us to ``directly'' modify only the DHCP header. The other modifications the relay should do occur at transmission time, specifying during the socket setting the recipient IP (may be broadcast) and MAC address.
+
+\subsubsection{Waiting component}
+The waiting component is basically a polling on the two open sockets (in the basic implementation we assume there is only one server and client). If enough bytes are written (and ready to be read) in the socket we start the reading procedure, actually implemented by \texttt{GetPacket()}. This function takes two parameters: a pointer to the variable to store the read packet in and the socket to read from. It basically checks if something is waiting in the socket buffer, and, if so, reads the packet (performing a basic check on the hardware type and length). It then reads the options, taking into account only the \texttt{MessageType} and the \texttt{RequestedIPAddress}. If everything works, it returns 0. Otherwise, an error code is given, as follows:
+\begin{itemize}
+	\item -1 if no packet is available on the selected socket, meaning
+there are less then 241 bytes in its buffer;
+	\item -2, wrong hardware type          
+ 	\item -3, wrong hardware length
+	\item -4, parameters are invalid
+\end{itemize}
+The waiting state checks the client and the server socket. It might happen that both of them contain packets ready to be read. In such a scenario, the server as a higher priority and is served first. A flag, \texttt{prevFromClient}, is set to \texttt{TRUE} and checked when the component comes again in the waiting state. If it is \texttt{TRUE}, a client is served; otherwise, both the sockets are checked again.
+
+The final step is pushing the packet into the corresponding queue.
+
+\subsubsection{Transmission to the server}
+Transmitting a packet to the DHCP server has two prerequisites: the queue must be not empty and the server MAC address should be known. The former condition becomes \texttt{TRUE} if and only if a packet has not only been received, but pushed into the queue, too. Once a packet is ready, if the server MAC address is not known (meaning \texttt{serverKnown == FALSE}) an ARP request is issued to get to know the address. When a response is received, \texttt{serverKnown} becomes \texttt{TRUE} and no more ARP requests will be issued. Afterwards, the packet is sent to the server via the function \texttt{SendToServer()}. 
+
+\texttt{SendToServer} first checks if the server socket contains enough free space. Socket's remote IP address is set to the server one, and so is the MAC. It pops a packet from its queue and modifies only the \texttt{GIADDR} field, using its own IP address. It sets to 0 every unused field and the magic cookie to the value reported in RFC 1533. The other fields are either taken from the popped packet or generated on the fly. An example of the former is every data contained in the DHCP header, as well as the accepted client IP address, if any. An example of the latter is the subnet mask. The minimum size of such a packet is 300 bytes, in order to ensure compatibility with old DHCP relays that discard
+packets smaller than 300 octets. 
+
+\subsubsection{Transmission to the client}
+Transmitting a packet to a client is simpler than transmitting to a server. It is indeed not necessary to know any MAC addresses because the packet is sent in broadcast to the client network. Thus, the only prerequisite for this action is a non empty queue. When this is the case, \texttt{SendToClient()} is invoked.
+
+This function operates more or less as \texttt{SendToServer} does, with a few slight differences. The first is the socket remote IP address, which is here set to broadcast (remember the client has not got an IP address unless the very end of the DHCP ``handshake''). The MAC address is correctly set to be the one of the client. The latter value is taken from \texttt{CHADDR}. The second is the magic cookie, set to \texttt{0x63538263}.
