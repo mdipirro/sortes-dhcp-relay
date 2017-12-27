@@ -64,6 +64,7 @@ void PingDemo(void);
         SERVER_QUEUE_WAITING_T,
         GET_SERVER_IP_ADDRESS,  // issue an ARP request
         GET_SERVER_IP_ADDRESS_T,
+        IDENTIFY_SERVER_TO_TX,
         TX_TO_SERVER,           // actually transmit the packet
         TX_TO_SERVER_T
     } COMPONENT2;
@@ -76,6 +77,8 @@ void PingDemo(void);
     } COMPONENT3;
 
     typedef enum {
+        IDENTIFY_SERVER,        // check if a DHCP server is known
+        IDENTIFY_SERVER_TO_ARP,
         SEND_ARP_REQUEST,       // issue the ARP request
         SEND_ARP_REQUEST_T,
         PROCESS_ARP_ANSWER,     // get the answer or reissue the request

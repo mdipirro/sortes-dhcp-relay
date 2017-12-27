@@ -35,7 +35,7 @@
 // server's IP address
 #define SERVER_IP_ADDR_BYTE1    (192ul)
 #define SERVER_IP_ADDR_BYTE2    (168ul)
-#define SERVER_IP_ADDR_BYTE3    (10ul)
+#define SERVER_IP_ADDR_BYTE3    (97ul)//(10ul)
 #define SERVER_IP_ADDR_BYTE4    (10ul)
 
 // Declare AppConfig structure and some other supporting stack variables
@@ -69,6 +69,8 @@ BOOL serverTurn; // used to alternate server and client listening
 BOOL IPAddressNotNull; 
 BOOL N; // network resource
 BOOL serverKnown; // TRUE once the server's MAC address has been resolved
+BOOL prevFromServer;
+BOOL prevFromClient;
 
 NODE_INFO ServerInfo; // server's IP and MAC addresses
 
@@ -198,8 +200,9 @@ int DHCPRelayInit() {
  *         -) -4, pkt is null or the socket is invalid
  */ 
 static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
-    // has the current socket enough bytes ready to be read?
+    // does the current socket have enough bytes ready to be read?
     if(UDPIsGetReady(socket) < 241u) {
+        DEBUGMSG("NOT READY\r\n");
         return -1;
     }
     // parameters validation check
@@ -306,7 +309,13 @@ static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
  *         -) -4, pkt is null or the socket is invalid
  */ 
 static int GetServerPacket() {
-    return GetPacket(&serverPacket, serverToClient);
+    int res = GetPacket(&serverPacket, serverToClient);
+    if (res == 0) {
+        DisplayString(0, "To Push Client");
+        comp1 = PUSH_CLIENT_QUEUE;
+        prevFromServer = TRUE;
+    }
+    return res;
 }
 
 /**
@@ -324,13 +333,13 @@ static int GetServerPacket() {
  *         -) -4, pkt is null or the socket is invalid
  */
 static int GetClientPacket() {
-    /*int res = GetPacket(&clientPacket, clientToServer);
+    int res = GetPacket(&clientPacket, clientToServer);
     if (res == 0) {
         DisplayString(0, "To Push Server");
         comp1 = PUSH_SERVER_QUEUE;
     }
-    return res;*/
-    return GetPacket(&clientPacket, clientToServer);
+    return res;
+    //return GetPacket(&clientPacket, clientToServer);
 }
 
 /**
@@ -496,18 +505,31 @@ static void Component1() {
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            //GetServerPacket();
-            //GetClientPacket();
-            if (serverTurn == TRUE && GetServerPacket(); == 0) {
+            DEBUGMSG("WAITING\r\n");
+            if (prevFromClient == TRUE) {
+                comp1 = PUSH_SERVER_QUEUE;
+            } else {
+                GetServerPacket();
+                GetClientPacket();
+                // serve the server, but serve the client at next round
+                if (prevFromServer == TRUE && comp1 == PUSH_SERVER_QUEUE) {
+                    prevFromServer = FALSE;
+                    prevFromClient = TRUE;
+                    comp1 = PUSH_CLIENT_QUEUE;
+                }
+            }
+            /*if (serverTurn == TRUE && GetServerPacket() == 0) {
+                DEBUGMSG("WAITING SERVER\r\n");
                 comp1 = PUSH_CLIENT_QUEUE;
                 //comp1 = SERVER_MESSAGE_T;
             } else {
                 if (serverTurn == FALSE && GetClientPacket() == 0) {
+                    DEBUGMSG("WAITING CLIENT\r\n");
                     comp1 = PUSH_SERVER_QUEUE;
                     //comp1 = CLIENT_MESSAGE_T;
                 }
             }
-            serverTurn = (serverTurn == TRUE) ? FALSE : TRUE;
+            serverTurn = (serverTurn == TRUE) ? FALSE : TRUE;*/
             break;
         /*case SERVER_MESSAGE_T:
             if (N == FALSE && UDPIsGetReady(serverToClient) > 240u) {
@@ -534,6 +556,7 @@ static void Component1() {
             comp1 = PUSH_CLIENT_QUEUE;
             break;*/
         case PUSH_CLIENT_QUEUE:
+            DEBUGMSG("PUSH CLIENT\r\n");
             if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_CLIENT_QUEUE_T;
@@ -541,6 +564,7 @@ static void Component1() {
                 break;
             }
         case PUSH_CLIENT_QUEUE_T:
+            DEBUGMSG("PUSH CLIENT T\r\n");
             comp1 = WAITING_FOR_MESSAGE;
             break;
         // client branch
@@ -557,6 +581,7 @@ static void Component1() {
             comp1 = PUSH_SERVER_QUEUE;
             break;*/
         case PUSH_SERVER_QUEUE:
+            DEBUGMSG("PUSH SERVER\r\n");
             if (PacketListPush(&ServerMessages, &clientPacket) == 0) {
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_SERVER_QUEUE_T;
@@ -564,6 +589,7 @@ static void Component1() {
                 break;
             }
         case PUSH_SERVER_QUEUE_T:
+            DEBUGMSG("PUSH SERVER T\r\n");
             comp1 = WAITING_FOR_MESSAGE;
             break;
     }
@@ -580,6 +606,7 @@ static void Component1() {
 static void Component2() {
     switch (comp2) {
         case SERVER_QUEUE_WAITING:
+            DEBUGMSG("SERVER_QUEUE_WAITING\r\n");
             if (!PacketListIsEmpty(&ServerMessages)) {
                 // cross iff the queue is not empty
                 comp2 = SERVER_QUEUE_WAITING_T;
@@ -587,20 +614,24 @@ static void Component2() {
                 break;
             }
         case SERVER_QUEUE_WAITING_T:
-            if (N == FALSE) {
-                // acquire the netowrk and schedule an ARP request,
-                // if necessary
-                if (serverKnown == FALSE) {
-                    comp2 = GET_SERVER_IP_ADDRESS;
-                } else {
-                    comp2 = TX_TO_SERVER;
-                }
-                N = TRUE;
-            }
-            //comp2 = TX_TO_SERVER;
+            DEBUGMSG("SERVER_QUEUE_WAITING_T\r\n");
+            comp2 = GET_SERVER_IP_ADDRESS;
             break;
         case GET_SERVER_IP_ADDRESS:
             switch (comp2_2) {
+                case IDENTIFY_SERVER:
+                    if (serverKnown == TRUE) {
+                        comp2 = IDENTIFY_SERVER_TO_TX;
+                        break; // immediately go to transmission if the server is known
+                    } else {
+                        comp2_2 = IDENTIFY_SERVER_TO_ARP;
+                    }
+                case IDENTIFY_SERVER_TO_ARP:
+                    if (N == FALSE) {
+                        comp2_2 = SEND_ARP_REQUEST;
+                        N = TRUE;
+                    }
+                    break;
                 case SEND_ARP_REQUEST:
                     ARPResolve(&ServerInfo.IPAddr);
                     DisplayString(0, "Send ARP Request");
@@ -629,11 +660,22 @@ static void Component2() {
                     }
                     break;
             }
+            if (comp2 != IDENTIFY_SERVER_TO_TX) {
+                // go through the transition if the server was known
+                break;
+            }
+        case IDENTIFY_SERVER_TO_TX:
+            if (N == FALSE) {
+                N = TRUE;
+                comp2 = TX_TO_SERVER;
+            }
             break;
         case TX_TO_SERVER:
+            DEBUGMSG("TX SERVER\r\n");
             SendToServer();
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
+            DEBUGMSG("TX SERTVER T\r\n");
             N = FALSE;
             comp2 = SERVER_QUEUE_WAITING;
             break;
@@ -648,21 +690,25 @@ static void Component2() {
 static void Component3() {
     switch (comp3) {
         case CLIENT_QUEUE_WAITING:
+            DEBUGMSG("CLIENT_QUEUE_WAITING\r\n");
             if (!PacketListIsEmpty(&ClientMessages)) {
                 comp3 = CLIENT_QUEUE_WAITING_T;
             } else {
                 break;
             }
         case CLIENT_QUEUE_WAITING_T:
+            DEBUGMSG("CLIENT_QUEUE_WAITING_T\r\n");
             if (N == FALSE) {
                 comp3 = TX_TO_CLIENT;
                 N = TRUE;   
             }
             break;
         case TX_TO_CLIENT:
+            DEBUGMSG("TX CLIENT\r\n");
             SendToClient();
             comp3 = TX_TO_CLIENT_T;
         case TX_TO_CLIENT_T:
+            DEBUGMSG("TX CLIENT T\r\n");
             N = FALSE;
             comp3 = CLIENT_QUEUE_WAITING;
             break;
