@@ -3,7 +3,7 @@
 \subsection{Specification}
 The program implements a DHCP relay. Figure~\ref{fig:dhcp} depicts how it works.
 \begin{figure}[h]
-	\centering\includegraphics[scale=0.58]{images/dhcp}
+	\centering\includegraphics[width=\textwidth]{images/dhcp}
 	\caption{Example of DHCP protocol communication\protect\footnotemark}
 	\label{fig:dhcp}
 \end{figure}
@@ -47,9 +47,8 @@ A relay slightly modify each packet. The actual changed fields depend on where t
 
 Our ASG diagram is depicted in Figure~\ref{fig:asg}.
 
-%TODO Add priorities to transitions
 \begin{figure}[h]
-	\centering\includegraphics[width=\textwidth]{images/asg-diagram}
+	\centerline{\includegraphics[width=1.15\textwidth]{images/asg-diagram}}
 	\caption{ASG diagram modeling a DHCP relay}
 	\label{fig:asg}
 \end{figure}
