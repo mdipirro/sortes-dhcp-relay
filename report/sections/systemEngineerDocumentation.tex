@@ -19,7 +19,9 @@ The board comes with a RouterBoard. It is configured with two different networks
 \subsection{DHCP server configuration}
 A DHCP server must be added to the network and configured to assign a free IP address within a certain range to the clients in the same subnet of the relay.
 On UNIX-based systems, the \textit{Internet Systems Consortium DHCP Server} (\texttt{dhcpd}) can be used as a daemon which provides this service; Listing~\ref{lst:dhcpd} shows a sample configuration using the addresses specified in the project.\\
-\lstinputlisting[label=lst:dhcpd,style=CStyle,caption={Sample dhcpd.conf}]{../src/dhcpd.conf}
+\vbox{
+	\lstinputlisting[label=lst:dhcpd,style=CStyle,caption={Sample dhcpd.conf}]{../src/dhcpd.conf}
+}
 
 \subsection{Debug mode}
 If something is not working properly a special mode can be activated which allows to view information messages during critical phases of the program execution. The \textbf{UART interface} (\textbf{U}niversal \textbf{A}synchronous \textbf{R}eceiver-\textbf{T}ransmitter) is used to transmit the debug messages to an external terminal (typically a PC); the receiver must be connected to the RS232 port of the Olimex board and it must be set with these parameters:
