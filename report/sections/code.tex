@@ -1,19 +1,19 @@
 \newpage
 \section{Program listings}
-This section lists the code we wrote to print on the LCD screen in a non-blocking way and the implementation of the relay.
+This section contains the code of the most relevant files produced for this project. Rest of the code can be read in the \texttt{src} folder.
 
-\subsection{LCD non blocking}
-This section lists the non-blocking LCD code. A blocking, functionally-equivalent, version was provided by Mikrotik.
-\lstinputlisting[language=C,label=lst:relayc,style=CStyle,caption={LCDNonBlocking.c}]{../src/TCPIP_Stack/LCDNonBlocking.c}
+\subsection{LCD non-blocking}
+This section lists the non-blocking LCD code. A blocking, functionally-equivalent version was provided by Mikrotik.\\
+\lstinputlisting[language=C,label=lst:lcdnb,style=CStyle,caption={LCDNonBlocking.c}]{../src/TCPIP_Stack/LCDNonBlocking.c}
 
 \subsection{DHCP Relay}
 This section lists the code implementing the relay functionality.
 
 \subsubsection{Header}
-Listing~\ref{lst:relayh} lists the relay header file.
+Listing~\ref{lst:relayh} lists the relay header file.\\
 \lstinputlisting[language=C,label=lst:relayh,style=CStyle,caption={DHCPRelay.h}]{../src/Include/DHCPRelay.h}
 
 \newpage
 \subsubsection{Implementation}
-Listing~\ref{lst:relayc} lists the actual relay implementation.
+Listing~\ref{lst:relayc} lists the actual relay implementation.\\
 \lstinputlisting[language=C,label=lst:relayc,style=CStyle,caption={DHCPRelay.c}]{../src/DHCPRelay.c}
