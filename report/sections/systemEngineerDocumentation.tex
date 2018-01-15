@@ -30,6 +30,3 @@ If something is not working properly a special mode can be activated which allow
 The debug mode is \textbf{disabled by default}; it can be activated adding the option \texttt{-DUART\_DEBUG\_ON} to the CFLAGS in the Makefile and recompiling the code. Some predefined macros are used to print single characters (\texttt{DEBUGCHAR}), blocks of characters of any length (\texttt{DEBUGBLOCK}) and strings (\texttt{DEBUGMSG}) throughout the code; these macros are only effective in debug mode.
 
 Please note that this debug mode only works in a ``blocking'' mode, and may therefore result in additional delays while executing the software.
-
-\subsection{Enabling the relay mode}
-In order to enable the DHCP Relay mode, one should configure the router as said and do small modifications to the definitions provided in the Mikrotik TCP IP stack. In particular, \texttt{STACK\_USE\_DHCP\_CLIENT} and \texttt{STACK\_USE\_DHCP\_SERVER} should be disabled, while \\\texttt{STACK\_USE\_DHCP\_RELAY} should be enabled. These definitions can be found in \texttt{TCPIP.h}.

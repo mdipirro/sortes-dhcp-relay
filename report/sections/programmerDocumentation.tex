@@ -137,3 +137,6 @@ Suppose Component1 has acquired the network in order to receive a packet, and su
 If either Component2 or Component3 is not ready to transmit (its queue is empty), it does not compete for \texttt{N}.
 
 This reasoning also applies considering Component2 or Component3 as a starting point. The scheduler always schedule these components in a ``circular'' manner, and there is no chance that a component never executes.
+
+\subsubsection{Enabling the relay mode}
+In order to enable the DHCP Relay mode, one should configure the router as said and do small modifications to the definitions provided in the Mikrotik TCP IP stack. In particular, \texttt{STACK\_USE\_DHCP\_CLIENT} and \texttt{STACK\_USE\_DHCP\_SERVER} should be disabled, while \\\texttt{STACK\_USE\_DHCP\_RELAY} should be enabled. These definitions can be found in \texttt{TCPIP.h}.
