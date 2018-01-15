@@ -66,7 +66,7 @@ One last point worthy to be explained is the resource \texttt{N} (going for \tex
 
 \newpage
 \subsection{LCD non-blocking module}
-The key concept in multitasking real-time systems is that tasks must be "small enough", in order not to prevent the processor for executing other operations.
+The key concept in multitasking real-time systems is that tasks must be ``small enough'', in order not to prevent the processor for executing other operations.
 In this project it is required to use the LCD display to print information messages, but the C functions provided by Microchip are not optimized for multitasking and take a non negligible time to be processed; the \texttt{LCDBlocking} module has been thus converted in \texttt{LCDNonBlocking} and integrated into the TCP/IP stack to provide a better display handling in an environment with different tasks.\\
 
 The most time-demanding functions in the LCD library (\texttt{LCDInit}, \texttt{LCDErase}, \texttt{LCDUpdate}) have been \textbf{split in smaller states}. When called, the LCD task can only execute a part of a function: the following ones are executed at successive task calls; furthermore, each state can be accessed only if a sufficient amount of time has passed from the previous one, in line with what happened in the original file where some delays were placed between instructions.\\
