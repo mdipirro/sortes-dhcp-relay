@@ -35,8 +35,8 @@
 // server's IP address
 #define SERVER_IP_ADDR_BYTE1    (192ul)
 #define SERVER_IP_ADDR_BYTE2    (168ul)
-#define SERVER_IP_ADDR_BYTE3    (97ul)//(10ul)
-#define SERVER_IP_ADDR_BYTE4    (10ul)
+#define SERVER_IP_ADDR_BYTE3    (10ul)
+#define SERVER_IP_ADDR_BYTE4    (1ul)
 
 // Declare AppConfig structure and some other supporting stack variables
 APP_CONFIG AppConfig;
@@ -152,11 +152,11 @@ int DHCPRelayInit() {
     serverToClient           = UDPOpen(DHCP_CLIENT_PORT, NULL, DHCP_SERVER_PORT);
 
     if (serverToClient == INVALID_UDP_SOCKET) {
-        DisplayString(0, "Invalid Server");
+        DisplayString(0, "Invalid Server  ");
         return -1;
     } 
     if (clientToServer == INVALID_UDP_SOCKET) {
-        DisplayString(16, "Invalid Client");
+        DisplayString(16, "Invalid Client  ");
         return -2;
     }
 
@@ -202,7 +202,6 @@ int DHCPRelayInit() {
 static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
     // does the current socket have enough bytes ready to be read?
     if(UDPIsGetReady(socket) < 241u) {
-        DEBUGMSG("NOT READY\r\n");
         return -1;
     }
     // parameters validation check
@@ -311,7 +310,6 @@ static int GetPacket(PACKET_DATA* pkt, UDP_SOCKET socket) {
 static int GetServerPacket() {
     int res = GetPacket(&serverPacket, serverToClient);
     if (res == 0) {
-        DisplayString(0, "To Push Client");
         comp1 = PUSH_CLIENT_QUEUE;
         prevFromServer = TRUE;
     }
@@ -335,7 +333,6 @@ static int GetServerPacket() {
 static int GetClientPacket() {
     int res = GetPacket(&clientPacket, clientToServer);
     if (res == 0) {
-        DisplayString(0, "To Push Server");
         comp1 = PUSH_SERVER_QUEUE;
     }
     return res;
@@ -358,7 +355,7 @@ static void SendToServer() {
         // pop the packet
         PACKET_DATA         pkt; 
         PacketListPop(&pkt, &ServerMessages);
-        DisplayString(0, "Send to Server");
+        DisplayString(0, "Send to Server  ");
 
         // set socket info
         socket -> remoteNode.IPAddr.Val = ServerInfo.IPAddr.Val;
@@ -428,7 +425,6 @@ static void SendToServer() {
         }
 
         UDPFlush(); // transmit
-        //DisplayString(0, "CL to SERV");
     }
 }
 
@@ -446,7 +442,7 @@ static void SendToClient() {
         // pop the packet from the queue
         PACKET_DATA         pkt;
         PacketListPop(&pkt, &ClientMessages);
-        DisplayString(0, "Send to Client");
+        DisplayString(0, "Send to Client  ");
 
         // set socket info
         socket -> remoteNode.IPAddr.Val = BROADCAST;
@@ -505,7 +501,6 @@ static void Component1() {
     switch(comp1) {
         // root
         case WAITING_FOR_MESSAGE:
-            DEBUGMSG("WAITING\r\n");
             if (prevFromClient == TRUE) {
                 comp1 = PUSH_SERVER_QUEUE;
             } else {
@@ -518,45 +513,8 @@ static void Component1() {
                     comp1 = PUSH_CLIENT_QUEUE;
                 }
             }
-            /*if (serverTurn == TRUE && GetServerPacket() == 0) {
-                DEBUGMSG("WAITING SERVER\r\n");
-                comp1 = PUSH_CLIENT_QUEUE;
-                //comp1 = SERVER_MESSAGE_T;
-            } else {
-                if (serverTurn == FALSE && GetClientPacket() == 0) {
-                    DEBUGMSG("WAITING CLIENT\r\n");
-                    comp1 = PUSH_SERVER_QUEUE;
-                    //comp1 = CLIENT_MESSAGE_T;
-                }
-            }
-            serverTurn = (serverTurn == TRUE) ? FALSE : TRUE;*/
             break;
-        /*case SERVER_MESSAGE_T:
-            if (N == FALSE && UDPIsGetReady(serverToClient) > 240u) {
-                comp1 = FROM_SERVER;
-                N = TRUE;
-            }
-            break;
-        case CLIENT_MESSAGE_T:
-            if (N == FALSE && UDPIsGetReady(clientToServer) > 240u) {
-                comp1 = FROM_CLIENT;
-                N = TRUE;
-            }
-            break;
-        // server branch
-        case FROM_SERVER:
-            if (GetPacket(&serverPacket, serverToClient) == 0) {
-                comp1 = FROM_SERVER_T;
-            } else {
-                comp1 = WAITING_FOR_MESSAGE;
-                break;
-            }
-        case FROM_SERVER_T:
-            N = FALSE;
-            comp1 = PUSH_CLIENT_QUEUE;
-            break;*/
         case PUSH_CLIENT_QUEUE:
-            DEBUGMSG("PUSH CLIENT\r\n");
             if (PacketListPush(&ClientMessages, &serverPacket) == 0) {
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_CLIENT_QUEUE_T;
@@ -564,24 +522,10 @@ static void Component1() {
                 break;
             }
         case PUSH_CLIENT_QUEUE_T:
-            DEBUGMSG("PUSH CLIENT T\r\n");
             comp1 = WAITING_FOR_MESSAGE;
             break;
         // client branch
-        /*case FROM_CLIENT:
-            if (GetPacket(&clientPacket, clientToServer) == 0) {
-                comp1 = FROM_CLIENT_T;
-            } else {
-                comp1 = WAITING_FOR_MESSAGE;
-                DisplayString(16, "ERROR");
-                break;
-            }
-        case FROM_CLIENT_T:
-            N = FALSE;
-            comp1 = PUSH_SERVER_QUEUE;
-            break;*/
         case PUSH_SERVER_QUEUE:
-            DEBUGMSG("PUSH SERVER\r\n");
             if (PacketListPush(&ServerMessages, &clientPacket) == 0) {
                 // cross the transiction iff the push succeeded
                 comp1 = PUSH_SERVER_QUEUE_T;
@@ -589,7 +533,6 @@ static void Component1() {
                 break;
             }
         case PUSH_SERVER_QUEUE_T:
-            DEBUGMSG("PUSH SERVER T\r\n");
             comp1 = WAITING_FOR_MESSAGE;
             break;
     }
@@ -606,7 +549,6 @@ static void Component1() {
 static void Component2() {
     switch (comp2) {
         case SERVER_QUEUE_WAITING:
-            DEBUGMSG("SERVER_QUEUE_WAITING\r\n");
             if (!PacketListIsEmpty(&ServerMessages)) {
                 // cross iff the queue is not empty
                 comp2 = SERVER_QUEUE_WAITING_T;
@@ -614,7 +556,6 @@ static void Component2() {
                 break;
             }
         case SERVER_QUEUE_WAITING_T:
-            DEBUGMSG("SERVER_QUEUE_WAITING_T\r\n");
             comp2 = GET_SERVER_IP_ADDRESS;
             break;
         case GET_SERVER_IP_ADDRESS:
@@ -671,11 +612,9 @@ static void Component2() {
             }
             break;
         case TX_TO_SERVER:
-            DEBUGMSG("TX SERVER\r\n");
             SendToServer();
             comp2 = TX_TO_SERVER_T;
         case TX_TO_SERVER_T:
-            DEBUGMSG("TX SERTVER T\r\n");
             N = FALSE;
             comp2 = SERVER_QUEUE_WAITING;
             break;
@@ -690,25 +629,21 @@ static void Component2() {
 static void Component3() {
     switch (comp3) {
         case CLIENT_QUEUE_WAITING:
-            DEBUGMSG("CLIENT_QUEUE_WAITING\r\n");
             if (!PacketListIsEmpty(&ClientMessages)) {
                 comp3 = CLIENT_QUEUE_WAITING_T;
             } else {
                 break;
             }
         case CLIENT_QUEUE_WAITING_T:
-            DEBUGMSG("CLIENT_QUEUE_WAITING_T\r\n");
             if (N == FALSE) {
                 comp3 = TX_TO_CLIENT;
                 N = TRUE;   
             }
             break;
         case TX_TO_CLIENT:
-            DEBUGMSG("TX CLIENT\r\n");
             SendToClient();
             comp3 = TX_TO_CLIENT_T;
         case TX_TO_CLIENT_T:
-            DEBUGMSG("TX CLIENT T\r\n");
             N = FALSE;
             comp3 = CLIENT_QUEUE_WAITING;
             break;
@@ -722,13 +657,6 @@ static void Component3() {
  * is not zero.
  */ 
 static void DHCPRelayTask() {
-	/*ARPResolve(&ServerInfo.IPAddr);
-	if (ARPIsResolved(&ServerInfo.IPAddr,&ServerInfo.MACAddr) == TRUE) {
-        DisplayString(0, "Nothing");
-    } else {
-        DisplayString(0, "Done");
-    }
-}*/
     if (AppConfig.Flags.bIsDHCPEnabled) {
         switch(currentComponent) {
             case INIT:
@@ -798,11 +726,8 @@ static DWORD dwLastIP = 0;
     // Initialize and display message on the LCD
     LCDInit();
     DelayMs(100);
-    DisplayString (0,"OlimexA"); //first arg is start position on 32 pos LCD
+    DisplayString (0,"Waiting client  "); //first arg is start position on 32 pos LCD
 
-    /*#ifdef STACK_USE_DHCP_RELAY
-        DHCPRelayInit();
-    #endif*/
     currentComponent = INIT;
 
     // Now that all items are initialized, begin the co-operative
