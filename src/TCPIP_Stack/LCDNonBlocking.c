@@ -62,19 +62,13 @@ static char tmpBuf[33];
 /******************************************************************************
  * Function:        static void LCDWrite(BYTE RS, BYTE Data)
  *
- * PreCondition:    None
- *
  * Input:           RS - Register Select - 1:RAM, 0:Config registers
- *					Data - 8 bits of data to write
+ *									Data - 8 bits of data to write
  *
  * Output:          None
  *
- * Side Effects:    None
- *
  * Overview:        Controls the Port I/O pins to cause an LCD write
- *
- * Note:            None
- *****************************************************************************/
+ * *****************************************************************************/
 static void LCDWrite(BYTE RS, BYTE Data)
 {
 	#if defined(LCD_DATA_TRIS)
@@ -171,6 +165,15 @@ static void LCDWrite(BYTE RS, BYTE Data)
 	//	LCD_RD_WR_TRIS = 1;
 }
 
+/******************************************************************************
+ * Function:        static void LCDInitExec()
+ *
+ * Input:			 			None
+ * 
+ * Output:          None
+ *
+ * Overview:        LCD INIT operation execution function
+ * *****************************************************************************/
 static void LCDInitExec(void)
 {
 	switch (st_init)
@@ -332,7 +335,15 @@ static void LCDInitExec(void)
 	}
 }
 
-
+/******************************************************************************
+ * Function:        static void LCDEraseExec()
+ *
+ * Input:			  		None
+ * 
+ * Output:          None
+ *
+ * Overview:        LCD ERASE operation execution function
+ * *****************************************************************************/
 static void LCDEraseExec(void)
 {
 	switch(st_erase)
@@ -365,7 +376,15 @@ static void LCDEraseExec(void)
 	}
 }
 
-
+/******************************************************************************
+ * Function:        static void LCDUpdateExec()
+ *
+ * Input:			  		None
+ * 
+ * Output:          None
+ *
+ * Overview:        LCD UPDATE operation execution function
+ * *****************************************************************************/
 static void LCDUpdateExec(void)
 {
 	switch(st_update)
@@ -461,17 +480,11 @@ static void LCDUpdateExec(void)
 /******************************************************************************
  * Function:        void LCDTaskInit(void)
  *
- * PreCondition:    None
- *
  * Input:           None
  *
  * Output:          None
  *
- * Side Effects:    None
- *
  * Overview:        Initialization of the entities used in the LCD task
- *
- * Note:            None
  *****************************************************************************/
 void LCDTaskInit(void)
 {
@@ -547,18 +560,11 @@ void LCDTask(void)
 /******************************************************************************
  * Function:        void LCDInit(void)
  *
- * PreCondition:    None
- *
  * Input:           None
  *
  * Output:          None
  *
- * Side Effects:    None
- *
- * Overview:        LCDText[] is blanked, port I/O pin TRIS registers are 
- *					configured, and the LCD is placed in the default state
- *
- * Note:            None
+ * Overview:        Add an INIT operation to the LCD circular list
  *****************************************************************************/
 void LCDInit(void)
 {
@@ -575,11 +581,8 @@ void LCDInit(void)
  *
  * Output:          None
  *
- * Side Effects:    None
- *
- * Overview:        Clears LCDText[] and the LCD's internal display buffer
- *
- * Note:            None
+ * Overview:        Add an ERASE operation to the LCD circular list
+ * 									and clean the LCDText shadow copy
  *****************************************************************************/
 void LCDErase(void)
 {
@@ -593,18 +596,11 @@ void LCDErase(void)
  *
  * PreCondition:    LCDInit() must have been called once
  *
- * Input:           LCDText[]
+ * Input:           None
  *
  * Output:          None
  *
- * Side Effects:    None
- *
- * Overview:        Copies the contents of the local LCDText[] array into the 
- *					LCD's internal display buffer.  Null terminators in 
- *					LCDText[] terminate the current line, so strings may be 
- *					printed directly to LCDText[].
- *
- * Note:            None
+ * Overview:        Add an UPDATE operation to the LCD circular list
  *****************************************************************************/
 void LCDUpdate(void)
 {
