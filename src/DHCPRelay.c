@@ -493,9 +493,11 @@ static void SendToClient() {
     }
 }
 
-/** Schedule the first paralel component.
- * This compoennt is responsible for getting the packets from the network and pushing them
- * in the right queue (depending if a packet comes from the server or from the client). 
+/**
+ * Schedule the first parallel component.
+ * This component is responsible for getting the packets from the network and
+ * pushing them in the right queue (depending on if a packet comes from the server
+ * or from the client). 
  */ 
 static void Component1() {
     switch(comp1) {
