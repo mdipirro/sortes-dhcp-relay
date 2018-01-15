@@ -10,7 +10,7 @@ The program comes with a \texttt{Makefile} that can be used to compile the progr
 \end{itemize}
 The last command has to be run only when the board is ready to receive the program. This happens during the three seconds after its reboot.
 
-The board comes with a RouterBoard. It is configured with two different networks in order to test the relay. A LAN comprises the ports 2, 3, 4, and 5; a WAN is set at the port 1. The DHCP server should be connected to the WAN, while both relay and clients should be on the ports from 2 to 5. The router built-in DHCP server should be disabled in order to let the relay work properly. Once disabled, it is not possible to communicate neither with the router itself nor with the board. Every device should be assigned a static IP address for communication purposes (meaning configuring the router and sending the program to the board). Examples are as follows:
+The board comes with a RouterBoard. It is configured with two different networks in order to test the relay. A LAN (\textbf{L}ocal \textbf{A}rea \textbf{N}etwork) comprises Ports 2, 3, 4, and 5; a WAN (\textbf{W}ide \textbf{A}rea \textbf{N}etwork) is set at Port 1. The DHCP server should be connected to the WAN, while both relay and clients should be on Ports from 2 to 5. The router built-in DHCP server should be disabled in order to let the relay work properly. Once disabled, it is not possible to communicate neither with the router itself nor with the board. Every device should be assigned a static IP address for communication purposes (meaning configuring the router and sending the program to the board). Examples are as follows:
 \begin{itemize}
 	\item 192.168.97.15 to send to program to the board;
 	\item 192.168.88.10 to configure the router.
@@ -27,7 +27,7 @@ If something is not working properly a special mode can be activated which allow
 	\item Stop bits: 1
 	\item Parity: Odd
 \end{itemize}
-The debug mode is \textbf{disabled by default}; it can be activated adding the option \texttt{-DUART\_DEBUG\_ON} to the CFLAGS in the Makefile and recompiling the code. Some predefined macros are used to print single characters (\texttt{DEBUGCHAR}), blocks of characters of any lenght (\texttt{DEBUGBLOCK}) and strings (\texttt{DEBUGMSG}) throughout the code; these macros are only effective in debug mode.
+The debug mode is \textbf{disabled by default}; it can be activated adding the option \texttt{-DUART\_DEBUG\_ON} to the CFLAGS in the Makefile and recompiling the code. Some predefined macros are used to print single characters (\texttt{DEBUGCHAR}), blocks of characters of any length (\texttt{DEBUGBLOCK}) and strings (\texttt{DEBUGMSG}) throughout the code; these macros are only effective in debug mode.
 
 Please note that this debug mode only works in a ``blocking'' mode, and may therefore result in additional delays while executing the software.
 
