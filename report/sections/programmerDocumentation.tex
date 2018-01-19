@@ -49,7 +49,7 @@ A relay slightly modify each packet. The actual changed fields depend on where t
 Our ASG (\textbf{A}synchronous \textbf{S}tate \textbf{G}raphs) diagram is depicted in Figure~\ref{fig:asg}.
 
 \begin{figure}[h]
-	\centerline{\includegraphics[width=1.15\textwidth]{images/asg-diagram}}
+	\centerline{\includegraphics[width=1.22\textwidth]{images/asg-diagram}}
 	\caption{ASG diagram modeling a DHCP relay}
 	\label{fig:asg}
 \end{figure}
@@ -132,7 +132,7 @@ Transmitting a packet to a client is simpler than transmitting to a server. It i
 This function operates more or less as \texttt{SendToServer} does, with a few slight differences. The first is the socket remote IP address, which is here set to broadcast (remember the client has not got an IP address until the very end of the DHCP ``handshake''). The MAC address is correctly set to be the one of the client. The latter value is taken from \texttt{CHADDR}. The second is the magic cookie, set to \texttt{0x63538263}.
 
 \subsubsection{Starvation}\label{sec:starvation}
-Suppose Component1 has acquired the network in order to receive a packet, and suppose Component 2 and 3 are waiting for the network in their ``idle'' state. In such a scenario, their queues are not empty. Component1 receives the packet, since it is allowed to use both the network and the processor. In this sense, the receiving operation may be considered as atomic: no one can do anything else since \texttt{GetPacket} never releases the processor and the scheduler is a non-preemptive one. It then executes to completion, and releases both the network (meaning it sets \texttt{N} to \texttt{FALSE}) and the processor (i.e. it lets another component execute). At this point, Component2 has the possibility to acquire the network, and it does so. This means neither Component1 nor Component3 may go ahead with their network-based operations (note that Component1 is now one of its ``push'' substates, which do not require the network). Component2 also does not release neither the network nor the processor during the transmission. It afterwards releases both of them, and Component3 has its chance to proceed. 
+Suppose Component1 has taken possession of the network interface to receive an incoming packet and suppose Component 2 and 3 are waiting for the network in their ``idle'' state. In such a scenario, their queues will not be empty. Component1 receives the packet, since it is allowed to use both the network and the processor. In this sense, the receiving operation may be considered as atomic: no one can do anything else since \texttt{GetPacket} never releases the processor and the scheduler is a non-preemptive one. It then executes to completion, and releases both the network (meaning it sets \texttt{N} to \texttt{FALSE}) and the processor (i.e. it lets another component execute). At this point, Component2 has the possibility to acquire the network, and it does so. This means neither Component1 nor Component3 may go ahead with their network-based operations. Component2 also does not release neither the network nor the processor during the transmission. It afterwards releases both of them, and Component3 has its chance to proceed. 
 
 If either Component2 or Component3 is not ready to transmit (its queue is empty), it does not compete for \texttt{N}.
 
